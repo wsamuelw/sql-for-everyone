@@ -1670,7 +1670,87 @@ FROM orders;</textarea>
         </div>
       `;
     }
-    function ctesContent() { return '<h2>CTEs</h2><p>Coming soon...</p>'; }
+    function ctesContent() { return `
+        <h2>CTEs: Readable Complex Queries</h2>
+        <p class="subtitle">How do I write complex queries that I can actually read?</p>
+
+        <div class="concept-box analogy">
+          A CTE (WITH clause) is like giving a subquery a name. Instead of nesting queries inside each other, you define them at the top and reference them by name. Like variables in a formula — name it once, use it below.
+        </div>
+
+        <h3>Basic CTE</h3>
+        <div class="playground" data-query="WITH customer_totals AS (SELECT customer_id, SUM(amount) AS total_spent FROM orders GROUP BY customer_id) SELECT c.name, ct.total_spent FROM customer_totals ct JOIN customers c ON ct.customer_id = c.id ORDER BY ct.total_spent DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Customer spending totals using a CTE</span></div>
+          <textarea spellcheck="false">WITH customer_totals AS (
+  SELECT customer_id, SUM(amount) AS total_spent
+  FROM orders
+  GROUP BY customer_id
+)
+SELECT c.name, ct.total_spent
+FROM customer_totals ct
+JOIN customers c ON ct.customer_id = c.id
+ORDER BY ct.total_spent DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Multiple CTEs</h3>
+        <div class="playground" data-query="WITH monthly_revenue AS (SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue FROM orders GROUP BY month), avg_monthly AS (SELECT AVG(revenue) AS avg_rev FROM monthly_revenue) SELECT mr.month, mr.revenue, am.avg_rev, CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance FROM monthly_revenue mr, avg_monthly am ORDER BY mr.month;">
+          <div class="playground-header"><span class="label">Try it</span><span>Monthly revenue vs average</span></div>
+          <textarea spellcheck="false">WITH monthly_revenue AS (
+  SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue
+  FROM orders
+  GROUP BY month
+),
+avg_monthly AS (
+  SELECT AVG(revenue) AS avg_rev FROM monthly_revenue
+)
+SELECT mr.month, mr.revenue, am.avg_rev,
+  CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance
+FROM monthly_revenue mr, avg_monthly am
+ORDER BY mr.month;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          CTEs don't make queries faster — they make them readable. Use them when a subquery is getting hard to follow. Think of them as naming your steps.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Refactor: Find customers who spent more than $300 using a CTE instead of a subquery.</p>
+          <div class="playground" data-query="WITH spending AS (SELECT customer_id, SUM(amount) AS total FROM orders GROUP BY customer_id HAVING total > 300) SELECT c.name, s.total FROM spending s JOIN customers c ON s.customer_id = c.id;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WITH spending AS (SELECT customer_id, SUM(amount) AS total FROM orders GROUP BY customer_id HAVING total > 300) SELECT c.name, s.total FROM spending s JOIN customers c ON s.customer_id = c.id;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Build a report: top 3 products by revenue per category using a CTE.</p>
+          <div class="playground" data-query="WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `; }
     function cheatsheetContent() { return '<h2>Cheatsheet</h2><p>Coming soon...</p>'; }
     function whatsNextContent() { return '<h2>What\'s Next</h2><p>Coming soon...</p>'; }
 
