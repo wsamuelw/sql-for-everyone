@@ -1839,7 +1839,43 @@ ORDER BY mr.month;</textarea>
   <div><span class="col-name">Wrong JOIN type</span> <span class="col-desc">— INNER drops rows, LEFT keeps all from left table</span></div>
 </div>
 `; }
-    function whatsNextContent() { return '<h2>What\'s Next</h2><p>Coming soon...</p>'; }
+    function whatsNextContent() { return `
+<h2>What's Next: Keep Going</h2>
+<p class="subtitle">Where do I go from here?</p>
+
+<div class="concept-box why">
+  You've completed SQL for Everyone. You can now write queries that would have taken a data analyst days to pull. But this is just the beginning — here's where to go next.
+</div>
+
+<h3>What you can now do</h3>
+<ul>
+  <li>Pull and filter your own data</li>
+  <li>Summarise with aggregations and grouping</li>
+  <li>Combine tables with joins</li>
+  <li>Write subqueries, CASE WHEN, window functions, and CTEs</li>
+  <li>Build basic reports independently</li>
+</ul>
+
+<h3>External resources</h3>
+<ul>
+  <li><strong>dbt</strong> — data transformation: <a href="https://www.getdbt.com/" target="_blank">getdbt.com</a></li>
+  <li><strong>Looker</strong> — reporting and dashboards: <a href="https://cloud.google.com/looker" target="_blank">cloud.google.com/looker</a></li>
+  <li><strong>Power BI</strong> — Microsoft reporting: <a href="https://powerbi.microsoft.com/" target="_blank">powerbi.microsoft.com</a></li>
+  <li><strong>Mode Analytics SQL Tutorial</strong> — intermediate practice: <a href="https://mode.com/sql-tutorial/" target="_blank">mode.com/sql-tutorial</a></li>
+  <li><strong>Snowflake Documentation</strong> — <a href="https://docs.snowflake.com/" target="_blank">docs.snowflake.com</a></li>
+  <li><strong>BigQuery Documentation</strong> — <a href="https://cloud.google.com/bigquery/docs" target="_blank">cloud.google.com/bigquery/docs</a></li>
+</ul>
+
+<h3>Communities</h3>
+<ul>
+  <li><strong>dbt Community Slack</strong> — <a href="https://www.getdbt.com/community" target="_blank">getdbt.com/community</a></li>
+  <li><strong>Locally Optimistic</strong> — data community: <a href="https://locallyoptimistic.com/" target="_blank">locallyoptimistic.com</a></li>
+</ul>
+
+<div class="concept-box tip">
+  Your next step: Pick a real question from your work. Write the query. Run it. Share the result. That's how you learn — by solving problems that matter to you.
+</div>
+`; }
 
     const lessons = [
       { id: 'welcome', title: 'Welcome', icon: '👋', content: welcomeContent },
