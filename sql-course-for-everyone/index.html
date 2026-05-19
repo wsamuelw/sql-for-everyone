@@ -1232,7 +1232,70 @@ FROM orders;</textarea>
         </div>
       `;
     }
-    function groupbyContent() { return '<h2>GROUP BY</h2><p>Coming soon...</p>'; }
+    function groupbyContent() {
+      return `
+        <h2>GROUP BY: Summarising by Category</h2>
+        <p class="subtitle">How do I summarise by category?</p>
+
+        <div class="concept-box analogy">
+          GROUP BY splits your data into buckets, then summarises each one. Like a pivot table in Excel — you pick a column to group by, then apply a summary function to each group.
+        </div>
+
+        <h3>Group by category</h3>
+        <div class="playground" data-query="SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;">
+          <div class="playground-header"><span class="label">Try it</span><span>Products grouped by category</span></div>
+          <textarea spellcheck="false">SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Filter groups with HAVING</h3>
+        <div class="playground" data-query="SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;">
+          <div class="playground-header"><span class="label">Try it</span><span>Cities with more than 2 customers</span></div>
+          <textarea spellcheck="false">SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <strong>WHERE</strong> filters rows <em>before</em> grouping. <strong>HAVING</strong> filters groups <em>after</em> grouping. Use both when you need them.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
+          <p>How many orders has each customer placed? Show customer_id and order count.</p>
+          <div class="playground" data-query="SELECT customer_id, COUNT(*) AS order_count FROM orders GROUP BY customer_id;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT customer_id, COUNT(*) AS order_count FROM orders GROUP BY customer_id;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
+          <p>Which cities have more than 2 customers?</p>
+          <div class="playground" data-query="SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING cnt > 2;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING cnt > 2;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
     function joinsContent() { return '<h2>JOINs</h2><p>Coming soon...</p>'; }
     function miniReportsContent() { return '<h2>Mini Reports</h2><p>Coming soon...</p>'; }
     function subqueriesContent() { return '<h2>Subqueries</h2><p>Coming soon...</p>'; }
