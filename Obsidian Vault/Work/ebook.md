@@ -513,6 +513,308 @@ If you have projects from coursework, reframe them as independent work: what pro
 
 ---
 
+## 5a. The Error Catalogue: Technical Mistakes
+
+Content mistakes are about *what* you say. Technical mistakes are about whether a hiring manager can quickly see that you can actually do the job. Fix these and your skills section stops working against you.
+
+---
+
+### Mistake #9: Vague Technical Skills
+
+#### The Problem
+Technical skills are dumped as a flat, pipe-separated list with no categorisation. Everything sits on the same level — languages you've used for years next to tools you touched once in a tutorial.
+
+#### Why It Matters
+A hiring manager scanning your skills section is doing a rapid triage: "What can this person actually use vs. what have they just heard of?" A flat list like `SQL|C|Python|Java|C++` forces them to guess. Is C++ something you built with, or something you took one unit on? Is AWS SageMaker a core competency or a footnote? Without categorisation, your strongest skills get buried alongside your weakest.
+
+#### Real Example (Anonymised)
+
+Resume 1's Technical Skills section:
+
+> Proficient in programming languages: SQL|C|Python|Java|C++
+> Software/Platform knowledge: MATLAB, simulink experience, arduino IDE, AWS SageMaker
+
+Two lines. Eight tools and languages. No structure. A data analyst hiring manager sees C and C++ mixed in with Python and SQL and thinks: "This person listed everything they've ever touched." The "simulink experience" qualifier on one item but not others suggests inconsistency in confidence levels — but the reader has no way to know which.
+
+#### The Fix
+Group skills by category. Within each category, list from strongest to weakest. For data roles, the categories that matter are: Languages, Analytics/ML Tools, Visualisation Tools, Platforms/Infrastructure. If a tool appears in your experience bullets, it belongs in skills. If it only appeared in a single unit and you haven't used it since, leave it out.
+
+#### Before → After
+
+**Before:**
+> Proficient in programming languages: SQL|C|Python|Java|C++
+> Software/Platform knowledge: MATLAB, simulink experience, arduino IDE, AWS SageMaker
+
+**After:**
+> **Languages:** Python, SQL, Java, C++
+> **Analytics & ML Tools:** AWS SageMaker, MATLAB, Simulink
+> **Platforms:** Arduino IDE, AWS
+
+---
+
+### Mistake #10: Too Much Education, Too Little Experience
+
+#### The Problem
+The education section lists every subject taken, every co-curricular activity, and extends into high school details. Meanwhile, the experience section — the part that actually proves you can do the job — gets a fraction of the page.
+
+#### Why It Matters
+For graduates, education is important. But a hiring manager doesn't need a course catalogue. They need to see degree, university, dates, and maybe 4-5 relevant subjects. Every additional line in education is a line stolen from experience, projects, or skills — the sections that actually differentiate you from every other graduate with the same degree.
+
+#### Real Example (Anonymised)
+
+Resume 1's education section:
+
+> Bachelor of Science, Data Science Major Jan, 2022 - Dec, 2025
+> The University of Melbourne
+> Subjects: Foundations of Computing, Foundations of Algorithms, Elements of Data Processing, Object-Oriented Software Design, Database Systems, Machine Learning, Statistics, Principles of Finance, Corporate Financial Decision Making
+>
+> Co-Curricular participation:
+> - Data Science Student Society Industry Outreach Officer
+> - Melbourne Space Program Animatronics Control team member
+>
+> Exchange National University of Singapore
+> - Algorithms and Data Structure, Probability
+>
+> Year 9 - Year 12 Jan 2018 - Dec 2021
+> Mac.Robertson Girls' High School
+> ATAR: 97.95
+> VCE subjects: English, Chinese Second Language Advanced, Maths Methods, Specialist Mathematics, Physics, Chemistry
+
+That's 15+ lines of education. The exchange semester, the co-curricular activities, the high school ATAR, the VCE subjects — none of this moves the needle for a hiring manager in 2026. The degree and university are strong. Everything else is noise.
+
+#### The Fix
+Trim education to: degree title, university, dates, and 4-6 most relevant subjects. Remove high school entirely. Remove exchange semesters unless they involved unique, role-relevant work. Remove co-curricular activities from the education section — if they're relevant, they belong in Experience or a separate Activities section. The goal is one-third of a page, maximum.
+
+#### Before → After
+
+**Before:**
+> Education
+> Bachelor of Science, Data Science Major Jan, 2022 - Dec, 2025
+> The University of Melbourne
+> Subjects: Foundations of Computing, Foundations of Algorithms, Elements of Data Processing, Object-Oriented Software Design, Database Systems, Machine Learning, Statistics, Principles of Finance, Corporate Financial Decision Making
+>
+> Co-Curricular participation:
+> - Data Science Student Society Industry Outreach Officer
+> - Melbourne Space Program Animatronics Control team member
+>
+> Exchange National University of Singapore
+> - Algorithms and Data Structure, Probability
+>
+> Year 9 - Year 12 Jan 2018 - Dec 2021
+> Mac.Robertson Girls' High School
+> ATAR: 97.95
+> VCE subjects: English, Chinese Second Language Advanced, Maths Methods, Specialist Mathematics, Physics, Chemistry
+
+**After:**
+> **Education**
+> Bachelor of Science, Data Science Major | The University of Melbourne | Jan 2022 - Dec 2025
+> Key coursework: Database Systems, Machine Learning, Statistics, Object-Oriented Software Design
+
+---
+
+## 5b. The Error Catalogue: Formatting Mistakes
+
+You can have perfect content and still get rejected because of how it looks. Formatting mistakes don't just affect aesthetics — they affect whether an ATS can read your resume and whether a human can scan it quickly.
+
+---
+
+### Mistake #11: ATS Formatting Pitfalls
+
+#### The Problem
+Your resume uses columns, text boxes, tables, images, or custom fonts that look great visually but are invisible to Applicant Tracking Systems. The ATS parses your resume top-to-bottom, left-to-right, and anything that breaks that flow gets silently dropped or garbled.
+
+#### Why It Matters
+ATS (Applicant Tracking Systems) are software used by most companies to manage incoming resumes. They parse your document into structured data before a human ever sees it. If the ATS can't read your content, your resume never makes it to the hiring manager — no matter how good it is. Up to 75% of resumes are filtered out by ATS before reaching human eyes. Getting the formatting wrong is the fastest way to be invisible.
+
+#### Real Example (Anonymised)
+
+This is a general warning, not tied to one resume. Common ATS killers we've seen across candidates:
+
+- **Two-column layouts** — the left column (usually contact info or skills) gets read as flowing into the right column, jumbling all content
+- **Headers inside text boxes or shapes** — ATS reads the shape as empty, so sections disappear
+- **Tables for layout** — column order gets scrambled, especially on multi-column tables
+- **Images or icons** — invisible to ATS; your profile photo, skill rating bars, and logo graphics are all dropped
+- **Uncommon fonts or embedded text** — custom fonts may not render, turning your resume into symbols
+- **PDF with no selectable text** — some PDF exports create images of text instead of actual text layers
+
+#### The Fix
+Keep it simple: single-column layout, standard fonts (Arial, Calibri, Times New Roman), no tables, no text boxes, no images. Use standard section headers ("Experience," "Education," "Skills") — not custom-styled labels. Save as .docx for maximum ATS compatibility, or PDF if the job posting accepts it. After formatting, try copy-pasting your entire resume into a plain text editor. If anything disappears or gets garbled, an ATS will have the same problem.
+
+#### Before → After
+
+**Before:**
+> *(Two-column layout with profile photo in a rounded rectangle, skills in colour-coded boxes, section headers in decorative text boxes, timeline graphics for work history)*
+
+**After:**
+> *(Single-column layout, standard Calibri font, plain text headers, no images or graphics. Copy-pastes cleanly into Notepad.)*
+
+---
+
+### Mistake #12: Passive Voice in Bullets
+
+#### The Problem
+Bullet points use passive or wordy constructions — "Connected with various members," "Ensured student engagement," "Was responsible for" — that bury the action and weaken the statement. The reader has to work to figure out what you actually did.
+
+#### Why It Matters
+Passive voice creates distance between you and the action. "Connected with various members from different levels of firm through initiating meetings" is 15 words to say "networked with colleagues." Hiring managers scan — they don't parse. Active, concise bullets land faster and stick longer. Every word that doesn't earn its place is a word that makes your resume harder to read.
+
+#### Real Example (Anonymised)
+
+Resume 1, Deloitte vacationer role:
+
+> Connected with various members from different levels of firm through initiating meetings to gain insight of firm structure and operations
+
+That's 20 words. The actual action was: talked to people across the firm. The rest is filler — "through initiating meetings," "to gain insight of," "from different levels of firm." None of it adds specificity or impact.
+
+#### The Fix
+Lead every bullet with a strong action verb. Cut connecting phrases ("through," "in order to," "with the aim of"). If a bullet has more than 15 words, challenge every one of them. The goal is: [Action verb] + [what you did] + [outcome or scale].
+
+#### Before → After
+
+**Before:**
+> Connected with various members from different levels of firm through initiating meetings to gain insight of firm structure and operations
+
+**After:**
+> Networked with managers and partners across 4 departments to understand firm structure and identify data workflow opportunities
+
+---
+
+### Mistake #13: Wall-of-Text Profile
+
+#### The Problem
+The professional summary is 150+ words — a dense paragraph that reads like a cover letter. By the time the hiring manager finishes it, they've forgotten the first sentence.
+
+#### Why It Matters
+The summary's job is to answer one question in under 5 seconds: "Who is this person and why should I keep reading?" A wall of text does the opposite — it signals that you can't prioritise information. Hiring managers don't read summaries. They scan the first two lines. If those lines don't hook them, the rest is invisible.
+
+#### Real Example (Anonymised)
+
+Resume 2's Profile section:
+
+> Currently pursuing a Master of Philosophy in Computer Science at RMIT University, with a focus on innovative methods for social influence analysis. My journey commenced with a Bachelor of Science in Automation from Beijing Institute of Technology, where I became obsessed with data and machine learning through a research project about creating an agent learning from visual data to play video games. Pursuing my Master's degree was a natural step to deepen my expertise in data engineering and machine learning, inspired by a passion for engaging with real-world data and tackling practical challenges.
+>
+> My academic background and project experience has equipped me with the ability to uncover meaningful insights from complex datasets, enabling companies to improve their products or services for better customer experiences and make informed business decisions. My unique value lies in my skills in research and communication...
+
+That's approximately 150 words across two dense paragraphs. The hiring manager's eyes glaze over at "My journey commenced." The second paragraph adds generic claims ("meaningful insights," "informed business decisions") without specifics.
+
+#### The Fix
+Three sentences maximum. Sentence 1: who you are and your key credential. Sentence 2: your strongest, most relevant skill or achievement (with a number if possible). Sentence 3: what you're looking for. Cut every sentence that starts with "I" or "My" — it's redundant; this is your resume.
+
+#### Before → After
+
+**Before:**
+> Currently pursuing a Master of Philosophy in Computer Science at RMIT University, with a focus on innovative methods for social influence analysis. My journey commenced with a Bachelor of Science in Automation from Beijing Institute of Technology, where I became obsessed with data and machine learning through a research project about creating an agent learning from visual data to play video games. Pursuing my Master's degree was a natural step to deepen my expertise in data engineering and machine learning, inspired by a passion for engaging with real-world data and tackling practical challenges.
+>
+> My academic background and project experience has equipped me with the ability to uncover meaningful insights from complex datasets, enabling companies to improve their products or services for better customer experiences and make informed business decisions. My unique value lies in my skills in research and communication. Research involves identifying unsolved problems and applying appropriate techniques to address them...
+
+**After:**
+> Computer science researcher with a publication under review and 2+ years of Python and large-scale data experience. Built a fair event influence system that boosted engagement by 15% over state-of-the-art methods. Seeking a data scientist role where I can apply machine learning and social network analysis to real-world product challenges.
+
+---
+
+### Mistake #14: Inconsistent Formatting
+
+#### The Problem
+Date styles, header capitalisation, spacing, and bullet formatting vary across the resume. Some sections use ALL CAPS headers, others use Title Case. Some entries have extra spacing, others are crammed together. The resume looks like it was stitched together from multiple documents.
+
+#### Why It Matters
+Inconsistency signals carelessness. If you can't keep your own resume consistent, a hiring manager wonders about the consistency of your work. Beyond perception, inconsistent formatting makes the document harder to scan — the reader's eye can't find a pattern to follow, so it bounces around instead of flowing naturally.
+
+#### Real Example (Anonymised)
+
+Resume 3 shows multiple formatting inconsistencies:
+
+Section headers use ALL CAPS throughout: SUMMARY, EDUCATION, WORK EXPERIENCE, KEY SKILLS — which is consistent. But the spacing between sections is not:
+
+> alignment with regulatory reporting needs.PROJECTS
+
+"PROJECTS" is jammed directly against the preceding paragraph with no line break. Meanwhile, other sections have clear spacing.
+
+Date formatting is consistent in style (Mon YYYY) but the role descriptions vary in structure:
+
+> Business Analyst, Product Team, PIKMO Australia
+> Mar 2024 - Aug 2024
+
+vs.
+
+> Marketing & Product Analyst, Global Operation Team
+> Fantuan / EASI / HungryPanda
+> Feb 2021 - Oct 2023
+
+The first has the team on the same line as the title; the second splits the role description across two lines with the company name on a separate line. Neither is wrong, but the inconsistency forces the reader to re-learn the pattern for each entry.
+
+#### The Fix
+Pick one format and apply it everywhere. Same date style. Same header capitalisation. Same spacing between sections. Same structure for each role entry (Title | Company | Dates — on the same line or on separate lines, but never mixed). Before finalising, do a visual scan: does every section look like it belongs to the same document?
+
+#### Before → After
+
+**Before:**
+> Business Analyst, Product Team, PIKMO Australia
+> Mar 2024 - Aug 2024
+> [bullets...]
+> alignment with regulatory reporting needs.PROJECTS
+>
+> Marketing & Product Analyst, Global Operation Team
+> Fantuan / EASI / HungryPanda
+> Feb 2021 - Oct 2023
+> [bullets...]
+
+**After:**
+> **Business Analyst, Product Team** | PIKMO Australia | Mar 2024 - Aug 2024
+> [bullets...]
+>
+> ---
+>
+> **Marketing & Product Analyst, Global Operation Team** | Fantuan / EASI / HungryPanda | Feb 2021 - Oct 2023
+> [bullets...]
+
+---
+
+### Mistake #15: Inconsistent Tense Usage
+
+#### The Problem
+Bullet points within the same role switch between past and present tense. One bullet says "Collected, cleaned, and validated" (past), the next says "Partnered with cross-functional teams" (present). The reader notices the shift, even if they can't articulate why it feels off.
+
+#### Why It Matters
+Tense inconsistency breaks the reading flow and creates confusion about whether you still hold the role. Past roles should use past tense throughout. Current roles should use present tense throughout. Mixing them within the same position makes the resume feel unpolished — like you wrote some bullets at different times and never went back to align them.
+
+#### Real Example (Anonymised)
+
+Resume 3, PIKMO Australia role (Mar 2024 - Aug 2024):
+
+> Collected, cleaned, and validated customer transaction data from internal systems to support cashback and product analytics.
+>
+> Wrote advanced SQL queries to extract and analyse transactional data, store performance, and partner profitability; insights supported risk analysis and compliance audits.
+>
+> Applied statistical techniques such as regression analysis and segmentation to optimise cashback offerings and improve customer engagement.
+>
+> Partnered with cross-functional teams (Marketing, Product, Finance) to align KPIs with strategic and compliance goals.
+
+All four bullets are past tense here, but the same resume's earlier role mixes conventions across entries. Inconsistencies like this creep in when bullets are added at different times — one during the role, one after it ends — and nobody goes back to align them.
+
+#### The Fix
+Decide: is this a current role or a past role? If it's current, every bullet uses present tense ("Build," "Analyse," "Partner"). If it's past, every bullet uses past tense ("Built," "Analysed," "Partnered"). Do a find-and-replace scan: search for "-ed" endings in current roles and present-tense verbs in past roles. Align them all.
+
+#### Before → After
+
+**Before:**
+> Collected, cleaned, and validated customer transaction data from internal systems to support cashback and product analytics.
+> ...
+> Partner with cross-functional teams (Marketing, Product, Finance) to align KPIs with strategic and compliance goals.
+> ...
+> Write advanced SQL queries to extract and analyse transactional data
+
+**After:**
+> Collected, cleaned, and validated customer transaction data from internal systems to support cashback and product analytics.
+> ...
+> Partnered with cross-functional teams (Marketing, Product, Finance) to align KPIs with strategic and compliance goals.
+> ...
+> Wrote advanced SQL queries to extract and analyse transactional data
+
+*(All bullets in the same role use past tense because the role is completed. If it were a current role, all bullets would use present tense: "Collect," "Partner," "Write." Pick one tense per role and scan every bullet.)*
+
+---
+
 ## 6. Closing
 
 If you've been sending applications into the void, you're not alone.
