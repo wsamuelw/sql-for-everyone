@@ -911,8 +911,115 @@
     }
 
     // ========== Lesson Data ==========
-    function welcomeContent() { return '<h2>Welcome</h2><p>Coming soon...</p>'; }
-    function selectContent() { return '<h2>SELECT</h2><p>Coming soon...</p>'; }
+    function welcomeContent() {
+      return `
+        <h2>Welcome to SQL for Everyone</h2>
+        <p class="subtitle">Learn to answer your own data questions — no analyst needed.</p>
+
+        <div class="concept-box why">
+          SQL (Structured Query Language) is just a way to talk to databases. Think of it as
+          asking questions to a very organised filing cabinet. Instead of waiting days for a data
+          analyst to pull a report, you'll be able to do it yourself in minutes.
+        </div>
+
+        <h3>What you'll learn</h3>
+        <ul>
+          <li>Pull specific data — stop drowning in spreadsheets</li>
+          <li>Filter and search — find exactly what you need</li>
+          <li>Sort and rank — see what matters most first</li>
+          <li>Summarise with numbers — counts, totals, averages</li>
+          <li>Combine data sources — connect the dots between tables</li>
+        </ul>
+
+        <h3>How this works</h3>
+        <p>Every lesson has a live SQL editor. You'll type queries and see results instantly — right here in your browser. No setup, no accounts, no waiting.</p>
+
+        <div class="concept-box analogy">
+          SQL is not programming — it's asking questions to a database. Think of it like using search filters on a spreadsheet, not building an app. If you can use Excel filters, you can learn SQL. No coding experience needed.
+        </div>
+
+        <div class="concept-box tip">
+          All examples use a fictional company's data: customers, products, orders, and employees. The patterns you learn here work with any database — your CRM, accounting software, or analytics tool.
+        </div>
+
+        <div class="playground" data-query="SELECT 'You''re ready to start! 🎉' AS message;">
+          <div class="playground-header">
+            <span class="label">Try it</span>
+            <span>Click ▶ Run to execute</span>
+          </div>
+          <textarea spellcheck="false">SELECT 'You''re ready to start! 🎉' AS message;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+      `;
+    }
+    function selectContent() {
+      return `
+        <h2>SELECT: Picking the Data You Need</h2>
+        <p class="subtitle">How do I see just the data I need?</p>
+
+        <div class="concept-box analogy">
+          A database table is just like a spreadsheet. <strong>SELECT</strong> is you telling someone: "Hey, go grab me that spreadsheet and show me these specific columns."
+        </div>
+
+        <h3>See everything</h3>
+        <div class="playground" data-query="SELECT * FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>customers table</span></div>
+          <textarea spellcheck="false">SELECT * FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Pick specific columns</h3>
+        <div class="playground" data-query="SELECT name, email, city FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>Just name, email, and city</span></div>
+          <textarea spellcheck="false">SELECT name, email, city FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Rename columns for clarity</h3>
+        <div class="playground" data-query="SELECT name AS Customer, email AS &quot;Email Address&quot;, city AS Location FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>Rename columns with AS</span></div>
+          <textarea spellcheck="false">SELECT
+  name AS Customer,
+  email AS "Email Address",
+  city AS Location
+FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <code>SELECT *</code> is great for exploring, but in real work, always pick specific columns. It's faster and easier to read.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge easy">Easy</span></div>
+          <p>Show only the <strong>product name</strong> and <strong>price</strong> from the <code>products</code> table.</p>
+          <div class="playground" data-query="SELECT name, price FROM products;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price FROM products;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
     function whereContent() { return '<h2>WHERE</h2><p>Coming soon...</p>'; }
     function sortingContent() { return '<h2>Sorting</h2><p>Coming soon...</p>'; }
     function aggregationContent() { return '<h2>Aggregation</h2><p>Coming soon...</p>'; }
