@@ -1454,8 +1454,132 @@ FROM orders;</textarea>
         </div>
       `;
     }
-    function subqueriesContent() { return '<h2>Subqueries</h2><p>Coming soon...</p>'; }
-    function caseWhenContent() { return '<h2>CASE WHEN</h2><p>Coming soon...</p>'; }
+    function subqueriesContent() {
+      return `
+        <h2>Subqueries: Queries Inside Queries</h2>
+        <p class="subtitle">How do I use one query's result in another?</p>
+
+        <div class="concept-box analogy">
+          A subquery is a question inside a question. Like saying: "Show me everyone who spent more than the average customer." First you find the average, then you use it to filter.
+        </div>
+
+        <h3>Subquery in WHERE</h3>
+        <div class="playground" data-query="SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);">
+          <div class="playground-header"><span class="label">Try it</span><span>Customers who spent more than $300 total</span></div>
+          <textarea spellcheck="false">SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Subquery in FROM</h3>
+        <div class="playground" data-query="SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) WHERE avg_price > 100;">
+          <div class="playground-header"><span class="label">Try it</span><span>Categories with average price above $100</span></div>
+          <textarea spellcheck="false">SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) WHERE avg_price > 100;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          Read subqueries from the inside out. The inner query runs first, then the outer query uses its results.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Find products that have never been ordered.</p>
+          <div class="playground" data-query="SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Find customers who have placed more than 2 orders.</p>
+          <div class="playground" data-query="SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) > 2);">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) > 2);')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function caseWhenContent() { return `
+        <h2>CASE WHEN: Labels and Buckets</h2>
+        <p class="subtitle">How do I add labels and buckets to my data?</p>
+
+        <div class="concept-box analogy">
+          CASE WHEN is like IF/THEN in Excel. "If price > 200, label it Premium, otherwise label it Standard." You create new columns based on conditions.
+        </div>
+
+        <h3>Simple CASE</h3>
+        <div class="playground" data-query="SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;">
+          <div class="playground-header"><span class="label">Try it</span><span>Label products by price tier</span></div>
+          <textarea spellcheck="false">SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Conditional aggregation</h3>
+        <div class="playground" data-query="SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;">
+          <div class="playground-header"><span class="label">Try it</span><span>Split customer count by signup year per city</span></div>
+          <textarea spellcheck="false">SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          CASE WHEN evaluates conditions top-to-bottom and returns the first match. Put your most specific conditions first.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Label orders as Small (&lt;$100), Medium ($100-$300), or Large (&gt;$300). Show order id, amount, and label.</p>
+          <div class="playground" data-query="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, CASE WHEN amount < 100 THEN Small WHEN amount <= 300 THEN Medium ELSE Large END AS size FROM orders;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Count customers per city, split by email domain (gmail vs others).</p>
+          <div class="playground" data-query="SELECT city, COUNT(CASE WHEN email LIKE '%@gmail.com' THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE '%@gmail.com' THEN 1 END) AS other FROM customers GROUP BY city;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(CASE WHEN email LIKE @gmail.com THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE @gmail.com THEN 1 END) AS other FROM customers GROUP BY city;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `; }
     function windowContent() { return '<h2>Window Functions</h2><p>Coming soon...</p>'; }
     function ctesContent() { return '<h2>CTEs</h2><p>Coming soon...</p>'; }
     function cheatsheetContent() { return '<h2>Cheatsheet</h2><p>Coming soon...</p>'; }
