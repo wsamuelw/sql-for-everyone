@@ -502,6 +502,15 @@
       filter: brightness(1.1);
     }
 
+    /* ========== Lesson Bottom Nav ========== */
+    .lesson-nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
     /* ========== Schema Display ========== */
     .schema-display {
       background: #0d0f14;
@@ -764,9 +773,295 @@
       `);
     }
 
+    function translateSQL(sql) {
+      let translated = sql;
+
+      // DATE_TRUNC('month', col) → strftime('%Y-%m', col)
+      translated = translated.replace(
+        /DATE_TRUNC\s*\(\s*'month'\s*,\s*([^)]+)\)/gi,
+        "strftime('%Y-%m', $1)"
+      );
+
+      // DATE_TRUNC('year', col) → strftime('%Y', col)
+      translated = translated.replace(
+        /DATE_TRUNC\s*\(\s*'year'\s*,\s*([^)]+)\)/gi,
+        "strftime('%Y', $1)"
+      );
+
+      // DATE_TRUNC('day', col) → date(col)
+      translated = translated.replace(
+        /DATE_TRUNC\s*\(\s*'day'\s*,\s*([^)]+)\)/gi,
+        "date($1)"
+      );
+
+      // DATEADD('day', N, col) → date(col, '+N days')
+      translated = translated.replace(
+        /DATEADD\s*\(\s*'day'\s*,\s*(\d+)\s*,\s*([^)]+)\)/gi,
+        "date($2, '+$1 days')"
+      );
+
+      // DATEADD('month', N, col) → date(col, '+N months')
+      translated = translated.replace(
+        /DATEADD\s*\(\s*'month'\s*,\s*(\d+)\s*,\s*([^)]+)\)/gi,
+        "date($2, '+$1 months')"
+      );
+
+      // DATEDIFF('day', start, end) → julianday(end) - julianday(start)
+      translated = translated.replace(
+        /DATEDIFF\s*\(\s*'day'\s*,\s*([^,]+)\s*,\s*([^)]+)\)/gi,
+        "CAST(julianday($2) - julianday($1) AS INTEGER)"
+      );
+
+      // CURRENT_DATE() → date('now')
+      translated = translated.replace(/CURRENT_DATE\s*\(\s*\)/gi, "date('now')");
+
+      // ILIKE → LIKE (SQLite is case-insensitive by default)
+      translated = translated.replace(/\bILIKE\b/gi, 'LIKE');
+
+      return translated;
+    }
+
+    function executeQuery(sql) {
+      const translated = translateSQL(sql);
+      return db.exec(translated);
+    }
+
+    function runPlayground(btn) {
+      const playground = btn.closest('.playground');
+      const textarea = playground.querySelector('textarea');
+      const resultArea = playground.querySelector('.result-area');
+      const sql = textarea.value.trim();
+
+      if (!sql) {
+        resultArea.innerHTML = '<div class="message info">Type a query and click Run.</div>';
+        return;
+      }
+
+      try {
+        const results = executeQuery(sql);
+
+        if (!results || results.length === 0) {
+          resultArea.innerHTML = '<div class="message success">Query executed successfully. No results to display.</div>';
+          markLessonComplete();
+          return;
+        }
+
+        const res = results[0];
+        let html = '<table class="result-table"><thead><tr>';
+        res.columns.forEach(c => { html += '<th>' + escapeHtml(c) + '</th>'; });
+        html += '</tr></thead><tbody>';
+        res.values.forEach(row => {
+          html += '<tr>';
+          row.forEach(v => {
+            if (v === null) {
+              html += '<td class="null-val">NULL</td>';
+            } else {
+              html += '<td>' + escapeHtml(String(v)) + '</td>';
+            }
+          });
+          html += '</tr>';
+        });
+        html += '</tbody></table>';
+        html += '<div class="result-meta">' + res.values.length + ' row' + (res.values.length !== 1 ? 's' : '') + ' returned</div>';
+        resultArea.innerHTML = html;
+        markLessonComplete();
+      } catch (err) {
+        resultArea.innerHTML = '<div class="message error">Error: ' + escapeHtml(err.message) + '</div>';
+      }
+    }
+
+    function resetPlayground(btn) {
+      const playground = btn.closest('.playground');
+      const textarea = playground.querySelector('textarea');
+      const resultArea = playground.querySelector('.result-area');
+      const original = playground.getAttribute('data-query');
+      if (original) textarea.value = original;
+      resultArea.innerHTML = '';
+    }
+
+    function showHint(btn, hint) {
+      const playground = btn.closest('.playground') || btn.closest('.exercise').querySelector('.playground');
+      const resultArea = playground.querySelector('.result-area');
+      resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function attachPlaygroundHandlers(container) {
+      container.querySelectorAll('.playground textarea').forEach(ta => {
+        ta.addEventListener('keydown', (e) => {
+          if (e.key === 'Tab') {
+            e.preventDefault();
+            const start = ta.selectionStart;
+            const end = ta.selectionEnd;
+            ta.value = ta.value.substring(0, start) + '  ' + ta.value.substring(end);
+            ta.selectionStart = ta.selectionEnd = start + 2;
+          }
+          if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+            e.preventDefault();
+            const btn = ta.closest('.playground').querySelector('.btn-run');
+            if (btn) runPlayground(btn);
+          }
+        });
+      });
+    }
+
+    // ========== Lesson Data ==========
+    function welcomeContent() {
+      return `
+        <h2>Welcome to SQL for Everyone</h2>
+        <p class="subtitle">Learn to answer your own data questions — no analyst needed.</p>
+
+        <div class="concept-box why">
+          SQL (Structured Query Language) is just a way to talk to databases. Think of it as
+          asking questions to a very organised filing cabinet. Instead of waiting days for a data
+          analyst to pull a report, you'll be able to do it yourself in minutes.
+        </div>
+
+        <h3>What you'll learn</h3>
+        <ul>
+          <li>Pull specific data — stop drowning in spreadsheets</li>
+          <li>Filter and search — find exactly what you need</li>
+          <li>Sort and rank — see what matters most first</li>
+          <li>Summarise with numbers — counts, totals, averages</li>
+          <li>Combine data sources — connect the dots between tables</li>
+        </ul>
+
+        <h3>How this works</h3>
+        <p>Every lesson has a live SQL editor. You'll type queries and see results instantly — right here in your browser. No setup, no accounts, no waiting.</p>
+
+        <div class="concept-box analogy">
+          SQL is not programming — it's asking questions to a database. Think of it like using search filters on a spreadsheet, not building an app. If you can use Excel filters, you can learn SQL. No coding experience needed.
+        </div>
+
+        <div class="concept-box tip">
+          All examples use a fictional company's data: customers, products, orders, and employees. The patterns you learn here work with any database — your CRM, accounting software, or analytics tool.
+        </div>
+
+        <div class="playground" data-query="SELECT 'You''re ready to start! 🎉' AS message;">
+          <div class="playground-header">
+            <span class="label">Try it</span>
+            <span>Click ▶ Run to execute</span>
+          </div>
+          <textarea spellcheck="false">SELECT 'You''re ready to start! 🎉' AS message;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+      `;
+    }
+    function selectContent() { return '<h2>SELECT</h2><p>Coming soon...</p>'; }
+    function whereContent() { return '<h2>WHERE</h2><p>Coming soon...</p>'; }
+    function sortingContent() { return '<h2>Sorting</h2><p>Coming soon...</p>'; }
+    function aggregationContent() { return '<h2>Aggregation</h2><p>Coming soon...</p>'; }
+    function groupbyContent() { return '<h2>GROUP BY</h2><p>Coming soon...</p>'; }
+    function joinsContent() { return '<h2>JOINs</h2><p>Coming soon...</p>'; }
+    function miniReportsContent() { return '<h2>Mini Reports</h2><p>Coming soon...</p>'; }
+    function subqueriesContent() { return '<h2>Subqueries</h2><p>Coming soon...</p>'; }
+    function caseWhenContent() { return '<h2>CASE WHEN</h2><p>Coming soon...</p>'; }
+    function windowContent() { return '<h2>Window Functions</h2><p>Coming soon...</p>'; }
+    function ctesContent() { return '<h2>CTEs</h2><p>Coming soon...</p>'; }
+    function cheatsheetContent() { return '<h2>Cheatsheet</h2><p>Coming soon...</p>'; }
+    function whatsNextContent() { return '<h2>What\'s Next</h2><p>Coming soon...</p>'; }
+
+    const lessons = [
+      { id: 'welcome', title: 'Welcome', icon: '👋', content: welcomeContent },
+      { id: 'select', title: 'SELECT', icon: '📋', content: selectContent },
+      { id: 'where', title: 'WHERE', icon: '🔍', content: whereContent },
+      { id: 'sorting', title: 'Sorting', icon: '↕️', content: sortingContent },
+      { id: 'aggregation', title: 'Aggregation', icon: '📊', content: aggregationContent },
+      { id: 'groupby', title: 'GROUP BY', icon: '📈', content: groupbyContent },
+      { id: 'joins', title: 'JOINs', icon: '🔗', content: joinsContent },
+      { id: 'mini-reports', title: 'Mini Reports', icon: '📄', content: miniReportsContent },
+      { id: 'subqueries', title: 'Subqueries', icon: '🔄', content: subqueriesContent },
+      { id: 'case-when', title: 'CASE WHEN', icon: '🏷️', content: caseWhenContent },
+      { id: 'window', title: 'Window Functions', icon: '🪟', content: windowContent },
+      { id: 'ctes', title: 'CTEs', icon: '🧩', content: ctesContent },
+      { id: 'cheatsheet', title: 'Cheatsheet', icon: '📖', content: cheatsheetContent },
+      { id: 'whats-next', title: "What's Next", icon: '🚀', content: whatsNextContent }
+    ];
+
+    let currentLesson = 0;
+    const completedLessons = new Set();
+
+    // ========== Navigation ==========
+    function renderNav() {
+      const nav = document.getElementById('lessonNav');
+      nav.innerHTML = lessons.map((l, i) =>
+        '<li class="' + (i === currentLesson ? 'active' : '') + ' ' + (completedLessons.has(i) ? 'completed' : '') + '"' +
+        ' onclick="goToLesson(' + i + ')">' +
+        '<span class="num">' + l.icon + '</span>' +
+        l.title +
+        '</li>'
+      ).join('');
+    }
+
+    function renderLesson() {
+      const content = document.getElementById('lessonContent');
+
+      let html = lessons[currentLesson].content();
+
+      // Navigation buttons
+      html += '<div class="lesson-nav-bottom">';
+      if (currentLesson > 0) {
+        html += '<button class="btn-nav" onclick="goToLesson(' + (currentLesson - 1) + ')">&larr; Previous</button>';
+      } else {
+        html += '<div></div>';
+      }
+      if (currentLesson < lessons.length - 1) {
+        html += '<button class="btn-nav primary" onclick="goToLesson(' + (currentLesson + 1) + ')">Next &rarr;</button>';
+      } else {
+        html += '<div></div>';
+      }
+      html += '</div>';
+
+      content.innerHTML = html;
+      renderNav();
+      updateProgress();
+      attachPlaygroundHandlers(content);
+      window.scrollTo(0, 0);
+    }
+
+    function goToLesson(i) {
+      currentLesson = i;
+      renderLesson();
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    function updateProgress() {
+      const pct = (completedLessons.size / lessons.length) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+    }
+
+    function markLessonComplete() {
+      completedLessons.add(currentLesson);
+      renderNav();
+      updateProgress();
+    }
+
+    // ========== Mobile Menu Toggle ==========
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+
+    // ========== Keyboard Shortcuts ==========
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && e.altKey) {
+        if (currentLesson < lessons.length - 1) goToLesson(currentLesson + 1);
+      }
+      if (e.key === 'ArrowLeft' && e.altKey) {
+        if (currentLesson > 0) goToLesson(currentLesson - 1);
+      }
+    });
+
+    // ========== Init ==========
     initDatabase().then(() => {
-      // Ready -- renderLesson() will be added in Task 5
-      console.log('Database ready. Tables:', db.exec("SELECT name FROM sqlite_master WHERE type='table'"));
+      renderLesson();
     }).catch(err => {
       console.error('Failed to initialize database:', err);
     });
