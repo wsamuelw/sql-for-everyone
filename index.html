@@ -961,6 +961,9 @@
 
     function attachPlaygroundHandlers(container) {
       container.querySelectorAll('.playground textarea').forEach(ta => {
+        if (!ta.getAttribute('aria-label')) {
+          ta.setAttribute('aria-label', 'SQL query editor');
+        }
         ta.addEventListener('keydown', (e) => {
           if (e.key === 'Tab') {
             e.preventDefault();
@@ -1543,9 +1546,9 @@ FROM orders;</textarea>
         </div>
 
         <h3>Subquery in FROM</h3>
-        <div class="playground" data-query="SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) WHERE avg_price > 100;">
+        <div class="playground" data-query="SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) AS sub WHERE avg_price > 100;">
           <div class="playground-header"><span class="label">Try it</span><span>Categories with average price above $100</span></div>
-          <textarea spellcheck="false">SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) WHERE avg_price > 100;</textarea>
+          <textarea spellcheck="false">SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) AS sub WHERE avg_price > 100;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1970,12 +1973,20 @@ ORDER BY mr.month;</textarea>
       const nav = document.getElementById('lessonNav');
       nav.innerHTML = lessons.map((l, i) =>
         '<li class="' + (i === currentLesson ? 'active' : '') + ' ' + (completedLessons.has(i) ? 'completed' : '') + '"' +
-        ' onclick="goToLesson(' + i + ')">' +
+        ' onclick="goToLesson(' + i + ')" tabindex="0" role="button" aria-label="' + l.title + ' lesson">' +
         '<span class="num">' + l.icon + '</span>' +
         l.title +
         '</li>'
       ).join('');
     }
+
+    document.getElementById('lessonNav').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const li = e.target.closest('li');
+        if (li) li.click();
+      }
+    });
 
     function renderLesson() {
       const content = document.getElementById('lessonContent');
