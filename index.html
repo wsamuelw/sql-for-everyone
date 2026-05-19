@@ -578,6 +578,36 @@
       animation: fadeIn 0.3s ease;
     }
 
+    /* ========== Print Styles ========== */
+    @media print {
+      .sidebar,
+      .mobile-toggle,
+      .playground-actions,
+      .result-area,
+      .lesson-nav-bottom,
+      .progress-bar,
+      .theme-toggle,
+      #exportPdfBtn {
+        display: none !important;
+      }
+      .main {
+        max-width: 100%;
+        padding: 0;
+      }
+      .playground textarea {
+        border: 1px solid #ccc;
+        min-height: auto;
+        height: auto;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .lesson {
+        page-break-inside: avoid;
+      }
+    }
+
     /* ========== Responsive ========== */
     @media (max-width: 900px) {
       .app {
@@ -625,6 +655,7 @@
       </ul>
 
       <div class="sidebar-footer">
+        <button class="btn btn-outline" id="exportPdfBtn" style="width:100%;margin-bottom:8px;">📄 Download PDF</button>
         <button class="theme-toggle" id="themeToggle">
           <span id="themeIcon">&#9789;</span>
           <span id="themeLabel">Dark mode</span>
@@ -1950,6 +1981,76 @@ ORDER BY mr.month;</textarea>
       completedLessons.add(currentLesson);
       renderNav();
       updateProgress();
+
+      if (completedLessons.size === lessons.length) {
+        setTimeout(() => {
+          if (confirm('🎉 You completed all lessons! Generate your certificate?')) {
+            generateCertificate();
+          }
+        }, 500);
+      }
+    }
+
+    // ========== PDF Export ==========
+    document.getElementById('exportPdfBtn').addEventListener('click', () => {
+      // Save current state
+      const savedLesson = currentLesson;
+
+      // Show all lessons
+      const content = document.getElementById('lessonContent');
+      let allContent = '';
+      lessons.forEach((l, i) => {
+        allContent += '<div style="page-break-after:always;padding:20px 0;">' + l.content() + '</div>';
+      });
+      content.innerHTML = allContent;
+
+      window.print();
+
+      // Restore current lesson
+      currentLesson = savedLesson;
+      renderLesson();
+    });
+
+    // ========== Completion Certificate ==========
+    function generateCertificate() {
+      const name = prompt('Enter your name for the certificate:');
+      if (!name) return;
+
+      const today = new Date().toLocaleDateString('en-AU', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      });
+
+      const certHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Certificate of Completion</title>
+          <style>
+            body { font-family: Georgia, serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #f5f5f5; }
+            .cert { background: white; padding: 60px 80px; text-align: center; border: 3px solid #4a6ae0; max-width: 700px; }
+            .cert h1 { font-size: 28px; color: #1a365d; margin-bottom: 20px; }
+            .cert .name { font-size: 32px; color: #2d3748; margin: 20px 0; }
+            .cert .course { font-size: 24px; color: #4a6ae0; margin: 20px 0; }
+            .cert .date { font-size: 14px; color: #718096; margin-top: 40px; }
+          </style>
+        </head>
+        <body>
+          <div class="cert">
+            <h1>Certificate of Completion</h1>
+            <p style="font-size:16px;color:#4a5568;">This certifies that</p>
+            <div class="name">${escapeHtml(name)}</div>
+            <p style="font-size:16px;color:#4a5568;">has completed</p>
+            <div class="course">SQL for Everyone</div>
+            <div class="date">${today}</div>
+          </div>
+        </body>
+        </html>
+      `;
+
+      const win = window.open('', '_blank');
+      win.document.write(certHtml);
+      win.document.close();
+      setTimeout(() => win.print(), 500);
     }
 
     // ========== Mobile Menu Toggle ==========
@@ -1966,6 +2067,36 @@ ORDER BY mr.month;</textarea>
         if (currentLesson > 0) goToLesson(currentLesson - 1);
       }
     });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.innerHTML = '&#9788;'; // sun
+        themeLabel.textContent = 'Light mode';
+        localStorage.setItem('sql-course-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.innerHTML = '&#9789;'; // moon
+        themeLabel.textContent = 'Dark mode';
+        localStorage.setItem('sql-course-theme', 'light');
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('sql-course-theme');
+    if (savedTheme === 'dark') {
+      setTheme('dark');
+    }
 
     // ========== Init ==========
     initDatabase().then(() => {
