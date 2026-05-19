@@ -773,24 +773,22 @@ Pick one format and apply it everywhere. Same date style. Same header capitalisa
 ### Mistake #15: Inconsistent Tense Usage
 
 #### The Problem
-Bullet points within the same role switch between past and present tense. One bullet says "Collected, cleaned, and validated" (past), the next says "Partnered with cross-functional teams" (present). The reader notices the shift, even if they can't articulate why it feels off.
+Bullet points within the same role switch between past and present tense. One bullet says "Collected, cleaned, and validated" (past), the next says "Partner with cross-functional teams" (present). The reader notices the shift, even if they can't articulate why it feels off.
 
 #### Why It Matters
 Tense inconsistency breaks the reading flow and creates confusion about whether you still hold the role. Past roles should use past tense throughout. Current roles should use present tense throughout. Mixing them within the same position makes the resume feel unpolished — like you wrote some bullets at different times and never went back to align them.
 
-#### Real Example (Anonymised)
+#### Illustrative Example
 
-Resume 3, PIKMO Australia role (Mar 2024 - Aug 2024):
+This is a constructed example of what this mistake looks like — not a direct quote from any of the source resumes. The resumes we reviewed actually held tense consistently within each role, but this pattern is extremely common in the wild.
 
-> Collected, cleaned, and validated customer transaction data from internal systems to support cashback and product analytics.
+> **Business Analyst, Product Team** | PIKMO Australia | Mar 2024 - Aug 2024
 >
-> Wrote advanced SQL queries to extract and analyse transactional data, store performance, and partner profitability; insights supported risk analysis and compliance audits.
->
-> Applied statistical techniques such as regression analysis and segmentation to optimise cashback offerings and improve customer engagement.
->
-> Partnered with cross-functional teams (Marketing, Product, Finance) to align KPIs with strategic and compliance goals.
+> - Collected, cleaned, and validated customer transaction data from internal systems to support cashback and product analytics.
+> - Write advanced SQL queries to extract and analyse transactional data, store performance, and partner profitability.
+> - Partner with cross-functional teams (Marketing, Product, Finance) to align KPIs with strategic and compliance goals.
 
-All four bullets are past tense here, but the same resume's earlier role mixes conventions across entries. Inconsistencies like this creep in when bullets are added at different times — one during the role, one after it ends — and nobody goes back to align them.
+Three bullets, two tenses. "Collected" is past. "Write" and "Partner" are present. The role ended in August 2024 — all three should be past tense. Inconsistencies like this creep in when bullets are added at different times — one during the role, one after it ends — and nobody goes back to align them.
 
 #### The Fix
 Decide: is this a current role or a past role? If it's current, every bullet uses present tense ("Build," "Analyse," "Partner"). If it's past, every bullet uses past tense ("Built," "Analysed," "Partnered"). Do a find-and-replace scan: search for "-ed" endings in current roles and present-tense verbs in past roles. Align them all.
