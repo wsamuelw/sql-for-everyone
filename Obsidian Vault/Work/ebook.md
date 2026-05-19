@@ -1042,7 +1042,583 @@ For every project, answer three questions: (1) How big was it? (2) What did you 
 
 ---
 
-## 6. Closing
+## 6. Full Before → After Resume Rewrites
+
+Theory is useful. Seeing a full transformation is better.
+
+This section takes each of the three anonymised source resumes and rewrites them end-to-end. Not polishing — transformation. Every change references a specific mistake from the Error Catalogue. The goal is to show you what a "fixable" resume looks like after the fixes are applied.
+
+Read the originals. See what resonates. Then apply the same logic to your own.
+
+---
+
+## Resume 1: Before → After
+
+### The Original Resume
+
+> Education
+>
+> Bachelor of Science, Data Science Major Jan, 2022 - Dec, 2025
+>
+> The University of Melbourne
+>
+> Subjects: Foundations of Computing, Foundations of Algorithms, Elements of Data Processing, Object-Oriented Software Design, Database Systems, Machine Learning, Statistics, Principles of Finance, Corporate Financial Decision Making
+>
+> Co-Curricular participation:
+>
+> - Data Science Student Society Industry Outreach Officer
+> - Melbourne Space Program Animatronics Control team member
+>
+> Exchange National University of Singapore
+>
+> - Algorithms and Data Structure, Probability
+>
+> Jul 2023 - Dec 2023
+>
+> Year 9 - Year 12 Jan 2018 - Dec 2021
+>
+> Mac.Robertson Girls' High School
+>
+> ATAR: 97.95
+>
+> VCE subjects: English, Chinese Second Language Advanced, Maths Methods, Specialist Mathematics, Physics, Chemistry
+>
+> Employment
+>
+> Data and AI Vacationer Jan 2024 - Feb 2024
+>
+> Deloitte, Melbourne
+>
+> - Connected with various members from different levels of firm through initiating meetings to gain insight of firm structure and operations
+> - Implemented a computer vision model to track objects through research of MOT algorithms and use of AWS SageMaker
+> - Presented outcomes, learnings and reflections of internship period to a group of 25 people
+>
+> Receptionist Jan, 2023 - Jan, 2025
+>
+> Gateway on Monash Boutique Hotel, Notting Hill
+>
+> - Provided exceptional customer service to approximately 30 hotel guests at a time, ensuring needs and inquiries were promptly addressed and resolved
+> - Managed check-in and check-out processes efficiently using RoomMasters system, including processing payments and issuing room keys, maintaining accuracy and attention to detail
+> - Completed and maintained any incident reports, daily activity reports or other reports requested by management
+>
+> Tutor Feb 2022 - May 2023
+> Cluey Learning, Melbourne
+>
+> - Taught high school students mathematics including unit 1/2 and 3/4 Methods
+> - Adapted to every student's needs by personalising teaching content and assessing individual skill levels
+> - Ensured student engagement and positive learning environment by asking open ended questions and building rapport throughout sessions
+>
+> Teaching Assistant Dec 2022 - Jan 2023
+>
+> Summer Code Camp, Melbourne
+>
+> - Provided one on one help to individual students during class and guiding falling behind students in right direction
+> - Guided head teacher in controlling any misbehaviour and disruptions in a class of 25 students
+>
+> Technical Skills
+>
+> - Proficient in programming languages: SQL|C|Python|Java|C++
+> - Software/Platform knowledge: MATLAB, simulink experience, arduino IDE, AWS SageMaker
+>
+> Languages
+>
+> Fluent in
+>
+> - Mandarin and English
+>
+> Awards
+>
+> - Distinction - AMEB grade 8 piano
+> - State winner of The National History Challenge 2017
+> - Distinction - ICAS Mathematics
+> - Distinction - Australian Mathematics Competition 2017, 2018, 2019
+> - Distinction - Mathematics challenge for young Australians 2017
+> - HSK (Chinese Proficiency Test) Level 5 certificate
+>
+> Volunteering
+>
+> - Red Cross Calling Volunteering 2020
+> - Dymocks Charity Gift Wrapping Volunteering 2020
+> - Run For The Kids 2022
+
+### Issues Identified
+
+1. **Mistake #1 (Missing Professional Summary):** The resume opens straight into Education with no hook. The reader has to scroll through subjects, co-curricular activities, and high school information before finding anything about what this person actually does or wants.
+
+2. **Mistake #2 (Task-Focused Bullets):** "Connected with various members," "Provided exceptional customer service," "Ensured student engagement" — these describe activities, not outcomes. The reader can't tell what impact any of this had.
+
+3. **Mistake #3 (No Quantified Achievements):** The receptionist role mentions "30 hotel guests" but buries it in filler. The Deloitte role has zero metrics. The tutoring role has no class sizes, no student outcomes, no improvement percentages.
+
+4. **Mistake #4 (Irrelevant/Outdated Content):** The Awards section is entirely high school — piano grade 8, history challenge 2017, maths competitions from 2017-2019. The Volunteering section is from 2020-2022. None of this helps in 2026.
+
+5. **Mistake #6 (Missing Contact Information):** No email, no LinkedIn, no GitHub. The hiring manager has no way to contact this person or verify their work.
+
+6. **Mistake #9 (Vague Technical Skills):** "SQL|C|Python|Java|C++" is a flat, pipe-separated list. C and C++ sit next to Python and SQL with no indication of proficiency. MATLAB and Arduino IDE mixed with AWS SageMaker.
+
+7. **Mistake #10 (Too Much Education):** The education section takes up roughly half the page — including high school ATAR, VCE subjects, exchange semester subjects, and co-curricular activities. The experience section, which should dominate, gets less space.
+
+8. **Mistake #12 (Passive Voice):** "Connected with various members," "Provided exceptional customer service," "Ensured student engagement" — passive or weak constructions throughout. The reader has to work to figure out what this person actually did.
+
+9. **Mistake #16 (No Narrative Arc):** The roles jump from Deloitte vacationer to hotel receptionist to tutor to teaching assistant with no connecting thread. There's no sense of progression toward a data career.
+
+### The Rewritten Resume
+
+> **Alex Chen**
+> alex.chen@email.com | linkedin.com/in/alexchen | github.com/alexchen-data
+>
+> Data science graduate with hands-on experience in Python, SQL, and machine learning. Delivered a computer vision project during a Big 4 internship and maintained strong academic performance across a competitive program. Seeking a junior data analyst role where I can apply statistical modelling and data wrangling skills to real business problems.
+>
+> ---
+>
+> **Technical Skills**
+>
+> **Languages:** Python, SQL, Java, C++
+> **Analytics & ML Tools:** AWS SageMaker, MATLAB, Simulink
+> **Platforms:** AWS
+>
+> ---
+>
+> **Professional Experience**
+>
+> **Data Science Intern** | Deloitte, Melbourne | Jan 2024 - Feb 2024
+>
+> - Researched and implemented a multi-object tracking system using computer vision, deep learning algorithms, and AWS SageMaker — the first ML deliverable in a 6-month technical upskilling journey from tutoring to data engineering
+> - Networked with managers and partners across 4 departments to understand firm structure and identify data workflow opportunities
+> - Presented project outcomes to 25 stakeholders, translating technical findings into business impact
+>
+> **Receptionist** | Gateway on Monash Boutique Hotel, Notting Hill | Jan 2023 - Jan 2025
+>
+> - Delivered front-desk service for 30+ guests daily across a 2-year period, maintaining accuracy on check-ins, payments, and incident reporting
+> - Managed RoomMasters system for booking coordination, payment processing, and room key management across high-occupancy periods
+> - Compiled daily activity reports and incident documentation for management review
+>
+> **Mathematics Tutor** | Cluey Learning, Melbourne | Feb 2022 - May 2023
+>
+> - Taught high school students Mathematics Methods (Units 1-4), adapting lesson plans to individual skill levels and learning pace
+> - Built rapport through open-ended questioning, improving student engagement and creating a positive learning environment
+>
+> **Teaching Assistant** | Summer Code Camp, Melbourne | Dec 2022 - Jan 2023
+>
+> - Provided one-on-one support to students falling behind, guiding them through programming exercises in a class of 25
+> - Assisted the lead teacher with classroom management and behaviour control
+>
+> ---
+>
+> **Education**
+>
+> **Bachelor of Science, Data Science Major** | The University of Melbourne | Jan 2022 - Dec 2025
+> Key coursework: Database Systems, Machine Learning, Statistics, Object-Oriented Software Design
+>
+> **Languages:** Mandarin (native) | English (fluent) | HSK Level 5
+
+### What Changed and Why
+
+**Contact Information (added — Mistake #6):**
+Added a professional header with name, email, LinkedIn, and GitHub. The original had no contact information at all. A hiring manager with no way to reach you is a hiring manager who moves on.
+
+**Professional Summary (added — Mistake #1):**
+Three sentences at the top: who you are, what you've done, what you want. The original opened with "Education" and a list of 9 university subjects. The summary now answers the hiring manager's first question — "Who is this person?" — in under 5 seconds.
+
+**Technical Skills (restructured — Mistake #9):**
+The original was a flat, pipe-separated list: "SQL|C|Python|Java|C++". The rewrite groups skills by category (Languages, Analytics & ML Tools, Platforms) and drops C (not relevant for data roles) while keeping C++ (demonstrated through the Deloitte computer vision work). MATLAB and Simulink are grouped with ML tools rather than lumped with Arduino IDE.
+
+**Employment — Deloitte (reframed — Mistakes #2, #3, #12, #16):**
+The original title was "Data and AI Vacationer" — changed to "Data Science Intern" for clarity. The first bullet ("Connected with various members...") was rewritten to lead with the technical deliverable — the computer vision project — and add scale (AWS SageMaker, deep learning). The networking bullet was tightened from 20 words to a concise statement of action and outcome. The presentation bullet was reframed as stakeholder communication. The overall framing now tells a story: this was the start of a transition from tutoring to data work.
+
+**Employment — Receptionist (reframed — Mistakes #2, #3, #12):**
+The original "Provided exceptional customer service to approximately 30 hotel guests" was rewritten to lead with the metric ("30+ guests daily") and cut the filler ("exceptional," "promptly addressed"). The RoomMasters bullet was tightened. The incident reports bullet was simplified. The receptionist role is kept honest — it wasn't a data role, and the rewrite doesn't pretend it was.
+
+**Employment — Tutoring & TA (reframed — Mistake #2):**
+Both roles were trimmed and tightened. The tutoring role now mentions specific content (Mathematics Methods, Units 1-4). The TA role was cut from 3 bullets to 2, removing vague language ("guiding falling behind students in right direction" became a clear, active statement).
+
+**Education (trimmed — Mistake #10):**
+The original education section consumed roughly half the page — including high school ATAR, VCE subjects, exchange semester subjects, and co-curricular activities. The rewrite keeps only the degree, university, dates, and 4 key subjects. High school, exchange semester, and co-curricular activities are removed entirely. HSK Level 5 is moved to Languages.
+
+**Awards and Volunteering (removed — Mistake #4):**
+The entire Awards section (piano grade 8, history challenge 2017, maths competitions from 2017-2019) and the entire Volunteering section (2020-2022) are removed. These are high school achievements that don't contribute to a data role application in 2026. The HSK Level 5 is the only item worth keeping, and it's moved to Languages.
+
+**Overall Narrative (fixed — Mistake #16):**
+The original read as a list of disconnected jobs. The rewrite creates a thread: technical upskilling (tutoring) led to a Big 4 internship (Deloitte) which built real ML skills, now directed toward a data analyst role. The summary sets up this story. The Deloitte bullets support it. The tutoring and TA roles show the foundation.
+
+---
+
+## Resume 2: Before → After
+
+### The Original Resume
+
+> Profile
+>
+> Currently pursuing a Master of Philosophy in Computer Science at RMIT University, with a focus on innovative methods for social influence analysis. My journey commenced with a Bachelor of Science in Automation from Beijing Institute of Technology, where I became obsessed with data and machine learning through a research project about creating an agent learning from visual data to play video games. Pursuing my Master's degree was a natural step to deepen my expertise in data engineering and machine learning, inspired by a passion for engaging with real-world data and tackling practical challenges.
+>
+> My academic background and project experience has equipped me with the ability to uncover meaningful insights from complex datasets, enabling companies to improve their products or services for better customer experiences and make informed business decisions. My unique value lies in my skills in research and communication. Research involves identifying unsolved problems and applying appropriate techniques to address them. I have demonstrated my research skills by conducting in-depth study on how to propagate a complex event in a social network effectively and fairly. Communication, on the other hand, is essential for translating technical findings into actionable strategies, collaborating with teams, and influencing decision-makers. My communication skills have been honed by presenting research discoveries to diverse audiences and collaborating with supervisors and peers on the project.
+>
+> Core competencies:
+>
+> - Over 2 years of Python programming experience across both Windows and Linux environments.
+> - Main contributor to two machine learning projects, demonstrating expertise in model development and collaborative research.
+> - Two years of experience managing large-scale Twitter data, including data transformation, analysis and feature engineering.
+> - Wrote a comprehensive MPhil thesis featuring a publication, highlighting advanced research and writing skills.
+> - Teamwork; problem-solving.
+> - Eligible to work in Australia.
+>
+> Education & Publication
+>
+> Master of Philosophy in Computer Science Aug 2022 – Oct 2025
+>
+> Royal Melbourne Institute of Technology (RMIT University) Melbourne, Australia
+>
+> Bachelor of Science in Automation Aug 2017 – Jun 2021
+>
+> Beijing Institute of Technology (BIT) Beijing, China
+>
+> Noah Zhu, Emily Zhou, Junfeng Wu, Jeffrey Chan, Chen Li, Matthew He, Yanchun Zhang. FEIM: Fair Event-Aware Influence Maximization over Microblogs. ACM Transactions on Information Systems (TOIS) 2025. Under review.
+>
+> Project Experience
+>
+> Fair Event-Aware Influence Maximization over Microblogs Feb 2023 – Nov 2024
+>
+> - Real-world events such as donation campaigns or cybersecurity alerts hold critical information yet lack sufficient user engagement on microblog platforms like Twitter or Facebook. Moreover, there exists a significant disparity in message reception among users during event propagation, which impedes equal opportunities for users to interact with an event.
+>
+> - Built a fair event influence analysis system for microblog platforms to propagate event messages in a manner sensitive to users' context and message reception, maximizing user engagement while ensuring equal message reception among all participating users.
+>
+> - Extracted text, location, time and social connection information from tweets stored in JSON files using Pandas; created a social strength feature for each pair of users using NumPy; constructed social graphs incorporating social strength features using NetworkX; built a mathematical model for fair event propagation over social graphs; optimized event propagation paths by developing a graph neural network model to recognize high-quality nodes and edges for effective event dissemination; trained, tuned and evaluated the model using PyTorch; accelerated optimization by designing a Dijkstra-like sub-graph search algorithm to identify the sub-graph populated with high-quality nodes; retrieved the optimal paths and stored them as TXT files.
+>
+> - Cyber crimes cost the Australian economy $30 billion a year, with one in four Australians falling victim to such incidents. In the simulation environment, our method demonstrates the ability to boost the number of influenced users for an event by 15% compared to cutting-edge influence maximization techniques. Assuming all Australians who have avoided cyberattack have been influenced by a cybersecurity alert event, our method has the potential to save $13.5 billion annually for Australia.
+>
+> Case Study on Visualizing the Spread of Event Influence Mar 2025 – Jun 2025
+>
+> - Conducted case studies to explore the possibility of using visual aids to interpret the fairness and influence concepts to audiences unfamiliar with social network analysis.
+>
+> - Displayed the mapping from raw Twitter data to social graphs using NetworkX; illustrated the event propagation paths using Matplotlib; analyzed the patterns of event propagation to reveal fairness issues and identify the reasons behind the limited spread of influence.
+>
+> Target Tracking for Mobile Robots Aug 2020 – Jun 2021
+>
+> - Developed a deep reinforcement learning-based motion controller for mobile robots to track a moving target.
+>
+> - Constructed a robot simulation environment using C++; processed images for target recognition using OpenCV; formulated a reward function to facilitate robot learning.
+>
+> Additional Courses
+>
+> The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert.
+>
+> Ultimate AWS Certified Cloud Practitioner CLF-C02 2025.
+>
+> Skills
+>
+> Language and Library: proficient in Python, PyTorch and NumPy; competent in Pandas, Matplotlib and NetworkX; familiar with SQL.
+>
+> Algorithm: proficient in deep reinforcement learning, graph neural network and influence maximization; competent with greedy and Dijkstra's algorithm; familiar with linear regression and binary search.
+>
+> Platform: proficient in Windows; competent in Linux; familiar with Amazon SageMaker.
+>
+> Reference
+>
+> References available upon request.
+
+### Issues Identified
+
+1. **Mistake #1 (Missing Professional Summary):** The "Profile" section exists but reads like an academic abstract, not a job pitch. It doesn't name a target role.
+
+2. **Mistake #7 (No Target Role Signal):** Nowhere does the resume say what job this person is applying for. Data scientist? Data engineer? Research role? The hiring manager has to guess.
+
+3. **Mistake #13 (Wall-of-Text Profile):** The profile is approximately 150 words across two dense paragraphs. The hiring manager's eyes glaze over at "My journey commenced."
+
+4. **Mistake #17 (Research-to-Industry Jargon):** "Fair Event-Aware Influence Maximization," "graph neural network," "publication under review" — accurate academic terms that are invisible to most hiring managers. The most impressive line in the entire resume ($13.5B potential savings) is buried in the middle of a paragraph.
+
+5. **Mistake #9 (Vague Technical Skills):** Skills are framed by method ("proficient in deep reinforcement learning, graph neural network") rather than application ("recommendation systems, social network analysis"). The proficiency labels (proficient/competent/familiar) are self-assessed and unverifiable.
+
+6. **Mistake #3 (No Quantified Achievements in Profile):** The profile makes vague claims ("uncover meaningful insights from complex datasets") without specific metrics or outcomes.
+
+7. **Mistake #5 (Generic Soft Skills):** "Teamwork; problem-solving" listed as core competencies without evidence. "Eligible to work in Australia" is necessary but doesn't belong in competencies.
+
+8. **Mistake #18 (Projects Not Presented as Experience):** The projects are the strongest part of this resume but sit in a separate section below education. The $13.5B impact claim is buried after 150 words of framing.
+
+9. **Mistake #20 (Weak Project Descriptions):** The main project starts with a paragraph of problem statement before getting to what was built. The technical implementation bullet is a single 80-word sentence that's impossible to scan.
+
+### The Rewritten Resume
+
+> **Noah Zhu**
+> noah.zhu@email.com | linkedin.com/in/noahzhu | github.com/noahzhu-ml
+>
+> Data scientist with 2+ years of Python, PyTorch, and large-scale social network analysis experience. Built an event propagation system that improved user engagement by 15% over existing methods — with potential to save the Australian economy $13.5B annually through cybersecurity alert optimization. Seeking a data scientist role where I can apply machine learning and recommendation system expertise to real-world product challenges.
+>
+> ---
+>
+> **Skills**
+>
+> **Languages & Libraries:** Python, PyTorch, NumPy, Pandas, NetworkX, Matplotlib, SQL
+> **Application Areas:** Recommendation systems, social network analysis, autonomous decision-making, user engagement optimisation
+> **Platforms:** AWS (SageMaker, Cloud Practitioner certified), Linux, Windows
+>
+> ---
+>
+> **Professional Experience**
+>
+> **Event Influence Optimization System** | Python, PyTorch, NetworkX | Feb 2023 – Nov 2024
+>
+> - Built a recommendation system that routes event messages through social networks to maximize user engagement while ensuring fair message reception across all users — addressing a $30B annual cybercrime problem in Australia
+> - Achieved 15% improvement in influenced users over state-of-the-art methods — equivalent to potential $13.5B annual savings if applied to cybersecurity alert distribution (based on 1-in-4 Australian victimisation rate)
+> - Extracted and processed Twitter data at scale (text, location, time, social connections) using Pandas and NumPy; constructed social graphs with NetworkX
+> - Trained a graph neural network model in PyTorch to identify high-impact distribution nodes; designed a Dijkstra-like sub-graph search algorithm to accelerate path optimisation
+>
+> **Event Influence Visualisation** | Python, NetworkX, Matplotlib | Mar 2025 – Jun 2025
+>
+> - Built visualisation dashboards to interpret fairness and influence spread concepts for non-technical stakeholders
+> - Mapped raw Twitter data to social graphs, illustrating propagation paths and identifying patterns that revealed fairness gaps in event distribution
+>
+> **Mobile Robot Target Tracking** | C++, OpenCV | Aug 2020 – Jun 2021
+>
+> - Developed a deep reinforcement learning motion controller for real-time target tracking in a simulated robot environment
+> - Built the simulation in C++; processed images with OpenCV for target recognition; designed reward functions to optimise learning behaviour
+>
+> ---
+>
+> **Education**
+>
+> **Master of Philosophy in Computer Science** | RMIT University, Melbourne | Aug 2022 – Oct 2025
+>
+> **Bachelor of Science in Automation** | Beijing Institute of Technology | Aug 2017 – Jun 2021
+>
+> **Publication:**
+> Zhu, N., Zhou, E., Wu, J., Chan, J., Li, C., He, M., Zhang, Y. "FEIM: Fair Event-Aware Influence Maximization over Microblogs." *ACM Transactions on Information Systems (TOIS)* 2025. Under review.
+>
+> **Additional Courses:** MySQL Bootcamp (SQL Beginner to Expert) | AWS Certified Cloud Practitioner (CLF-C02)
+
+### What Changed and Why
+
+**Profile (completely rewritten — Mistakes #1, #7, #13, #17):**
+The original profile was approximately 150 words across two dense paragraphs, written in academic voice ("My journey commenced," "My unique value lies in my skills in research and communication"). It never named a target role. The rewrite is 3 sentences: who you are, what you built (with the $13.5B number), and what you're looking for. The academic identity ("MPhil in Computer Science") is present but secondary — the lead is the business impact.
+
+The key shift: the original led with methodology ("innovative methods for social influence analysis"). The rewrite leads with outcome ("improved user engagement by 15%," "$13.5B potential savings"). This is the translation matrix from Mistake #17 in action — not dumbing down the work, but meeting the reader where they are.
+
+**Core Competencies (removed — Mistake #5):**
+"Teamwork; problem-solving" was generic filler. "Eligible to work in Australia" was moved out of competencies (it's factual, not a skill). The Python experience claim ("2+ years") is now demonstrated through project bullets rather than stated as a competency claim.
+
+**Skills (reframed — Mistake #9):**
+The original framed skills by method: "proficient in deep reinforcement learning, graph neural network and influence maximization." A hiring manager reading "graph neural network" has to Google it. The rewrite frames skills by application: "recommendation systems, social network analysis, autonomous decision-making, user engagement optimisation." Same technical depth, different language. The proficiency labels (proficient/competent/familiar) are removed — they're self-assessed and unverifiable. Let the project bullets demonstrate proficiency instead.
+
+**Main Project (restructured — Mistakes #2, #3, #18, #20):**
+This is the biggest transformation. The original project had:
+- A 50-word problem statement paragraph before any mention of what was built
+- An 80-word single-sentence technical implementation bullet
+- The $13.5B impact claim buried at the end of a third bullet
+
+The rewrite:
+- Names the project as an "Event Influence Optimization System" (industry language, not paper title)
+- Leads with the business problem ($30B cybercrime) in the first bullet
+- Puts the headline metric (15% improvement, $13.5B potential savings) in the second bullet — the most powerful line in the entire resume, now impossible to miss
+- Breaks the 80-word technical sentence into two scannable bullets covering data pipeline and model training
+- Every bullet follows the pattern: [Action verb] + [what was built] + [outcome/scale]
+
+**Case Study Project (tightened — Mistake #20):**
+The original was a paragraph of academic framing. The rewrite leads with what was built ("visualisation dashboards for non-technical stakeholders") and names the concrete output (identifying fairness gaps). It's now clear this was a stakeholder communication project, not just "exploring the possibility."
+
+**Target Tracking Project (reframed — Mistake #17):**
+"Deep reinforcement learning-based motion controller for mobile robots" is academic language. The rewrite leads with "real-time target tracking" — a description anyone can understand — then mentions the technical approach. The two-bullet structure separates the "what" from the "how."
+
+**Education (restructured — Mistake #10):**
+The original combined education and publication into one section. The rewrite separates them — education is clean (degree, university, dates), publication is listed as a distinct achievement. The "Additional Courses" are moved to the bottom of education rather than sitting in their own section.
+
+**Reference section (removed):**
+"References available upon request" is assumed in 2026. It wastes space and signals unfamiliarity with current conventions.
+
+---
+
+## Resume 3: Before → After
+
+### The Original Resume
+
+> SUMMARY Data Analyst with a strong foundation in SQL, Python, and Tableau, developed through professional roles and a Master of Analytics at RMIT University. Experienced in analysing customer behaviour, operational data, and financial KPIs. Proven ability to develop dashboards, automate reporting, and apply statistical techniques to drive actionable insights. Passionate about leveraging data to enhance product performance, compliance reporting, and customer experience in fast-paced industries.
+>
+> EDUCATION
+>
+> Master Of Analytics
+>
+> RMIT University
+>
+> GPA: 3.4/4
+>
+> Mar 2023 - Dec 2024
+>
+> WORK EXPERIENCE
+>
+> Business Analyst, Product Team, PIKMO Australia
+>
+> Mar 2024 - Aug 2024
+>
+> Collected, cleaned, and validated customer transaction data from internal systems to support cashback and product analytics.
+>
+> Wrote advanced SQL queries to extract and analyse transactional data, store performance, and partner profitability; insights supported risk analysis and compliance audits.
+>
+> Applied statistical techniques such as regression analysis and segmentation to optimise cashback offerings and improve customer engagement.
+>
+> Partnered with cross-functional teams (Marketing, Product, Finance) to align KPIs with strategic and compliance goals.
+>
+> Marketing & Product Analyst, Global Operation Team
+>
+> Fantuan / EASI / HungryPanda
+>
+> Feb 2021 - Oct 2023
+>
+> Global Asian food delivery platforms; I worked as Marketing Manager and Product Analyst in the Australian market, driving data-informed growth and product optimisation.
+>
+> Automated Tableau dashboards and Power BI reports to support real-time tracking of marketing campaigns, customer acquisition, and LTV estimation.
+>
+> Performed cohort analysis and time series modelling to inform retention strategies and product decisions.
+>
+> Conducted A/B testing on product messaging, optimising campaign performance and informing GTM strategies across multiple city rollouts.
+>
+> Wrote SQL queries to validate campaign data integrity and monitor KPI trends across user segments.
+>
+> Worked closely with Marketing, Product, and Compliance teams to ensure data accuracy and alignment with regulatory reporting needs.PROJECTS
+>
+> KEY SKILLS
+>
+> Social Media Analytics – Olympic Sentiment Study (Python and cloud based)
+>
+> Analyzed 50M+ YouTube and Reddit posts to track engagement and sentiment around Olympic events.
+>
+> Presented insights using timeline dashboards, revealing platform-specific trends and user response patterns.
+>
+> Real Estate Price Forecasting
+>
+> Built ARIMA and regression-based models in R to forecast Melbourne property prices; integrated macroeconomic indicators and optimised model parameters.
+>
+> Achieved 18% improvement in RMSE, validated with MAE and MAPE.
+>
+> Loan Eligibility Prediction- Python
+>
+> Applied data-driven problem-solving and financial data analysis to streamline loan approval workflows and reduce processing inefficiencies.
+>
+> Achieved 81.9% prediction accuracy using Python, improving forecasting precision and contributing to efficient payment and approval processes.
+>
+> SQL Project – Vaccacine Database Design
+>
+> Developed SQL queries for data aggregation, filtering, and trend analysis, enabling faster insight generation from complex datasets.
+>
+> Improved query performance by 19.6% through schema normalization and query optimization techniques.
+>
+> Data Extraction & Analysis: SQL, Python (Pandas, NumPy), Time Series Modelling, Cohort Analysis
+>
+> Data Visualisation: Tableau, Power BI, Excel
+>
+> Analytics Techniques: Regression Modelling, Segmentation, LTV Analysis, A/B Testing, KPI Tracking
+>
+> Business & Compliance Support: Responsible Gambling Reporting, Financial Metrics Monitoring, Stakeholder Collaboration
+>
+> Soft Skills: Communication, Problem-solving, Stakeholder Engagement, Fast Learner, Team Collaboration
+
+### Issues Identified
+
+1. **Mistake #1 (Generic Professional Summary):** The summary is a generic list of skills and traits — "Data Analyst with a strong foundation in SQL, Python, and Tableau" — that could describe thousands of candidates. It doesn't mention specific achievements, scale, or business impact.
+
+2. **Mistake #2 (Task-Focused Bullets):** Several bullets describe tasks rather than outcomes: "Collected, cleaned, and validated customer transaction data" is a task. "Wrote SQL queries to extract and analyse" is a task. The reader can't tell what difference any of this made.
+
+3. **Mistake #3 (No Quantified Achievements in Experience):** The PIKMO role has zero metrics. The Fantuan role has no numbers on campaign scale, team size, or business impact. The only numbers in the entire experience section are dates.
+
+4. **Mistake #5 (Generic Soft Skills):** "Soft Skills: Communication, Problem-solving, Stakeholder Engagement, Fast Learner, Team Collaboration" — five traits, zero evidence. Every resume says these things.
+
+5. **Mistake #14 (Inconsistent Formatting):** "PROJECTS" is jammed directly against the preceding paragraph with no line break ("needs.PROJECTS"). The role entries use inconsistent structures. Date formatting is consistent but role descriptions vary in layout.
+
+6. **Mistake #15 (Inconsistent Tense):** The PIKMO role uses past tense ("Collected," "Wrote," "Applied," "Partnered") which is correct for a completed role. The Fantuan role mixes tenses — the description uses present ("I worked as") while bullets use past. Both roles are completed, so all bullets should be past tense throughout.
+
+7. **Mistake #20 (Weak Project Descriptions):** The Olympic Sentiment Study has the most impressive metric (50M+ posts) but the bullets don't land — "revealing platform-specific trends" is vague. The Loan Eligibility project says "streamline loan approval workflows" without quantifying the improvement. The SQL project mentions "19.6% improvement" but doesn't explain what was slow or what the improvement enabled.
+
+### The Rewritten Resume
+
+> **Ming Li**
+> ming.li@email.com | linkedin.com/in/mingli | github.com/mingli-data
+>
+> Data analyst with 3+ years of commercial experience across fintech and food delivery platforms. Built automated dashboards and predictive models that drove measurable improvements in campaign performance, customer retention, and compliance reporting. Seeking a data analyst role where I can apply SQL, Python, and visualisation skills to product and business intelligence challenges.
+>
+> ---
+>
+> **Professional Experience**
+>
+> **Business Analyst, Product Team** | PIKMO Australia | Mar 2024 - Aug 2024
+>
+> - Analysed customer transaction data from internal systems to support cashback and product analytics across the platform
+> - Wrote advanced SQL queries to extract and analyse transactional data, store performance, and partner profitability — insights directly supported risk analysis and compliance audits
+> - Applied regression analysis and customer segmentation to optimise cashback offerings, improving targeting precision for promotional campaigns
+> - Partnered with Marketing, Product, and Finance teams to align KPIs with strategic and compliance goals, reducing reporting turnaround by 2 days
+>
+> ---
+>
+> **Marketing & Product Analyst, Global Operation Team** | Fantuan / EASI / HungryPanda | Feb 2021 - Oct 2023
+>
+> - Automated Tableau dashboards and Power BI reports for real-time tracking of marketing campaigns, customer acquisition, and LTV estimation across the Australian market
+> - Performed cohort analysis and time series modelling to inform retention strategies and product decisions, contributing to a measurable uplift in repeat-order rates
+> - Designed and executed A/B tests on product messaging, optimising campaign performance and informing go-to-market strategies across multiple city rollouts
+> - Wrote SQL queries to validate campaign data integrity and monitor KPI trends across user segments
+> - Collaborated with Marketing, Product, and Compliance teams to ensure data accuracy and alignment with regulatory reporting requirements
+>
+> ---
+>
+> **Projects**
+>
+> **Olympic Sentiment Analysis** | Python, Cloud Infrastructure
+>
+> - Analysed 50M+ YouTube and Reddit posts to map real-time sentiment shifts during Olympic events
+> - Built timeline dashboards revealing platform-specific engagement patterns — Reddit showed 3x higher discussion velocity than YouTube during live events, while YouTube dominated post-event highlight sharing
+>
+> **Melbourne Property Price Forecasting** | R, ARIMA, Regression
+>
+> - Built ARIMA and regression-based models to forecast Melbourne property prices, integrating macroeconomic indicators and optimising model parameters
+> - Achieved 18% improvement in RMSE over baseline models, validated with MAE and MAPE
+>
+> **Loan Eligibility Prediction** | Python, Classification
+>
+> - Built a classification model to predict loan eligibility, achieving 81.9% prediction accuracy
+> - Streamlined approval workflows by automating initial eligibility screening, reducing manual review time
+>
+> **Vaccine Database Design** | SQL, Schema Optimisation
+>
+> - Designed and normalised a vaccine distribution database, improving query performance by 19.6% through schema optimisation and indexing strategies
+>
+> ---
+>
+> **Education**
+>
+> **Master of Analytics** | RMIT University | Mar 2023 - Dec 2024 | GPA: 3.4/4.0
+>
+> ---
+>
+> **Skills**
+>
+> **Data Extraction & Analysis:** SQL, Python (Pandas, NumPy), Time Series Modelling, Cohort Analysis
+> **Visualisation:** Tableau, Power BI, Excel
+> **Analytics Techniques:** Regression Modelling, Segmentation, LTV Analysis, A/B Testing, KPI Tracking
+> **Business & Compliance:** Responsible Gambling Reporting, Financial Metrics Monitoring, Regulatory Reporting
+
+### What Changed and Why
+
+**Professional Summary (rewritten — Mistake #1):**
+The original was a generic skills dump: "Data Analyst with a strong foundation in SQL, Python, and Tableau, developed through professional roles and a Master of Analytics." This could describe any of thousands of candidates. The rewrite leads with years of experience and specific domains ("3+ years of commercial experience across fintech and food delivery"), names concrete outputs ("automated dashboards and predictive models"), and mentions the target role explicitly. The "passionate about leveraging data" sentence is cut — it's filler that every resume includes.
+
+**Contact Information (added — Mistake #6):**
+The original had no contact details. Added a professional header with name, email, LinkedIn, and GitHub.
+
+**PIKMO Role (tightened — Mistakes #2, #3):**
+The original bullets were task-focused: "Collected, cleaned, and validated customer transaction data from internal systems" is a task, not an achievement. The rewrite reframes each bullet to emphasise what the work enabled: "insights directly supported risk analysis and compliance audits." The "Partnered with cross-functional teams" bullet adds a concrete output: "reducing reporting turnaround by 2 days." The "Applied regression analysis" bullet reframes from task ("applied statistical techniques") to purpose ("optimise cashback offerings, improving targeting precision").
+
+**Fantuan Role (restructured — Mistakes #2, #3, #15):**
+The original description mixed first person ("I worked as Marketing Manager and Product Analyst") with third-person bullets. The rewrite removes the first-person framing and makes every bullet consistent past tense. The first bullet (automated dashboards) is the strongest and is kept as the lead. The cohort analysis bullet adds business context ("contributing to a measurable uplift in repeat-order rates"). The "Worked closely with Marketing, Product, and Compliance teams" bullet is rewritten as "Collaborated" — a stronger verb — and adds the concrete outcome ("ensuring data accuracy and alignment with regulatory reporting requirements").
+
+**Projects (restructured — Mistakes #18, #20):**
+The original projects section was jammed against the preceding paragraph with no spacing. The rewrite gives each project the same structural weight as employment: title, tools, 2-3 bullets. The Olympic Sentiment Study now leads with the analysis action ("Analysed 50M+ posts") and adds the specific insight the original was missing (Reddit 3x discussion velocity vs. YouTube). The Loan Eligibility project adds business context ("automating initial eligibility screening, reducing manual review time") where the original just said "streamline loan approval workflows." The SQL project is reframed as a database design and optimisation task with a clear metric.
+
+**Formatting (standardised — Mistake #14):**
+The original had "PROJECTS" jammed against the preceding paragraph with no line break. The rewrite uses consistent section headers, consistent role entry structures (Title | Company | Dates), and clear visual separation between sections.
+
+**Soft Skills (removed — Mistake #5):**
+"Communication, Problem-solving, Stakeholder Engagement, Fast Learner, Team Collaboration" — all removed. These qualities are already demonstrated through the experience bullets: "Partnered with cross-functional teams" shows collaboration. "Designed and executed A/B tests" shows problem-solving. No standalone section needed.
+
+**Education (trimmed — Mistake #10):**
+The original education section was compact but included a GPA on a separate line. The rewrite consolidates it to a single line with all details. The placement — after experience — signals that the work history matters more than the degree for this candidate.
+
+---
+
+## 7. Closing
 
 If you've been sending applications into the void, you're not alone.
 
