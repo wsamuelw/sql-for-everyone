@@ -1518,10 +1518,327 @@ FROM orders;</textarea>
         </div>
       `;
     }
-    function caseWhenContent() { return '<h2>CASE WHEN</h2><p>Coming soon...</p>'; }
-    function windowContent() { return '<h2>Window Functions</h2><p>Coming soon...</p>'; }
-    function ctesContent() { return '<h2>CTEs</h2><p>Coming soon...</p>'; }
-    function cheatsheetContent() { return '<h2>Cheatsheet</h2><p>Coming soon...</p>'; }
+    function caseWhenContent() { return `
+        <h2>CASE WHEN: Labels and Buckets</h2>
+        <p class="subtitle">How do I add labels and buckets to my data?</p>
+
+        <div class="concept-box analogy">
+          CASE WHEN is like IF/THEN in Excel. "If price > 200, label it Premium, otherwise label it Standard." You create new columns based on conditions.
+        </div>
+
+        <h3>Simple CASE</h3>
+        <div class="playground" data-query="SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;">
+          <div class="playground-header"><span class="label">Try it</span><span>Label products by price tier</span></div>
+          <textarea spellcheck="false">SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Conditional aggregation</h3>
+        <div class="playground" data-query="SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;">
+          <div class="playground-header"><span class="label">Try it</span><span>Split customer count by signup year per city</span></div>
+          <textarea spellcheck="false">SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          CASE WHEN evaluates conditions top-to-bottom and returns the first match. Put your most specific conditions first.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Label orders as Small (&lt;$100), Medium ($100-$300), or Large (&gt;$300). Show order id, amount, and label.</p>
+          <div class="playground" data-query="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, CASE WHEN amount < 100 THEN Small WHEN amount <= 300 THEN Medium ELSE Large END AS size FROM orders;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Count customers per city, split by email domain (gmail vs others).</p>
+          <div class="playground" data-query="SELECT city, COUNT(CASE WHEN email LIKE '%@gmail.com' THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE '%@gmail.com' THEN 1 END) AS other FROM customers GROUP BY city;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(CASE WHEN email LIKE @gmail.com THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE @gmail.com THEN 1 END) AS other FROM customers GROUP BY city;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `; }
+    function windowContent() {
+      return `
+        <h2>Window Functions: Ranking and Comparing</h2>
+        <p class="subtitle">How do I rank or compare rows within a group?</p>
+
+        <div class="concept-box analogy">
+          Window functions are like adding a column that knows about the other rows. "Rank this product within its category" or "show me the running total." Unlike GROUP BY, they don't collapse rows — they add information alongside each row.
+        </div>
+
+        <h3>ROW_NUMBER — rank within a group</h3>
+        <div class="playground" data-query="SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;">
+          <div class="playground-header"><span class="label">Try it</span><span>Rank products by price within each category</span></div>
+          <textarea spellcheck="false">SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>RANK and DENSE_RANK</h3>
+        <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+          <div class="playground-header"><span class="label">Try it</span><span>Rank employees by salary within each department</span></div>
+          <textarea spellcheck="false">SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <strong>ROW_NUMBER</strong> gives every row a unique number (1, 2, 3). <strong>RANK</strong> skips numbers after ties (1, 2, 2, 4). <strong>DENSE_RANK</strong> doesn't skip (1, 2, 2, 3). Pick the one that fits your use case.
+        </div>
+
+        <h3>Running total</h3>
+        <div class="playground" data-query="SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Cumulative revenue over time</span></div>
+          <textarea spellcheck="false">SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>LAG — compare to previous row</h3>
+        <div class="playground" data-query="SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Compare each order to the previous one</span></div>
+          <textarea spellcheck="false">SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box warning">
+          In Snowflake, use <code>QUALIFY</code> to filter window function results. In BigQuery, wrap in a subquery and filter the outer query. This course uses subquery approach since it works everywhere.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Rank employees by salary within their department. Show name, department, salary, and rank.</p>
+          <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each order with a running total of revenue per customer.</p>
+          <div class="playground" data-query="SELECT customer_id, order_date, amount, SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total FROM orders;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT customer_id, order_date, amount, SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total FROM orders;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function ctesContent() { return `
+        <h2>CTEs: Readable Complex Queries</h2>
+        <p class="subtitle">How do I write complex queries that I can actually read?</p>
+
+        <div class="concept-box analogy">
+          A CTE (WITH clause) is like giving a subquery a name. Instead of nesting queries inside each other, you define them at the top and reference them by name. Like variables in a formula — name it once, use it below.
+        </div>
+
+        <h3>Basic CTE</h3>
+        <div class="playground" data-query="WITH customer_totals AS (SELECT customer_id, SUM(amount) AS total_spent FROM orders GROUP BY customer_id) SELECT c.name, ct.total_spent FROM customer_totals ct JOIN customers c ON ct.customer_id = c.id ORDER BY ct.total_spent DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Customer spending totals using a CTE</span></div>
+          <textarea spellcheck="false">WITH customer_totals AS (
+  SELECT customer_id, SUM(amount) AS total_spent
+  FROM orders
+  GROUP BY customer_id
+)
+SELECT c.name, ct.total_spent
+FROM customer_totals ct
+JOIN customers c ON ct.customer_id = c.id
+ORDER BY ct.total_spent DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Multiple CTEs</h3>
+        <div class="playground" data-query="WITH monthly_revenue AS (SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue FROM orders GROUP BY month), avg_monthly AS (SELECT AVG(revenue) AS avg_rev FROM monthly_revenue) SELECT mr.month, mr.revenue, am.avg_rev, CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance FROM monthly_revenue mr, avg_monthly am ORDER BY mr.month;">
+          <div class="playground-header"><span class="label">Try it</span><span>Monthly revenue vs average</span></div>
+          <textarea spellcheck="false">WITH monthly_revenue AS (
+  SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue
+  FROM orders
+  GROUP BY month
+),
+avg_monthly AS (
+  SELECT AVG(revenue) AS avg_rev FROM monthly_revenue
+)
+SELECT mr.month, mr.revenue, am.avg_rev,
+  CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance
+FROM monthly_revenue mr, avg_monthly am
+ORDER BY mr.month;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          CTEs don't make queries faster — they make them readable. Use them when a subquery is getting hard to follow. Think of them as naming your steps.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Refactor: Find customers who spent more than $300 using a CTE instead of a subquery.</p>
+          <div class="playground" data-query="WITH spending AS (SELECT customer_id, SUM(amount) AS total FROM orders GROUP BY customer_id HAVING total > 300) SELECT c.name, s.total FROM spending s JOIN customers c ON s.customer_id = c.id;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WITH spending AS (SELECT customer_id, SUM(amount) AS total FROM orders GROUP BY customer_id HAVING total > 300) SELECT c.name, s.total FROM spending s JOIN customers c ON s.customer_id = c.id;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Build a report: top 3 products by revenue per category using a CTE.</p>
+          <div class="playground" data-query="WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `; }
+    function cheatsheetContent() { return `
+<h2>SQL Quick Reference</h2>
+<p class="subtitle">Your desk reference — bookmark this page.</p>
+
+<h3>Basic query structure</h3>
+<div class="code-block"><span class="kw">SELECT</span> column1, column2, <span class="fn">COUNT</span>(*)
+<span class="kw">FROM</span> table_name
+<span class="kw">JOIN</span> other_table <span class="kw">ON</span> table.id = other_table.table_id
+<span class="kw">WHERE</span> condition
+<span class="kw">GROUP BY</span> column1
+<span class="kw">HAVING</span> aggregate_condition
+<span class="kw">ORDER BY</span> column1 <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">10</span>;</div>
+
+<h3>Comparison operators</h3>
+<div class="schema-display">
+  <div><span class="col-name">=  !=  >  <  >=  <=</span> <span class="col-desc">— basic comparisons</span></div>
+  <div><span class="col-name">AND  OR  NOT</span> <span class="col-desc">— combine conditions</span></div>
+  <div><span class="col-name">BETWEEN x AND y</span> <span class="col-desc">— range (inclusive)</span></div>
+  <div><span class="col-name">IN ('a', 'b')</span> <span class="col-desc">— match any in list</span></div>
+  <div><span class="col-name">LIKE '%text%'</span> <span class="col-desc">— pattern match</span></div>
+  <div><span class="col-name">IS NULL / IS NOT NULL</span> <span class="col-desc">— empty values</span></div>
+</div>
+
+<h3>Aggregate functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">COUNT(*)</span> <span class="col-desc">— number of rows</span></div>
+  <div><span class="col-name">SUM(column)</span> <span class="col-desc">— total</span></div>
+  <div><span class="col-name">AVG(column)</span> <span class="col-desc">— average</span></div>
+  <div><span class="col-name">MIN(column)</span> <span class="col-desc">— minimum</span></div>
+  <div><span class="col-name">MAX(column)</span> <span class="col-desc">— maximum</span></div>
+</div>
+
+<h3>Date functions (Snowflake / BigQuery)</h3>
+<div class="schema-display">
+  <div><span class="col-name">DATE_TRUNC('month', date_col)</span> <span class="col-desc">— truncate to month</span></div>
+  <div><span class="col-name">DATEADD('day', 30, date_col)</span> <span class="col-desc">— add 30 days</span></div>
+  <div><span class="col-name">DATEDIFF('day', start, end)</span> <span class="col-desc">— days between dates</span></div>
+  <div><span class="col-name">CURRENT_DATE()</span> <span class="col-desc">— today's date</span></div>
+</div>
+
+<h3>String functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">SUBSTRING(col, 1, 5)</span> <span class="col-desc">— first 5 characters</span></div>
+  <div><span class="col-name">UPPER(col) / LOWER(col)</span> <span class="col-desc">— change case</span></div>
+  <div><span class="col-name">TRIM(col)</span> <span class="col-desc">— remove whitespace</span></div>
+  <div><span class="col-name">CONCAT(a, b)</span> <span class="col-desc">— join strings</span></div>
+  <div><span class="col-name">REPLACE(col, 'old', 'new')</span> <span class="col-desc">— find and replace</span></div>
+</div>
+
+<h3>CASE WHEN</h3>
+<div class="code-block"><span class="kw">CASE WHEN</span> condition <span class="kw">THEN</span> value
+     <span class="kw">WHEN</span> condition2 <span class="kw">THEN</span> value2
+     <span class="kw">ELSE</span> default_value
+<span class="kw">END</span></div>
+
+<h3>Window functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">ROW_NUMBER() OVER (...)</span> <span class="col-desc">— unique sequential number</span></div>
+  <div><span class="col-name">RANK() OVER (...)</span> <span class="col-desc">— rank with gaps</span></div>
+  <div><span class="col-name">DENSE_RANK() OVER (...)</span> <span class="col-desc">— rank without gaps</span></div>
+  <div><span class="col-name">SUM(col) OVER (ORDER BY ...)</span> <span class="col-desc">— running total</span></div>
+  <div><span class="col-name">LAG(col) OVER (...)</span> <span class="col-desc">— previous row value</span></div>
+  <div><span class="col-name">LEAD(col) OVER (...)</span> <span class="col-desc">— next row value</span></div>
+</div>
+
+<h3>CTEs</h3>
+<div class="code-block"><span class="kw">WITH</span> cte_name <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> ... <span class="kw">FROM</span> ...
+)
+<span class="kw">SELECT</span> ... <span class="kw">FROM</span> cte_name;</div>
+
+<h3>Common patterns</h3>
+<div class="schema-display">
+  <div><span class="col-name">Top N per group</span> <span class="col-desc">— use ROW_NUMBER() or RANK()</span></div>
+  <div><span class="col-name">Running total</span> <span class="col-desc">— SUM() OVER (ORDER BY ...)</span></div>
+  <div><span class="col-name">Month-over-month</span> <span class="col-desc">— LAG() or self-join</span></div>
+  <div><span class="col-name">Deduplicate</span> <span class="col-desc">— ROW_NUMBER() = 1</span></div>
+</div>
+
+<h3>Common mistakes</h3>
+<div class="schema-display">
+  <div><span class="col-name">= NULL</span> <span class="col-desc">— use IS NULL instead</span></div>
+  <div><span class="col-name">WHERE on aggregates</span> <span class="col-desc">— use HAVING after GROUP BY</span></div>
+  <div><span class="col-name">Missing GROUP BY</span> <span class="col-desc">— required when mixing aggregates with other columns</span></div>
+  <div><span class="col-name">Wrong JOIN type</span> <span class="col-desc">— INNER drops rows, LEFT keeps all from left table</span></div>
+</div>
+`; }
     function whatsNextContent() { return '<h2>What\'s Next</h2><p>Coming soon...</p>'; }
 
     const lessons = [
