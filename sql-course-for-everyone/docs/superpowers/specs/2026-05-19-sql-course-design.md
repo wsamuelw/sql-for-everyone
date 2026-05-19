@@ -20,8 +20,17 @@ After completing the course, learners can:
 1. Pull and filter their own data without an analyst
 2. Summarise data with aggregations and grouping
 3. Combine multiple tables with joins
-4. Write subqueries, CASE WHEN, window functions, and CTEs
-5. Build basic reports independently
+4. Build basic reports independently
+5. Write subqueries, CASE WHEN, window functions, and CTEs
+6. Continue self-directed learning with external resources
+
+## Key Design Principles (from persona research)
+
+1. **Frame as "asking questions", not "learning SQL"** — the word "coding" triggers fear. Position SQL as "search filters for databases."
+2. **Every lesson starts with a business question** — not "Filtering with WHERE" but "How many customers are in Sydney?"
+3. **Interactive editor is the core differentiator** — 10/10 target personas rated it 8+/10. Lean into hands-on learning.
+4. **Smooth the difficulty curve** — add a transitional lesson between GROUP BY and subqueries to bridge the gap.
+5. **Friendly but not condescending** — technical personas will disengage if too dumbed down; non-technical ones need reassurance.
 
 ## Format
 
@@ -104,22 +113,26 @@ Four tables with realistic sample data:
 
 ## Curriculum
 
-12 lessons in linear sequence. Each builds on the previous.
+14 lessons in linear sequence. Each builds on the previous. Each lesson header includes a **business question** (not a SQL concept) and a **difficulty badge**.
 
-| # | Lesson | Core Concept | Exercises |
-|---|--------|-------------|-----------|
-| 0 | Welcome | What is SQL? Spreadsheet analogy. Try a simple query. | 1 (try it) |
-| 1 | SELECT | Pick columns, rename with AS, SELECT * | 1 (easy) |
-| 2 | WHERE | Filter rows, =, !=, >, <, >=, <=, AND, OR, IN, BETWEEN, LIKE, IS NULL | 2 (easy) |
-| 3 | Sorting | ORDER BY ASC/DESC, LIMIT | 1 (easy) |
-| 4 | Aggregation | COUNT, SUM, AVG, MIN, MAX | 1 (medium) |
-| 5 | GROUP BY | Grouping, HAVING, aggregate filtering | 2 (medium) |
-| 6 | JOINs | INNER JOIN, LEFT JOIN, multi-table joins, join + aggregation | 2 (medium) |
-| 7 | Subqueries | Subquery in WHERE, subquery in FROM, correlated subqueries | 2 (hard) |
-| 8 | CASE WHEN | Simple CASE, searched CASE, conditional aggregation | 2 (hard) |
-| 9 | Window Functions | ROW_NUMBER, RANK, DENSE_RANK, SUM() OVER, LAG/LEAD, PARTITION BY | 2 (hard) |
-| 10 | CTEs | WITH clause, multiple CTEs, chaining, readability | 2 (hard) |
-| 11 | Cheatsheet | Quick reference — all syntax, common patterns, common mistakes | 0 |
+| # | Lesson | Business Question | Core Concept | Difficulty | Exercises |
+|---|--------|------------------|-------------|------------|-----------|
+| 0 | Welcome | "What is this and why should I care?" | What SQL is, spreadsheet analogy, "What SQL is NOT" myth-busting, try a simple query | — | 1 (try it) |
+| 1 | SELECT | "How do I see just the data I need?" | Pick columns, rename with AS, SELECT * | Easy | 1 |
+| 2 | WHERE | "How do I find specific records?" | Filter rows, =, !=, >, <, >=, <=, AND, OR, IN, BETWEEN, LIKE, IS NULL | Easy | 2 |
+| 3 | Sorting | "What are my top/bottom results?" | ORDER BY ASC/DESC, LIMIT | Easy | 1 |
+| 4 | Aggregation | "How many? What's the total? What's the average?" | COUNT, SUM, AVG, MIN, MAX | Medium | 1 |
+| 5 | GROUP BY | "How do I summarise by category?" | Grouping, HAVING, aggregate filtering | Medium | 2 |
+| 6 | JOINs | "How do I combine data from different tables?" | INNER JOIN, LEFT JOIN, multi-table joins, join + aggregation | Medium | 2 |
+| 7 | **Mini Reports** | "Can I build a real report with what I know?" | Combining SELECT + WHERE + JOIN + GROUP BY + ORDER BY into end-to-end reports | Medium | 2 |
+| 8 | Subqueries | "How do I use one query's result in another?" | Subquery in WHERE, subquery in FROM, correlated subqueries | Hard | 2 |
+| 9 | CASE WHEN | "How do I add labels and buckets to my data?" | Simple CASE, searched CASE, conditional aggregation | Hard | 2 |
+| 10 | Window Functions | "How do I rank or compare rows within a group?" | ROW_NUMBER, RANK, DENSE_RANK, SUM() OVER, LAG/LEAD, PARTITION BY | Hard | 2 |
+| 11 | CTEs | "How do I write complex queries that I can actually read?" | WITH clause, multiple CTEs, chaining, readability | Hard | 2 |
+| 12 | Cheatsheet | "What's the syntax again?" | Quick reference — all syntax, common patterns, common mistakes | — | 0 |
+| 13 | What's Next | "Where do I go from here?" | External resources for continued learning (dbt, Looker, Power BI SQL, advanced courses) | — | 0 |
+
+**Lesson 7 (Mini Reports) rationale:** Persona research flagged a difficulty cliff between GROUP BY (lesson 5) and subqueries (lesson 8). This transitional lesson bridges the gap by having learners combine everything they've learned into complete reports — building confidence before introducing new concepts.
 
 ## UI / UX
 
@@ -167,6 +180,28 @@ Four tables with realistic sample data:
 - Minimal chrome — content is the focus
 - Colour-coded concept boxes: analogy (yellow), why (cyan), tip (green), warning (orange)
 
+## Lesson Content Guidelines
+
+### Welcome Lesson (Lesson 0)
+Must include a "What SQL is NOT" concept box that explicitly addresses the fear of coding:
+- SQL is not programming — it's asking questions to a database
+- Analogy: "Like using search filters on a spreadsheet, not building an app"
+- You don't need to be technical — if you can use Excel filters, you can learn SQL
+
+### All Lessons
+- Title in sidebar shows the business question, not the SQL concept
+- Each lesson opens with the business question before introducing syntax
+- Concept boxes use analogies from spreadsheets, email, and everyday office tools
+- Code examples are preceded by a plain-English explanation of what they'll do
+
+### What's Next Lesson (Lesson 13)
+Links to external resources for continued learning:
+- dbt (data transformation)
+- Looker / Power BI SQL (reporting)
+- Mode Analytics SQL tutorial (intermediate)
+- Snowflake / BigQuery documentation
+- Community: dbt Slack, Locally Optimistic
+
 ## Exercise System
 
 Each lesson has 1-3 exercises:
@@ -202,7 +237,7 @@ sql-course-for-everyone/
 ## Success Criteria
 
 1. Single HTML file opens in any modern browser with no setup
-2. All 12 lessons render with interactive SQL editor
+2. All 14 lessons render with interactive SQL editor
 3. Queries execute and return results correctly
 4. Snowflake/BigQuery syntax works via compatibility layer
 5. Light/dark theme toggle works
@@ -210,3 +245,7 @@ sql-course-for-everyone/
 7. Progress tracking persists during session
 8. Mobile responsive (sidebar collapses)
 9. Course feels friendly and approachable, not intimidating
+10. Welcome lesson explicitly addresses "fear of coding" barrier
+11. Each lesson framed as a business question, not a SQL concept
+12. Difficulty progression is smooth — no cliff between GROUP BY and subqueries
+13. "What's Next" section provides clear path for continued learning
