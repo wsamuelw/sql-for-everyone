@@ -40,6 +40,21 @@ After completing the course, learners can:
 - **Theme:** Light mode default, dark mode toggle
 - **Responsive:** Works on desktop and tablet
 
+## Monetisation (from paid conversion research)
+
+- **Price point:** $89 individual, $59/seat team pack (5+ licences)
+- **Expense-friendly:** Clean invoice, completion certificate, clear learning outcome
+- **Perceived value upgrades:**
+  - Branded PDF export of the course
+  - Completion certificate (auto-generated with learner's name and date)
+  - Custom domain with simple landing page
+- **Retention:** Optional email capture for progress nudges (days 3, 7, 14)
+- **Drop-off prevention:** Capstone checkpoint at lesson 7 (Mini Reports) — "Build a monthly revenue report from scratch"
+
+**Research files:**
+- `docs/superpowers/specs/2026-05-19-persona-research.md` — target audience review
+- `docs/superpowers/specs/2026-05-19-paid-conversion-research.md` — pricing & commitment research
+
 ## Architecture
 
 | Component | Choice | Rationale |
@@ -170,6 +185,9 @@ Four tables with realistic sample data:
 | Navigation | Previous/Next buttons at bottom + sidebar click |
 | Mobile | Sidebar collapses to hamburger menu |
 | Schema display | Tables shown at start of relevant lessons as reference |
+| PDF export | "Download PDF" button in sidebar — exports full course as branded PDF |
+| Completion certificate | Auto-generated on finishing all lessons — fills in name + date |
+| Progress nudges | Optional email capture at start; nudges at days 3, 7, 14 if incomplete |
 
 ### Visual Style
 
@@ -249,3 +267,7 @@ sql-course-for-everyone/
 11. Each lesson framed as a business question, not a SQL concept
 12. Difficulty progression is smooth — no cliff between GROUP BY and subqueries
 13. "What's Next" section provides clear path for continued learning
+14. PDF export generates a branded, printable version of the course
+15. Completion certificate auto-generates with learner's name and date
+16. Capstone checkpoint at lesson 7 creates a "shareable win" moment
+17. Landing page exists with clear CTA and pricing ($89 individual)
