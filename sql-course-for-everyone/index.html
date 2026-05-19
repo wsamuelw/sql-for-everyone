@@ -955,8 +955,162 @@
         </div>
       `;
     }
-    function selectContent() { return '<h2>SELECT</h2><p>Coming soon...</p>'; }
-    function whereContent() { return '<h2>WHERE</h2><p>Coming soon...</p>'; }
+    function selectContent() {
+      return `
+        <h2>SELECT: Picking the Data You Need</h2>
+        <p class="subtitle">How do I see just the data I need?</p>
+
+        <div class="concept-box analogy">
+          A database table is just like a spreadsheet. <strong>SELECT</strong> is you telling someone: "Hey, go grab me that spreadsheet and show me these specific columns."
+        </div>
+
+        <h3>See everything</h3>
+        <div class="playground" data-query="SELECT * FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>customers table</span></div>
+          <textarea spellcheck="false">SELECT * FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Pick specific columns</h3>
+        <div class="playground" data-query="SELECT name, email, city FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>Just name, email, and city</span></div>
+          <textarea spellcheck="false">SELECT name, email, city FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Rename columns for clarity</h3>
+        <div class="playground" data-query="SELECT name AS Customer, email AS &quot;Email Address&quot;, city AS Location FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>Rename columns with AS</span></div>
+          <textarea spellcheck="false">SELECT
+  name AS Customer,
+  email AS "Email Address",
+  city AS Location
+FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <code>SELECT *</code> is great for exploring, but in real work, always pick specific columns. It's faster and easier to read.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge easy">Easy</span></div>
+          <p>Show only the <strong>product name</strong> and <strong>price</strong> from the <code>products</code> table.</p>
+          <div class="playground" data-query="SELECT name, price FROM products;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price FROM products;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function whereContent() {
+      return `
+        <h2>WHERE: Finding Specific Records</h2>
+        <p class="subtitle">How do I find specific records?</p>
+
+        <div class="concept-box analogy">
+          If SELECT is picking columns (which fields to see), <strong>WHERE</strong> is picking rows (which records to see). It's like using the filter button on a spreadsheet.
+        </div>
+
+        <h3>Exact match</h3>
+        <div class="playground" data-query="SELECT name, email, city FROM customers WHERE city = 'Sydney';">
+          <div class="playground-header"><span class="label">Try it</span><span>Customers in Sydney</span></div>
+          <textarea spellcheck="false">SELECT name, email, city FROM customers WHERE city = 'Sydney';</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Comparisons: greater than, less than</h3>
+        <div class="playground" data-query="SELECT name, price FROM products WHERE price > 100;">
+          <div class="playground-header"><span class="label">Try it</span><span>Products over $100</span></div>
+          <textarea spellcheck="false">SELECT name, price FROM products WHERE price > 100;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Multiple conditions: AND / OR</h3>
+        <div class="playground" data-query="SELECT name, price, category FROM products WHERE category = 'Electronics' AND price < 200;">
+          <div class="playground-header"><span class="label">Try it</span><span>Electronics under $200</span></div>
+          <textarea spellcheck="false">SELECT name, price, category FROM products WHERE category = 'Electronics' AND price < 200;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Handy operators</h3>
+        <div class="schema-display">
+          <div><span class="col-name">=  !=  >  <  >=  <=</span> <span class="col-desc">— basic comparisons</span></div>
+          <div><span class="col-name">AND  OR  NOT</span> <span class="col-desc">— combine conditions</span></div>
+          <div><span class="col-name">BETWEEN 10 AND 50</span> <span class="col-desc">— range (inclusive)</span></div>
+          <div><span class="col-name">IN ('A', 'B', 'C')</span> <span class="col-desc">— match any in the list</span></div>
+          <div><span class="col-name">LIKE '%text%'</span> <span class="col-desc">— pattern matching (% = wildcard)</span></div>
+          <div><span class="col-name">IS NULL / IS NOT NULL</span> <span class="col-desc">— check for empty values</span></div>
+        </div>
+
+        <div class="playground" data-query="SELECT name, category, price FROM products WHERE category IN ('Electronics', 'Furniture') AND price BETWEEN 50 AND 300;">
+          <div class="playground-header"><span class="label">Try it</span><span>IN + BETWEEN combined</span></div>
+          <textarea spellcheck="false">SELECT name, category, price FROM products WHERE category IN ('Electronics', 'Furniture') AND price BETWEEN 50 AND 300;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge easy">Easy</span></div>
+          <p>Find all customers whose city is Melbourne or Brisbane.</p>
+          <div class="playground" data-query="SELECT name, email, city FROM customers WHERE city IN ('Melbourne', 'Brisbane');">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WHERE city IN (\'Melbourne\', \'Brisbane\')')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge easy">Easy</span></div>
+          <p>Find all products with price between $50 and $150.</p>
+          <div class="playground" data-query="SELECT name, category, price FROM products WHERE price BETWEEN 50 AND 150;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WHERE price BETWEEN 50 AND 150')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
     function sortingContent() { return '<h2>Sorting</h2><p>Coming soon...</p>'; }
     function aggregationContent() { return '<h2>Aggregation</h2><p>Coming soon...</p>'; }
     function groupbyContent() { return '<h2>GROUP BY</h2><p>Coming soon...</p>'; }
