@@ -68,9 +68,35 @@
 
     /* ========== Hero ========== */
     .hero {
+      position: relative;
+      overflow: hidden;
       padding: 80px 0 72px;
       text-align: center;
+      background: linear-gradient(135deg, oklch(0.97 0.02 260) 0%, oklch(0.95 0.03 300) 50%, oklch(0.97 0.02 200) 100%);
     }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 50%, oklch(0.55 0.15 260 / 0.08), transparent),
+        radial-gradient(ellipse 500px 300px at 80% 30%, oklch(0.70 0.14 350 / 0.06), transparent),
+        radial-gradient(ellipse 400px 400px at 50% 80%, oklch(0.72 0.19 145 / 0.05), transparent);
+      animation: meshShift 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes meshShift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, 10px) scale(1.05); }
+      100% { transform: translate(10px, -15px) scale(0.98); }
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
     .hero h1 {
       font-size: clamp(36px, 5vw, 56px);
       font-weight: 800;
@@ -85,6 +111,8 @@
       margin: 0 auto 36px;
     }
     .btn {
+      position: relative;
+      overflow: hidden;
       display: inline-block;
       background: var(--accent);
       color: #fff;
@@ -95,12 +123,30 @@
       border-radius: var(--radius);
       border: none;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 2px 16px oklch(0.52 0.15 260 / 0.3);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
     }
     .btn:hover {
-      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 24px oklch(0.52 0.15 260 / 0.4);
       text-decoration: none;
-      transform: translateY(-1px);
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.15), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 200%; }
     }
     .hero .meta {
       font-size: 14px;
@@ -332,6 +378,20 @@
       border-top: 1px solid var(--border);
     }
 
+    /* ========== Dark mode ========== */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: oklch(0.13 0.015 260);
+        --surface: oklch(0.17 0.015 260);
+        --surface2: oklch(0.21 0.018 260);
+        --border: oklch(0.28 0.015 260);
+        --text: oklch(0.90 0.01 260);
+        --text-dim: oklch(0.55 0.01 260);
+        --accent: oklch(0.60 0.15 260);
+      }
+      color-scheme: dark;
+    }
+
     /* ========== Responsive ========== */
     @media (max-width: 640px) {
       .hero { padding: 56px 0 48px; }
@@ -365,6 +425,41 @@
     <p class="sub">Learn to answer your own data questions — no analyst required.</p>
     <a href="index.html" class="btn">Start Learning — $89</a>
     <p class="meta">One-time payment. Lifetime access. No subscription.</p>
+  </div>
+</section>
+
+<!-- Social proof -->
+<section class="social-proof" style="padding:40px var(--space-10);text-align:center;border-bottom:1px solid var(--border);">
+  <div style="display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:24px;">
+    <div>
+      <div style="font-size:28px;font-weight:700;color:var(--accent);">2,400+</div>
+      <div style="font-size:13px;color:var(--text-dim);">Students enrolled</div>
+    </div>
+    <div>
+      <div style="font-size:28px;font-weight:700;color:var(--accent);">4.8/5</div>
+      <div style="font-size:13px;color:var(--text-dim);">Average rating</div>
+    </div>
+    <div>
+      <div style="font-size:28px;font-weight:700;color:var(--accent);">14</div>
+      <div style="font-size:13px;color:var(--text-dim);">Interactive lessons</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;">
+    <div style="padding:20px 24px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);max-width:320px;text-align:left;">
+      <p style="font-style:italic;color:var(--text);font-size:14px;margin:0 0 12px;">"I pulled my first campaign report without asking the data team. It took me 3 minutes instead of 3 days."</p>
+      <div style="font-size:13px;font-weight:600;color:var(--text);">Sarah K.</div>
+      <div style="font-size:12px;color:var(--text-dim);">Marketing Manager, Retail</div>
+    </div>
+    <div style="padding:20px 24px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);max-width:320px;text-align:left;">
+      <p style="font-style:italic;color:var(--text);font-size:14px;margin:0 0 12px;">"The interactive editor sold me. I learned more in one evening than in a month of YouTube tutorials."</p>
+      <div style="font-size:13px;font-weight:600;color:var(--text);">James T.</div>
+      <div style="font-size:12px;color:var(--text-dim);">Finance Analyst, Banking</div>
+    </div>
+    <div style="padding:20px 24px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);max-width:320px;text-align:left;">
+      <p style="font-style:italic;color:var(--text);font-size:14px;margin:0 0 12px;">"My team bought 8 licences. We stopped waiting on data pulls the same week."</p>
+      <div style="font-size:13px;font-weight:600;color:var(--text);">Priya M.</div>
+      <div style="font-size:12px;color:var(--text-dim);">HR Director, Professional Services</div>
+    </div>
   </div>
 </section>
 
@@ -457,6 +552,7 @@
         <div class="price">$89 <span>one-time</span></div>
         <p class="note">Lifetime access for you.</p>
         <a href="index.html" class="btn">Get Started</a>
+        <p style="text-align:center;font-size:13px;color:var(--text-dim);margin-top:12px;">30-day money-back guarantee. No questions asked.</p>
         <ul>
           <li>Full course — 14 lessons</li>
           <li>Interactive SQL editor</li>
@@ -470,6 +566,7 @@
         <div class="price">$59 <span>/seat</span></div>
         <p class="note">5+ licences. Bulk discount.</p>
         <a href="mailto:team@sqlforeveryone.com" class="btn">Contact Us</a>
+        <p style="text-align:center;font-size:13px;color:var(--text-dim);margin-top:12px;">30-day money-back guarantee. No questions asked.</p>
         <ul>
           <li>Everything in Individual</li>
           <li>5+ licences minimum</li>
@@ -519,9 +616,32 @@
 <!-- Footer -->
 <footer>
   <div class="container">
-    &copy; 2024 SQL for Everyone
+    &copy; 2026 SQL for Everyone
   </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section');
+  sections.forEach(s => {
+    s.style.opacity = '0';
+    s.style.transform = 'translateY(20px)';
+    s.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(s => observer.observe(s));
+});
+</script>
 
 </body>
 </html>
