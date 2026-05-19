@@ -1417,6 +1417,33 @@ FROM orders;</textarea>
           <div class="result-area"></div>
         </div>
 
+        <h3>LEFT JOIN — keeping all records</h3>
+        <p>What if you want all customers, even those who haven't placed an order? An INNER JOIN only shows matches. A <strong>LEFT JOIN</strong> keeps everything from the left table, even if there's no match on the right.</p>
+
+        <div class="playground" data-query="SELECT c.name, c.city, o.amount, o.order_date FROM customers c LEFT JOIN orders o ON c.id = o.customer_id ORDER BY c.name;">
+          <div class="playground-header">
+            <span class="label">Try it</span>
+            <span>All customers, with orders if they exist</span>
+          </div>
+          <textarea spellcheck="false">SELECT
+  c.name,
+  c.city,
+  o.amount,
+  o.order_date
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+ORDER BY c.name;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <strong>INNER JOIN</strong> shows only matching rows. <strong>LEFT JOIN</strong> shows all rows from the left table, with NULLs where there's no match. Use LEFT JOIN when you want to see everything from one table regardless of whether it has matches.
+        </div>
+
         <div class="concept-box tip">
           The <strong>ON</strong> clause tells the database which columns match up. Common pattern: <code>table_a.id = table_b.table_a_id</code>
         </div>
