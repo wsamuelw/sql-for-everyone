@@ -1751,8 +1751,131 @@ ORDER BY mr.month;</textarea>
           </div>
         </div>
       `; }
-    function cheatsheetContent() { return '<h2>Cheatsheet</h2><p>Coming soon...</p>'; }
-    function whatsNextContent() { return '<h2>What\'s Next</h2><p>Coming soon...</p>'; }
+    function cheatsheetContent() { return `
+<h2>SQL Quick Reference</h2>
+<p class="subtitle">Your desk reference — bookmark this page.</p>
+
+<h3>Basic query structure</h3>
+<div class="code-block"><span class="kw">SELECT</span> column1, column2, <span class="fn">COUNT</span>(*)
+<span class="kw">FROM</span> table_name
+<span class="kw">JOIN</span> other_table <span class="kw">ON</span> table.id = other_table.table_id
+<span class="kw">WHERE</span> condition
+<span class="kw">GROUP BY</span> column1
+<span class="kw">HAVING</span> aggregate_condition
+<span class="kw">ORDER BY</span> column1 <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">10</span>;</div>
+
+<h3>Comparison operators</h3>
+<div class="schema-display">
+  <div><span class="col-name">=  !=  >  <  >=  <=</span> <span class="col-desc">— basic comparisons</span></div>
+  <div><span class="col-name">AND  OR  NOT</span> <span class="col-desc">— combine conditions</span></div>
+  <div><span class="col-name">BETWEEN x AND y</span> <span class="col-desc">— range (inclusive)</span></div>
+  <div><span class="col-name">IN ('a', 'b')</span> <span class="col-desc">— match any in list</span></div>
+  <div><span class="col-name">LIKE '%text%'</span> <span class="col-desc">— pattern match</span></div>
+  <div><span class="col-name">IS NULL / IS NOT NULL</span> <span class="col-desc">— empty values</span></div>
+</div>
+
+<h3>Aggregate functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">COUNT(*)</span> <span class="col-desc">— number of rows</span></div>
+  <div><span class="col-name">SUM(column)</span> <span class="col-desc">— total</span></div>
+  <div><span class="col-name">AVG(column)</span> <span class="col-desc">— average</span></div>
+  <div><span class="col-name">MIN(column)</span> <span class="col-desc">— minimum</span></div>
+  <div><span class="col-name">MAX(column)</span> <span class="col-desc">— maximum</span></div>
+</div>
+
+<h3>Date functions (Snowflake / BigQuery)</h3>
+<div class="schema-display">
+  <div><span class="col-name">DATE_TRUNC('month', date_col)</span> <span class="col-desc">— truncate to month</span></div>
+  <div><span class="col-name">DATEADD('day', 30, date_col)</span> <span class="col-desc">— add 30 days</span></div>
+  <div><span class="col-name">DATEDIFF('day', start, end)</span> <span class="col-desc">— days between dates</span></div>
+  <div><span class="col-name">CURRENT_DATE()</span> <span class="col-desc">— today's date</span></div>
+</div>
+
+<h3>String functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">SUBSTRING(col, 1, 5)</span> <span class="col-desc">— first 5 characters</span></div>
+  <div><span class="col-name">UPPER(col) / LOWER(col)</span> <span class="col-desc">— change case</span></div>
+  <div><span class="col-name">TRIM(col)</span> <span class="col-desc">— remove whitespace</span></div>
+  <div><span class="col-name">CONCAT(a, b)</span> <span class="col-desc">— join strings</span></div>
+  <div><span class="col-name">REPLACE(col, 'old', 'new')</span> <span class="col-desc">— find and replace</span></div>
+</div>
+
+<h3>CASE WHEN</h3>
+<div class="code-block"><span class="kw">CASE WHEN</span> condition <span class="kw">THEN</span> value
+     <span class="kw">WHEN</span> condition2 <span class="kw">THEN</span> value2
+     <span class="kw">ELSE</span> default_value
+<span class="kw">END</span></div>
+
+<h3>Window functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">ROW_NUMBER() OVER (...)</span> <span class="col-desc">— unique sequential number</span></div>
+  <div><span class="col-name">RANK() OVER (...)</span> <span class="col-desc">— rank with gaps</span></div>
+  <div><span class="col-name">DENSE_RANK() OVER (...)</span> <span class="col-desc">— rank without gaps</span></div>
+  <div><span class="col-name">SUM(col) OVER (ORDER BY ...)</span> <span class="col-desc">— running total</span></div>
+  <div><span class="col-name">LAG(col) OVER (...)</span> <span class="col-desc">— previous row value</span></div>
+  <div><span class="col-name">LEAD(col) OVER (...)</span> <span class="col-desc">— next row value</span></div>
+</div>
+
+<h3>CTEs</h3>
+<div class="code-block"><span class="kw">WITH</span> cte_name <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> ... <span class="kw">FROM</span> ...
+)
+<span class="kw">SELECT</span> ... <span class="kw">FROM</span> cte_name;</div>
+
+<h3>Common patterns</h3>
+<div class="schema-display">
+  <div><span class="col-name">Top N per group</span> <span class="col-desc">— use ROW_NUMBER() or RANK()</span></div>
+  <div><span class="col-name">Running total</span> <span class="col-desc">— SUM() OVER (ORDER BY ...)</span></div>
+  <div><span class="col-name">Month-over-month</span> <span class="col-desc">— LAG() or self-join</span></div>
+  <div><span class="col-name">Deduplicate</span> <span class="col-desc">— ROW_NUMBER() = 1</span></div>
+</div>
+
+<h3>Common mistakes</h3>
+<div class="schema-display">
+  <div><span class="col-name">= NULL</span> <span class="col-desc">— use IS NULL instead</span></div>
+  <div><span class="col-name">WHERE on aggregates</span> <span class="col-desc">— use HAVING after GROUP BY</span></div>
+  <div><span class="col-name">Missing GROUP BY</span> <span class="col-desc">— required when mixing aggregates with other columns</span></div>
+  <div><span class="col-name">Wrong JOIN type</span> <span class="col-desc">— INNER drops rows, LEFT keeps all from left table</span></div>
+</div>
+`; }
+    function whatsNextContent() { return `
+<h2>What's Next: Keep Going</h2>
+<p class="subtitle">Where do I go from here?</p>
+
+<div class="concept-box why">
+  You've completed SQL for Everyone. You can now write queries that would have taken a data analyst days to pull. But this is just the beginning — here's where to go next.
+</div>
+
+<h3>What you can now do</h3>
+<ul>
+  <li>Pull and filter your own data</li>
+  <li>Summarise with aggregations and grouping</li>
+  <li>Combine tables with joins</li>
+  <li>Write subqueries, CASE WHEN, window functions, and CTEs</li>
+  <li>Build basic reports independently</li>
+</ul>
+
+<h3>External resources</h3>
+<ul>
+  <li><strong>dbt</strong> — data transformation: <a href="https://www.getdbt.com/" target="_blank">getdbt.com</a></li>
+  <li><strong>Looker</strong> — reporting and dashboards: <a href="https://cloud.google.com/looker" target="_blank">cloud.google.com/looker</a></li>
+  <li><strong>Power BI</strong> — Microsoft reporting: <a href="https://powerbi.microsoft.com/" target="_blank">powerbi.microsoft.com</a></li>
+  <li><strong>Mode Analytics SQL Tutorial</strong> — intermediate practice: <a href="https://mode.com/sql-tutorial/" target="_blank">mode.com/sql-tutorial</a></li>
+  <li><strong>Snowflake Documentation</strong> — <a href="https://docs.snowflake.com/" target="_blank">docs.snowflake.com</a></li>
+  <li><strong>BigQuery Documentation</strong> — <a href="https://cloud.google.com/bigquery/docs" target="_blank">cloud.google.com/bigquery/docs</a></li>
+</ul>
+
+<h3>Communities</h3>
+<ul>
+  <li><strong>dbt Community Slack</strong> — <a href="https://www.getdbt.com/community" target="_blank">getdbt.com/community</a></li>
+  <li><strong>Locally Optimistic</strong> — data community: <a href="https://locallyoptimistic.com/" target="_blank">locallyoptimistic.com</a></li>
+</ul>
+
+<div class="concept-box tip">
+  Your next step: Pick a real question from your work. Write the query. Run it. Share the result. That's how you learn — by solving problems that matter to you.
+</div>
+`; }
 
     const lessons = [
       { id: 'welcome', title: 'Welcome', icon: '👋', content: welcomeContent },
@@ -1843,6 +1966,36 @@ ORDER BY mr.month;</textarea>
         if (currentLesson > 0) goToLesson(currentLesson - 1);
       }
     });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.innerHTML = '&#9788;'; // sun
+        themeLabel.textContent = 'Light mode';
+        localStorage.setItem('sql-course-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.innerHTML = '&#9789;'; // moon
+        themeLabel.textContent = 'Dark mode';
+        localStorage.setItem('sql-course-theme', 'light');
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('sql-course-theme');
+    if (savedTheme === 'dark') {
+      setTheme('dark');
+    }
 
     // ========== Init ==========
     initDatabase().then(() => {
