@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL for Everyone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ========== CSS Variables ========== */
+    :root {
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+      /* Light theme (default) */
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --surface2: #e9ecef;
+      --border: #dee2e6;
+      --text: #212529;
+      --text-dim: #6c757d;
+      --accent: #4a6ae0;
+      --green: #22c55e;
+      --orange: #fb923c;
+      --red: #f87171;
+      --yellow: #facc15;
+      --pink: #f472b6;
+      --cyan: #22d3ee;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #232736;
+      --border: #2d3148;
+      --text: #e2e4ef;
+      --text-dim: #8b8fa8;
+      --accent: #4a6ae0;
+      --green: #22c55e;
+      --orange: #fb923c;
+      --red: #f87171;
+      --yellow: #facc15;
+      --pink: #f472b6;
+      --cyan: #22d3ee;
+    }
+
+    /* ========== Reset & Base ========== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ========== Layout ========== */
+    .app {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 280px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+      transition: background 0.3s;
+    }
+
+    .sidebar-logo {
+      padding: 24px 20px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-logo h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .sidebar-logo .subtitle {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .lesson-nav {
+      list-style: none;
+      flex: 1;
+      padding: 8px 0;
+      overflow-y: auto;
+    }
+
+    .lesson-nav li {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      font-size: 14px;
+      color: var(--text-dim);
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lesson-nav li:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .lesson-nav li.active {
+      border-left-color: var(--accent);
+      color: var(--text);
+      background: var(--bg);
+      font-weight: 500;
+    }
+
+    .lesson-nav li .num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    .lesson-nav li.active .num {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .lesson-nav li.completed .num {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .sidebar-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .theme-toggle {
+      width: 100%;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 13px;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    /* ========== Main Content ========== */
+    .main {
+      padding: 40px 48px;
+      max-width: 960px;
+      position: relative;
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 280px;
+      right: 0;
+      height: 3px;
+      background: var(--surface2);
+      z-index: 60;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--pink));
+      border-radius: 0 2px 2px 0;
+      transition: width 0.4s ease;
+    }
+
+    /* ========== Lesson Content ========== */
+    .lesson h2 {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .lesson .subtitle {
+      color: var(--text-dim);
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    .lesson h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 28px 0 12px;
+      color: var(--text);
+    }
+
+    .lesson p {
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    /* ========== Concept Boxes ========== */
+    .concept-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .concept-box::before {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .concept-box.analogy {
+      border-left: 3px solid var(--yellow);
+    }
+
+    .concept-box.analogy::before {
+      content: "\1F4A1  Think of it like this";
+    }
+
+    .concept-box.why {
+      border-left: 3px solid var(--cyan);
+    }
+
+    .concept-box.why::before {
+      content: "\1F3AF  Why this matters";
+    }
+
+    .concept-box.tip {
+      border-left: 3px solid var(--green);
+    }
+
+    .concept-box.tip::before {
+      content: "\2705  Pro tip";
+    }
+
+    .concept-box.warning {
+      border-left: 3px solid var(--orange);
+    }
+
+    .concept-box.warning::before {
+      content: "\26A0\FE0F  Watch out";
+    }
+
+    /* ========== Code Blocks ========== */
+    .code-block {
+      background: #0d0f14;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e2e4ef;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      white-space: pre;
+    }
+
+    /* ========== Playground ========== */
+    .playground {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .playground-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: var(--surface2);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+
+    .playground textarea {
+      width: 100%;
+      min-height: 100px;
+      background: #0d0f14;
+      color: #e2e4ef;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px 20px;
+      border: none;
+      resize: vertical;
+      outline: none;
+    }
+
+    .playground textarea::placeholder {
+      color: #555;
+    }
+
+    .playground-actions {
+      display: flex;
+      gap: 8px;
+      padding: 10px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ========== Buttons ========== */
+    .btn {
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+
+    .btn-run {
+      background: var(--green);
+      color: #000;
+    }
+
+    .btn-run:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-reset {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    .btn-reset:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .btn-hint {
+      background: transparent;
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      color: var(--yellow);
+    }
+
+    .btn-hint:hover {
+      background: rgba(250, 204, 21, 0.1);
+    }
+
+    /* ========== Result Area ========== */
+    .result-area {
+      border-top: 1px solid var(--border);
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .result-table th {
+      background: var(--surface2);
+      color: var(--accent);
+      padding: 8px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .result-table td {
+      padding: 7px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .result-table tr:nth-child(even) td {
+      background: var(--surface);
+    }
+
+    .result-table tr:hover td {
+      background: var(--surface2);
+    }
+
+    .result-table .null-val {
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .result-meta {
+      padding: 8px 16px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ========== Exercise ========== */
+    .exercise {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    .challenge-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .challenge-badge.easy {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--green);
+    }
+
+    .challenge-badge.medium {
+      background: rgba(250, 204, 21, 0.15);
+      color: var(--yellow);
+    }
+
+    .challenge-badge.hard {
+      background: rgba(248, 113, 113, 0.15);
+      color: var(--red);
+    }
+
+    /* ========== Navigation Buttons ========== */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-nav {
+      padding: 10px 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: var(--font);
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-dim);
+      transition: all 0.15s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-nav:hover {
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .btn-nav.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn-nav.primary:hover {
+      filter: brightness(1.1);
+    }
+
+    /* ========== Schema Display ========== */
+    .schema-display {
+      background: #0d0f14;
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 16px;
+      border-radius: 8px;
+      color: #e2e4ef;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      white-space: pre;
+    }
+
+    /* ========== Scrollbar Styling ========== */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--surface2);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-dim);
+    }
+
+    /* ========== Mobile Toggle ========== */
+    .mobile-toggle {
+      display: none;
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 70;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 20px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ========== Animation ========== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lesson {
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 900px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        width: 100%;
+      }
+
+      .sidebar.open {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: flex;
+      }
+
+      .main {
+        padding: 24px 16px;
+      }
+
+      .progress-bar {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">&#9776;</button>
+
+  <div class="app">
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <h1>SQL for Everyone</h1>
+        <div class="subtitle">No analyst required</div>
+      </div>
+
+      <ul class="lesson-nav" id="lessonNav">
+        <!-- Populated by JS -->
+      </ul>
+
+      <div class="sidebar-footer">
+        <button class="theme-toggle" id="themeToggle">
+          <span id="themeIcon">&#9789;</span>
+          <span id="themeLabel">Dark mode</span>
+        </button>
+      </div>
+    </nav>
+
+    <main class="main">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div id="lessonContent">
+        <!-- Populated by JS -->
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script>
+    let db = null;
+
+    async function initDatabase() {
+      const SQL = await initSqlJs({
+        locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
+      });
+      db = new SQL.Database();
+
+      db.run(`
+        CREATE TABLE customers (
+          id INTEGER PRIMARY KEY,
+          name TEXT NOT NULL,
+          email TEXT NOT NULL,
+          city TEXT NOT NULL,
+          signup_date TEXT NOT NULL
+        );
+
+        CREATE TABLE products (
+          id INTEGER PRIMARY KEY,
+          name TEXT NOT NULL,
+          price REAL NOT NULL,
+          category TEXT NOT NULL
+        );
+
+        CREATE TABLE orders (
+          id INTEGER PRIMARY KEY,
+          customer_id INTEGER NOT NULL,
+          product_id INTEGER NOT NULL,
+          quantity INTEGER NOT NULL,
+          amount REAL NOT NULL,
+          order_date TEXT NOT NULL,
+          FOREIGN KEY (customer_id) REFERENCES customers(id),
+          FOREIGN KEY (product_id) REFERENCES products(id)
+        );
+
+        CREATE TABLE employees (
+          id INTEGER PRIMARY KEY,
+          name TEXT NOT NULL,
+          department TEXT NOT NULL,
+          salary INTEGER NOT NULL,
+          hire_date TEXT NOT NULL
+        );
+
+        INSERT INTO customers (id, name, email, city, signup_date) VALUES
+          (1, 'James Wilson', 'james.wilson@gmail.com', 'Sydney', '2023-03-15'),
+          (2, 'Emma Thompson', 'emma.t@outlook.com', 'Melbourne', '2023-05-22'),
+          (3, 'Liam Chen', 'liam.chen@gmail.com', 'Sydney', '2023-07-10'),
+          (4, 'Olivia Brown', 'olivia.b@yahoo.com', 'Brisbane', '2023-09-01'),
+          (5, 'Noah Taylor', 'noah.t@gmail.com', 'Perth', '2023-11-15'),
+          (6, 'Sophia Martin', 'sophia.m@outlook.com', 'Melbourne', '2024-01-08'),
+          (7, 'Mason Lee', 'mason.lee@gmail.com', 'Sydney', '2024-02-20'),
+          (8, 'Isabella White', 'isabella.w@yahoo.com', 'Brisbane', '2024-03-12'),
+          (9, 'Ethan Harris', 'ethan.h@gmail.com', 'Adelaide', '2024-04-05'),
+          (10, 'Mia Clark', 'mia.clark@outlook.com', 'Melbourne', '2024-05-18'),
+          (11, 'Lucas Walker', 'lucas.w@gmail.com', 'Sydney', '2024-06-30'),
+          (12, 'Charlotte Hall', 'charlotte.h@yahoo.com', 'Perth', '2024-08-14'),
+          (13, 'Aiden Young', 'aiden.y@gmail.com', 'Melbourne', '2024-09-22'),
+          (14, 'Amelia King', 'amelia.k@outlook.com', 'Sydney', '2024-10-15'),
+          (15, 'Oliver Scott', 'oliver.s@gmail.com', 'Brisbane', '2024-11-28');
+
+        INSERT INTO products (id, name, price, category) VALUES
+          (1, 'Wireless Headphones', 89.99, 'Electronics'),
+          (2, 'Standing Desk', 449.00, 'Furniture'),
+          (3, 'USB-C Hub', 34.99, 'Electronics'),
+          (4, 'Ergonomic Chair', 299.00, 'Furniture'),
+          (5, 'Webcam HD', 79.99, 'Electronics'),
+          (6, 'Monitor Stand', 59.99, 'Furniture'),
+          (7, 'Mechanical Keyboard', 129.99, 'Electronics'),
+          (8, 'Desk Lamp', 44.99, 'Furniture'),
+          (9, 'Portable SSD 1TB', 109.99, 'Electronics'),
+          (10, 'Notebook Set', 19.99, 'Stationery'),
+          (11, 'Wireless Mouse', 49.99, 'Electronics'),
+          (12, 'Filing Cabinet', 189.00, 'Furniture'),
+          (13, 'Whiteboard', 79.99, 'Stationery'),
+          (14, 'Cable Management Kit', 24.99, 'Accessories'),
+          (15, 'Laptop Stand', 39.99, 'Accessories');
+
+        INSERT INTO orders (id, customer_id, product_id, quantity, amount, order_date) VALUES
+          (1, 1, 1, 1, 89.99, '2024-01-15'),
+          (2, 1, 3, 2, 69.98, '2024-02-20'),
+          (3, 2, 2, 1, 449.00, '2024-01-22'),
+          (4, 3, 7, 1, 129.99, '2024-03-05'),
+          (5, 3, 5, 1, 79.99, '2024-03-05'),
+          (6, 4, 1, 1, 89.99, '2024-02-14'),
+          (7, 5, 4, 1, 299.00, '2024-01-30'),
+          (8, 6, 9, 1, 109.99, '2024-04-10'),
+          (9, 6, 11, 1, 49.99, '2024-04-10'),
+          (10, 7, 2, 1, 449.00, '2024-03-18'),
+          (11, 7, 6, 1, 59.99, '2024-03-18'),
+          (12, 8, 10, 3, 59.97, '2024-05-02'),
+          (13, 9, 14, 2, 49.98, '2024-02-28'),
+          (14, 10, 8, 1, 44.99, '2024-06-15'),
+          (15, 11, 1, 1, 89.99, '2024-04-22'),
+          (16, 11, 12, 1, 189.00, '2024-04-22'),
+          (17, 12, 13, 1, 79.99, '2024-05-10'),
+          (18, 13, 7, 2, 259.98, '2024-06-01'),
+          (19, 14, 15, 1, 39.99, '2024-07-05'),
+          (20, 15, 3, 1, 34.99, '2024-07-20'),
+          (21, 2, 9, 1, 109.99, '2024-08-12'),
+          (22, 4, 4, 1, 299.00, '2024-09-01'),
+          (23, 5, 1, 2, 179.98, '2024-09-15'),
+          (24, 8, 7, 1, 129.99, '2024-10-03'),
+          (25, 1, 2, 1, 449.00, '2024-11-20'),
+          (26, 3, 11, 1, 49.99, '2024-11-25'),
+          (27, 6, 5, 1, 79.99, '2024-12-01'),
+          (28, 10, 9, 1, 109.99, '2024-12-10'),
+          (29, 12, 1, 1, 89.99, '2024-12-15'),
+          (30, 14, 6, 1, 59.99, '2024-12-20');
+
+        INSERT INTO employees (id, name, department, salary, hire_date) VALUES
+          (1, 'Sarah Johnson', 'Engineering', 125000, '2020-03-15'),
+          (2, 'Michael Chen', 'Engineering', 135000, '2019-07-01'),
+          (3, 'Jessica Williams', 'Marketing', 95000, '2021-01-10'),
+          (4, 'David Kim', 'Sales', 88000, '2021-06-20'),
+          (5, 'Emily Davis', 'Marketing', 92000, '2022-02-14'),
+          (6, 'Robert Wilson', 'Engineering', 145000, '2018-11-05'),
+          (7, 'Amanda Brown', 'Sales', 91000, '2020-09-01'),
+          (8, 'Daniel Lee', 'HR', 82000, '2021-04-18'),
+          (9, 'Jennifer Taylor', 'Finance', 105000, '2019-12-01'),
+          (10, 'Christopher Martinez', 'Engineering', 130000, '2022-08-01'),
+          (11, 'Lauren Anderson', 'Sales', 87000, '2023-01-15'),
+          (12, 'Kevin Thomas', 'Finance', 110000, '2020-05-22'),
+          (13, 'Nicole Jackson', 'HR', 79000, '2022-11-10'),
+          (14, 'Ryan White', 'Marketing', 98000, '2021-03-08'),
+          (15, 'Stephanie Harris', 'Engineering', 140000, '2019-02-28');
+      `);
+    }
+
+    initDatabase().then(() => {
+      // Ready -- renderLesson() will be added in Task 5
+      console.log('Database ready. Tables:', db.exec("SELECT name FROM sqlite_master WHERE type='table'"));
+    }).catch(err => {
+      console.error('Failed to initialize database:', err);
+    });
+  </script>
+</body>
+</html>
