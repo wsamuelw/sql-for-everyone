@@ -817,6 +817,95 @@
       return db.exec(translated);
     }
 
+    function runPlayground(btn) {
+      const playground = btn.closest('.playground');
+      const textarea = playground.querySelector('textarea');
+      const resultArea = playground.querySelector('.result-area');
+      const sql = textarea.value.trim();
+
+      if (!sql) {
+        resultArea.innerHTML = '<div class="message info">Type a query and click Run.</div>';
+        return;
+      }
+
+      try {
+        const results = executeQuery(sql);
+
+        if (!results || results.length === 0) {
+          resultArea.innerHTML = '<div class="message success">Query executed successfully. No results to display.</div>';
+          markLessonComplete();
+          return;
+        }
+
+        const res = results[0];
+        let html = '<table class="result-table"><thead><tr>';
+        res.columns.forEach(c => { html += '<th>' + escapeHtml(c) + '</th>'; });
+        html += '</tr></thead><tbody>';
+        res.values.forEach(row => {
+          html += '<tr>';
+          row.forEach(v => {
+            if (v === null) {
+              html += '<td class="null-val">NULL</td>';
+            } else {
+              html += '<td>' + escapeHtml(String(v)) + '</td>';
+            }
+          });
+          html += '</tr>';
+        });
+        html += '</tbody></table>';
+        html += '<div class="result-meta">' + res.values.length + ' row' + (res.values.length !== 1 ? 's' : '') + ' returned</div>';
+        resultArea.innerHTML = html;
+        markLessonComplete();
+      } catch (err) {
+        resultArea.innerHTML = '<div class="message error">Error: ' + escapeHtml(err.message) + '</div>';
+      }
+    }
+
+    function resetPlayground(btn) {
+      const playground = btn.closest('.playground');
+      const textarea = playground.querySelector('textarea');
+      const resultArea = playground.querySelector('.result-area');
+      const original = playground.getAttribute('data-query');
+      if (original) textarea.value = original;
+      resultArea.innerHTML = '';
+    }
+
+    function showHint(btn, hint) {
+      const playground = btn.closest('.playground') || btn.closest('.exercise').querySelector('.playground');
+      const resultArea = playground.querySelector('.result-area');
+      resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function attachPlaygroundHandlers(container) {
+      container.querySelectorAll('.playground textarea').forEach(ta => {
+        ta.addEventListener('keydown', (e) => {
+          if (e.key === 'Tab') {
+            e.preventDefault();
+            const start = ta.selectionStart;
+            const end = ta.selectionEnd;
+            ta.value = ta.value.substring(0, start) + '  ' + ta.value.substring(end);
+            ta.selectionStart = ta.selectionEnd = start + 2;
+          }
+          if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+            e.preventDefault();
+            const btn = ta.closest('.playground').querySelector('.btn-run');
+            if (btn) runPlayground(btn);
+          }
+        });
+      });
+    }
+
+    function markLessonComplete() {
+      // Will be fully implemented in Task 5 (Navigation)
+      console.log('Lesson completed');
+    }
+
     initDatabase().then(() => {
       // Ready -- renderLesson() will be added in Task 5
       console.log('Database ready. Tables:', db.exec("SELECT name FROM sqlite_master WHERE type='table'"));
