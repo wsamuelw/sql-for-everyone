@@ -1580,7 +1580,96 @@ FROM orders;</textarea>
           </div>
         </div>
       `; }
-    function windowContent() { return '<h2>Window Functions</h2><p>Coming soon...</p>'; }
+    function windowContent() {
+      return `
+        <h2>Window Functions: Ranking and Comparing</h2>
+        <p class="subtitle">How do I rank or compare rows within a group?</p>
+
+        <div class="concept-box analogy">
+          Window functions are like adding a column that knows about the other rows. "Rank this product within its category" or "show me the running total." Unlike GROUP BY, they don't collapse rows — they add information alongside each row.
+        </div>
+
+        <h3>ROW_NUMBER — rank within a group</h3>
+        <div class="playground" data-query="SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;">
+          <div class="playground-header"><span class="label">Try it</span><span>Rank products by price within each category</span></div>
+          <textarea spellcheck="false">SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>RANK and DENSE_RANK</h3>
+        <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+          <div class="playground-header"><span class="label">Try it</span><span>Rank employees by salary within each department</span></div>
+          <textarea spellcheck="false">SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <strong>ROW_NUMBER</strong> gives every row a unique number (1, 2, 3). <strong>RANK</strong> skips numbers after ties (1, 2, 2, 4). <strong>DENSE_RANK</strong> doesn't skip (1, 2, 2, 3). Pick the one that fits your use case.
+        </div>
+
+        <h3>Running total</h3>
+        <div class="playground" data-query="SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Cumulative revenue over time</span></div>
+          <textarea spellcheck="false">SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>LAG — compare to previous row</h3>
+        <div class="playground" data-query="SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Compare each order to the previous one</span></div>
+          <textarea spellcheck="false">SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box warning">
+          In Snowflake, use <code>QUALIFY</code> to filter window function results. In BigQuery, wrap in a subquery and filter the outer query. This course uses subquery approach since it works everywhere.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Rank employees by salary within their department. Show name, department, salary, and rank.</p>
+          <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each order with a running total of revenue per customer.</p>
+          <div class="playground" data-query="SELECT customer_id, order_date, amount, SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total FROM orders;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT customer_id, order_date, amount, SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total FROM orders;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
     function ctesContent() { return '<h2>CTEs</h2><p>Coming soon...</p>'; }
     function cheatsheetContent() { return '<h2>Cheatsheet</h2><p>Coming soon...</p>'; }
     function whatsNextContent() { return '<h2>What\'s Next</h2><p>Coming soon...</p>'; }
