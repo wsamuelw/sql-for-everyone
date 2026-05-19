@@ -347,6 +347,8 @@ Lead with the metric. Cut the filler. Every bullet should have at least one numb
 **After:**
 > Delivered front-desk service for 30+ guests daily, maintaining a 98% satisfaction rating across 2 years of employment
 
+Use real metrics you can back up. If you don't have a satisfaction score, use volume: "Served 30+ guests daily across a 2-year period." Fabricated metrics will catch up with you in an interview.
+
 ---
 
 ### Mistake #4: Irrelevant/Outdated Content
@@ -373,7 +375,7 @@ Resume 1's awards and volunteering sections:
 That's 7 lines of content from high school. In 2026. For a university graduate applying to data roles.
 
 #### The Fix
-Apply the "3-year rule": if it's older than 3 years and not a prestigious, role-relevant achievement (like a major scholarship or publication), remove it. Keep the HSK certificate in Skills if Mandarin is relevant to the roles you're targeting — it's the only item here worth keeping. Move it to a Languages section.
+Remove anything from before university — that's childhood history, not professional credential. For university-era items, keep only what's relevant to the role you're targeting. High school awards, even impressive ones, don't belong on a graduate's data resume. Keep the HSK certificate in Skills if Mandarin is relevant to the roles you're targeting — it's the only item here worth keeping. Move it to a Languages section.
 
 #### Before → After
 
@@ -421,7 +423,9 @@ Delete the standalone soft skills section entirely. Instead, demonstrate these t
 > Soft Skills: Communication, Problem-solving, Stakeholder Engagement, Fast Learner, Team Collaboration
 
 **After:**
-> *(Section removed entirely. These qualities are already demonstrated in the experience bullets above — no need to state them separately.)*
+> Partnered with Marketing, Product, and Finance teams to align analytics KPIs with strategic compliance goals.
+
+That single bullet demonstrates stakeholder engagement, communication, and collaboration — without needing to claim them separately. Delete the standalone soft skills section and let your experience bullets do the talking.
 
 ---
 
@@ -435,7 +439,12 @@ This is basic professional hygiene. A resume without contact information is a do
 
 #### Real Example (Anonymised)
 
-All three source resumes either lack contact information entirely or have it buried and incomplete. None have a LinkedIn URL. None have a GitHub link. For candidates targeting data roles — where code quality and project work are verifiable — this is a missed opportunity.
+Resume 1's header reads:
+
+> Bachelor of Science, Data Science Major
+> The University of Melbourne
+
+No email address. No LinkedIn URL. No GitHub link. For a data science graduate targeting data roles — where code quality and project work are verifiable — this is a missed opportunity.
 
 #### The Fix
 At the top of your resume, include:
