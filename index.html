@@ -502,6 +502,15 @@
       filter: brightness(1.1);
     }
 
+    /* ========== Lesson Bottom Nav ========== */
+    .lesson-nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
     /* ========== Schema Display ========== */
     .schema-display {
       background: #0d0f14;
@@ -901,14 +910,115 @@
       });
     }
 
-    function markLessonComplete() {
-      // Will be fully implemented in Task 5 (Navigation)
-      console.log('Lesson completed');
+    // ========== Lesson Data ==========
+    function welcomeContent() { return '<h2>Welcome</h2><p>Coming soon...</p>'; }
+    function selectContent() { return '<h2>SELECT</h2><p>Coming soon...</p>'; }
+    function whereContent() { return '<h2>WHERE</h2><p>Coming soon...</p>'; }
+    function sortingContent() { return '<h2>Sorting</h2><p>Coming soon...</p>'; }
+    function aggregationContent() { return '<h2>Aggregation</h2><p>Coming soon...</p>'; }
+    function groupbyContent() { return '<h2>GROUP BY</h2><p>Coming soon...</p>'; }
+    function joinsContent() { return '<h2>JOINs</h2><p>Coming soon...</p>'; }
+    function miniReportsContent() { return '<h2>Mini Reports</h2><p>Coming soon...</p>'; }
+    function subqueriesContent() { return '<h2>Subqueries</h2><p>Coming soon...</p>'; }
+    function caseWhenContent() { return '<h2>CASE WHEN</h2><p>Coming soon...</p>'; }
+    function windowContent() { return '<h2>Window Functions</h2><p>Coming soon...</p>'; }
+    function ctesContent() { return '<h2>CTEs</h2><p>Coming soon...</p>'; }
+    function cheatsheetContent() { return '<h2>Cheatsheet</h2><p>Coming soon...</p>'; }
+    function whatsNextContent() { return '<h2>What\'s Next</h2><p>Coming soon...</p>'; }
+
+    const lessons = [
+      { id: 'welcome', title: 'Welcome', icon: '👋', content: welcomeContent },
+      { id: 'select', title: 'SELECT', icon: '📋', content: selectContent },
+      { id: 'where', title: 'WHERE', icon: '🔍', content: whereContent },
+      { id: 'sorting', title: 'Sorting', icon: '↕️', content: sortingContent },
+      { id: 'aggregation', title: 'Aggregation', icon: '📊', content: aggregationContent },
+      { id: 'groupby', title: 'GROUP BY', icon: '📈', content: groupbyContent },
+      { id: 'joins', title: 'JOINs', icon: '🔗', content: joinsContent },
+      { id: 'mini-reports', title: 'Mini Reports', icon: '📄', content: miniReportsContent },
+      { id: 'subqueries', title: 'Subqueries', icon: '🔄', content: subqueriesContent },
+      { id: 'case-when', title: 'CASE WHEN', icon: '🏷️', content: caseWhenContent },
+      { id: 'window', title: 'Window Functions', icon: '🪟', content: windowContent },
+      { id: 'ctes', title: 'CTEs', icon: '🧩', content: ctesContent },
+      { id: 'cheatsheet', title: 'Cheatsheet', icon: '📖', content: cheatsheetContent },
+      { id: 'whats-next', title: "What's Next", icon: '🚀', content: whatsNextContent }
+    ];
+
+    let currentLesson = 0;
+    const completedLessons = new Set();
+
+    // ========== Navigation ==========
+    function renderNav() {
+      const nav = document.getElementById('lessonNav');
+      nav.innerHTML = lessons.map((l, i) =>
+        '<li class="' + (i === currentLesson ? 'active' : '') + ' ' + (completedLessons.has(i) ? 'completed' : '') + '"' +
+        ' onclick="goToLesson(' + i + ')">' +
+        '<span class="num">' + l.icon + '</span>' +
+        l.title +
+        '</li>'
+      ).join('');
     }
 
+    function renderLesson() {
+      const content = document.getElementById('lessonContent');
+
+      let html = lessons[currentLesson].content();
+
+      // Navigation buttons
+      html += '<div class="lesson-nav-bottom">';
+      if (currentLesson > 0) {
+        html += '<button class="btn-nav" onclick="goToLesson(' + (currentLesson - 1) + ')">&larr; Previous</button>';
+      } else {
+        html += '<div></div>';
+      }
+      if (currentLesson < lessons.length - 1) {
+        html += '<button class="btn-nav primary" onclick="goToLesson(' + (currentLesson + 1) + ')">Next &rarr;</button>';
+      } else {
+        html += '<div></div>';
+      }
+      html += '</div>';
+
+      content.innerHTML = html;
+      renderNav();
+      updateProgress();
+      attachPlaygroundHandlers(content);
+      window.scrollTo(0, 0);
+    }
+
+    function goToLesson(i) {
+      currentLesson = i;
+      renderLesson();
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    function updateProgress() {
+      const pct = (completedLessons.size / lessons.length) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+    }
+
+    function markLessonComplete() {
+      completedLessons.add(currentLesson);
+      renderNav();
+      updateProgress();
+    }
+
+    // ========== Mobile Menu Toggle ==========
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+
+    // ========== Keyboard Shortcuts ==========
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && e.altKey) {
+        if (currentLesson < lessons.length - 1) goToLesson(currentLesson + 1);
+      }
+      if (e.key === 'ArrowLeft' && e.altKey) {
+        if (currentLesson > 0) goToLesson(currentLesson - 1);
+      }
+    });
+
+    // ========== Init ==========
     initDatabase().then(() => {
-      // Ready -- renderLesson() will be added in Task 5
-      console.log('Database ready. Tables:', db.exec("SELECT name FROM sqlite_master WHERE type='table'"));
+      renderLesson();
     }).catch(err => {
       console.error('Failed to initialize database:', err);
     });
