@@ -1174,11 +1174,350 @@ FROM customers;</textarea>
         </div>
       `;
     }
-    function aggregationContent() { return '<h2>Aggregation</h2><p>Coming soon...</p>'; }
-    function groupbyContent() { return '<h2>GROUP BY</h2><p>Coming soon...</p>'; }
-    function joinsContent() { return '<h2>JOINs</h2><p>Coming soon...</p>'; }
-    function miniReportsContent() { return '<h2>Mini Reports</h2><p>Coming soon...</p>'; }
-    function subqueriesContent() { return '<h2>Subqueries</h2><p>Coming soon...</p>'; }
+    function aggregationContent() {
+      return `
+        <h2>Summarising Data: COUNT, SUM, AVG</h2>
+        <p class="subtitle">How many? What's the total? What's the average?</p>
+
+        <div class="concept-box analogy">
+          Instead of reading every row one by one, aggregation lets you ask: "How many?", "What's the total?", "What's the average?" It's like the SUM and COUNT functions in a spreadsheet — but way more flexible.
+        </div>
+
+        <h3>Count rows</h3>
+        <div class="playground" data-query="SELECT COUNT(*) AS total_customers FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>How many customers do we have?</span></div>
+          <textarea spellcheck="false">SELECT COUNT(*) AS total_customers FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Total and average</h3>
+        <div class="playground" data-query="SELECT COUNT(*) AS total_orders, SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Order count, total revenue, and average order value</span></div>
+          <textarea spellcheck="false">SELECT
+  COUNT(*) AS total_orders,
+  SUM(amount) AS total_revenue,
+  AVG(amount) AS avg_order_value
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="schema-display">
+          <div><span class="col-name">COUNT(*)</span> <span class="col-desc">— number of rows</span></div>
+          <div><span class="col-name">SUM(column)</span> <span class="col-desc">— total</span></div>
+          <div><span class="col-name">AVG(column)</span> <span class="col-desc">— average</span></div>
+          <div><span class="col-name">MIN(column)</span> <span class="col-desc">— minimum</span></div>
+          <div><span class="col-name">MAX(column)</span> <span class="col-desc">— maximum</span></div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>What's the total revenue across all orders?</p>
+          <div class="playground" data-query="SELECT SUM(amount) AS total_revenue FROM orders;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT SUM(amount) AS total_revenue FROM orders;')">Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function groupbyContent() {
+      return `
+        <h2>GROUP BY: Summarising by Category</h2>
+        <p class="subtitle">How do I summarise by category?</p>
+
+        <div class="concept-box analogy">
+          GROUP BY splits your data into buckets, then summarises each one. Like a pivot table in Excel — you pick a column to group by, then apply a summary function to each group.
+        </div>
+
+        <h3>Group by category</h3>
+        <div class="playground" data-query="SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;">
+          <div class="playground-header"><span class="label">Try it</span><span>Products grouped by category</span></div>
+          <textarea spellcheck="false">SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Filter groups with HAVING</h3>
+        <div class="playground" data-query="SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;">
+          <div class="playground-header"><span class="label">Try it</span><span>Cities with more than 2 customers</span></div>
+          <textarea spellcheck="false">SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <strong>WHERE</strong> filters rows <em>before</em> grouping. <strong>HAVING</strong> filters groups <em>after</em> grouping. Use both when you need them.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
+          <p>How many orders has each customer placed? Show customer_id and order count.</p>
+          <div class="playground" data-query="SELECT customer_id, COUNT(*) AS order_count FROM orders GROUP BY customer_id;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT customer_id, COUNT(*) AS order_count FROM orders GROUP BY customer_id;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
+          <p>Which cities have more than 2 customers?</p>
+          <div class="playground" data-query="SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING cnt > 2;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING cnt > 2;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function joinsContent() {
+      return `
+        <h2>JOINs: Combining Tables</h2>
+        <p class="subtitle">How do I combine data from different tables?</p>
+
+        <div class="concept-box analogy">
+          Imagine two spreadsheets: one has customer names, another has their orders. <strong>JOIN</strong> is like putting them side-by-side, matching rows by a shared ID. Like a mail merge — you connect "who" with "what they bought".
+        </div>
+
+        <h3>Our data model</h3>
+        <div class="schema-display">
+          <div><span class="table-name">customers</span> <span class="col-desc">→ id, name, email, city</span></div>
+          <div><span class="table-name">products</span> <span class="col-desc">→ id, name, price, category</span></div>
+          <div><span class="table-name">orders</span> <span class="col-desc">→ id, customer_id, product_id, quantity, amount, order_date</span></div>
+          <div><span class="table-name">employees</span> <span class="col-desc">→ id, name, department, salary, hire_date</span></div>
+        </div>
+
+        <h3>Orders with customer names</h3>
+        <div class="playground" data-query="SELECT c.name AS customer, o.amount, o.order_date FROM orders o JOIN customers c ON o.customer_id = c.id ORDER BY o.order_date DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Join orders with customers</span></div>
+          <textarea spellcheck="false">SELECT c.name AS customer, o.amount, o.order_date FROM orders o JOIN customers c ON o.customer_id = c.id ORDER BY o.order_date DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Orders with product details</h3>
+        <div class="playground" data-query="SELECT c.name AS customer, p.name AS product, p.category, o.quantity, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id JOIN products p ON o.product_id = p.id ORDER BY o.amount DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Join across three tables</span></div>
+          <textarea spellcheck="false">SELECT c.name AS customer, p.name AS product, p.category, o.quantity, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id JOIN products p ON o.product_id = p.id ORDER BY o.amount DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Join + aggregation</h3>
+        <div class="playground" data-query="SELECT c.name AS customer, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Join with GROUP BY</span></div>
+          <textarea spellcheck="false">SELECT c.name AS customer, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          The <strong>ON</strong> clause tells the database which columns match up. Common pattern: <code>table_a.id = table_b.table_a_id</code>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
+          <p>Show each product name and how many times it's been ordered. Sort by order count, highest first.</p>
+          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY times_ordered DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY times_ordered DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
+          <p>Show total spend per customer, sorted highest first.</p>
+          <div class="playground" data-query="SELECT c.name, SUM(o.amount) AS total FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT c.name, SUM(o.amount) AS total FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function miniReportsContent() {
+      return `
+        <h2>Mini Reports: Putting It All Together</h2>
+        <p class="subtitle">Can I build a real report with what I know?</p>
+
+        <div class="concept-box why">
+          You now know enough to build real reports. Let's combine everything you've learned — SELECT, WHERE, JOIN, GROUP BY, and ORDER BY — into end-to-end business reports.
+        </div>
+
+        <h3>💰 Monthly revenue report</h3>
+        <div class="playground" data-query="SELECT strftime('%Y-%m', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS revenue FROM orders GROUP BY month ORDER BY month;">
+          <div class="playground-header"><span class="label">Try it</span><span>Revenue by month</span></div>
+          <textarea spellcheck="false">SELECT strftime('%Y-%m', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS revenue FROM orders GROUP BY month ORDER BY month;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>🏆 Top 5 customers by spend</h3>
+        <div class="playground" data-query="SELECT c.name, c.city, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC LIMIT 5;">
+          <div class="playground-header"><span class="label">Try it</span><span>Top spenders</span></div>
+          <textarea spellcheck="false">SELECT c.name, c.city, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC LIMIT 5;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>📦 Best-selling products</h3>
+        <div class="playground" data-query="SELECT p.name, p.category, SUM(o.quantity) AS units_sold, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name ORDER BY revenue DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Product performance</span></div>
+          <textarea spellcheck="false">SELECT p.name, p.category, SUM(o.quantity) AS units_sold, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name ORDER BY revenue DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          🎉 Congratulations! You've just built real business reports. Take a screenshot and share it with your team — you did this yourself, no analyst needed!
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
+          <p>Build a report showing total revenue by product category.</p>
+          <div class="playground" data-query="SELECT p.category, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category ORDER BY revenue DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.category, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category ORDER BY revenue DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Find customers who haven't ordered since June 2024.</p>
+          <div class="playground" data-query="SELECT c.name, c.email, MAX(o.order_date) AS last_order FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.name HAVING last_order < '2024-06-01' OR last_order IS NULL;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT c.name, c.email, MAX(o.order_date) AS last_order FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.name HAVING last_order < \'2024-06-01\' OR last_order IS NULL;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function subqueriesContent() {
+      return `
+        <h2>Subqueries: Queries Inside Queries</h2>
+        <p class="subtitle">How do I use one query's result in another?</p>
+
+        <div class="concept-box analogy">
+          A subquery is a question inside a question. Like saying: "Show me everyone who spent more than the average customer." First you find the average, then you use it to filter.
+        </div>
+
+        <h3>Subquery in WHERE</h3>
+        <div class="playground" data-query="SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);">
+          <div class="playground-header"><span class="label">Try it</span><span>Customers who spent more than $300 total</span></div>
+          <textarea spellcheck="false">SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Subquery in FROM</h3>
+        <div class="playground" data-query="SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) WHERE avg_price > 100;">
+          <div class="playground-header"><span class="label">Try it</span><span>Categories with average price above $100</span></div>
+          <textarea spellcheck="false">SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) WHERE avg_price > 100;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          Read subqueries from the inside out. The inner query runs first, then the outer query uses its results.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 1 <span class="challenge-badge hard">Hard</span></div>
+          <p>Find products that have never been ordered.</p>
+          <div class="playground" data-query="SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise 2 <span class="challenge-badge hard">Hard</span></div>
+          <p>Find customers who have placed more than 2 orders.</p>
+          <div class="playground" data-query="SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) > 2);">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) > 2);')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
     function caseWhenContent() { return '<h2>CASE WHEN</h2><p>Coming soon...</p>'; }
     function windowContent() { return '<h2>Window Functions</h2><p>Coming soon...</p>'; }
     function ctesContent() { return '<h2>CTEs</h2><p>Coming soon...</p>'; }
