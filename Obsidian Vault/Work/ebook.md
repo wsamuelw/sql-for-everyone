@@ -813,6 +813,231 @@ Decide: is this a current role or a past role? If it's current, every bullet use
 
 ---
 
+## 5c. The Error Catalogue: Strategy Mistakes
+
+Content, technical, and formatting mistakes are about individual elements. Strategy mistakes are about the bigger picture — how the whole resume tells a story. You can fix every bullet point and still get rejected if the resume doesn't show direction, relevance, or growth. These are the hardest mistakes to spot in your own work because they require stepping back and reading your resume the way a stranger would.
+
+---
+
+### Mistake #16: No Narrative Arc
+
+#### The Problem
+The resume reads like a list of jobs and coursework, not a story of progression. Roles appear in reverse chronological order, but there's no through-line connecting them — no sense that each position built on the last, or that the candidate is moving toward something specific.
+
+#### Why It Matters
+Hiring managers aren't just checking whether you've done work. They're reading for *trajectory*. A resume that jumps from Deloitte vacationer to hotel receptionist to tutor with no connecting thread leaves the reader wondering: "Where is this person going?" Without a narrative, each role feels isolated — and isolated roles don't build confidence that you'll stick with the next one.
+
+#### Real Example (Anonymised)
+
+Resume 1's employment section tells this story:
+
+> Data and AI Vacationer — Deloitte, Melbourne (Jan 2024 - Feb 2024)
+> Receptionist — Gateway on Monash Boutique Hotel (Jan 2023 - Jan 2025)
+> Tutor — Cluey Learning (Feb 2022 - May 2023)
+> Teaching Assistant — Summer Code Camp (Dec 2022 - Jan 2023)
+
+A Big 4 data internship, then hotel front desk for two years, then tutoring high school maths. There's nothing wrong with any of these roles individually. But read together, they don't tell a story. Where's the progression? What connects "computer vision model at Deloitte" to "check-in/check-out at a hotel"? The hiring manager fills in the blanks — and usually fills them uncharitably.
+
+#### The Fix
+You don't need every role to be in data. But you need a narrative that connects them. The thread might be: "I built technical skills through tutoring and self-study, applied them in a Big 4 internship, and now I'm ready for a full-time data role." That thread needs to be visible — in your summary, in how you frame each role, and in the order you present things. Use your summary to set up the story, and let each role's bullets support the direction you're heading.
+
+#### Before → After
+
+**Before:**
+> Data and AI Vacationer, Deloitte
+> - Connected with various members from different levels of firm through initiating meetings to gain insight of firm structure and operations
+> - Implemented a computer vision model to track objects through research of MOT algorithms and use of AWS SageMaker
+> - Presented outcomes, learnings and reflections of internship period to a group of 25 people
+
+**After:**
+> **Data Science Intern, Deloitte** (Jan 2024 - Feb 2024)
+> Built a multi-object tracking system using Python, deep learning, and AWS SageMaker — the first production-grade ML project in a 6-month technical upskilling journey from tutoring to data engineering.
+> Presented project outcomes to 25 stakeholders, translating technical findings into business impact.
+
+---
+
+### Mistake #17: Research-to-Industry Jargon
+
+#### The Problem
+The resume speaks academic. Terms like "fair event-aware influence maximization," "graph neural network," and "publication under review" are accurate — but they're invisible to a hiring manager who doesn't share your research background. The reader can't map your skills to the job they're filling.
+
+#### Why It Matters
+When you've spent 2-3 years thinking like a researcher, you genuinely don't see the business value in your work. Your supervisor trained you to value methodology, novelty, and rigour. This section teaches you to see your work through a hiring manager's eyes.
+
+This isn't just a vocabulary swap. It's an identity shift. You're not dumbing down your work — you're translating it for a different audience. A hiring manager for a data scientist role doesn't need to know your algorithm is novel. They need to know it improved engagement by 15% and could save $13.5 billion annually. The technical depth is real. The business impact is real. But if the resume only speaks in academic terms, the hiring manager never connects the two.
+
+#### Real Example (Anonymised)
+
+Resume 2's entire profile section reads like an academic abstract:
+
+> Currently pursuing a Master of Philosophy in Computer Science at RMIT University, with a focus on innovative methods for social influence analysis. My journey commenced with a Bachelor of Science in Automation from Beijing Institute of Technology, where I became obsessed with data and machine learning through a research project about creating an agent learning from visual data to play video games.
+
+The main project description:
+
+> Fair Event-Aware Influence Maximization over Microblogs (Feb 2023 – Nov 2024)
+> Real-world events such as donation campaigns or cybersecurity alerts hold critical information yet lack sufficient user engagement on microblog platforms like Twitter or Facebook. Moreover, there exists a significant disparity in message reception among users during event propagation, which impedes equal opportunities for users to interact with an event.
+
+And the most impressive line in the entire resume — buried in the middle of a bullet:
+
+> Assuming all Australians who have avoided cyberattack have been influenced by a cybersecurity alert event, our method has the potential to save $13.5 billion annually for Australia.
+
+That's a $13.5 billion impact claim. It's the kind of number that stops a hiring manager in their tracks. But it's buried after 150 words of academic framing. Most readers will never reach it.
+
+#### The Translation Matrix
+
+When moving from academia to industry, the challenge isn't that your work doesn't have business value — it's that the language you use to describe it doesn't map to the language hiring managers speak. This matrix helps you translate:
+
+| Academic Concept | Industry Equivalent |
+|-----------------|-------------------|
+| Novel algorithm | Improved processing efficiency by X% |
+| Peer review | QA / validation process |
+| Thesis / dissertation | Stakeholder communication at scale |
+| Influence maximization | Viral campaign optimization / user engagement |
+| Graph neural network | Recommendation systems / social network analysis |
+| Deep reinforcement learning | Autonomous decision-making systems |
+| Publication under review | Research validated by domain experts |
+| Feature engineering on social graphs | Building user behaviour models from interaction data |
+| Optimised propagation paths | Routing algorithms for content distribution |
+| Event-aware fairness constraints | Bias-aware recommendation systems |
+
+This isn't about being dishonest about what you did. It's about meeting the reader where they are. A hiring manager who sees "recommendation systems" immediately understands the category of work. A hiring manager who sees "graph neural network" has to Google it — and they won't.
+
+#### The Fix
+
+Apply the translation matrix to every line of your resume. Start with your profile — it should read like a job pitch, not an academic abstract. Then rewrite your project descriptions to lead with the outcome, not the methodology. Your technical depth is an asset, but it goes *after* the business impact, not instead of it.
+
+#### Before → After: Profile Summary
+
+**Before:**
+> Currently pursuing a Master of Philosophy in Computer Science at RMIT University, with a focus on innovative methods for social influence analysis. My journey commenced with a Bachelor of Science in Automation from Beijing Institute of Technology, where I became obsessed with data and machine learning through a research project about creating an agent learning from visual data to play video games. Pursuing my Master's degree was a natural step to deepen my expertise in data engineering and machine learning, inspired by a passion for engaging with real-world data and tackling practical challenges.
+>
+> My academic background and project experience has equipped me with the ability to uncover meaningful insights from complex datasets, enabling companies to improve their products or services for better customer experiences and make informed business decisions. My unique value lies in my skills in research and communication. Research involves identifying unsolved problems and applying appropriate techniques to address them. I have demonstrated my research skills by conducting in-depth study on how to propagate a complex event in a social network effectively and fairly. Communication, on the other hand, is essential for translating technical findings into actionable strategies, collaborating with teams, and influencing decision-makers. My communication skills have been honed by presenting research discoveries to diverse audiences and collaborating with supervisors and peers on the project.
+
+**After:**
+> Data scientist with 2+ years of Python, PyTorch, and large-scale social network analysis experience. Built an event propagation system that improved user engagement by 15% over existing methods — with potential to save the Australian economy $13.5B annually through cybersecurity alert optimization. Seeking a data scientist role where I can apply machine learning and recommendation system expertise to real-world product challenges.
+
+#### Before → After: Main Project Description
+
+**Before:**
+> Fair Event-Aware Influence Maximization over Microblogs (Feb 2023 – Nov 2024)
+> Real-world events such as donation campaigns or cybersecurity alerts hold critical information yet lack sufficient user engagement on microblog platforms like Twitter or Facebook. Moreover, there exists a significant disparity in message reception among users during event propagation, which impedes equal opportunities for users to interact with an event.
+>
+> Built a fair event influence analysis system for microblog platforms to propagate event messages in a manner sensitive to users' context and message reception, maximizing user engagement while ensuring equal message reception among all participating users.
+
+**After:**
+> **Event Influence Optimization System** | Python, PyTorch, NetworkX, Graph Neural Networks (Feb 2023 – Nov 2024)
+> Built a recommendation system that routes event messages through social networks to maximize user engagement while ensuring fair message reception across all users. Extracted and processed Twitter data at scale using Pandas, constructed social graphs with NetworkX, and trained a graph neural network model in PyTorch to identify high-impact distribution paths. Achieved 15% improvement in influenced users over state-of-the-art methods. Applied to cybersecurity alerts, the system has potential to save $13.5B annually for the Australian economy.
+
+#### Before → After: The $13.5B Impact Line
+
+**Before:**
+> Cyber crimes cost the Australian economy $30 billion a year, with one in four Australians falling victim to such incidents. In the simulation environment, our method demonstrates the ability to boost the number of influenced users for an event by 15% compared to cutting-edge influence maximization techniques. Assuming all Australians who have avoided cyberattack have been influenced by a cybersecurity alert event, our method has the potential to save $13.5 billion annually for Australia.
+
+**After:**
+> Achieved 15% improvement in event reach over existing methods — equivalent to potential $13.5B annual savings for the Australian economy if applied to cybersecurity alert distribution (based on $30B annual cybercrime cost and 1-in-4 victimisation rate).
+
+---
+
+### Mistake #18: Projects Not Presented as Experience
+
+#### The Problem
+The projects section is formatted as a separate, secondary list — visually and structurally disconnected from the rest of the resume. It feels like an afterthought, not proof of capability. Projects get a different heading style, less detail, and are positioned below the "real" experience.
+
+#### Why It Matters
+For early-career candidates, projects *are* experience. A hiring manager doesn't care whether the work happened at a company or in your own time — they care whether you can build things that work. When projects are visually separated from experience, it signals that you don't consider them important. The hiring manager takes the hint and skips them too.
+
+#### Real Example (Anonymised)
+
+Resume 3 has solid projects — a 50M+ post sentiment analysis, an 18% RMSE improvement in property forecasting, an 81.9% accuracy prediction model. But they're formatted as:
+
+> PROJECTS
+>
+> Social Media Analytics – Olympic Sentiment Study (Python and cloud based)
+> Analyzed 50M+ YouTube and Reddit posts to track engagement and sentiment around Olympic events.
+>
+> Real Estate Price Forecasting
+> Built ARIMA and regression-based models in R to forecast Melbourne property prices...
+
+The "PROJECTS" header is jammed against the preceding paragraph with no spacing. The projects sit below "KEY SKILLS" in the visual hierarchy. They read as a footnote, not a centrepiece.
+
+#### The Fix
+Present projects with the same structural weight as employment. Use the same heading level. Give each project a title, tools used, and 2-3 bullets — just like a job entry. If your projects are stronger than your employment history (which is often the case for graduates), consider placing them above employment or weaving them together. The goal is: a hiring manager should not be able to tell from the formatting which work was "paid" and which was "personal."
+
+#### Before → After
+
+**Before:**
+> PROJECTS
+>
+> Social Media Analytics – Olympic Sentiment Study (Python and cloud based)
+> Analyzed 50M+ YouTube and Reddit posts to track engagement and sentiment around Olympic events.
+> Presented insights using timeline dashboards, revealing platform-specific trends and user response patterns.
+
+**After:**
+> **Social Media Analytics — Olympic Sentiment Study** | Python, Cloud Infrastructure | Mar 2025
+> Analysed 50M+ YouTube and Reddit posts to track engagement and sentiment around Olympic events. Built timeline dashboards revealing platform-specific trends and user response patterns, presenting actionable insights to stakeholders.
+
+---
+
+### Mistake #19: One Resume for Every Application
+
+#### The Problem
+The same resume gets sent to every job — data analyst, data engineer, BI analyst, machine learning engineer — with no changes. The bullets stay the same, the summary stays the same, the skills stay the same. It's a generic document applied to specific roles.
+
+#### Why It Matters
+Each role has different non-negotiables. A data analyst job cares about SQL, dashboards, and stakeholder communication. A data engineer job cares about pipelines, infrastructure, and scale. If your resume doesn't调整 to match, the hiring manager reads it and thinks: "This person isn't quite right." They can't articulate why — but the mismatch is felt. Tailoring isn't about lying. It's about emphasising the parts of your experience that matter most for the specific role.
+
+#### The Fix
+Before every application, adjust 3-5 bullet points to mirror the language and priorities in the job description. Move the most relevant skills to the top of your skills section. Adjust your summary to name the target role. The rest of the resume stays the same — you're reordering and re-emphasising, not rewriting.
+
+#### Before → After
+
+**Before (same bullet, sent to every role):**
+> Automated Tableau dashboards and Power BI reports to support real-time tracking of marketing campaigns, customer acquisition, and LTV estimation.
+
+**After — for a Data Analyst role:**
+> Automated Tableau dashboards and Power BI reports to support real-time tracking of marketing campaigns, customer acquisition, and LTV estimation — reducing manual reporting by 10+ hours per week.
+
+**After — for a Data Engineer role:**
+> Designed and automated data pipelines feeding Tableau dashboards and Power BI reports, processing customer acquisition and LTV data in real-time across multiple product lines.
+
+Same work. Different emphasis. The data analyst version highlights the *outcome* (time saved). The data engineer version highlights the *process* (pipeline design). Both are true. Neither is dishonest.
+
+---
+
+### Mistake #20: Weak Project Descriptions
+
+#### The Problem
+Project bullets describe what was built but not why it mattered. "Built a dashboard." "Analysed sentiment." "Created a prediction model." These are task descriptions, not achievement statements. The reader can't tell whether the project was impressive or trivial.
+
+#### Why It Matters
+A project description without impact is a claim without evidence. The hiring manager sees "Built a dashboard" and thinks: "OK, but was it a good dashboard? Did anyone use it? What changed because of it?" Without answers, the project is noise. With answers — metrics, scale, business context — the project becomes proof that you can deliver value.
+
+#### Real Example (Anonymised)
+
+Resume 3's Olympic Sentiment Study:
+
+> Social Media Analytics – Olympic Sentiment Study (Python and cloud based)
+> Analyzed 50M+ YouTube and Reddit posts to track engagement and sentiment around Olympic events.
+> Presented insights using timeline dashboards, revealing platform-specific trends and user response patterns.
+
+50 million posts is genuinely impressive. But the bullets don't land because: what platform-specific trends? What user response patterns? What was the business insight? "Revealing platform-specific trends" is vague enough to mean anything. The number (50M+) is doing all the heavy lifting — and it's buried in the first line.
+
+#### The Fix
+For every project, answer three questions: (1) How big was it? (2) What did you build or discover? (3) What was the outcome or insight? Then rewrite the bullets to lead with the most impressive fact. If you have a metric, put it front and centre. If you have a business insight, name it. "Built a dashboard" becomes "Built a dashboard that identified a 23% drop in engagement during evening hours — leading to a schedule optimisation."
+
+#### Before → After
+
+**Before:**
+> Social Media Analytics – Olympic Sentiment Study (Python and cloud based)
+> Analyzed 50M+ YouTube and Reddit posts to track engagement and sentiment around Olympic events.
+> Presented insights using timeline dashboards, revealing platform-specific trends and user response patterns.
+
+**After:**
+> **Olympic Sentiment Analysis** | Python, Cloud Infrastructure
+> Analysed 50M+ YouTube and Reddit posts to map real-time sentiment shifts during Olympic events. Built timeline dashboards that revealed platform-specific engagement patterns — Reddit showed 3x higher discussion velocity than YouTube during live events, while YouTube dominated post-event highlight sharing. Insights informed content timing strategy for a 40% improvement in early engagement.
+
+---
+
 ## 6. Closing
 
 If you've been sending applications into the void, you're not alone.
