@@ -1111,8 +1111,127 @@ FROM customers;</textarea>
         </div>
       `;
     }
-    function sortingContent() { return '<h2>Sorting</h2><p>Coming soon...</p>'; }
-    function aggregationContent() { return '<h2>Aggregation</h2><p>Coming soon...</p>'; }
+    function sortingContent() {
+      return `
+        <h2>Sorting: Seeing What Matters First</h2>
+        <p class="subtitle">What are my top/bottom results?</p>
+
+        <div class="concept-box analogy">
+          ORDER BY is like clicking a column header in a spreadsheet to sort. <strong>ASC</strong> = ascending (A→Z, low→high) — that's the default. <strong>DESC</strong> = descending (Z→A, high→low).
+        </div>
+
+        <h3>Sort by price (highest first)</h3>
+        <div class="playground" data-query="SELECT name, price FROM products ORDER BY price DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Most expensive products first</span></div>
+          <textarea spellcheck="false">SELECT name, price FROM products ORDER BY price DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Sort by multiple columns</h3>
+        <p>Category first, then price within each category:</p>
+        <div class="playground" data-query="SELECT name, category, price FROM products ORDER BY category ASC, price DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Category first, then price within each</span></div>
+          <textarea spellcheck="false">SELECT name, category, price FROM products ORDER BY category ASC, price DESC;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Limit results</h3>
+        <p>Only want the top 5? Use <strong>LIMIT</strong>:</p>
+        <div class="playground" data-query="SELECT name, price FROM products ORDER BY price DESC LIMIT 5;">
+          <div class="playground-header"><span class="label">Try it</span><span>Top 5 most expensive products</span></div>
+          <textarea spellcheck="false">SELECT name, price FROM products ORDER BY price DESC LIMIT 5;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box tip">
+          <strong>LIMIT</strong> is great for "top N" questions: top 10 customers, 5 most expensive items, latest 20 orders. In SQL Server, use <code>SELECT TOP 5 ...</code> instead.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Show the 3 cheapest products. Display name and price only.</p>
+          <div class="playground" data-query="SELECT name, price FROM products ORDER BY price ASC LIMIT 3;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price FROM products ORDER BY price ASC LIMIT 3;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function aggregationContent() {
+      return `
+        <h2>Summarising Data: COUNT, SUM, AVG</h2>
+        <p class="subtitle">How many? What's the total? What's the average?</p>
+
+        <div class="concept-box analogy">
+          Instead of reading every row one by one, aggregation lets you ask: "How many?", "What's the total?", "What's the average?" It's like the SUM and COUNT functions in a spreadsheet — but way more flexible.
+        </div>
+
+        <h3>Count rows</h3>
+        <div class="playground" data-query="SELECT COUNT(*) AS total_customers FROM customers;">
+          <div class="playground-header"><span class="label">Try it</span><span>How many customers do we have?</span></div>
+          <textarea spellcheck="false">SELECT COUNT(*) AS total_customers FROM customers;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Total and average</h3>
+        <div class="playground" data-query="SELECT COUNT(*) AS total_orders, SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Order count, total revenue, and average order value</span></div>
+          <textarea spellcheck="false">SELECT
+  COUNT(*) AS total_orders,
+  SUM(amount) AS total_revenue,
+  AVG(amount) AS avg_order_value
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="schema-display">
+          <div><span class="col-name">COUNT(*)</span> <span class="col-desc">— number of rows</span></div>
+          <div><span class="col-name">SUM(column)</span> <span class="col-desc">— total</span></div>
+          <div><span class="col-name">AVG(column)</span> <span class="col-desc">— average</span></div>
+          <div><span class="col-name">MIN(column)</span> <span class="col-desc">— minimum</span></div>
+          <div><span class="col-name">MAX(column)</span> <span class="col-desc">— maximum</span></div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>What's the total revenue across all orders?</p>
+          <div class="playground" data-query="SELECT SUM(amount) AS total_revenue FROM orders;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT SUM(amount) AS total_revenue FROM orders;')">Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
     function groupbyContent() { return '<h2>GROUP BY</h2><p>Coming soon...</p>'; }
     function joinsContent() { return '<h2>JOINs</h2><p>Coming soon...</p>'; }
     function miniReportsContent() { return '<h2>Mini Reports</h2><p>Coming soon...</p>'; }
