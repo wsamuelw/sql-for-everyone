@@ -1,0 +1,266 @@
+{
+  "main": {
+    "id": "95ab199de31965ae",
+    "type": "split",
+    "children": [
+      {
+        "id": "84c51c56cc518148",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0405c8f411a8c12e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Work/resume_1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "resume_1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "38639da505ed3a8d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fc6363232f4a730b",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "terminal:terminal",
+              "state": {
+                "terminal:terminal": {
+                  "cwd": "/Users/samuel/Projects/Obsidian Vault",
+                  "focus": false,
+                  "profile": {
+                    "args": [
+                      "--login"
+                    ],
+                    "executable": "/bin/zsh",
+                    "followTheme": true,
+                    "name": "",
+                    "platforms": {
+                      "darwin": true
+                    },
+                    "pythonExecutable": "python3",
+                    "restoreHistory": false,
+                    "rightClickAction": "copyPaste",
+                    "successExitCodes": [
+                      "0",
+                      "SIGINT",
+                      "SIGTERM"
+                    ],
+                    "terminalOptions": {
+                      "documentOverride": null
+                    },
+                    "type": "integrated",
+                    "useWin32Conhost": true
+                  },
+                  "serial": null
+                }
+              },
+              "pinned": true,
+              "icon": "terminal",
+              "title": "Terminal: ✳ Review three resumes in work folder"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "90275e379aebabe5",
+    "type": "split",
+    "children": [
+      {
+        "id": "3600137504590dfe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "18bfd7fed9b81f87",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "0269d176e7ef0652",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "34a8e7f2d6f3b3e6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "53988f5f440178f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "e885034e27ecf3bc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e75f1ca50d765752",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "1157481628bd9561",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "resume-mistakes-ebook.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from resume-mistakes-ebook"
+            }
+          },
+          {
+            "id": "3c13743533f8866e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "6a97bd8097cd1a8f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "9d0ae13404364242",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "resume-mistakes-ebook.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of resume-mistakes-ebook"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "fc6363232f4a730b",
+  "lastOpenFiles": [
+    "Work/resume_1.md",
+    "Work/resume_2.md",
+    "Work/resume_3.md",
+    "resume_3.md",
+    "resume_2.md",
+    "resume_1.md",
+    "Untitled",
+    "REVIEW.md",
+    "profile-final-v2.md",
+    "persona-report-customer-analytics-au.md",
+    "profile-final.md",
+    "samuel-unknown-design-20260513-004757.md",
+    "Work/Samuel Wong Resume.md",
+    "Work/Senior Insights Analyst at Kmart Australia Limited.md",
+    "Work/Interview Prep - Senior Insights Analyst Kmart.md",
+    "Work/Interview invite email from HR.md",
+    "Interview Questions.md",
+    "Personal/末世文恶毒女配？嚣张一日是一日_第3章.md",
+    "Work",
+    "CLAUDE.md",
+    "CLAUDE 1.md",
+    "Personal/末世文恶毒女配？嚣张一日是一日_第2章.md",
+    "Personal/末世文恶毒女配？嚣张一日是一日_第1章.md",
+    "末世文恶毒女配？嚣张一日是一日.md",
+    "Welcome.md",
+    "Personal",
+    "resume-mistakes-ebook.md",
+    "coaching-program-persona-summary.md",
+    "PROMPT for my ebook - resume mistakes.md"
+  ]
+}

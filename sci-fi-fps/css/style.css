@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background: #000;
+  font-family: 'Courier New', monospace;
+  color: #0ff;
+}
+
+canvas {
+  display: block;
+}
+
+/* Blocker / Overlay */
+#blocker {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 17, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#instructions, #game-over {
+  text-align: center;
+}
+
+#instructions h1, #game-over h1 {
+  font-size: 4rem;
+  letter-spacing: 0.3em;
+  text-shadow: 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #08f;
+  margin-bottom: 1rem;
+}
+
+#instructions p {
+  font-size: 1.2rem;
+  color: #8af;
+  margin-bottom: 0.5rem;
+}
+
+#instructions .controls {
+  font-size: 0.85rem;
+  color: #556;
+  margin-top: 1.5rem;
+  line-height: 1.8;
+}
+
+#game-over h1 {
+  color: #f05;
+  text-shadow: 0 0 20px #f05, 0 0 40px #f05;
+}
+
+#game-over p {
+  font-size: 1.5rem;
+  color: #faa;
+}
+
+#final-score {
+  font-size: 2rem !important;
+  margin: 1rem 0;
+}
+
+/* HUD */
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+#hud.hidden {
+  display: none;
+}
+
+/* Health */
+#health-container {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#health-bar {
+  width: 200px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+#health-bar-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #0f0, #0f0);
+  transition: width 0.2s, background 0.2s;
+  box-shadow: 0 0 8px #0f0;
+}
+
+#health-text {
+  font-size: 0.9rem;
+  min-width: 30px;
+  text-shadow: 0 0 6px #0ff;
+}
+
+/* Weapon info */
+#weapon-info {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  text-align: right;
+}
+
+#weapon-name {
+  display: block;
+  font-size: 0.85rem;
+  color: #8af;
+  text-shadow: 0 0 6px #08f;
+  margin-bottom: 4px;
+}
+
+#ammo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #0ff;
+}
+
+#ammo-current {
+  color: #0ff;
+}
+
+#ammo-sep {
+  color: #556;
+  margin: 0 2px;
+}
+
+#ammo-max {
+  color: #556;
+  font-size: 1.2rem;
+}
+
+/* Score & Wave */
+#score-container, #wave-container {
+  position: absolute;
+  font-size: 0.9rem;
+  text-shadow: 0 0 6px #0ff;
+}
+
+#score-container {
+  top: 20px;
+  right: 30px;
+}
+
+#wave-container {
+  top: 20px;
+  left: 30px;
+}
+
+#score, #wave {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Crosshair */
+#crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ch-line {
+  position: absolute;
+  background: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 4px #0ff;
+}
+
+.ch-top {
+  width: 2px;
+  height: 10px;
+  left: -1px;
+  top: -18px;
+}
+
+.ch-bottom {
+  width: 2px;
+  height: 10px;
+  left: -1px;
+  top: 8px;
+}
+
+.ch-left {
+  width: 10px;
+  height: 2px;
+  left: -18px;
+  top: -1px;
+}
+
+.ch-right {
+  width: 10px;
+  height: 2px;
+  left: 8px;
+  top: -1px;
+}
+
+.ch-dot {
+  width: 2px;
+  height: 2px;
+  background: #0ff;
+  border-radius: 50%;
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  box-shadow: 0 0 4px #0ff;
+}
+
+/* Damage vignette */
+#damage-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(255, 0, 50, 0.6) 100%);
+  opacity: 0;
+  transition: opacity 0.1s;
+  pointer-events: none;
+  z-index: 40;
+}
+
+#damage-vignette.flash {
+  opacity: 1;
+}
+
+/* Wave announcement */
+#wave-announce {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 30px #0ff, 0 0 60px #08f;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#wave-announce.visible {
+  opacity: 1;
+}
+
+#wave-announce.hidden {
+  display: none;
+}
+
+/* Ammo low flash */
+#ammo-current.low {
+  color: #f55;
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Hit Marker */
+#hit-marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transition: opacity 0.05s;
+  pointer-events: none;
+}
+
+#hit-marker.active {
+  opacity: 1;
+}
+
+.hm-line {
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 0 6px #0ff;
+}
+
+.hm-1 { width: 2px; height: 8px; left: 9px; top: 0; }
+.hm-2 { width: 8px; height: 2px; left: 12px; top: 9px; }
+.hm-3 { width: 2px; height: 8px; left: 9px; top: 12px; }
+.hm-4 { width: 8px; height: 2px; left: 0; top: 9px; }

@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursera AI Affiliate Toolkit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --border: #e5e5ea;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --success: #30d158;
+            --warning: #ff9f0a;
+            --danger: #ff453a;
+            --radius: 12px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .app-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(255,255,255,0.85);
+        }
+        .app-header .brand {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header .brand i { color: var(--accent); font-size: 20px; }
+        .header-meta {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header-meta .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+            display: inline-block;
+        }
+
+        /* Layout */
+        .app-body { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+
+        /* Setup Banner */
+        .setup-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            color: #fff;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .setup-banner h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 4px;
+        }
+        .setup-banner p {
+            font-size: 14px;
+            opacity: 0.85;
+            margin: 0;
+        }
+        .setup-banner .btn-light {
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 20px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+        .setup-banner.done {
+            background: linear-gradient(135deg, #30d158 0%, #28a745 100%);
+        }
+
+        /* Steps */
+        .steps-bar {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .step {
+            flex: 1;
+            padding: 14px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-right: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .step:last-child { border-right: none; }
+        .step:hover { background: #f8f8fa; }
+        .step.active {
+            color: var(--accent);
+            background: #f0f5ff;
+        }
+        .step.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px 2px 0 0;
+        }
+        .step .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: var(--border);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        .step.active .step-num {
+            background: var(--accent);
+            color: #fff;
+        }
+        .step.done .step-num {
+            background: var(--success);
+            color: #fff;
+        }
+        .step.done { color: var(--text-primary); }
+
+        /* Panels */
+        .panel {
+            display: none;
+        }
+        .panel.active {
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+        }
+        .card-header {
+            background: transparent;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-body { padding: 20px; }
+
+        /* Generate Controls */
+        .generate-bar {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .generate-bar .form-select {
+            border-radius: 8px;
+            font-size: 14px;
+            border-color: var(--border);
+        }
+        .generate-bar .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 8px;
+            padding: 8px 20px;
+        }
+        .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+        .btn-primary:disabled { background: #a0c4ff; border-color: #a0c4ff; }
+        .btn-outline-primary {
+            color: var(--accent);
+            border-color: var(--accent);
+            font-weight: 600;
+            font-size: 13px;
+            border-radius: 8px;
+        }
+        .btn-outline-primary:hover { background: var(--accent); color: #fff; }
+        .btn-success {
+            background: var(--success);
+            border-color: var(--success);
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .btn-ghost {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 6px 14px;
+        }
+        .btn-ghost:hover { background: #f8f8fa; color: var(--text-primary); }
+
+        /* Tweet Cards */
+        .tweet-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 12px;
+            position: relative;
+            transition: all 0.15s;
+        }
+        .tweet-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .tweet-num {
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+        .tweet-chars {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .tweet-chars.over { color: var(--danger); font-weight: 700; }
+        .tweet-course {
+            font-size: 11px;
+            color: var(--accent);
+            background: #f0f5ff;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 250px;
+            display: inline-block;
+        }
+        .tweet-text {
+            white-space: pre-wrap;
+            font-size: 15px;
+            line-height: 1.55;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+        .tweet-actions {
+            display: flex;
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        .tweet-actions .btn {
+            font-size: 12px;
+            padding: 5px 12px;
+        }
+        .copy-toast {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--success);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: none;
+            animation: toastIn 0.3s ease;
+        }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Affiliate Links */
+        .link-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f2f2f7;
+        }
+        .link-row:last-child { border-bottom: none; }
+        .link-info { flex: 0 0 280px; }
+        .link-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .link-meta {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .link-input-wrap { flex: 1; position: relative; }
+        .link-input-wrap .form-control {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 12px;
+            border-radius: 8px;
+            border-color: var(--border);
+            padding: 7px 12px;
+        }
+        .link-input-wrap .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+        }
+        .link-input-wrap .form-control.has-value {
+            border-color: var(--success);
+            background: #f0fff4;
+        }
+        .link-status {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .link-status.filled { background: var(--success); }
+        .link-status.empty { background: var(--border); }
+
+        /* Course Table */
+        .course-table { font-size: 14px; }
+        .course-table th {
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .course-table td { vertical-align: middle; }
+        .course-table a {
+            color: var(--text-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .course-table a:hover { color: var(--accent); }
+        .badge-level {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* Refresh Log */
+        .log-output {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 16px;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow: auto;
+            white-space: pre-wrap;
+        }
+
+        /* Toast */
+        .global-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-primary);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .global-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .global-toast i { font-size: 16px; }
+
+        /* Loading */
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            z-index: 200;
+            overflow: hidden;
+            display: none;
+        }
+        .loading-overlay.active { display: block; }
+        .loading-bar {
+            height: 100%;
+            background: var(--accent);
+            animation: loading 1.5s ease infinite;
+            width: 30%;
+            border-radius: 0 2px 2px 0;
+        }
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(400%); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-state i {
+            font-size: 48px;
+            color: var(--border);
+            margin-bottom: 16px;
+        }
+        .empty-state h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .empty-state p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .steps-bar { flex-wrap: wrap; }
+            .step { flex: 1 1 50%; border-bottom: 1px solid var(--border); }
+            .generate-bar { flex-direction: column; align-items: stretch; }
+            .link-row { flex-direction: column; align-items: stretch; gap: 8px; }
+            .link-info { flex: auto; }
+            .stats-row { flex-wrap: wrap; }
+            .stat-card { flex: 1 1 45%; }
+            .setup-banner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Loading Bar -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="loading-bar"></div>
+</div>
+
+<!-- Header -->
+<header class="app-header">
+    <div class="container" style="max-width:960px">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="brand">
+                <i class="bi bi-lightning-charge-fill"></i>
+                Coursera AI Affiliate Toolkit
+            </div>
+            <div class="header-meta">
+                <span><span class="dot"></span> {{ courses|length }} courses tracked</span>
+                <button class="btn btn-ghost btn-sm" onclick="stopServer()" title="Stop server">
+                    <i class="bi bi-power"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="app-body">
+
+    <!-- Setup Banner -->
+    <div class="setup-banner" id="setup-banner">
+        <div>
+            <h3><i class="bi bi-search me-2"></i>Find courses to promote</h3>
+            <p>Search by keyword above, then click Add to build your course list.</p>
+        </div>
+        <button class="btn btn-light" onclick="goToStep(0); setTimeout(() => document.getElementById('search-keyword').focus(), 100)">
+            <i class="bi bi-search me-1"></i> Start Searching
+        </button>
+    </div>
+
+    <!-- Steps Bar -->
+    <div class="steps-bar">
+        <div class="step active" data-step="0" onclick="goToStep(0)">
+            <span class="step-num">1</span> Courses
+        </div>
+        <div class="step" data-step="1" onclick="goToStep(1)">
+            <span class="step-num">2</span> Affiliate Links
+        </div>
+        <div class="step" data-step="2" onclick="goToStep(2)">
+            <span class="step-num">3</span> Generate
+        </div>
+    </div>
+
+    <!-- Panel 0: Courses -->
+    <div class="panel active" id="panel-0">
+        <!-- Search Card -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <span><i class="bi bi-search me-2"></i>Discover Courses</span>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-3" style="font-size:13px">Search Coursera by keyword to find new courses to track.</p>
+                <div class="d-flex gap-2 mb-3">
+                    <input type="text" class="form-control form-control-sm" id="search-keyword" placeholder="e.g. AI, data science, machine learning" style="max-width:400px">
+                    <button class="btn btn-primary btn-sm" id="btn-search" onclick="searchCourses()">
+                        <span class="spinner-border spinner-border-sm d-none" id="search-spinner"></span>
+                        <i class="bi bi-search me-1" id="search-icon"></i> Search
+                    </button>
+                </div>
+                <div id="search-results" style="display:none"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span><i class="bi bi-book me-2"></i>Your Courses</span>
+                <span class="text-muted" style="font-size:13px" id="course-count">{{ courses|length }} courses</span>
+            </div>
+            <div class="card-body p-0">
+                {% if courses %}
+                <div class="table-responsive">
+                    <table class="table table-hover course-table mb-0" id="courses-table">
+                        <thead>
+                            <tr>
+                                <th style="padding-left:20px">#</th>
+                                <th>Course</th>
+                                <th>Provider</th>
+                                <th>Rating</th>
+                                <th>Enrolled</th>
+                                <th>Level</th>
+                                <th style="padding-right:20px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for course in courses %}
+                            <tr>
+                                <td style="padding-left:20px" class="text-muted">{{ loop.index }}</td>
+                                <td><a href="{{ course.url }}" target="_blank">{{ course.title }}</a></td>
+                                <td>{{ course.provider }}</td>
+                                <td><span class="text-warning">&#9733;</span> {{ course.rating }}</td>
+                                <td>{{ course.enrolled }}</td>
+                                <td>
+                                    {% if course.level == 'Beginner' %}
+                                        <span class="badge-level" style="background:#e8f5e9;color:#2e7d32">{{ course.level }}</span>
+                                    {% elif course.level == 'Intermediate' %}
+                                        <span class="badge-level" style="background:#fff3e0;color:#e65100">{{ course.level }}</span>
+                                    {% elif course.level == 'Advanced' %}
+                                        <span class="badge-level" style="background:#fbe9e7;color:#c62828">{{ course.level }}</span>
+                                    {% else %}
+                                        <span class="badge-level" style="background:#f5f5f5;color:#757575">{{ course.level }}</span>
+                                    {% endif %}
+                                </td>
+                                <td style="padding-right:20px"><button class="btn btn-ghost btn-sm" style="font-size:11px;padding:3px 8px;color:var(--danger)" onclick="removeCourse('{{ course.slug }}', this)"><i class="bi bi-trash"></i></button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="empty-state" style="padding:40px 20px">
+                    <i class="bi bi-search" style="font-size:36px;color:var(--border)"></i>
+                    <h4 style="margin-top:12px">No courses yet</h4>
+                    <p style="color:var(--text-secondary);font-size:14px;max-width:400px;margin:0 auto">Search above to find courses, then click <strong>Add</strong> to build your list.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel 1: Affiliate Links -->
+    <div class="panel" id="panel-1">
+        <!-- Impact API Card -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <span><i class="bi bi-lightning-charge me-2"></i>Impact API Credentials</span>
+                <button class="btn btn-ghost btn-sm" onclick="toggleImpactForm()">
+                    <i class="bi bi-chevron-down" id="impact-toggle-icon"></i>
+                </button>
+            </div>
+            <div class="card-body" id="impact-form" style="display:none">
+                <p class="text-muted mb-3" style="font-size:13px">Enter your Impact API credentials to generate tracking links.</p>
+                <div class="row g-2 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label" style="font-size:12px;font-weight:600">Account SID</label>
+                        <input type="text" class="form-control form-control-sm" id="impact-sid" placeholder="IR85Tm9Qig5J..." value="{{ impact_creds.account_sid or '' }}">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" style="font-size:12px;font-weight:600">Auth Token</label>
+                        <input type="password" class="form-control form-control-sm" id="impact-token" placeholder="h5NtavaPr6B..." value="{{ impact_creds.auth_token or '' }}">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" style="font-size:12px;font-weight:600">Program ID</label>
+                        <input type="text" class="form-control form-control-sm" id="impact-program" placeholder="14726" value="{{ impact_creds.program_id or '' }}">
+                    </div>
+                </div>
+                <div id="links-result" class="mt-3" style="display:none"></div>
+            </div>
+        </div>
+
+        <!-- Manual Links Card -->
+        <div class="card">
+            <div class="card-header">
+                <span><i class="bi bi-link-45deg me-2"></i>Affiliate Links</span>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-muted" style="font-size:12px" id="links-filled-count">0 / 0 filled</span>
+                    <button class="btn btn-primary btn-sm" id="btn-gen-links" onclick="generateImpactLinks()">
+                        <span class="spinner-border spinner-border-sm d-none" id="links-spinner"></span>
+                        <i class="bi bi-lightning-charge me-1" id="links-icon"></i> Generate Links
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="links-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel 2: Generate -->
+    <div class="panel" id="panel-2">
+        <!-- Course Summary -->
+        <div class="card mb-3">
+            <div class="card-body py-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-4">
+                        <span id="gen-course-count" style="font-size:14px;font-weight:600">
+                            <i class="bi bi-book me-1" style="color:var(--accent)"></i>0 courses ready
+                        </span>
+                        <span id="gen-link-count" style="font-size:14px;color:var(--text-secondary)">
+                            <i class="bi bi-link-45deg me-1"></i>0 links configured
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Controls -->
+        <div class="card mb-3">
+            <div class="card-body py-3">
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <select class="form-select form-select-sm" id="tweet-style" style="width:180px">
+                        <option value="">All styles (mix)</option>
+                        <option value="social_proof">Social Proof</option>
+                        <option value="urgency">Urgency</option>
+                        <option value="salary">Salary Hook</option>
+                        <option value="free_entry">Free Entry</option>
+                        <option value="hot_take">Hot Take</option>
+                    </select>
+                    <select class="form-select form-select-sm" id="tweet-count" style="width:80px">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30" selected>30</option>
+                    </select>
+                    <div class="ms-auto">
+                        <button class="btn btn-primary" id="btn-generate" onclick="generateTweets()">
+                            <span class="spinner-border spinner-border-sm d-none" id="generate-spinner"></span>
+                            <i class="bi bi-magic me-1" id="generate-icon"></i> Generate Tweets
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tweet Toolbar -->
+        <div id="tweet-toolbar" class="d-none mb-3" style="display:none">
+            <div class="d-flex align-items-center gap-2">
+                <input type="text" class="form-control form-control-sm" id="tweet-search" placeholder="Search tweets..." style="max-width:300px" oninput="filterTweets()">
+                <div class="ms-auto d-flex align-items-center gap-2">
+                    <a href="/api/download" class="btn btn-ghost btn-sm">
+                        <i class="bi bi-download me-1"></i> Download .txt
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tweets -->
+        <div id="tweets-container">
+            <div class="empty-state">
+                <i class="bi bi-chat-square-text" style="font-size:48px;color:var(--border)"></i>
+                <h4 style="margin-top:12px">No tweets yet</h4>
+                <p style="color:var(--text-secondary);font-size:14px;max-width:400px;margin:0 auto">Select a style and count above, then click <strong>Generate Tweets</strong> to create ready-to-post content.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Toast -->
+<div class="global-toast" id="global-toast">
+    <i class="bi bi-check-circle-fill"></i>
+    <span id="toast-text">Done</span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// State
+let currentStep = 0;
+const totalSteps = 3;
+const COURSES = [
+    {% for course in courses %}
+    { slug: "{{ course.slug }}", title: "{{ course.title }}", provider: "{{ course.provider }}" }{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+function goToStep(n) {
+    currentStep = n;
+    // Update steps bar
+    document.querySelectorAll('.step').forEach((s, i) => {
+        s.classList.toggle('active', i === n);
+    });
+    // Update panels
+    document.querySelectorAll('.panel').forEach((p, i) => {
+        p.classList.toggle('active', i === n);
+    });
+    // Load links tab dynamically when switching to it
+    if (n === 1) {
+        loadLinksTab();
+    }
+    // Load generate summary when switching to it
+    if (n === 2) {
+        loadGenerateSummary();
+    }
+}
+
+function loadLinksTab() {
+    fetch('/api/links')
+        .then(r => r.json())
+        .then(data => {
+            const container = document.getElementById('links-container');
+            const slugs = Object.keys(data.links);
+
+            if (slugs.length === 0) {
+                container.innerHTML = '<div class="empty-state" style="padding:30px 20px"><i class="bi bi-link-45deg" style="font-size:36px;color:var(--border)"></i><h4 style="margin-top:12px">No courses to link</h4><p style="color:var(--text-secondary);font-size:14px;max-width:400px;margin:0 auto">Add courses from the <strong>Courses</strong> tab first.</p></div>';
+                document.getElementById('links-filled-count').textContent = '0 / 0 filled';
+                return;
+            }
+
+            let html = '';
+            for (const slug of slugs) {
+                const link = data.links[slug];
+                const info = data.courses[slug] || {};
+                const hasLink = link && link.length > 0;
+                html += `
+                    <div class="link-row">
+                        <div class="link-status ${hasLink ? 'filled' : 'empty'}" data-slug="${slug}"></div>
+                        <div class="link-info">
+                            <div class="link-title" title="${info.title || slug}">${info.title || slug}</div>
+                        </div>
+                        <div class="link-input-wrap">
+                            <input type="url" class="form-control form-control-sm ${hasLink ? 'has-value' : ''}" data-slug="${slug}" value="${link || ''}" placeholder="Impact tracking link" oninput="onLinkInput(this)">
+                        </div>
+                    </div>`;
+            }
+            container.innerHTML = html;
+
+            // Update count
+            let filled = 0;
+            container.querySelectorAll('input[data-slug]').forEach(i => { if (i.value.trim()) filled++; });
+            document.getElementById('links-filled-count').textContent = `${filled} / ${slugs.length} filled`;
+        });
+}
+
+function autoGenerateLinks() {
+    const filledText = document.getElementById('links-filled-count').textContent;
+    const match = filledText.match(/(\d+)\s*\/\s*(\d+)/);
+    const filled = match ? parseInt(match[1]) : 0;
+    const total = match ? parseInt(match[2]) : 0;
+
+    // Only auto-generate if there are courses without links
+    if (total > 0 && filled < total) {
+        generateImpactLinks();
+    }
+}
+
+function loadGenerateSummary() {
+    fetch('/api/links')
+        .then(r => r.json())
+        .then(data => {
+            const slugs = Object.keys(data.links);
+            const total = slugs.length;
+            let withLinks = 0;
+            slugs.forEach(s => { if (data.links[s]) withLinks++; });
+
+            document.getElementById('gen-course-count').innerHTML =
+                `<i class="bi bi-book me-1" style="color:var(--accent)"></i>${total} course${total !== 1 ? 's' : ''} ready`;
+            document.getElementById('gen-link-count').innerHTML =
+                `<i class="bi bi-link-45deg me-1"></i>${withLinks} link${withLinks !== 1 ? 's' : ''} configured`;
+        });
+}
+
+function filterTweets() {
+    const query = document.getElementById('tweet-search').value.toLowerCase();
+    const cards = document.querySelectorAll('#tweets-container .tweet-card');
+    cards.forEach(card => {
+        const text = card.querySelector('.tweet-text').textContent.toLowerCase();
+        const course = card.querySelector('.tweet-course');
+        const courseText = course ? course.textContent.toLowerCase() : '';
+        card.style.display = (text.includes(query) || courseText.includes(query)) ? '' : 'none';
+    });
+}
+
+function showToast(text, duration = 2500) {
+    const el = document.getElementById('global-toast');
+    document.getElementById('toast-text').textContent = text;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), duration);
+}
+
+function showLoading() {
+    document.getElementById('loading-overlay').classList.add('active');
+}
+
+function hideLoading() {
+    document.getElementById('loading-overlay').classList.remove('active');
+}
+
+function countChars(text) {
+    // Twitter wraps all URLs in t.co — each counts as 23 chars
+    const cleaned = text.replace(/\n+$/, '');
+    const urlRegex = /https?:\/\/[^\s]+/g;
+    let count = 0;
+    let lastEnd = 0;
+    let match;
+    while ((match = urlRegex.exec(cleaned)) !== null) {
+        count += match.index - lastEnd; // chars before this URL
+        count += 23; // t.co counts as 23
+        lastEnd = match.index + match[0].length;
+    }
+    count += cleaned.length - lastEnd; // remaining chars after last URL
+    return count;
+}
+
+function onLinkInput(input) {
+    const hasValue = input.value.trim().length > 0;
+    input.classList.toggle('has-value', hasValue);
+    const statusDot = input.closest('.link-row').querySelector('.link-status');
+    statusDot.classList.toggle('filled', hasValue);
+    statusDot.classList.toggle('empty', !hasValue);
+    updateLinksCount();
+}
+
+function updateLinksCount() {
+    const inputs = document.querySelectorAll('#links-container input[data-slug]');
+    let filled = 0;
+    inputs.forEach(i => {
+        if (i.value.trim()) {
+            filled++;
+            // Set green dot for pre-filled values
+            const dot = i.closest('.link-row').querySelector('.link-status');
+            if (dot && !dot.classList.contains('filled')) {
+                i.classList.add('has-value');
+                dot.classList.add('filled');
+                dot.classList.remove('empty');
+            }
+        }
+    });
+    document.getElementById('links-filled-count').textContent = `${filled} / ${inputs.length} filled`;
+
+    // Update setup banner
+    const banner = document.getElementById('setup-banner');
+    if (filled > 0) {
+        banner.classList.add('done');
+        banner.querySelector('h3').innerHTML = '<i class="bi bi-check-circle me-2"></i>' + filled + ' affiliate links configured';
+        banner.querySelector('p').textContent = filled === inputs.length ? 'All set! Generate tweets to start promoting.' : `${inputs.length - filled} courses still need links.`;
+        banner.querySelector('.btn').textContent = 'Edit Links';
+    }
+}
+
+// Generate
+function generateTweets() {
+    const btn = document.getElementById('btn-generate');
+    const count = document.getElementById('tweet-count').value;
+    const style = document.getElementById('tweet-style').value;
+
+    // Set loading state
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Generating...';
+
+    fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ count: parseInt(count), style }),
+    })
+    .then(r => r.json())
+    .then(data => {
+        // Always reset button
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-magic me-1"></i> Generate Tweets';
+
+        if (data.success) {
+            renderTweets(data.tweets);
+            showToast('Generated ' + count + ' tweets');
+        } else {
+            showToast('Error: ' + (data.errors || 'Generation failed'));
+        }
+    })
+    .catch(err => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-magic me-1"></i> Generate Tweets';
+        showToast('Error: ' + err.message);
+    });
+}
+
+function resetGenerateBtn() {
+    const btn = document.getElementById('btn-generate');
+    if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-magic me-1"></i> Generate Tweets';
+    }
+    hideLoading();
+}
+
+// Reset button when style or count changes
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('tweet-style').addEventListener('change', resetGenerateBtn);
+    document.getElementById('tweet-count').addEventListener('change', resetGenerateBtn);
+});
+
+// Refresh
+// Render tweets
+function truncateUrls(text) {
+    return text.replace(/https?:\/\/[^\s]+/g, url => {
+        try {
+            const parsed = new URL(url);
+            return parsed.host + parsed.pathname;
+        } catch {
+            return url;
+        }
+    });
+}
+
+function findCourseInTweet(text) {
+    for (const c of COURSES) {
+        if (text.includes(c.title) || text.includes(c.slug)) {
+            return c;
+        }
+    }
+    return null;
+}
+
+function renderTweets(tweets) {
+    const container = document.getElementById('tweets-container');
+    const toolbar = document.getElementById('tweet-toolbar');
+    container.innerHTML = '';
+
+    if (!tweets || !tweets.length) {
+        container.innerHTML = '<div class="empty-state"><i class="bi bi-chat-square-text"></i><h4>No tweets generated</h4><p>Try a different style or count.</p></div>';
+        toolbar.classList.add('d-none');
+        return;
+    }
+
+    tweets.forEach((tweet, i) => {
+        const chars = countChars(tweet);
+
+        const course = findCourseInTweet(tweet);
+        const courseTag = course
+            ? `<span class="tweet-course" title="${course.title}"><i class="bi bi-book-half me-1"></i>${course.title.length > 30 ? course.title.substring(0, 30) + '...' : course.title}</span>`
+            : '';
+
+        const card = document.createElement('div');
+        card.className = 'tweet-card';
+        card.dataset.fullText = tweet;
+        const charsClass = chars >= 280 ? 'over' : '';
+        card.innerHTML = `
+            <div class="tweet-header">
+                <span class="tweet-num">#${i + 1}</span>
+                ${courseTag}
+                <span class="tweet-chars ${charsClass}">${chars} / 280</span>
+            </div>
+            <div class="tweet-text">${escapeHtml(truncateUrls(tweet))}</div>
+                <div class="tweet-actions">
+                    <button class="btn btn-outline-primary btn-sm" onclick="copyTweet(this)">
+                        <i class="bi bi-clipboard me-1"></i> Copy
+                    </button>
+                    <button class="btn btn-ghost btn-sm" onclick="shareToX(this)">
+                        <i class="bi bi-twitter me-1"></i> X
+                    </button>
+                    <button class="btn btn-ghost btn-sm" onclick="shareToBluesky(this)">
+                        <svg class="me-1" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.627 3.588 3.496 6.165 3.224-3.853.664-6.874 2.506-2.75 7.275C7.464 22.22 10.18 18.8 12 16.3c1.82 2.5 5.27 7.12 8.711 4.366 4.124-4.769 1.103-6.611-2.75-7.275 2.577.272 5.38-.6 6.165-3.224C23.622 9.418 24 4.458 24 3.768c0-.69-.139-1.861-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.747 13.087 8.686 12 10.8z"/></svg> Bluesky
+                    </button>
+                </div>
+                <div class="copy-toast"><i class="bi bi-check me-1"></i>Copied</div>
+            `;
+            container.appendChild(card);
+        }
+    });
+
+    // Show toolbar
+    toolbar.classList.remove('d-none');
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function copyTweet(btn) {
+    const tweetText = btn.closest('.tweet-card').dataset.fullText;
+    navigator.clipboard.writeText(tweetText).then(() => {
+        const toast = btn.closest('.tweet-card').querySelector('.copy-toast');
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 1500);
+    });
+}
+
+function shareToX(btn) {
+    const tweetText = btn.closest('.tweet-card').dataset.fullText;
+    navigator.clipboard.writeText(tweetText).then(() => {
+        showToast('Opening X...');
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetText), '_blank');
+    });
+}
+
+function shareToBluesky(btn) {
+    const tweetText = btn.closest('.tweet-card').dataset.fullText;
+    navigator.clipboard.writeText(tweetText).then(() => {
+        showToast('Opening Bluesky...');
+        window.open('https://bsky.app/intent/compose?text=' + encodeURIComponent(tweetText), '_blank');
+    });
+}
+
+// Course Search
+function searchCourses() {
+    const query = document.getElementById('search-keyword').value.trim();
+    if (!query) {
+        showToast('Enter a keyword to search');
+        return;
+    }
+
+    const btn = document.getElementById('btn-search');
+    const spinner = document.getElementById('search-spinner');
+    const icon = document.getElementById('search-icon');
+    const resultsDiv = document.getElementById('search-results');
+
+    btn.disabled = true;
+    spinner.classList.remove('d-none');
+    icon.classList.add('d-none');
+    resultsDiv.style.display = 'block';
+    resultsDiv.innerHTML = '<div class="text-muted" style="font-size:13px;padding:12px">Searching Coursera...</div>';
+
+    fetch('/api/search-courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+    })
+    .then(r => r.json())
+    .then(data => {
+        btn.disabled = false;
+        spinner.classList.add('d-none');
+        icon.classList.remove('d-none');
+
+        if (!data.success || !data.courses.length) {
+            resultsDiv.innerHTML = '<div class="text-muted" style="font-size:13px;padding:12px">No courses found. Try a different keyword.</div>';
+            return;
+        }
+
+        let html = `<div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px">Found ${data.courses.length} courses for "${data.query}"</div>`;
+        html += '<div class="table-responsive" style="max-height:400px;overflow-y:auto">';
+        html += '<table class="table table-hover course-table mb-0" style="font-size:13px">';
+        html += '<thead><tr><th style="padding-left:12px">Course</th><th>Provider</th><th>Rating</th><th>Enrolled</th><th>Level</th><th style="padding-right:12px"></th></tr></thead>';
+        html += '<tbody>';
+        for (const c of data.courses) {
+            const levelBadge = c.level === 'Beginner'
+                ? '<span class="badge-level" style="background:#e8f5e9;color:#2e7d32;font-size:10px">' + c.level + '</span>'
+                : c.level === 'Intermediate'
+                ? '<span class="badge-level" style="background:#fff3e0;color:#e65100;font-size:10px">' + c.level + '</span>'
+                : c.level === 'Advanced'
+                ? '<span class="badge-level" style="background:#fbe9e7;color:#c62828;font-size:10px">' + c.level + '</span>'
+                : c.level ? '<span class="badge-level" style="background:#f5f5f5;color:#757575;font-size:10px">' + c.level + '</span>' : '';
+            html += `<tr>
+                <td style="padding-left:12px"><a href="${c.url}" target="_blank" style="font-weight:600">${c.title}</a></td>
+                <td>${c.provider}</td>
+                <td>${c.rating ? '<span class="text-warning">&#9733;</span> ' + c.rating : ''}</td>
+                <td>${c.enrolled}</td>
+                <td>${levelBadge}</td>
+                <td style="padding-right:12px"><button class="btn btn-primary btn-sm" style="font-size:11px;padding:3px 10px" onclick="addCourse('${c.url.replace(/'/g, "\\'")}', '${c.title.replace(/'/g, "\\'")}', '${c.provider.replace(/'/g, "\\'")}', this)"><i class="bi bi-plus-lg me-1"></i>Add</button></td>
+            </tr>`;
+        }
+        html += '</tbody></table></div>';
+        resultsDiv.innerHTML = html;
+    })
+    .catch(err => {
+        btn.disabled = false;
+        spinner.classList.add('d-none');
+        icon.classList.remove('d-none');
+        resultsDiv.innerHTML = '<div class="text-danger" style="font-size:13px;padding:12px">Error: ' + err.message + '</div>';
+    });
+}
+
+function addCourse(url, title, provider, btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+
+    fetch('/api/add-course', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url, title, provider }),
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            btn.innerHTML = '<i class="bi bi-check-lg"></i> Added';
+            btn.classList.replace('btn-primary', 'btn-success');
+            showToast(`Added "${data.course.title}"`);
+            // Add row to courses table
+            addCourseRow(data.course);
+            // Refresh links tab if visible
+            if (currentStep === 1) loadLinksTab();
+        } else {
+            btn.innerHTML = '<i class="bi bi-x-lg"></i> ' + data.error;
+            btn.classList.replace('btn-primary', 'btn-danger');
+            setTimeout(() => {
+                btn.innerHTML = '<i class="bi bi-plus-lg me-1"></i>Add';
+                btn.classList.replace('btn-danger', 'btn-primary');
+                btn.disabled = false;
+            }, 2000);
+        }
+    })
+    .catch(err => {
+        btn.innerHTML = '<i class="bi bi-x-lg"></i> Error';
+        btn.classList.replace('btn-primary', 'btn-danger');
+    });
+}
+
+function addCourseRow(course) {
+    const table = document.getElementById('courses-table');
+    const emptyState = document.querySelector('.empty-state');
+
+    // Remove empty state if present
+    if (emptyState) {
+        emptyState.remove();
+        // Create table if it doesn't exist
+        if (!table) {
+            const card = document.querySelector('#panel-0 .card:last-child .card-body');
+            card.innerHTML = `
+                <div class="table-responsive">
+                    <table class="table table-hover course-table mb-0" id="courses-table">
+                        <thead><tr>
+                            <th style="padding-left:20px">#</th><th>Course</th><th>Provider</th>
+                            <th>Rating</th><th>Enrolled</th><th style="padding-right:20px">Level</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>`;
+        }
+    }
+
+    const tbody = document.querySelector('#courses-table tbody');
+    if (!tbody) return;
+
+    const count = tbody.rows.length + 1;
+    const levelColors = {
+        'Beginner': 'background:#e8f5e9;color:#2e7d32',
+        'Intermediate': 'background:#fff3e0;color:#e65100',
+        'Advanced': 'background:#fbe9e7;color:#c62828',
+    };
+    const levelStyle = levelColors[course.level] || 'background:#f5f5f5;color:#757575';
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td style="padding-left:20px" class="text-muted">${count}</td>
+        <td><a href="${course.url}" target="_blank">${course.title}</a></td>
+        <td>${course.provider}</td>
+        <td>${course.rating ? '<span class="text-warning">&#9733;</span> ' + course.rating : ''}</td>
+        <td>${course.enrolled}</td>
+        <td><span class="badge-level" style="${levelStyle}">${course.level}</span></td>
+        <td style="padding-right:20px"><button class="btn btn-ghost btn-sm" style="font-size:11px;padding:3px 8px;color:var(--danger)" onclick="removeCourse('${course.slug}', this)"><i class="bi bi-trash"></i></button></td>
+    `;
+    tbody.appendChild(row);
+
+    // Update count
+    document.getElementById('course-count').textContent = count + ' courses';
+}
+
+function removeCourse(slug, btn) {
+    if (!confirm('Remove this course from your list?')) return;
+
+    fetch('/api/remove-course', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            const row = btn.closest('tr');
+            row.remove();
+            // Re-number rows
+            const tbody = document.querySelector('#courses-table tbody');
+            if (tbody) {
+                Array.from(tbody.rows).forEach((r, i) => {
+                    r.cells[0].textContent = i + 1;
+                });
+                document.getElementById('course-count').textContent = tbody.rows.length + ' courses';
+                // Show empty state if no courses left
+                if (tbody.rows.length === 0) {
+                    const card = tbody.closest('.card-body');
+                    card.innerHTML = '<div class="empty-state" style="padding:40px 20px"><i class="bi bi-search" style="font-size:36px;color:var(--border)"></i><h4 style="margin-top:12px">No courses yet</h4><p style="color:var(--text-secondary);font-size:14px;max-width:400px;margin:0 auto">Search above to find courses, then click <strong>Add</strong> to build your list.</p></div>';
+                }
+            }
+            showToast('Course removed');
+        }
+    });
+}
+
+function saveLinks() {
+    const inputs = document.querySelectorAll('#links-container input[data-slug]');
+    const links = {};
+    inputs.forEach(input => { links[input.dataset.slug] = input.value.trim(); });
+
+    showLoading();
+
+    fetch('/api/links', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(links),
+    })
+    .then(r => r.json())
+    .then(data => {
+        hideLoading();
+        if (data.success) showToast(`Saved ${data.saved} affiliate links`);
+    })
+    .catch(err => {
+        hideLoading();
+        showToast('Error saving links');
+    });
+}
+
+// Impact API
+function toggleImpactForm() {
+    const form = document.getElementById('impact-form');
+    const icon = document.getElementById('impact-toggle-icon');
+    const isVisible = form.style.display !== 'none';
+    form.style.display = isVisible ? 'none' : 'block';
+    icon.className = isVisible ? 'bi bi-chevron-down' : 'bi bi-chevron-up';
+}
+
+function saveImpactCredentials() {
+    const sid = document.getElementById('impact-sid').value.trim();
+    const token = document.getElementById('impact-token').value.trim();
+    const program = document.getElementById('impact-program').value.trim();
+    fetch('/api/impact-credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account_sid: sid, auth_token: token, program_id: program }),
+    });
+}
+
+function generateImpactLinks() {
+    const sid = document.getElementById('impact-sid').value.trim();
+    const token = document.getElementById('impact-token').value.trim();
+    const program = document.getElementById('impact-program').value.trim();
+
+    if (!sid || !token || !program) {
+        showToast('Fill in all three fields');
+        return;
+    }
+
+    // Save credentials for next time
+    saveImpactCredentials();
+
+    const btn = document.getElementById('btn-gen-links');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Generating...';
+
+    fetch('/api/generate-links', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account_sid: sid, auth_token: token, program_id: program }),
+    })
+    .then(r => r.json())
+    .then(data => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-lightning-charge me-1"></i> Generate Links';
+
+        if (data.success) {
+            showToast(`Generated ${data.updated} affiliate links`);
+            loadLinksTab();
+            loadLinksTab();
+        } else {
+            showToast('Error: ' + (data.error || 'Generation failed'));
+        }
+    })
+    .catch(err => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-lightning-charge me-1"></i> Generate Links';
+        showToast('Error: ' + err.message);
+    });
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+    updateLinksCount();
+});
+
+// Stop server
+function stopServer() {
+    if (!confirm('Stop the server? You\'ll need to restart it from terminal.')) return;
+    fetch('/api/stop', { method: 'POST' })
+        .then(() => {
+            document.body.innerHTML = `
+                <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui">
+                    <div style="text-align:center">
+                        <i class="bi bi-power" style="font-size:48px;color:#86868b"></i>
+                        <h2 style="margin:16px 0 8px;font-weight:700">Server stopped</h2>
+                        <p style="color:#86868b">Restart from terminal: python3 app.py</p>
+                    </div>
+                </div>`;
+        })
+        .catch(() => {
+            document.body.innerHTML = `
+                <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui">
+                    <div style="text-align:center">
+                        <h2 style="margin:16px 0 8px;font-weight:700">Server stopped</h2>
+                        <p style="color:#86868b">Restart from terminal: python3 app.py</p>
+                    </div>
+                </div>`;
+        });
+}
+</script>
+
+</body>
+</html>

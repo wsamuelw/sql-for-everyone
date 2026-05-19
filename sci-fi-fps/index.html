@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEON BREACH — Sci-Fi FPS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="blocker">
+    <div id="instructions">
+      <h1>NEON BREACH</h1>
+      <p>Click to Play</p>
+      <p class="controls">WASD — Move &nbsp;|&nbsp; Mouse — Look &nbsp;|&nbsp; Click — Shoot<br>1/2/3 / Scroll — Switch Weapon &nbsp;|&nbsp; R — Reload &nbsp;|&nbsp; Shift — Sprint</p>
+    </div>
+    <div id="game-over" class="hidden">
+      <h1>GAME OVER</h1>
+      <p id="final-score">Score: 0</p>
+      <p>Click to Restart</p>
+    </div>
+  </div>
+
+  <div id="hud" class="hidden">
+    <div id="health-container">
+      <div id="health-bar">
+        <div id="health-bar-fill"></div>
+      </div>
+      <span id="health-text">100</span>
+    </div>
+
+    <div id="weapon-info">
+      <span id="weapon-name">Plasma Rifle</span>
+      <div id="ammo">
+        <span id="ammo-current">30</span>
+        <span id="ammo-sep">/</span>
+        <span id="ammo-max">30</span>
+      </div>
+    </div>
+
+    <div id="score-container">
+      <span>SCORE </span><span id="score">0</span>
+    </div>
+
+    <div id="wave-container">
+      <span>WAVE </span><span id="wave">1</span>
+    </div>
+
+    <div id="crosshair">
+      <div class="ch-line ch-top"></div>
+      <div class="ch-line ch-right"></div>
+      <div class="ch-line ch-bottom"></div>
+      <div class="ch-line ch-left"></div>
+      <div class="ch-dot"></div>
+    </div>
+
+    <div id="hit-marker">
+      <div class="hm-line hm-1"></div>
+      <div class="hm-line hm-2"></div>
+      <div class="hm-line hm-3"></div>
+      <div class="hm-line hm-4"></div>
+    </div>
+
+    <div id="damage-vignette"></div>
+    <div id="wave-announce" class="hidden"></div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
