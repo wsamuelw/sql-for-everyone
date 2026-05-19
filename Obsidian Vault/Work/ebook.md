@@ -984,7 +984,11 @@ Present projects with the same structural weight as employment. Use the same hea
 The same resume gets sent to every job — data analyst, data engineer, BI analyst, machine learning engineer — with no changes. The bullets stay the same, the summary stays the same, the skills stay the same. It's a generic document applied to specific roles.
 
 #### Why It Matters
-Each role has different non-negotiables. A data analyst job cares about SQL, dashboards, and stakeholder communication. A data engineer job cares about pipelines, infrastructure, and scale. If your resume doesn't调整 to match, the hiring manager reads it and thinks: "This person isn't quite right." They can't articulate why — but the mismatch is felt. Tailoring isn't about lying. It's about emphasising the parts of your experience that matter most for the specific role.
+Each role has different non-negotiables. A data analyst job cares about SQL, dashboards, and stakeholder communication. A data engineer job cares about pipelines, infrastructure, and scale. If your resume doesn't adjust to match, the hiring manager reads it and thinks: "This person isn't quite right." They can't articulate why — but the mismatch is felt. Tailoring isn't about lying. It's about emphasising the parts of your experience that matter most for the specific role.
+
+#### Real Example (Anonymised)
+
+Resume 3 contains a strong bullet point: "Automated Tableau dashboards and Power BI reports to support real-time tracking of marketing campaigns, customer acquisition, and LTV estimation." This bullet is excellent — but it was written for a marketing/product role. Sent unchanged to a data engineer job, it emphasises dashboards and reporting (analyst work) instead of pipelines and infrastructure (engineering work). The same experience, framed differently, tells a different story.
 
 #### The Fix
 Before every application, adjust 3-5 bullet points to mirror the language and priorities in the job description. Move the most relevant skills to the top of your skills section. Adjust your summary to name the target role. The rest of the resume stays the same — you're reordering and re-emphasising, not rewriting.
