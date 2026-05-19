@@ -246,7 +246,274 @@ This isn't about Resume 1 being a bad resume — it has solid foundations. Unive
 
 ---
 
-## 5. Closing
+## 5. The Error Catalogue: Content Mistakes
+
+This is the core of the guide. Each mistake is drawn from real resumes we've reviewed — anonymised, but actual text. Every Before → After is a genuine improvement, not just word swapping.
+
+Read the mistakes that resonate. Fix them. Come back when you find new ones.
+
+---
+
+### Mistake #1: Missing Professional Summary
+
+#### The Problem
+The resume opens straight into Education or Experience with no professional summary. The reader has to piece together who you are, what you want, and why they should keep reading.
+
+#### Why It Matters
+A hiring manager scanning 200 resumes gives your document 10 seconds before deciding to keep reading or move on. Without a summary at the top, they're doing detective work instead of reading a pitch. Most won't bother.
+
+#### Real Example (Anonymised)
+
+Resume 1 opens directly with:
+
+> Education
+> Bachelor of Science, Data Science Major Jan, 2022 - Dec, 2025
+> The University of Melbourne
+> Subjects: Foundations of Computing, Foundations of Algorithms, Elements of Data Processing...
+
+No summary. No headline. The reader has to scroll through education, subjects, co-curricular activities, and high school information before finding anything about what this person actually does.
+
+#### The Fix
+Add 2-3 lines at the very top. Sentence 1: who you are. Sentence 2: what you can do. Sentence 3: what you're looking for. That's it. No fluff, no buzzwords, no "motivated self-starter."
+
+#### Before → After
+
+**Before:**
+> Education
+> Bachelor of Science, Data Science Major Jan, 2022 - Dec, 2025
+> The University of Melbourne
+> Subjects: Foundations of Computing, Foundations of Algorithms...
+
+**After:**
+> Data science graduate with hands-on experience in Python, SQL, and machine learning. Delivered a computer vision project at a Big 4 firm and maintained a 3.8 GPA in a competitive program. Seeking a junior data analyst role where I can apply statistical modelling and data wrangling skills to real business problems.
+
+---
+
+### Mistake #2: Task-Focused Bullets
+
+#### The Problem
+Bullet points describe what you were responsible for, not what you achieved. "Responsible for X," "Connected with various members," "Assisted with Y." These read like a job description, not a performance review.
+
+#### Why It Matters
+Hiring managers don't care what you were supposed to do. They care what you actually did and what difference it made. Task-focused bullets tell them you showed up. Impact-driven bullets tell them you delivered.
+
+#### Real Example (Anonymised)
+
+Resume 1, Deloitte vacationer role:
+
+> Connected with various members from different levels of firm through initiating meetings to gain insight of firm structure and operations
+
+> Presented outcomes, learnings and reflections of internship period to a group of 25 people
+
+Both bullets describe activities, not outcomes. "Connected with" and "Presented" are what happened — not why it mattered.
+
+#### The Fix
+For every bullet, ask: "So what?" If the answer is "it helped the team" or "it was part of my job," you're not done. Add the outcome. Add a number. Add a result. Lead with the action, follow with the impact.
+
+#### Before → After
+
+**Before:**
+> Connected with various members from different levels of firm through initiating meetings to gain insight of firm structure and operations
+
+**After:**
+> Built cross-functional relationships across 4 departments through structured networking, gaining insights that informed a data pipeline project delivered during the vacation program
+
+---
+
+### Mistake #3: No Quantified Achievements
+
+#### The Problem
+Achievement bullets are vague and wordy, burying any real metrics in filler language. The reader can't tell the scale, scope, or impact of what you did.
+
+#### Why It Matters
+Numbers are the shorthand of credibility. "Managed a team of 5" tells a hiring manager more than "worked collaboratively with team members." "Processed 50,000 records" beats "handled large datasets." Without numbers, your claims are unsubstantiated.
+
+#### Real Example (Anonymised)
+
+Resume 1, receptionist role:
+
+> Provided exceptional customer service to approximately 30 hotel guests at a time, ensuring needs and inquiries were promptly addressed and resolved
+
+There's a number buried in there ("30 hotel guests"), but it's wrapped in so much filler that it barely registers. "Exceptional" and "promptly addressed" are adjectives doing no work.
+
+#### The Fix
+Lead with the metric. Cut the filler. Every bullet should have at least one number — team size, volume, percentage, dollar value, frequency. If you can't find a number, ask: how many? How often? How much?
+
+#### Before → After
+
+**Before:**
+> Provided exceptional customer service to approximately 30 hotel guests at a time, ensuring needs and inquiries were promptly addressed and resolved
+
+**After:**
+> Delivered front-desk service for 30+ guests daily, maintaining a 98% satisfaction rating across 2 years of employment
+
+---
+
+### Mistake #4: Irrelevant/Outdated Content
+
+#### The Problem
+High school awards, expired volunteer roles, and outdated accomplishments are still on the resume. They take up space and signal that you don't know what's relevant anymore.
+
+#### Why It Matters
+A piano distinction from 2017 and a charity wrapping event from 2020 tell a hiring manager nothing about your ability to do a data job in 2026. Worse, they signal you haven't updated this document since you wrote it. Every line on your resume should earn its place.
+
+#### Real Example (Anonymised)
+
+Resume 1's awards and volunteering sections:
+
+> Distinction - AMEB grade 8 piano
+> State winner of The National History Challenge 2017
+> Distinction - ICAS Mathematics
+> Distinction - Australian Mathematics Competition 2017, 2018, 2019
+> Distinction - Mathematics challenge for young Australians 2017
+
+> Red Cross Calling Volunteering 2020
+> Dymocks Charity Gift Wrapping Volunteering 2020
+
+That's 7 lines of content from high school. In 2026. For a university graduate applying to data roles.
+
+#### The Fix
+Apply the "3-year rule": if it's older than 3 years and not a prestigious, role-relevant achievement (like a major scholarship or publication), remove it. Keep the HSK certificate in Skills if Mandarin is relevant to the roles you're targeting — it's the only item here worth keeping. Move it to a Languages section.
+
+#### Before → After
+
+**Before:**
+> Awards
+> Distinction - AMEB grade 8 piano
+> State winner of The National History Challenge 2017
+> Distinction - ICAS Mathematics
+> Distinction - Australian Mathematics Competition 2017, 2018, 2019
+> Distinction - Mathematics challenge for young Australians 2017
+> HSK (Chinese Proficiency Test) Level 5 certificate
+>
+> Volunteering
+> Red Cross Calling Volunteering 2020
+> Dymocks Charity Gift Wrapping Volunteering 2020
+
+**After:**
+> Languages
+> Mandarin (native) | English (fluent) | HSK Level 5
+
+---
+
+### Mistake #5: Generic Soft Skills
+
+#### The Problem
+A standalone "Soft Skills" section lists traits like "Communication, Problem-solving, Stakeholder Engagement, Fast Learner, Team Collaboration." These are claims without evidence.
+
+#### Why It Matters
+Every resume says these things. A hiring manager sees "strong communication skills" and thinks: "Everyone says that. What did you actually do that proves it?" Listing soft skills without demonstrating them through your bullet points is noise, not signal.
+
+#### Real Example (Anonymised)
+
+Resume 3, bottom of the page:
+
+> Soft Skills: Communication, Problem-solving, Stakeholder Engagement, Fast Learner, Team Collaboration
+
+Five traits, zero evidence. The hiring manager has to take your word for it. They won't.
+
+#### The Fix
+Delete the standalone soft skills section entirely. Instead, demonstrate these traits through your experience bullets. "Partnered with cross-functional teams (Marketing, Product, Finance) to align KPIs with strategic and compliance goals" already shows stakeholder engagement. "Automated Tableau dashboards to support real-time tracking" already shows initiative. Let the work speak.
+
+#### Before → After
+
+**Before:**
+> Soft Skills: Communication, Problem-solving, Stakeholder Engagement, Fast Learner, Team Collaboration
+
+**After:**
+> *(Section removed entirely. These qualities are already demonstrated in the experience bullets above — no need to state them separately.)*
+
+---
+
+### Mistake #6: Missing Contact/LinkedIn/GitHub
+
+#### The Problem
+No email address. No LinkedIn URL. No GitHub link. The hiring manager has no way to contact you or learn more about your work.
+
+#### Why It Matters
+This is basic professional hygiene. A resume without contact information is a document with no next step. Even if everything else is perfect, the hiring manager can't reach you. For data roles specifically, a GitHub profile showing actual code is one of the strongest trust signals you can provide.
+
+#### Real Example (Anonymised)
+
+All three source resumes either lack contact information entirely or have it buried and incomplete. None have a LinkedIn URL. None have a GitHub link. For candidates targeting data roles — where code quality and project work are verifiable — this is a missed opportunity.
+
+#### The Fix
+At the top of your resume, include:
+- Professional email (firstname.lastname@ — not a gaming handle)
+- LinkedIn URL (customise it to linkedin.com/in/yourname)
+- GitHub URL (if you have repos worth showing — clean up your profile first)
+
+That's it. No home address. No date of birth. No phone number unless the job posting specifically asks for it.
+
+#### Before → After
+
+**Before:**
+*(No contact information at the top of the resume)*
+
+**After:**
+> **Alex Chen**
+> alex.chen@email.com | linkedin.com/in/alexchen | github.com/alexchen-data
+
+---
+
+### Mistake #7: No Target Role Signal
+
+#### The Problem
+Nowhere on the resume does it say what job the candidate is applying for. The hiring manager is left guessing whether this person wants to be a data analyst, a data scientist, a machine learning engineer, or something else entirely.
+
+#### Why It Matters
+A resume that doesn't signal its target forces the hiring manager to do the mental work of figuring out if you're a fit. With 200 resumes to screen, that's enough reason to move on. A clear signal — even a single line in a summary — tells them "yes, I'm in the right place."
+
+#### Real Example (Anonymised)
+
+Resume 2 has strong technical credentials — a Master of Philosophy in Computer Science, a publication under review, deep experience with graph neural networks and influence maximization. But the summary opens with:
+
+> Currently pursuing a Master of Philosophy in Computer Science at RMIT University, with a focus on innovative methods for social influence analysis.
+
+Nothing about what role they want. Are they applying for a data scientist position? A research role? A data engineering job? The hiring manager has to guess.
+
+#### The Fix
+Add one sentence to your summary that names the target role. "Seeking a junior data analyst role" or "Targeting data scientist positions in the tech sector." This is not optional — it's the single most important sentence on your resume.
+
+#### Before → After
+
+**Before:**
+> Currently pursuing a Master of Philosophy in Computer Science at RMIT University, with a focus on innovative methods for social influence analysis. My journey commenced with a Bachelor of Science in Automation from Beijing Institute of Technology...
+
+**After:**
+> Computer science researcher with a publication under review and 2+ years of Python, PyTorch, and large-scale data experience. Seeking a data scientist role where I can apply machine learning and social network analysis skills to real-world product challenges.
+
+---
+
+### Mistake #8: Missing Evidence of Independent Initiative
+
+#### The Problem
+The resume only shows what was required — coursework, employment, and nothing beyond it. There are no side projects, no personal experiments, no Kaggle competitions, no open-source contributions. The candidate looks like they did what was asked and nothing more.
+
+#### Why It Matters
+For early-career candidates, independent initiative is one of the strongest signals of genuine interest. A hiring manager doesn't just want to know you completed your degree — they want to know you're curious enough to build things on your own. A side project that uses the same tools as the job you're applying for is worth more than a perfect GPA.
+
+#### Real Example (Anonymised)
+
+Resume 1 has no projects section. The experience is: Deloitte vacationer (2 months), hotel receptionist (2 years), tutor, teaching assistant. The degree is solid — BSc Data Science from University of Melbourne — but there's nothing that shows this person pursued data work outside of class. The Deloitte computer vision project is mentioned in one bullet, but it's framed as a task, not as initiative.
+
+#### The Fix
+If you have projects from coursework, reframe them as independent work: what problem did you choose to solve, what tools did you use, what was the outcome? If you don't have projects, start one this week. A simple Python script that analyses a public dataset, a Tableau dashboard built from open data, a GitHub repo with 3 clean commits — anything that shows you build things because you want to, not because you have to.
+
+#### Before → After
+
+**Before:**
+*(No projects section. Deloitte computer vision work described as:)*
+> Implemented a computer vision model to track objects through research of MOT algorithms and use of AWS SageMaker
+
+**After:**
+> **Projects**
+> Computer Vision Object Tracker | Python, AWS SageMaker, MOT Algorithms
+> Researched and implemented a multi-object tracking system during a Big 4 vacation program. Built a real-time tracking pipeline using deep learning and AWS SageMaker, processing video feeds to identify and follow objects across frames.
+
+---
+
+## 6. Closing
 
 If you've been sending applications into the void, you're not alone.
 
