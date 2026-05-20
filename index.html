@@ -1283,6 +1283,63 @@ WHERE price BETWEEN 50 AND 150;</textarea>
           <div class="result-area"></div>
         </div>
 
+        <h3>IN: match any in the list</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  city
+FROM customers
+WHERE city IN ('Sydney', 'Melbourne', 'Brisbane');">
+          <div class="playground-header"><span class="label">Try it</span><span>Customers in 3 cities</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  city
+FROM customers
+WHERE city IN ('Sydney', 'Melbourne', 'Brisbane');</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>LIKE: pattern matching</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  email
+FROM customers
+WHERE email LIKE '%@gmail.com';">
+          <div class="playground-header"><span class="label">Try it</span><span>Gmail users</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  email
+FROM customers
+WHERE email LIKE '%@gmail.com';</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>IS NULL: check for empty values</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  email
+FROM customers
+WHERE email IS NULL;">
+          <div class="playground-header"><span class="label">Try it</span><span>Customers with no email</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  email
+FROM customers
+WHERE email IS NULL;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
         <h3>Multiple conditions: AND</h3>
         <div class="playground" data-query="SELECT
   name,
