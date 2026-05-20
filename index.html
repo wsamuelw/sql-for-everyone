@@ -1594,13 +1594,13 @@ LIMIT 5;</textarea>
 
         <h3>Count rows and count unique rows</h3>
         <div class="playground" data-query="SELECT
-  COUNT(ID) AS total_customers,
-  COUNT(DISTINCT ID) AS unique_customers
+  COUNT(*) AS total_orders,
+  COUNT(DISTINCT product_id) AS unique_products
 FROM orders;">
           <div class="playground-header"><span class="label">Try it</span><span>Total rows vs unique rows</span></div>
           <textarea spellcheck="false">SELECT
-  COUNT(ID) AS total_customers,
-  COUNT(DISTINCT ID) AS unique_customers
+  COUNT(*) AS total_orders,
+  COUNT(DISTINCT product_id) AS unique_products
 FROM orders;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1979,6 +1979,154 @@ ORDER BY revenue DESC;</textarea>
         </div>
       `;
     }
+    function debuggingContent() {
+      return `
+        <h2>Debugging: When Your Query Looks Wrong</h2>
+        <p class="subtitle">Why don't my numbers add up?</p>
+
+        <div class="concept-box warning">
+          Your query runs but the numbers look wrong. This is the most common problem in SQL. Here are the three most frequent causes.
+        </div>
+
+        <h3>Fan-out from bad JOIN</h3>
+        <p>When you JOIN without filtering, each row in one table multiplies with every matching row in the other. The result: 10x more rows than you expected.</p>
+        <div class="playground" data-query="SELECT COUNT(*) AS row_count FROM orders JOIN products ON orders.product_id = products.id;">
+          <div class="playground-header"><span class="label">Try it</span><span>JOIN without filter — row explosion</span></div>
+          <textarea spellcheck="false">-- Bad: JOINs create duplicate rows
+SELECT COUNT(*) AS row_count
+FROM orders
+JOIN products ON orders.product_id = products.id;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+        <div class="playground" data-query="SELECT COUNT(DISTINCT orders.id) AS real_order_count FROM orders JOIN products ON orders.product_id = products.id;">
+          <div class="playground-header"><span class="label">Try it</span><span>Fix: COUNT(DISTINCT)</span></div>
+          <textarea spellcheck="false">-- Fix: Count distinct to avoid duplicates
+SELECT COUNT(DISTINCT orders.id) AS real_order_count
+FROM orders
+JOIN products ON orders.product_id = products.id;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>NULL handling — SUMs don't add up</h3>
+        <p>SUM ignores NULLs. If your amount column has NULLs, the total will be lower than expected.</p>
+        <div class="playground" data-query="SELECT SUM(amount) AS total FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>SUM ignores NULLs</span></div>
+          <textarea spellcheck="false">-- NULLs silently disappear from SUM
+SELECT SUM(amount) AS total FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+        <div class="playground" data-query="SELECT SUM(CASE WHEN amount IS NOT NULL THEN amount ELSE 0 END) AS total FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Fix: treat NULLs as 0</span></div>
+          <textarea spellcheck="false">-- Fix: treat NULLs as 0
+SELECT SUM(CASE WHEN amount IS NOT NULL THEN amount ELSE 0 END) AS total
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Duplicate keys — counts are inflated</h3>
+        <p>When a column has duplicates, COUNT(*) counts every row. Use COUNT(DISTINCT) to count unique values.</p>
+        <div class="playground" data-query="SELECT COUNT(*) AS total, COUNT(DISTINCT product_id) AS unique_products FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>COUNT vs COUNT(DISTINCT)</span></div>
+          <textarea spellcheck="false">-- COUNT(*) counts all rows
+-- COUNT(DISTINCT product_id) counts unique products
+SELECT
+  COUNT(*) AS total,
+  COUNT(DISTINCT product_id) AS unique_products
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Your manager says the total revenue is $5,000 but you calculated $4,500. What could be wrong?</p>
+          <div class="playground" data-query="">
+            <textarea spellcheck="false">-- What would you check first?
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-hint" onclick="showHint(this, 'Check for NULL values in the amount column and duplicate rows from JOINs')">Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function readingQueriesContent() {
+      return `
+        <h2>Reading Queries: What Your Data Team Wrote</h2>
+        <p class="subtitle">Can you read and modify a query someone else wrote?</p>
+
+        <div class="concept-box why">
+          In real work, you'll spend more time reading queries than writing them. Here's how to decode what you're looking at.
+        </div>
+
+        <h3>A real production query</h3>
+        <div class="code-block"><span class="kw">SELECT</span>
+  c.name                          <span class="cmt">-- customer name</span>
+  ,c.region                        <span class="cmt">-- customer region</span>
+  ,COUNT(o.id) <span class="kw">AS</span> order_count     <span class="cmt">-- number of orders</span>
+  ,<span class="fn">SUM</span>(o.amount) <span class="kw">AS</span> total_revenue  <span class="cmt">-- total spend</span>
+  ,<span class="fn">AVG</span>(o.amount) <span class="kw">AS</span> avg_order_val  <span class="cmt">-- average order</span>
+  ,<span class="fn">MAX</span>(o.order_date) <span class="kw">AS</span> last_order  <span class="cmt">-- most recent order</span>
+<span class="kw">FROM</span> customers c
+<span class="kw">LEFT JOIN</span> orders o
+  <span class="kw">ON</span> c.id = o.customer_id
+<span class="kw">WHERE</span> o.order_date >= <span class="str">'2024-01-01'</span>
+<span class="kw">GROUP BY</span> c.name, c.region
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.id) >= <span class="num">3</span>
+<span class="kw">ORDER BY</span> total_revenue <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">20</span>;</div>
+
+        <h3>Line-by-line breakdown</h3>
+        <ul>
+          <li><strong>Lines 1-7 (SELECT)</strong> — What columns to show. Aliases like <code>order_count</code> name the output columns.</li>
+          <li><strong>Lines 8-9 (FROM + LEFT JOIN)</strong> — Start with customers, bring in matching orders. LEFT JOIN keeps customers even if they have no orders.</li>
+          <li><strong>Line 10 (ON)</strong> — The link between tables: customer id matches order's customer_id.</li>
+          <li><strong>Line 11 (WHERE)</strong> — Filter to orders from 2024 onwards. This runs BEFORE grouping.</li>
+          <li><strong>Line 12 (GROUP BY)</strong> — Collapse to one row per customer. All non-aggregated columns must appear here.</li>
+          <li><strong>Line 13 (HAVING)</strong> — Filter AFTER grouping. Only keep customers with 3+ orders.</li>
+          <li><strong>Line 14 (ORDER BY)</strong> — Sort by total revenue, highest first.</li>
+          <li><strong>Line 15 (LIMIT)</strong> — Return only top 20 rows.</li>
+        </ul>
+
+        <div class="concept-box tip">
+          <strong>Execution order tip:</strong> SQL evaluates in this order: FROM/JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMIT. Knowing this helps you understand where filters and aggregations happen.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Modify the query above to also show the <strong>average order value per category</strong>.</p>
+          <div class="playground" data-query="">
+            <textarea spellcheck="false">-- Start with the query above and add AVG(amount)
+-- What else needs to change?
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-hint" onclick="showHint(this, 'Add AVG(o.amount) AS avg_category_value to the SELECT and add p.category to GROUP BY')">Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
     function subqueriesContent() {
       return `
         <h2>Subqueries: Queries Inside Queries</h2>
@@ -2262,6 +2410,35 @@ FROM orders;</textarea>
           <div class="result-area"></div>
         </div>
 
+        <h3>Period comparison: month-over-month change</h3>
+        <div class="playground" data-query="SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  SUM(amount) AS revenue,
+  LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) AS prev_month,
+  ROUND((SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date))) / LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) * 100, 1) AS pct_change
+FROM orders
+GROUP BY month
+ORDER BY month;">
+          <div class="playground-header"><span class="label">Try it</span><span>Month-over-month revenue change</span></div>
+          <textarea spellcheck="false">SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  SUM(amount) AS revenue,
+  LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) AS prev_month,
+  ROUND(
+    (SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)))
+    / LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) * 100,
+    1
+  ) AS pct_change
+FROM orders
+GROUP BY month
+ORDER BY month;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
         <div class="concept-box warning">
           In Snowflake, use <code>QUALIFY</code> to filter window function results. In BigQuery, wrap in a subquery and filter the outer query. This course uses subquery approach since it works everywhere.
         </div>
@@ -2471,12 +2648,23 @@ ORDER BY mr.month;</textarea>
 )
 <span class="kw">SELECT</span> ... <span class="kw">FROM</span> cte_name;</div>
 
+<h3>Useful functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">COALESCE(a, b)</span> <span class="col-desc">— use a if not null, else b</span></div>
+  <div><span class="col-name">ROUND(value, 2)</span> <span class="col-desc">— round to 2 decimal places</span></div>
+  <div><span class="col-name">CAST(value AS type)</span> <span class="col-desc">— convert data types</span></div>
+  <div><span class="col-name">LENGTH(string)</span> <span class="col-desc">— count characters</span></div>
+</div>
+
 <h3>Common patterns</h3>
 <div class="schema-display">
   <div><span class="col-name">Top N per group</span> <span class="col-desc">— use ROW_NUMBER() or RANK()</span></div>
   <div><span class="col-name">Running total</span> <span class="col-desc">— SUM() OVER (ORDER BY ...)</span></div>
   <div><span class="col-name">Month-over-month</span> <span class="col-desc">— LAG() or self-join</span></div>
   <div><span class="col-name">Deduplicate</span> <span class="col-desc">— ROW_NUMBER() = 1</span></div>
+  <div><span class="col-name">Replace NULL</span> <span class="col-desc">— COALESCE(column, 'default')</span></div>
+  <div><span class="col-name">Format currency</span> <span class="col-desc">— ROUND(amount, 2)</span></div>
+  <div><span class="col-name">Convert types</span> <span class="col-desc">— CAST(column AS INTEGER)</span></div>
 </div>
 
 <h3>Common mistakes</h3>
@@ -2534,6 +2722,8 @@ ORDER BY mr.month;</textarea>
       { id: 'groupby', title: 'GROUP BY', icon: '📈', content: groupbyContent },
       { id: 'joins', title: 'JOINs', icon: '🔗', content: joinsContent },
       { id: 'mini-reports', title: 'Mini Reports', icon: '📄', content: miniReportsContent },
+      { id: 'debugging', title: 'Debugging', icon: '🔍', content: debuggingContent },
+      { id: 'reading-queries', title: 'Reading Queries', icon: '📖', content: readingQueriesContent },
       { id: 'subqueries', title: 'Subqueries', icon: '🔄', content: subqueriesContent },
       { id: 'case-when', title: 'CASE WHEN', icon: '🏷️', content: caseWhenContent },
       { id: 'window', title: 'Window Functions', icon: '🪟', content: windowContent },
