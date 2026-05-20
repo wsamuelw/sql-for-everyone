@@ -1420,56 +1420,14 @@ WHERE category IN ('Electronics', 'Furniture')
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge easy">Easy</span></div>
-          <p>Find all customers whose city is Melbourne or Brisbane.</p>
-          <div class="playground" data-query="SELECT
-  name,
-  email,
-  city
-FROM customers
-WHERE city IN ('Melbourne', 'Brisbane');">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Find all <strong>Electronics</strong> products with a price <strong>between $50 and $200</strong>. This tests your use of comparisons, AND, and BETWEEN together.</p>
+          <div class="playground" data-query="SELECT name, price, category FROM products WHERE category = 'Electronics' AND price BETWEEN 50 AND 200;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" data-hint="WHERE city IN ('Melbourne', 'Brisbane')" onclick="showHint(this, this.dataset.hint)">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge easy">Easy</span></div>
-          <p>Find all products with price between $50 and $150.</p>
-          <div class="playground" data-query="SELECT
-  name,
-  category,
-  price
-FROM products
-WHERE price BETWEEN 50 AND 150;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WHERE price BETWEEN 50 AND 150')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 3 <span class="challenge-badge easy">Easy</span></div>
-          <p>Find all products with a price greater than $200.</p>
-          <div class="playground" data-query="SELECT
-  name,
-  price
-FROM products
-WHERE price > 200;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price FROM products WHERE price > 200;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price, category FROM products WHERE category = \'Electronics\' AND price BETWEEN 50 AND 200;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1556,38 +1514,13 @@ LIMIT 5;</textarea>
 
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>Show the 3 cheapest products. Display name and price only.</p>
-          <div class="playground" data-query="SELECT
-  name,
-  price
-FROM products
-ORDER BY price ASC
-LIMIT 3;">
+          <p>Show the <strong>3 most expensive products</strong>, displaying name, price, and category. This tests your use of ORDER BY DESC and LIMIT together.</p>
+          <div class="playground" data-query="SELECT name, price, category FROM products ORDER BY price DESC LIMIT 3;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price FROM products ORDER BY price ASC LIMIT 3;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
-          <p>Show the 5 most recent orders by date.</p>
-          <div class="playground" data-query="SELECT
-  id,
-  amount,
-  order_date
-FROM orders
-ORDER BY order_date DESC
-LIMIT 5;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, order_date FROM orders ORDER BY order_date DESC LIMIT 5;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price, category FROM products ORDER BY price DESC LIMIT 3;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1645,34 +1578,13 @@ FROM orders;</textarea>
 
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>What's the total revenue across all orders?</p>
-          <div class="playground" data-query="SELECT
-  SUM(amount) AS total_revenue
-FROM orders;">
+          <p>What is the <strong>total revenue</strong>, <strong>average order value</strong>, and <strong>count of unique products sold</strong>? This tests your use of SUM, AVG, and COUNT(DISTINCT) in a single query.</p>
+          <div class="playground" data-query="SELECT SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value, COUNT(DISTINCT product_id) AS unique_products FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT SUM(amount) AS total_revenue FROM orders;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
-          <p>What is the most expensive product?</p>
-          <div class="playground" data-query="SELECT
-  name,
-  price
-FROM products
-ORDER BY price DESC
-LIMIT 1;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price FROM products ORDER BY price DESC LIMIT 1;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value, COUNT(DISTINCT product_id) AS unique_products FROM orders;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1735,37 +1647,14 @@ HAVING COUNT(*) > 2;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
-          <p>How many orders has each product had? Show product_id and order count.</p>
-          <div class="playground" data-query="SELECT
-  product_id,
-  COUNT(*) AS order_count
-FROM orders
-GROUP BY product_id;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>How many <strong>orders</strong> and <strong>total revenue</strong> per product category? Only show categories with <strong>more than 3 orders</strong>. This tests GROUP BY, COUNT, SUM, and HAVING together.</p>
+          <div class="playground" data-query="SELECT p.category, COUNT(o.id) AS order_count, SUM(o.amount) AS total_revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category HAVING order_count > 3;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT product_id, COUNT(*) AS order_count FROM orders GROUP BY product_id;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
-          <p>Which cities have more than 2 customers?</p>
-          <div class="playground" data-query="SELECT
-  city,
-  COUNT(*) AS cnt
-FROM customers
-GROUP BY city
-HAVING COUNT(*) > 2;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING COUNT(*) > 2;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.category, COUNT(o.id) AS order_count, SUM(o.amount) AS total_revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category HAVING order_count > 3;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1909,42 +1798,14 @@ ORDER BY p.name;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
-          <p>Show each product name and how many times it's been ordered. Sort by order count, highest first.</p>
-          <div class="playground" data-query="SELECT
-  p.name,
-  COUNT(o.id) AS times_ordered
-FROM products p
-JOIN orders o
-  ON p.id = o.product_id
-GROUP BY p.name
-ORDER BY times_ordered DESC;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each <strong>product name</strong>, how many times it was <strong>ordered</strong>, and <strong>total revenue</strong> per product. Sort by revenue highest first. This tests JOIN, GROUP BY, COUNT, SUM, and ORDER BY together.</p>
+          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY times_ordered DESC;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
-          <p>Show total revenue per product, sorted highest first.</p>
-          <div class="playground" data-query="SELECT
-  p.name,
-  SUM(o.amount) AS total
-FROM products p
-JOIN orders o
-  ON p.id = o.product_id
-GROUP BY p.name
-ORDER BY total DESC;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, SUM(o.amount) AS total FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total DESC;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2048,41 +1909,14 @@ ORDER BY revenue DESC;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
-          <p>Build a report showing total revenue by product category.</p>
-          <div class="playground" data-query="SELECT
-  p.category,
-  SUM(o.amount) AS revenue
-FROM orders o
-JOIN products p
-  ON o.product_id = p.id
-GROUP BY p.category
-ORDER BY revenue DESC;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Build a <strong>monthly revenue report</strong> showing month, order count, and total revenue. Only show months with <strong>revenue over $200</strong>. This tests DATE_TRUNC, GROUP BY, COUNT, SUM, HAVING, and ORDER BY together.</p>
+          <div class="playground" data-query="SELECT DATE_TRUNC('month', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS total_revenue FROM orders GROUP BY month HAVING total_revenue > 200 ORDER BY month;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.category, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category ORDER BY revenue DESC;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Find products that have never been ordered.</p>
-          <div class="playground" data-query="SELECT
-  p.name,
-  p.category
-FROM products p
-LEFT JOIN orders o
-  ON p.id = o.product_id
-WHERE o.id IS NULL;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" data-hint="SELECT p.name, p.category FROM products p LEFT JOIN orders o ON p.id = o.product_id WHERE o.id IS NULL;" onclick="showHint(this, this.dataset.hint)">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT DATE_TRUNC(\'month\', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS total_revenue FROM orders GROUP BY month HAVING total_revenue > 200 ORDER BY month;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2163,42 +1997,14 @@ WHERE avg_price > 100;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Find products that have never been ordered.</p>
-          <div class="playground" data-query="SELECT
-  name
-FROM products
-WHERE id NOT IN (
-  SELECT DISTINCT product_id
-  FROM orders
-);">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Find products that have been <strong>ordered more than 2 times</strong>. Show the product name and order count. This tests subqueries with IN, GROUP BY, and HAVING together.</p>
+          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS order_count FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name HAVING order_count > 2;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Find products that have been ordered more than 2 times.</p>
-          <div class="playground" data-query="SELECT
-  name
-FROM products
-WHERE id IN (
-  SELECT product_id
-  FROM orders
-  GROUP BY product_id
-  HAVING COUNT(*) > 2
-);">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM products WHERE id IN (SELECT product_id FROM orders GROUP BY product_id HAVING COUNT(*) > 2);')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS order_count FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name HAVING order_count > 2;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2268,41 +2074,14 @@ GROUP BY city;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Label orders as Small (&lt;$100), Medium ($100-$300), or Large (&gt;$300). Show order id, amount, and label.</p>
-          <div class="playground" data-query="SELECT
-  id,
-  amount,
-  CASE
-    WHEN amount < 100 THEN 'Small'
-    WHEN amount <= 300 THEN 'Medium'
-    ELSE 'Large'
-  END AS size
-FROM orders;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Label each order as <strong>'Small'</strong> (under $100), <strong>'Medium'</strong> ($100-$300), or <strong>'Large'</strong> (over $300). Show order id, amount, and label. This tests CASE WHEN with multiple conditions.</p>
+          <div class="playground" data-query="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" data-hint="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;" onclick="showHint(this, this.dataset.hint)">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Count customers per city, split by email domain (gmail vs others).</p>
-          <div class="playground" data-query="SELECT
-  city,
-  COUNT(CASE WHEN email LIKE '%@gmail.com' THEN 1 END) AS gmail,
-  COUNT(CASE WHEN email NOT LIKE '%@gmail.com' THEN 1 END) AS other
-FROM customers
-GROUP BY city;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" data-hint="SELECT city, COUNT(CASE WHEN email LIKE '%@gmail.com' THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE '%@gmail.com' THEN 1 END) AS other FROM customers GROUP BY city;" onclick="showHint(this, this.dataset.hint)">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, CASE WHEN amount < 100 THEN \'Small\' WHEN amount <= 300 THEN \'Medium\' ELSE \'Large\' END AS size FROM orders;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2432,44 +2211,14 @@ FROM orders;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Rank employees by salary within their department. Show name, department, salary, and rank.</p>
-          <div class="playground" data-query="SELECT
-  name,
-  department,
-  salary,
-  RANK() OVER (
-    PARTITION BY department
-    ORDER BY salary DESC
-  ) AS salary_rank
-FROM employees;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each order with a <strong>running total of revenue</strong>, ordered by date. This tests window functions with SUM() OVER and ORDER BY.</p>
+          <div class="playground" data-query="SELECT id, order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Show each order with a running total of revenue per product.</p>
-          <div class="playground" data-query="SELECT
-  product_id,
-  order_date,
-  amount,
-  SUM(amount) OVER (
-    PARTITION BY product_id
-    ORDER BY order_date
-  ) AS running_total
-FROM orders;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT product_id, order_date, amount, SUM(amount) OVER (PARTITION BY product_id ORDER BY order_date) AS running_total FROM orders;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2581,61 +2330,14 @@ ORDER BY mr.month;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Refactor: Find products with total revenue above $300 using a CTE instead of a subquery.</p>
-          <div class="playground" data-query="WITH revenue AS (
-  SELECT
-    product_id,
-    SUM(amount) AS total
-  FROM orders
-  GROUP BY product_id
-  HAVING SUM(amount) > 300
-)
-SELECT
-  p.name,
-  r.total
-FROM revenue r
-JOIN products p
-  ON r.product_id = p.id;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Using a <strong>CTE</strong>, find the <strong>top 3 products by total revenue</strong>. Show product name and total revenue. This tests CTE, JOIN, SUM, GROUP BY, ORDER BY, and LIMIT together.</p>
+          <div class="playground" data-query="WITH product_revenue AS (SELECT p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name) SELECT name, revenue FROM product_revenue ORDER BY revenue DESC LIMIT 3;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WITH revenue AS (SELECT product_id, SUM(amount) AS total FROM orders GROUP BY product_id HAVING SUM(amount) > 300) SELECT p.name, r.total FROM revenue r JOIN products p ON r.product_id = p.id;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Build a report: top 3 products by revenue per category using a CTE.</p>
-          <div class="playground" data-query="WITH product_revenue AS (
-  SELECT
-    p.category,
-    p.name,
-    SUM(o.amount) AS revenue
-  FROM orders o
-  JOIN products p
-    ON o.product_id = p.id
-  GROUP BY p.category,
-    p.name
-)
-SELECT *
-FROM product_revenue pr1
-WHERE 3 > (
-  SELECT COUNT(*)
-  FROM product_revenue pr2
-  WHERE pr2.category = pr1.category
-    AND pr2.revenue > pr1.revenue
-)
-ORDER BY category,
-  revenue DESC;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WITH product_revenue AS (SELECT p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name) SELECT name, revenue FROM product_revenue ORDER BY revenue DESC LIMIT 3;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
