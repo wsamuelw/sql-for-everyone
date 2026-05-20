@@ -10,8 +10,8 @@
   <style>
     /* ========== CSS Variables ========== */
     :root {
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', 'SFMono-Regular', 'Cascadia Code', 'Fira Code', monospace;
 
       /* Light theme */
       --bg: oklch(1.0 0 0);
@@ -72,6 +72,7 @@
 
     body {
       font-family: var(--font);
+      font-weight: 400;
       background: var(--bg);
       color: var(--text);
       line-height: 1.8;
@@ -128,6 +129,7 @@
       cursor: pointer;
       border-left: 3px solid transparent;
       font-size: 14px;
+      font-weight: 500;
       color: var(--text-dim);
       transition: all 0.15s;
       display: flex;
@@ -144,7 +146,7 @@
       border-left-color: var(--accent);
       color: var(--text);
       background: var(--bg);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .lesson-nav li .num {
@@ -227,6 +229,7 @@
     .lesson h2 {
       font-size: clamp(1.75rem, 2.5vw + 1rem, 2rem);
       font-weight: 700;
+      letter-spacing: -0.02em;
       background: linear-gradient(135deg, var(--accent), var(--pink));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -264,9 +267,10 @@
 
     /* ========== Concept Boxes ========== */
     .concept-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background: transparent;
+      border: none;
+      border-left: 3px solid var(--border);
+      border-radius: 0;
       padding: 24px 28px;
       margin: 28px 0;
       position: relative;
@@ -316,7 +320,7 @@
     .code-block {
       background: #0d0f14;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 4px;
       padding: 16px 20px;
       font-family: var(--mono);
       font-size: 13px;
@@ -331,7 +335,7 @@
     .playground {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 4px;
       overflow: hidden;
       margin: 32px 0;
     }
@@ -382,9 +386,9 @@
     /* ========== Buttons ========== */
     .btn {
       padding: 12px 20px;
-      border-radius: 6px;
+      border-radius: 4px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       font-family: var(--font);
       cursor: pointer;
       border: none;
@@ -441,7 +445,7 @@
     /* ========== Messages ========== */
     .message {
       padding: 12px 16px;
-      border-radius: 8px;
+      border-radius: 4px;
       font-size: 13px;
       margin: 0;
     }
@@ -511,9 +515,10 @@
 
     /* ========== Exercise ========== */
     .exercise {
-      background: var(--surface);
-      border: 1px solid var(--accent);
-      border-radius: 10px;
+      background: transparent;
+      border: none;
+      border-left: 3px solid var(--accent);
+      border-radius: 0;
       padding: 20px 24px;
       margin: 32px 0;
     }
@@ -522,14 +527,12 @@
       margin-bottom: 16px;
     }
 
-    /* ========== Layered Shadows ========== */
-    .playground, .concept-box, .exercise {
+    /* ========== Layered Shadows (playground only) ========== */
+    .playground {
       box-shadow: 0 1px 3px oklch(0 0 0 / 0.04), 0 6px 16px oklch(0 0 0 / 0.06);
     }
 
-    [data-theme="dark"] .playground,
-    [data-theme="dark"] .concept-box,
-    [data-theme="dark"] .exercise {
+    [data-theme="dark"] .playground {
       box-shadow: 0 1px 3px oklch(0 0 0 / 0.2), 0 8px 24px oklch(0 0 0 / 0.3);
     }
 
@@ -578,9 +581,10 @@
     .btn-nav {
       padding: 10px 24px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 4px;
       font-size: 14px;
       font-family: var(--font);
+      font-weight: 500;
       cursor: pointer;
       background: transparent;
       color: var(--text-dim);
@@ -626,7 +630,7 @@
       font-family: var(--mono);
       font-size: 13px;
       padding: 16px;
-      border-radius: 8px;
+      border-radius: 4px;
       color: #e2e4ef;
       overflow-x: auto;
       margin: 24px 0;
