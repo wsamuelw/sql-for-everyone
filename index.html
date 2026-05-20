@@ -1134,12 +1134,14 @@
           All examples use a fictional company's data: customers, products, orders, and employees. The patterns you learn here work with any database — your CRM, accounting software, or analytics tool.
         </div>
 
-        <div class="playground" data-query="SELECT 'You''re ready to start! 🎉' AS message;">
+        <div class="playground" data-query="SELECT
+  'You''re ready to start! 🎉' AS message;">
           <div class="playground-header">
             <span class="label">Try it</span>
             <span>Click ▶ Run to execute</span>
           </div>
-          <textarea spellcheck="false">SELECT 'You''re ready to start! 🎉' AS message;</textarea>
+          <textarea spellcheck="false">SELECT
+  'You''re ready to start! 🎉' AS message;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
           </div>
@@ -1157,9 +1159,11 @@
         </div>
 
         <h3>See everything</h3>
-        <div class="playground" data-query="SELECT * FROM customers;">
+        <div class="playground" data-query="SELECT *
+FROM customers;">
           <div class="playground-header"><span class="label">Try it</span><span>customers table</span></div>
-          <textarea spellcheck="false">SELECT * FROM customers;</textarea>
+          <textarea spellcheck="false">SELECT *
+FROM customers;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1168,9 +1172,17 @@
         </div>
 
         <h3>Pick specific columns</h3>
-        <div class="playground" data-query="SELECT name, email, city FROM customers;">
+        <div class="playground" data-query="SELECT
+  name,
+  email,
+  city
+FROM customers;">
           <div class="playground-header"><span class="label">Try it</span><span>Just name, email, and city</span></div>
-          <textarea spellcheck="false">SELECT name, email, city FROM customers;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  email,
+  city
+FROM customers;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1179,7 +1191,11 @@
         </div>
 
         <h3>Rename columns for clarity</h3>
-        <div class="playground" data-query="SELECT name AS Customer, email AS &quot;Email Address&quot;, city AS Location FROM customers;">
+        <div class="playground" data-query="SELECT
+  name AS Customer,
+  email AS &quot;Email Address&quot;,
+  city AS Location
+FROM customers;">
           <div class="playground-header"><span class="label">Try it</span><span>Rename columns with AS</span></div>
           <textarea spellcheck="false">SELECT
   name AS Customer,
@@ -1200,7 +1216,10 @@ FROM customers;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge easy">Easy</span></div>
           <p>Show only the <strong>product name</strong> and <strong>price</strong> from the <code>products</code> table.</p>
-          <div class="playground" data-query="SELECT name, price FROM products;">
+          <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1222,9 +1241,19 @@ FROM customers;</textarea>
         </div>
 
         <h3>Exact match</h3>
-        <div class="playground" data-query="SELECT name, email, city FROM customers WHERE city = 'Sydney';">
+        <div class="playground" data-query="SELECT
+  name,
+  email,
+  city
+FROM customers
+WHERE city = 'Sydney';">
           <div class="playground-header"><span class="label">Try it</span><span>Customers in Sydney</span></div>
-          <textarea spellcheck="false">SELECT name, email, city FROM customers WHERE city = 'Sydney';</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  email,
+  city
+FROM customers
+WHERE city = 'Sydney';</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1233,9 +1262,17 @@ FROM customers;</textarea>
         </div>
 
         <h3>Comparisons: greater than, less than</h3>
-        <div class="playground" data-query="SELECT name, price FROM products WHERE price > 100;">
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+WHERE price > 100;">
           <div class="playground-header"><span class="label">Try it</span><span>Products over $100</span></div>
-          <textarea spellcheck="false">SELECT name, price FROM products WHERE price > 100;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+WHERE price > 100;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1244,9 +1281,21 @@ FROM customers;</textarea>
         </div>
 
         <h3>Multiple conditions: AND / OR</h3>
-        <div class="playground" data-query="SELECT name, price, category FROM products WHERE category = 'Electronics' AND price < 200;">
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  AND price < 200;">
           <div class="playground-header"><span class="label">Try it</span><span>Electronics under $200</span></div>
-          <textarea spellcheck="false">SELECT name, price, category FROM products WHERE category = 'Electronics' AND price < 200;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  AND price < 200;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1264,9 +1313,21 @@ FROM customers;</textarea>
           <div><span class="col-name">IS NULL / IS NOT NULL</span> <span class="col-desc">— check for empty values</span></div>
         </div>
 
-        <div class="playground" data-query="SELECT name, category, price FROM products WHERE category IN ('Electronics', 'Furniture') AND price BETWEEN 50 AND 300;">
+        <div class="playground" data-query="SELECT
+  name,
+  category,
+  price
+FROM products
+WHERE category IN ('Electronics', 'Furniture')
+  AND price BETWEEN 50 AND 300;">
           <div class="playground-header"><span class="label">Try it</span><span>IN + BETWEEN combined</span></div>
-          <textarea spellcheck="false">SELECT name, category, price FROM products WHERE category IN ('Electronics', 'Furniture') AND price BETWEEN 50 AND 300;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  category,
+  price
+FROM products
+WHERE category IN ('Electronics', 'Furniture')
+  AND price BETWEEN 50 AND 300;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1277,7 +1338,12 @@ FROM customers;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge easy">Easy</span></div>
           <p>Find all customers whose city is Melbourne or Brisbane.</p>
-          <div class="playground" data-query="SELECT name, email, city FROM customers WHERE city IN ('Melbourne', 'Brisbane');">
+          <div class="playground" data-query="SELECT
+  name,
+  email,
+  city
+FROM customers
+WHERE city IN ('Melbourne', 'Brisbane');">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1291,7 +1357,12 @@ FROM customers;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge easy">Easy</span></div>
           <p>Find all products with price between $50 and $150.</p>
-          <div class="playground" data-query="SELECT name, category, price FROM products WHERE price BETWEEN 50 AND 150;">
+          <div class="playground" data-query="SELECT
+  name,
+  category,
+  price
+FROM products
+WHERE price BETWEEN 50 AND 150;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1313,9 +1384,17 @@ FROM customers;</textarea>
         </div>
 
         <h3>Sort by price (highest first)</h3>
-        <div class="playground" data-query="SELECT name, price FROM products ORDER BY price DESC;">
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Most expensive products first</span></div>
-          <textarea spellcheck="false">SELECT name, price FROM products ORDER BY price DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1325,9 +1404,21 @@ FROM customers;</textarea>
 
         <h3>Sort by multiple columns</h3>
         <p>Category first, then price within each category:</p>
-        <div class="playground" data-query="SELECT name, category, price FROM products ORDER BY category ASC, price DESC;">
+        <div class="playground" data-query="SELECT
+  name,
+  category,
+  price
+FROM products
+ORDER BY category ASC,
+  price DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Category first, then price within each</span></div>
-          <textarea spellcheck="false">SELECT name, category, price FROM products ORDER BY category ASC, price DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  category,
+  price
+FROM products
+ORDER BY category ASC,
+  price DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1337,9 +1428,19 @@ FROM customers;</textarea>
 
         <h3>Limit results</h3>
         <p>Only want the top 5? Use <strong>LIMIT</strong>:</p>
-        <div class="playground" data-query="SELECT name, price FROM products ORDER BY price DESC LIMIT 5;">
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC
+LIMIT 5;">
           <div class="playground-header"><span class="label">Try it</span><span>Top 5 most expensive products</span></div>
-          <textarea spellcheck="false">SELECT name, price FROM products ORDER BY price DESC LIMIT 5;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC
+LIMIT 5;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1354,7 +1455,12 @@ FROM customers;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
           <p>Show the 3 cheapest products. Display name and price only.</p>
-          <div class="playground" data-query="SELECT name, price FROM products ORDER BY price ASC LIMIT 3;">
+          <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+ORDER BY price ASC
+LIMIT 3;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1376,9 +1482,13 @@ FROM customers;</textarea>
         </div>
 
         <h3>Count rows</h3>
-        <div class="playground" data-query="SELECT COUNT(*) AS total_customers FROM customers;">
+        <div class="playground" data-query="SELECT
+  COUNT(*) AS total_customers
+FROM customers;">
           <div class="playground-header"><span class="label">Try it</span><span>How many customers do we have?</span></div>
-          <textarea spellcheck="false">SELECT COUNT(*) AS total_customers FROM customers;</textarea>
+          <textarea spellcheck="false">SELECT
+  COUNT(*) AS total_customers
+FROM customers;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1387,7 +1497,11 @@ FROM customers;</textarea>
         </div>
 
         <h3>Total and average</h3>
-        <div class="playground" data-query="SELECT COUNT(*) AS total_orders, SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value FROM orders;">
+        <div class="playground" data-query="SELECT
+  COUNT(*) AS total_orders,
+  SUM(amount) AS total_revenue,
+  AVG(amount) AS avg_order_value
+FROM orders;">
           <div class="playground-header"><span class="label">Try it</span><span>Order count, total revenue, and average order value</span></div>
           <textarea spellcheck="false">SELECT
   COUNT(*) AS total_orders,
@@ -1412,7 +1526,9 @@ FROM orders;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
           <p>What's the total revenue across all orders?</p>
-          <div class="playground" data-query="SELECT SUM(amount) AS total_revenue FROM orders;">
+          <div class="playground" data-query="SELECT
+  SUM(amount) AS total_revenue
+FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1434,9 +1550,19 @@ FROM orders;</textarea>
         </div>
 
         <h3>Group by category</h3>
-        <div class="playground" data-query="SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;">
+        <div class="playground" data-query="SELECT
+  category,
+  COUNT(*) AS product_count,
+  AVG(price) AS avg_price
+FROM products
+GROUP BY category;">
           <div class="playground-header"><span class="label">Try it</span><span>Products grouped by category</span></div>
-          <textarea spellcheck="false">SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;</textarea>
+          <textarea spellcheck="false">SELECT
+  category,
+  COUNT(*) AS product_count,
+  AVG(price) AS avg_price
+FROM products
+GROUP BY category;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1445,9 +1571,19 @@ FROM orders;</textarea>
         </div>
 
         <h3>Filter groups with HAVING</h3>
-        <div class="playground" data-query="SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;">
+        <div class="playground" data-query="SELECT
+  city,
+  COUNT(*) AS customer_count
+FROM customers
+GROUP BY city
+HAVING customer_count > 2;">
           <div class="playground-header"><span class="label">Try it</span><span>Cities with more than 2 customers</span></div>
-          <textarea spellcheck="false">SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;</textarea>
+          <textarea spellcheck="false">SELECT
+  city,
+  COUNT(*) AS customer_count
+FROM customers
+GROUP BY city
+HAVING customer_count > 2;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1462,7 +1598,11 @@ FROM orders;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
           <p>How many orders has each customer placed? Show customer_id and order count.</p>
-          <div class="playground" data-query="SELECT customer_id, COUNT(*) AS order_count FROM orders GROUP BY customer_id;">
+          <div class="playground" data-query="SELECT
+  customer_id,
+  COUNT(*) AS order_count
+FROM orders
+GROUP BY customer_id;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1476,7 +1616,12 @@ FROM orders;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
           <p>Which cities have more than 2 customers?</p>
-          <div class="playground" data-query="SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING cnt > 2;">
+          <div class="playground" data-query="SELECT
+  city,
+  COUNT(*) AS cnt
+FROM customers
+GROUP BY city
+HAVING cnt > 2;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1506,9 +1651,23 @@ FROM orders;</textarea>
         </div>
 
         <h3>Orders with customer names</h3>
-        <div class="playground" data-query="SELECT c.name AS customer, o.amount, o.order_date FROM orders o JOIN customers c ON o.customer_id = c.id ORDER BY o.order_date DESC;">
+        <div class="playground" data-query="SELECT
+  c.name AS customer,
+  o.amount,
+  o.order_date
+FROM orders o
+JOIN customers c
+  ON o.customer_id = c.id
+ORDER BY o.order_date DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Join orders with customers</span></div>
-          <textarea spellcheck="false">SELECT c.name AS customer, o.amount, o.order_date FROM orders o JOIN customers c ON o.customer_id = c.id ORDER BY o.order_date DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  c.name AS customer,
+  o.amount,
+  o.order_date
+FROM orders o
+JOIN customers c
+  ON o.customer_id = c.id
+ORDER BY o.order_date DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1517,9 +1676,31 @@ FROM orders;</textarea>
         </div>
 
         <h3>Orders with product details</h3>
-        <div class="playground" data-query="SELECT c.name AS customer, p.name AS product, p.category, o.quantity, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id JOIN products p ON o.product_id = p.id ORDER BY o.amount DESC;">
+        <div class="playground" data-query="SELECT
+  c.name AS customer,
+  p.name AS product,
+  p.category,
+  o.quantity,
+  o.amount
+FROM orders o
+JOIN customers c
+  ON o.customer_id = c.id
+JOIN products p
+  ON o.product_id = p.id
+ORDER BY o.amount DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Join across three tables</span></div>
-          <textarea spellcheck="false">SELECT c.name AS customer, p.name AS product, p.category, o.quantity, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id JOIN products p ON o.product_id = p.id ORDER BY o.amount DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  c.name AS customer,
+  p.name AS product,
+  p.category,
+  o.quantity,
+  o.amount
+FROM orders o
+JOIN customers c
+  ON o.customer_id = c.id
+JOIN products p
+  ON o.product_id = p.id
+ORDER BY o.amount DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1528,9 +1709,25 @@ FROM orders;</textarea>
         </div>
 
         <h3>Join + aggregation</h3>
-        <div class="playground" data-query="SELECT c.name AS customer, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC;">
+        <div class="playground" data-query="SELECT
+  c.name AS customer,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o
+  ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY total_spent DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Join with GROUP BY</span></div>
-          <textarea spellcheck="false">SELECT c.name AS customer, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  c.name AS customer,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o
+  ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY total_spent DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1541,7 +1738,15 @@ FROM orders;</textarea>
         <h3>LEFT JOIN — keeping all records</h3>
         <p>What if you want all customers, even those who haven't placed an order? An INNER JOIN only shows matches. A <strong>LEFT JOIN</strong> keeps everything from the left table, even if there's no match on the right.</p>
 
-        <div class="playground" data-query="SELECT c.name, c.city, o.amount, o.order_date FROM customers c LEFT JOIN orders o ON c.id = o.customer_id ORDER BY c.name;">
+        <div class="playground" data-query="SELECT
+  c.name,
+  c.city,
+  o.amount,
+  o.order_date
+FROM customers c
+LEFT JOIN orders o
+  ON c.id = o.customer_id
+ORDER BY c.name;">
           <div class="playground-header">
             <span class="label">Try it</span>
             <span>All customers, with orders if they exist</span>
@@ -1552,7 +1757,8 @@ FROM orders;</textarea>
   o.amount,
   o.order_date
 FROM customers c
-LEFT JOIN orders o ON c.id = o.customer_id
+LEFT JOIN orders o
+  ON c.id = o.customer_id
 ORDER BY c.name;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1572,7 +1778,14 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
           <p>Show each product name and how many times it's been ordered. Sort by order count, highest first.</p>
-          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY times_ordered DESC;">
+          <div class="playground" data-query="SELECT
+  p.name,
+  COUNT(o.id) AS times_ordered
+FROM products p
+JOIN orders o
+  ON p.id = o.product_id
+GROUP BY p.name
+ORDER BY times_ordered DESC;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1586,7 +1799,14 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
           <p>Show total spend per customer, sorted highest first.</p>
-          <div class="playground" data-query="SELECT c.name, SUM(o.amount) AS total FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total DESC;">
+          <div class="playground" data-query="SELECT
+  c.name,
+  SUM(o.amount) AS total
+FROM customers c
+JOIN orders o
+  ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY total DESC;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1608,9 +1828,21 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>💰 Monthly revenue report</h3>
-        <div class="playground" data-query="SELECT strftime('%Y-%m', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS revenue FROM orders GROUP BY month ORDER BY month;">
+        <div class="playground" data-query="SELECT
+  strftime('%Y-%m', order_date) AS month,
+  COUNT(*) AS orders,
+  SUM(amount) AS revenue
+FROM orders
+GROUP BY month
+ORDER BY month;">
           <div class="playground-header"><span class="label">Try it</span><span>Revenue by month</span></div>
-          <textarea spellcheck="false">SELECT strftime('%Y-%m', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS revenue FROM orders GROUP BY month ORDER BY month;</textarea>
+          <textarea spellcheck="false">SELECT
+  strftime('%Y-%m', order_date) AS month,
+  COUNT(*) AS orders,
+  SUM(amount) AS revenue
+FROM orders
+GROUP BY month
+ORDER BY month;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1619,9 +1851,29 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>🏆 Top 5 customers by spend</h3>
-        <div class="playground" data-query="SELECT c.name, c.city, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC LIMIT 5;">
+        <div class="playground" data-query="SELECT
+  c.name,
+  c.city,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o
+  ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY total_spent DESC
+LIMIT 5;">
           <div class="playground-header"><span class="label">Try it</span><span>Top spenders</span></div>
-          <textarea spellcheck="false">SELECT c.name, c.city, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC LIMIT 5;</textarea>
+          <textarea spellcheck="false">SELECT
+  c.name,
+  c.city,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o
+  ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY total_spent DESC
+LIMIT 5;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1630,9 +1882,27 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>📦 Best-selling products</h3>
-        <div class="playground" data-query="SELECT p.name, p.category, SUM(o.quantity) AS units_sold, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name ORDER BY revenue DESC;">
+        <div class="playground" data-query="SELECT
+  p.name,
+  p.category,
+  SUM(o.quantity) AS units_sold,
+  SUM(o.amount) AS revenue
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+GROUP BY p.name
+ORDER BY revenue DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Product performance</span></div>
-          <textarea spellcheck="false">SELECT p.name, p.category, SUM(o.quantity) AS units_sold, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name ORDER BY revenue DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  p.name,
+  p.category,
+  SUM(o.quantity) AS units_sold,
+  SUM(o.amount) AS revenue
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+GROUP BY p.name
+ORDER BY revenue DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1647,7 +1917,14 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
           <p>Build a report showing total revenue by product category.</p>
-          <div class="playground" data-query="SELECT p.category, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category ORDER BY revenue DESC;">
+          <div class="playground" data-query="SELECT
+  p.category,
+  SUM(o.amount) AS revenue
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+GROUP BY p.category
+ORDER BY revenue DESC;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1661,7 +1938,16 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
           <p>Find customers who haven't ordered since June 2024.</p>
-          <div class="playground" data-query="SELECT c.name, c.email, MAX(o.order_date) AS last_order FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.name HAVING last_order < '2024-06-01' OR last_order IS NULL;">
+          <div class="playground" data-query="SELECT
+  c.name,
+  c.email,
+  MAX(o.order_date) AS last_order
+FROM customers c
+LEFT JOIN orders o
+  ON c.id = o.customer_id
+GROUP BY c.name
+HAVING last_order < '2024-06-01'
+  OR last_order IS NULL;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1683,9 +1969,27 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Subquery in WHERE</h3>
-        <div class="playground" data-query="SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);">
+        <div class="playground" data-query="SELECT
+  name,
+  email
+FROM customers
+WHERE id IN (
+  SELECT customer_id
+  FROM orders
+  GROUP BY customer_id
+  HAVING SUM(amount) > 300
+);">
           <div class="playground-header"><span class="label">Try it</span><span>Customers who spent more than $300 total</span></div>
-          <textarea spellcheck="false">SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  email
+FROM customers
+WHERE id IN (
+  SELECT customer_id
+  FROM orders
+  GROUP BY customer_id
+  HAVING SUM(amount) > 300
+);</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1694,9 +1998,29 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Subquery in FROM</h3>
-        <div class="playground" data-query="SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) AS sub WHERE avg_price > 100;">
+        <div class="playground" data-query="SELECT
+  category,
+  avg_price
+FROM (
+  SELECT
+    category,
+    AVG(price) AS avg_price
+  FROM products
+  GROUP BY category
+) AS sub
+WHERE avg_price > 100;">
           <div class="playground-header"><span class="label">Try it</span><span>Categories with average price above $100</span></div>
-          <textarea spellcheck="false">SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) AS sub WHERE avg_price > 100;</textarea>
+          <textarea spellcheck="false">SELECT
+  category,
+  avg_price
+FROM (
+  SELECT
+    category,
+    AVG(price) AS avg_price
+  FROM products
+  GROUP BY category
+) AS sub
+WHERE avg_price > 100;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1711,7 +2035,13 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
           <p>Find products that have never been ordered.</p>
-          <div class="playground" data-query="SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);">
+          <div class="playground" data-query="SELECT
+  name
+FROM products
+WHERE id NOT IN (
+  SELECT DISTINCT product_id
+  FROM orders
+);">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1725,7 +2055,15 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
           <p>Find customers who have placed more than 2 orders.</p>
-          <div class="playground" data-query="SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) > 2);">
+          <div class="playground" data-query="SELECT
+  name
+FROM customers
+WHERE id IN (
+  SELECT customer_id
+  FROM orders
+  GROUP BY customer_id
+  HAVING COUNT(*) > 2
+);">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1746,9 +2084,25 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Simple CASE</h3>
-        <div class="playground" data-query="SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;">
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  CASE
+    WHEN price > 200 THEN 'Premium'
+    WHEN price > 50 THEN 'Standard'
+    ELSE 'Budget'
+  END AS price_tier
+FROM products;">
           <div class="playground-header"><span class="label">Try it</span><span>Label products by price tier</span></div>
-          <textarea spellcheck="false">SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price,
+  CASE
+    WHEN price > 200 THEN 'Premium'
+    WHEN price > 50 THEN 'Standard'
+    ELSE 'Budget'
+  END AS price_tier
+FROM products;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1757,9 +2111,21 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Conditional aggregation</h3>
-        <div class="playground" data-query="SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;">
+        <div class="playground" data-query="SELECT
+  city,
+  COUNT(*) AS total_customers,
+  COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024,
+  COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024
+FROM customers
+GROUP BY city;">
           <div class="playground-header"><span class="label">Try it</span><span>Split customer count by signup year per city</span></div>
-          <textarea spellcheck="false">SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;</textarea>
+          <textarea spellcheck="false">SELECT
+  city,
+  COUNT(*) AS total_customers,
+  COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024,
+  COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024
+FROM customers
+GROUP BY city;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1774,7 +2140,15 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
           <p>Label orders as Small (&lt;$100), Medium ($100-$300), or Large (&gt;$300). Show order id, amount, and label.</p>
-          <div class="playground" data-query="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;">
+          <div class="playground" data-query="SELECT
+  id,
+  amount,
+  CASE
+    WHEN amount < 100 THEN 'Small'
+    WHEN amount <= 300 THEN 'Medium'
+    ELSE 'Large'
+  END AS size
+FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1788,7 +2162,12 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
           <p>Count customers per city, split by email domain (gmail vs others).</p>
-          <div class="playground" data-query="SELECT city, COUNT(CASE WHEN email LIKE '%@gmail.com' THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE '%@gmail.com' THEN 1 END) AS other FROM customers GROUP BY city;">
+          <div class="playground" data-query="SELECT
+  city,
+  COUNT(CASE WHEN email LIKE '%@gmail.com' THEN 1 END) AS gmail,
+  COUNT(CASE WHEN email NOT LIKE '%@gmail.com' THEN 1 END) AS other
+FROM customers
+GROUP BY city;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1809,9 +2188,25 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>ROW_NUMBER — rank within a group</h3>
-        <div class="playground" data-query="SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;">
+        <div class="playground" data-query="SELECT
+  name,
+  category,
+  price,
+  ROW_NUMBER() OVER (
+    PARTITION BY category
+    ORDER BY price DESC
+  ) AS rank_in_category
+FROM products;">
           <div class="playground-header"><span class="label">Try it</span><span>Rank products by price within each category</span></div>
-          <textarea spellcheck="false">SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  category,
+  price,
+  ROW_NUMBER() OVER (
+    PARTITION BY category
+    ORDER BY price DESC
+  ) AS rank_in_category
+FROM products;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1820,9 +2215,25 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>RANK and DENSE_RANK</h3>
-        <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+        <div class="playground" data-query="SELECT
+  name,
+  department,
+  salary,
+  RANK() OVER (
+    PARTITION BY department
+    ORDER BY salary DESC
+  ) AS salary_rank
+FROM employees;">
           <div class="playground-header"><span class="label">Try it</span><span>Rank employees by salary within each department</span></div>
-          <textarea spellcheck="false">SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  department,
+  salary,
+  RANK() OVER (
+    PARTITION BY department
+    ORDER BY salary DESC
+  ) AS salary_rank
+FROM employees;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1835,9 +2246,21 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Running total</h3>
-        <div class="playground" data-query="SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;">
+        <div class="playground" data-query="SELECT
+  order_date,
+  amount,
+  SUM(amount) OVER (
+    ORDER BY order_date
+  ) AS running_total
+FROM orders;">
           <div class="playground-header"><span class="label">Try it</span><span>Cumulative revenue over time</span></div>
-          <textarea spellcheck="false">SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;</textarea>
+          <textarea spellcheck="false">SELECT
+  order_date,
+  amount,
+  SUM(amount) OVER (
+    ORDER BY order_date
+  ) AS running_total
+FROM orders;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1846,9 +2269,27 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>LAG — compare to previous row</h3>
-        <div class="playground" data-query="SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;">
+        <div class="playground" data-query="SELECT
+  order_date,
+  amount,
+  LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS previous_order,
+  amount - LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS change
+FROM orders;">
           <div class="playground-header"><span class="label">Try it</span><span>Compare each order to the previous one</span></div>
-          <textarea spellcheck="false">SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;</textarea>
+          <textarea spellcheck="false">SELECT
+  order_date,
+  amount,
+  LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS previous_order,
+  amount - LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS change
+FROM orders;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1863,7 +2304,15 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
           <p>Rank employees by salary within their department. Show name, department, salary, and rank.</p>
-          <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+          <div class="playground" data-query="SELECT
+  name,
+  department,
+  salary,
+  RANK() OVER (
+    PARTITION BY department
+    ORDER BY salary DESC
+  ) AS salary_rank
+FROM employees;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1877,7 +2326,15 @@ ORDER BY c.name;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
           <p>Show each order with a running total of revenue per customer.</p>
-          <div class="playground" data-query="SELECT customer_id, order_date, amount, SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total FROM orders;">
+          <div class="playground" data-query="SELECT
+  customer_id,
+  order_date,
+  amount,
+  SUM(amount) OVER (
+    PARTITION BY customer_id
+    ORDER BY order_date
+  ) AS running_total
+FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1898,16 +2355,34 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Basic CTE</h3>
-        <div class="playground" data-query="WITH customer_totals AS (SELECT customer_id, SUM(amount) AS total_spent FROM orders GROUP BY customer_id) SELECT c.name, ct.total_spent FROM customer_totals ct JOIN customers c ON ct.customer_id = c.id ORDER BY ct.total_spent DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Customer spending totals using a CTE</span></div>
-          <textarea spellcheck="false">WITH customer_totals AS (
-  SELECT customer_id, SUM(amount) AS total_spent
+        <div class="playground" data-query="WITH customer_totals AS (
+  SELECT
+    customer_id,
+    SUM(amount) AS total_spent
   FROM orders
   GROUP BY customer_id
 )
-SELECT c.name, ct.total_spent
+SELECT
+  c.name,
+  ct.total_spent
 FROM customer_totals ct
-JOIN customers c ON ct.customer_id = c.id
+JOIN customers c
+  ON ct.customer_id = c.id
+ORDER BY ct.total_spent DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Customer spending totals using a CTE</span></div>
+          <textarea spellcheck="false">WITH customer_totals AS (
+  SELECT
+    customer_id,
+    SUM(amount) AS total_spent
+  FROM orders
+  GROUP BY customer_id
+)
+SELECT
+  c.name,
+  ct.total_spent
+FROM customer_totals ct
+JOIN customers c
+  ON ct.customer_id = c.id
 ORDER BY ct.total_spent DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1917,19 +2392,52 @@ ORDER BY ct.total_spent DESC;</textarea>
         </div>
 
         <h3>Multiple CTEs</h3>
-        <div class="playground" data-query="WITH monthly_revenue AS (SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue FROM orders GROUP BY month), avg_monthly AS (SELECT AVG(revenue) AS avg_rev FROM monthly_revenue) SELECT mr.month, mr.revenue, am.avg_rev, CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance FROM monthly_revenue mr, avg_monthly am ORDER BY mr.month;">
-          <div class="playground-header"><span class="label">Try it</span><span>Monthly revenue vs average</span></div>
-          <textarea spellcheck="false">WITH monthly_revenue AS (
-  SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue
+        <div class="playground" data-query="WITH monthly_revenue AS (
+  SELECT
+    strftime('%Y-%m', order_date) AS month,
+    SUM(amount) AS revenue
   FROM orders
   GROUP BY month
 ),
 avg_monthly AS (
-  SELECT AVG(revenue) AS avg_rev FROM monthly_revenue
+  SELECT
+    AVG(revenue) AS avg_rev
+  FROM monthly_revenue
 )
-SELECT mr.month, mr.revenue, am.avg_rev,
-  CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance
-FROM monthly_revenue mr, avg_monthly am
+SELECT
+  mr.month,
+  mr.revenue,
+  am.avg_rev,
+  CASE
+    WHEN mr.revenue > am.avg_rev THEN 'Above average'
+    ELSE 'Below average'
+  END AS performance
+FROM monthly_revenue mr,
+  avg_monthly am
+ORDER BY mr.month;">
+          <div class="playground-header"><span class="label">Try it</span><span>Monthly revenue vs average</span></div>
+          <textarea spellcheck="false">WITH monthly_revenue AS (
+  SELECT
+    strftime('%Y-%m', order_date) AS month,
+    SUM(amount) AS revenue
+  FROM orders
+  GROUP BY month
+),
+avg_monthly AS (
+  SELECT
+    AVG(revenue) AS avg_rev
+  FROM monthly_revenue
+)
+SELECT
+  mr.month,
+  mr.revenue,
+  am.avg_rev,
+  CASE
+    WHEN mr.revenue > am.avg_rev THEN 'Above average'
+    ELSE 'Below average'
+  END AS performance
+FROM monthly_revenue mr,
+  avg_monthly am
 ORDER BY mr.month;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1945,7 +2453,20 @@ ORDER BY mr.month;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
           <p>Refactor: Find customers who spent more than $300 using a CTE instead of a subquery.</p>
-          <div class="playground" data-query="WITH spending AS (SELECT customer_id, SUM(amount) AS total FROM orders GROUP BY customer_id HAVING total > 300) SELECT c.name, s.total FROM spending s JOIN customers c ON s.customer_id = c.id;">
+          <div class="playground" data-query="WITH spending AS (
+  SELECT
+    customer_id,
+    SUM(amount) AS total
+  FROM orders
+  GROUP BY customer_id
+  HAVING total > 300
+)
+SELECT
+  c.name,
+  s.total
+FROM spending s
+JOIN customers c
+  ON s.customer_id = c.id;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1959,7 +2480,27 @@ ORDER BY mr.month;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
           <p>Build a report: top 3 products by revenue per category using a CTE.</p>
-          <div class="playground" data-query="WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;">
+          <div class="playground" data-query="WITH product_revenue AS (
+  SELECT
+    p.category,
+    p.name,
+    SUM(o.amount) AS revenue
+  FROM orders o
+  JOIN products p
+    ON o.product_id = p.id
+  GROUP BY p.category,
+    p.name
+)
+SELECT *
+FROM product_revenue pr1
+WHERE 3 > (
+  SELECT COUNT(*)
+  FROM product_revenue pr2
+  WHERE pr2.category = pr1.category
+    AND pr2.revenue > pr1.revenue
+)
+ORDER BY category,
+  revenue DESC;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
