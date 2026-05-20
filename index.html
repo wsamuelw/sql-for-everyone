@@ -349,7 +349,10 @@
 
     .playground textarea {
       width: 100%;
-      min-height: 100px;
+      min-height: auto;
+      max-height: 400px;
+      overflow-y: auto;
+      resize: none;
       background: #0d0f14;
       color: #e2e4ef;
       font-family: var(--mono);
@@ -357,7 +360,6 @@
       line-height: 1.6;
       padding: 16px 20px;
       border: none;
-      resize: vertical;
       outline: none;
     }
 
@@ -1059,12 +1061,18 @@
       }
     }
 
+    function autoResizeTextarea(ta) {
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    }
+
     function resetPlayground(btn) {
       const playground = btn.closest('.playground');
       const textarea = playground.querySelector('textarea');
       const resultArea = playground.querySelector('.result-area');
       const original = playground.getAttribute('data-query');
       if (original) textarea.value = original;
+      autoResizeTextarea(textarea);
       resultArea.innerHTML = '';
     }
 
@@ -1099,6 +1107,13 @@
             if (btn) runPlayground(btn);
           }
         });
+
+        // Auto-resize to fit content
+        ta.style.height = 'auto';
+        ta.style.height = ta.scrollHeight + 'px';
+
+        // Also resize when content changes (e.g. reset)
+        ta.addEventListener('input', () => autoResizeTextarea(ta));
       });
     }
 
@@ -2708,6 +2723,10 @@ ORDER BY category,
         renderNav();
         updateProgress();
         attachPlaygroundHandlers(content);
+        // Auto-resize all textareas to fit their content
+        content.querySelectorAll('.playground textarea').forEach(ta => {
+          autoResizeTextarea(ta);
+        });
         content.querySelectorAll('.result-area').forEach(el => {
           el.setAttribute('aria-live', 'polite');
         });
