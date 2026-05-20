@@ -13,36 +13,54 @@
       --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
-      /* Light theme (default) */
-      --bg: #ffffff;
-      --surface: #f8f9fa;
-      --surface2: #e9ecef;
-      --border: #dee2e6;
-      --text: #212529;
-      --text-dim: #6c757d;
-      --accent: #4a6ae0;
-      --green: #22c55e;
-      --orange: #fb923c;
-      --red: #f87171;
-      --yellow: #facc15;
-      --pink: #f472b6;
-      --cyan: #22d3ee;
+      /* Light theme */
+      --bg: oklch(1.0 0 0);
+      --surface: oklch(0.97 0.002 260);
+      --surface2: oklch(0.93 0.005 260);
+      --border: oklch(0.90 0.005 260);
+      --text: oklch(0.15 0.01 260);
+      --text-dim: oklch(0.50 0.01 260);
+      --accent: oklch(0.52 0.15 260);
+      --accent-dim: oklch(0.45 0.12 260);
+      --green: oklch(0.72 0.19 145);
+      --green-dim: oklch(0.55 0.15 145);
+      --orange: oklch(0.75 0.15 55);
+      --red: oklch(0.65 0.20 25);
+      --yellow: oklch(0.85 0.16 85);
+      --pink: oklch(0.70 0.14 350);
+      --cyan: oklch(0.78 0.12 195);
+
+      /* Spacing scale */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+
+      --radius: 10px;
     }
 
     [data-theme="dark"] {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #232736;
-      --border: #2d3148;
-      --text: #e2e4ef;
-      --text-dim: #8b8fa8;
-      --accent: #4a6ae0;
-      --green: #22c55e;
-      --orange: #fb923c;
-      --red: #f87171;
-      --yellow: #facc15;
-      --pink: #f472b6;
-      --cyan: #22d3ee;
+      color-scheme: dark;
+      --bg: oklch(0.13 0.015 260);
+      --surface: oklch(0.17 0.015 260);
+      --surface2: oklch(0.21 0.018 260);
+      --border: oklch(0.28 0.015 260);
+      --text: oklch(0.90 0.01 260);
+      --text-dim: oklch(0.55 0.01 260);
+      --accent: oklch(0.60 0.15 260);
+      --accent-dim: oklch(0.50 0.12 260);
+      --green: oklch(0.75 0.19 145);
+      --green-dim: oklch(0.60 0.15 145);
+      --orange: oklch(0.78 0.15 55);
+      --red: oklch(0.70 0.20 25);
+      --yellow: oklch(0.88 0.16 85);
+      --pink: oklch(0.73 0.14 350);
+      --cyan: oklch(0.80 0.12 195);
     }
 
     /* ========== Reset & Base ========== */
@@ -56,7 +74,7 @@
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.8;
       transition: background 0.3s, color 0.3s;
     }
 
@@ -172,6 +190,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      min-height: 44px;
     }
 
     .theme-toggle:hover {
@@ -181,8 +200,8 @@
 
     /* ========== Main Content ========== */
     .main {
-      padding: 40px 48px;
-      max-width: 960px;
+      padding: 56px 48px 80px;
+      max-width: 1100px;
       position: relative;
     }
 
@@ -206,7 +225,7 @@
 
     /* ========== Lesson Content ========== */
     .lesson h2 {
-      font-size: 28px;
+      font-size: clamp(1.75rem, 2.5vw + 1rem, 2rem);
       font-weight: 700;
       background: linear-gradient(135deg, var(--accent), var(--pink));
       -webkit-background-clip: text;
@@ -222,9 +241,10 @@
     }
 
     .lesson h3 {
-      font-size: 18px;
+      font-size: clamp(1.125rem, 1.5vw + 0.75rem, 1.25rem);
+      line-height: 1.3;
       font-weight: 600;
-      margin: 28px 0 12px;
+      margin: 40px 0 16px;
       color: var(--text);
     }
 
@@ -233,13 +253,22 @@
       line-height: 1.7;
     }
 
+    .lesson li {
+      margin-bottom: 10px;
+    }
+
+    .lesson ul, .lesson ol {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+
     /* ========== Concept Boxes ========== */
     .concept-box {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px 24px;
-      margin-bottom: 20px;
+      padding: 24px 28px;
+      margin: 28px 0;
       position: relative;
     }
 
@@ -294,7 +323,7 @@
       line-height: 1.6;
       color: #e2e4ef;
       overflow-x: auto;
-      margin-bottom: 20px;
+      margin: 24px 0;
       white-space: pre;
     }
 
@@ -304,7 +333,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 20px;
+      margin: 32px 0;
     }
 
     .playground-header {
@@ -336,6 +365,11 @@
       color: #555;
     }
 
+    .playground textarea:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--accent);
+    }
+
     .playground-actions {
       display: flex;
       gap: 8px;
@@ -345,14 +379,14 @@
 
     /* ========== Buttons ========== */
     .btn {
-      padding: 8px 20px;
+      padding: 12px 20px;
       border-radius: 6px;
       font-size: 13px;
       font-weight: 600;
       font-family: var(--font);
       cursor: pointer;
       border: none;
-      transition: all 0.15s;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, all 0.15s;
     }
 
     .btn-run {
@@ -361,7 +395,13 @@
     }
 
     .btn-run:hover {
-      filter: brightness(1.1);
+      box-shadow: 0 0 16px oklch(0.72 0.19 145 / 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-run:active {
+      transform: scale(0.97);
+      box-shadow: none;
     }
 
     .btn-reset {
@@ -373,6 +413,11 @@
     .btn-reset:hover {
       background: var(--surface2);
       color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .btn-reset:active {
+      transform: scale(0.97);
     }
 
     .btn-hint {
@@ -383,6 +428,11 @@
 
     .btn-hint:hover {
       background: rgba(250, 204, 21, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-hint:active {
+      transform: scale(0.97);
     }
 
     .btn-outline {
@@ -473,7 +523,32 @@
       border: 1px solid var(--accent);
       border-radius: 10px;
       padding: 20px 24px;
-      margin-bottom: 20px;
+      margin: 32px 0;
+    }
+
+    .exercise p {
+      margin-bottom: 16px;
+    }
+
+    /* ========== Layered Shadows ========== */
+    .playground, .concept-box, .exercise {
+      box-shadow: 0 1px 3px oklch(0 0 0 / 0.04), 0 6px 16px oklch(0 0 0 / 0.06);
+    }
+
+    [data-theme="dark"] .playground,
+    [data-theme="dark"] .concept-box,
+    [data-theme="dark"] .exercise {
+      box-shadow: 0 1px 3px oklch(0 0 0 / 0.2), 0 8px 24px oklch(0 0 0 / 0.3);
+    }
+
+    .sidebar {
+      box-shadow: 2px 0 12px oklch(0 0 0 / 0.05);
+    }
+
+    [data-theme="dark"] .sidebar {
+      box-shadow: 2px 0 16px oklch(0 0 0 / 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .challenge-badge {
@@ -527,6 +602,11 @@
     .btn-nav:hover {
       background: var(--surface);
       color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .btn-nav:active {
+      transform: scale(0.97);
     }
 
     .btn-nav.primary {
@@ -543,8 +623,8 @@
     .lesson-nav-bottom {
       display: flex;
       justify-content: space-between;
-      margin-top: 48px;
-      padding-top: 24px;
+      margin-top: 64px;
+      padding-top: 32px;
       border-top: 1px solid var(--border);
     }
 
@@ -557,7 +637,7 @@
       border-radius: 8px;
       color: #e2e4ef;
       overflow-x: auto;
-      margin-bottom: 20px;
+      margin: 24px 0;
       white-space: pre;
     }
 
@@ -613,6 +693,26 @@
 
     .lesson {
       animation: fadeIn 0.3s ease;
+    }
+
+    /* ========== Loading Overlay ========== */
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ========== Scroll-Driven Animations ========== */
+    .concept-box, .playground, .exercise, .schema-display, .code-block {
+      animation: fadeInUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== Command Palette ========== */
+    .cmd-item:hover {
+      background: var(--surface2) !important;
     }
 
     /* ========== Print Styles ========== */
@@ -675,6 +775,22 @@
         left: 0;
       }
     }
+
+    /* ========== Reduced Motion ========== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ========== Focus Visible ========== */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -707,6 +823,10 @@
 
       <div id="lessonContent">
         <!-- Populated by JS -->
+      </div>
+      <div id="loadingOverlay" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:200;flex-direction:column;gap:16px;">
+        <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <p style="color:var(--text-dim);font-family:var(--font);font-size:14px;">Loading database...</p>
       </div>
     </main>
   </div>
@@ -932,6 +1052,7 @@
         html += '</tbody></table>';
         html += '<div class="result-meta">' + res.values.length + ' row' + (res.values.length !== 1 ? 's' : '') + ' returned</div>';
         resultArea.innerHTML = html;
+        resultArea.setAttribute('aria-label', 'Query results');
         markLessonComplete();
       } catch (err) {
         resultArea.innerHTML = '<div class="message error">Error: ' + escapeHtml(err.message) + '</div>';
@@ -1993,7 +2114,15 @@ ORDER BY mr.month;</textarea>
     ];
 
     let currentLesson = 0;
-    const completedLessons = new Set();
+    let completedLessons = new Set();
+
+    // Load from localStorage
+    try {
+      const saved = JSON.parse(localStorage.getItem('sql-course-progress') || '[]');
+      completedLessons = new Set(saved);
+    } catch(e) {
+      completedLessons = new Set();
+    }
 
     // ========== Navigation ==========
     function renderNav() {
@@ -2016,29 +2145,35 @@ ORDER BY mr.month;</textarea>
     });
 
     function renderLesson() {
-      const content = document.getElementById('lessonContent');
+      const doRender = () => {
+        const content = document.getElementById('lessonContent');
+        let html = lessons[currentLesson].content();
 
-      let html = lessons[currentLesson].content();
+        // Navigation buttons
+        html += '<div class="lesson-nav-bottom">';
+        if (currentLesson > 0) {
+          html += '<button class="btn-nav" onclick="goToLesson(' + (currentLesson - 1) + ')">&larr; Previous</button>';
+        } else {
+          html += '<div></div>';
+        }
+        if (currentLesson < lessons.length - 1) {
+          html += '<button class="btn-nav primary" onclick="goToLesson(' + (currentLesson + 1) + ')">Next &rarr;</button>';
+        } else {
+          html += '<div></div>';
+        }
+        html += '</div>';
 
-      // Navigation buttons
-      html += '<div class="lesson-nav-bottom">';
-      if (currentLesson > 0) {
-        html += '<button class="btn-nav" onclick="goToLesson(' + (currentLesson - 1) + ')">&larr; Previous</button>';
-      } else {
-        html += '<div></div>';
-      }
-      if (currentLesson < lessons.length - 1) {
-        html += '<button class="btn-nav primary" onclick="goToLesson(' + (currentLesson + 1) + ')">Next &rarr;</button>';
-      } else {
-        html += '<div></div>';
-      }
-      html += '</div>';
+        content.innerHTML = html;
+        renderNav();
+        updateProgress();
+        attachPlaygroundHandlers(content);
+        content.querySelectorAll('.result-area').forEach(el => {
+          el.setAttribute('aria-live', 'polite');
+        });
+        window.scrollTo(0, 0);
+      };
 
-      content.innerHTML = html;
-      renderNav();
-      updateProgress();
-      attachPlaygroundHandlers(content);
-      window.scrollTo(0, 0);
+      doRender();
     }
 
     function goToLesson(i) {
@@ -2054,6 +2189,8 @@ ORDER BY mr.month;</textarea>
 
     function markLessonComplete() {
       completedLessons.add(currentLesson);
+      // Persist to localStorage
+      localStorage.setItem('sql-course-progress', JSON.stringify([...completedLessons]));
       renderNav();
       updateProgress();
 
@@ -2175,9 +2312,77 @@ ORDER BY mr.month;</textarea>
 
     // ========== Init ==========
     initDatabase().then(() => {
+      document.getElementById('loadingOverlay').style.display = 'none';
       renderLesson();
     }).catch(err => {
       console.error('Failed to initialize database:', err);
+      document.getElementById('loadingOverlay').innerHTML = '<p style="color:var(--red);font-family:var(--font);font-size:14px;">Failed to load database. Please refresh the page.</p>';
+    });
+  </script>
+
+  <div id="commandPalette" style="display:none;position:fixed;inset:0;z-index:300;background:oklch(0 0 0 / 0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:15vh;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);width:480px;max-width:90vw;box-shadow:0 16px 64px oklch(0 0 0 / 0.2);overflow:hidden;">
+      <input id="cmdInput" type="text" placeholder="Search lessons..." style="width:100%;padding:16px 20px;border:none;border-bottom:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--font);font-size:15px;outline:none;box-sizing:border-box;">
+      <div id="cmdResults" style="max-height:300px;overflow-y:auto;"></div>
+    </div>
+  </div>
+
+  <script>
+    // Command palette
+    const cmdPalette = document.getElementById('commandPalette');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdResults = document.getElementById('cmdResults');
+
+    function openCommandPalette() {
+      cmdPalette.style.display = 'flex';
+      cmdInput.value = '';
+      filterCommandPalette();
+      setTimeout(() => cmdInput.focus(), 50);
+    }
+
+    function closeCommandPalette() {
+      cmdPalette.style.display = 'none';
+    }
+
+    function filterCommandPalette() {
+      const query = cmdInput.value.toLowerCase();
+      const filtered = lessons
+        .map((l, i) => ({ ...l, index: i }))
+        .filter(l => l.title.toLowerCase().includes(query) || l.id.toLowerCase().includes(query));
+
+      cmdResults.innerHTML = filtered.map(l =>
+        '<div class="cmd-item" onclick="goToLesson(' + l.index + ');closeCommandPalette();" style="padding:12px 20px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background 0.1s;' + (l.index === currentLesson ? 'background:var(--surface2);' : '') + '">'
+        + '<span style="font-size:18px;">' + l.icon + '</span>'
+        + '<span style="color:var(--text);font-size:14px;">' + l.title + '</span>'
+        + (l.index === currentLesson ? '<span style="margin-left:auto;font-size:11px;color:var(--accent);">Current</span>' : '')
+        + '</div>'
+      ).join('');
+    }
+
+    cmdPalette.addEventListener('click', (e) => {
+      if (e.target === cmdPalette) closeCommandPalette();
+    });
+
+    cmdInput.addEventListener('input', filterCommandPalette);
+
+    cmdInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCommandPalette();
+      if (e.key === 'Enter') {
+        const first = cmdResults.querySelector('.cmd-item');
+        if (first) first.click();
+      }
+    });
+
+    // Keyboard shortcut
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (cmdPalette.style.display === 'flex') {
+          closeCommandPalette();
+        } else {
+          openCommandPalette();
+        }
+      }
     });
   </script>
 </body>
