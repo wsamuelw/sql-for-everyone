@@ -1264,7 +1264,26 @@ WHERE price > 100
           <div class="result-area"></div>
         </div>
 
-        <h3>Multiple conditions: AND / OR</h3>
+        <h3>BETWEEN: range filter</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+WHERE price BETWEEN 50 AND 150;">
+          <div class="playground-header"><span class="label">Try it</span><span>Products between $50 and $150</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+WHERE price BETWEEN 50 AND 150;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Multiple conditions: AND</h3>
         <div class="playground" data-query="SELECT
   name,
   price,
