@@ -56,6 +56,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ========== Layout ========== */
@@ -193,8 +194,8 @@
 
     /* ========== Lesson Content ========== */
     .lesson h2 {
-      font-size: clamp(1.75rem, 2.5vw + 1rem, 2rem);
-      font-weight: 700;
+      font-size: 32px;
+      font-weight: 600;
       letter-spacing: -0.02em;
       color: var(--text);
       margin-bottom: 8px;
@@ -202,8 +203,8 @@
 
     .lesson .subtitle {
       color: var(--text-dim);
-      font-size: 15px;
-      margin-bottom: 40px;
+      font-size: 16px;
+      margin-bottom: 48px;
     }
 
     .lesson h3 {
@@ -216,7 +217,7 @@
 
     .lesson p {
       margin-bottom: 16px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     .lesson li {
@@ -240,17 +241,19 @@
       border: none;
       border-left: 3px solid var(--border);
       border-radius: 0;
-      padding: 20px 24px;
-      margin: 28px 0;
+      padding: 0 0 0 20px;
+      margin-bottom: 48px;
       position: relative;
     }
 
     .concept-box::before {
       display: block;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
       margin-bottom: 8px;
-      color: var(--text);
     }
 
     .concept-box.analogy {
@@ -258,7 +261,7 @@
     }
 
     .concept-box.analogy::before {
-      content: "\1F4A1  Think of it like this";
+      content: "Think of it like this";
     }
 
     .concept-box.why {
@@ -266,7 +269,7 @@
     }
 
     .concept-box.why::before {
-      content: "\1F3AF  Why this matters";
+      content: "Why this matters";
     }
 
     .concept-box.tip {
@@ -274,7 +277,7 @@
     }
 
     .concept-box.tip::before {
-      content: "\2705  Pro tip";
+      content: "Pro tip";
     }
 
     .concept-box.warning {
@@ -282,7 +285,7 @@
     }
 
     .concept-box.warning::before {
-      content: "\26A0\FE0F  Watch out";
+      content: "Watch out";
     }
 
     /* ========== Code Blocks ========== */
@@ -303,12 +306,11 @@
 
     /* ========== Playground ========== */
     .playground {
-      background: var(--bg);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 0;
       overflow: hidden;
-      margin: 32px 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 48px;
     }
 
     .playground-header {
@@ -316,7 +318,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 16px;
-      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
       font-size: 13px;
       font-weight: 500;
       color: var(--text-dim);
@@ -371,6 +374,8 @@
       background: var(--text);
       color: #ffffff;
       border: none;
+      padding: 10px 24px;
+      font-size: 14px;
     }
 
     .btn-run:hover {
@@ -441,20 +446,24 @@
       width: 100%;
       border-collapse: collapse;
       font-family: var(--mono);
-      font-size: 13px;
+      font-size: 14px;
+      margin-bottom: 48px;
     }
 
     .result-table th {
-      background: var(--surface);
-      color: var(--text);
-      padding: 8px 14px;
+      background: transparent;
+      color: var(--text-dim);
+      padding: 10px 16px;
       text-align: left;
       font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
       border-bottom: 1px solid var(--border);
     }
 
     .result-table td {
-      padding: 7px 14px;
+      padding: 10px 16px;
       border-bottom: 1px solid var(--border);
       color: var(--text);
     }
@@ -463,8 +472,8 @@
       background: var(--surface);
     }
 
-    .result-table tr:hover td {
-      background: var(--surface2);
+    .result-table tr:nth-child(odd) td {
+      background: var(--bg);
     }
 
     .result-table .null-val {
@@ -473,8 +482,11 @@
     }
 
     .result-meta {
-      padding: 8px 16px;
-      font-size: 12px;
+      padding: 12px 16px 0;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--text-dim);
     }
 
@@ -484,8 +496,8 @@
       border: none;
       border-left: 3px solid var(--text);
       border-radius: 0;
-      padding: 20px 24px;
-      margin: 32px 0;
+      padding: 0 0 0 20px;
+      margin-bottom: 48px;
     }
 
     .exercise p {
@@ -525,9 +537,10 @@
     .nav-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 48px;
-      padding-top: 24px;
+      gap: 16px;
+      padding-top: 16px;
       border-top: 1px solid var(--border);
+      margin-top: 16px;
     }
 
     .btn-nav {
@@ -548,7 +561,7 @@
     }
 
     .btn-nav:hover {
-      border-color: var(--text);
+      background: var(--surface);
     }
 
     .btn-nav.primary {
