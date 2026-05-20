@@ -304,7 +304,6 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 0;
-      overflow: hidden;
       margin-bottom: 48px;
       box-shadow: none;
     }
@@ -1044,8 +1043,10 @@
     }
 
     function showHint(btn, hint) {
-      const playground = btn.closest('.playground') || btn.closest('.exercise').querySelector('.playground');
+      const playground = btn.closest('.playground');
+      if (!playground) return;
       const resultArea = playground.querySelector('.result-area');
+      if (!resultArea) return;
       resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
     }
 
