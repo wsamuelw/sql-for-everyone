@@ -1248,13 +1248,15 @@ WHERE city = 'Sydney';</textarea>
   name,
   price
 FROM products
-WHERE price > 100;">
-          <div class="playground-header"><span class="label">Try it</span><span>Products over $100</span></div>
+WHERE price > 100
+  AND price < 200;">
+          <div class="playground-header"><span class="label">Try it</span><span>Products between $100 and $200</span></div>
           <textarea spellcheck="false">SELECT
   name,
   price
 FROM products
-WHERE price > 100;</textarea>
+WHERE price > 100
+  AND price < 200;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
