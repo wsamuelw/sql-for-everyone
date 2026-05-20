@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,24 +13,24 @@
       --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       --mono: 'JetBrains Mono', 'SFMono-Regular', 'Cascadia Code', 'Fira Code', monospace;
 
-      /* Light theme */
-      --bg: oklch(1.0 0 0);
-      --surface: oklch(0.97 0.002 260);
-      --surface2: oklch(0.93 0.005 260);
-      --border: oklch(0.90 0.005 260);
-      --text: oklch(0.15 0.01 260);
-      --text-dim: oklch(0.50 0.01 260);
-      --accent: oklch(0.52 0.15 260);
-      --accent-dim: oklch(0.45 0.12 260);
-      --green: oklch(0.72 0.19 145);
-      --green-dim: oklch(0.55 0.15 145);
-      --orange: oklch(0.75 0.15 55);
-      --red: oklch(0.65 0.20 25);
-      --yellow: oklch(0.85 0.16 85);
-      --pink: oklch(0.70 0.14 350);
-      --cyan: oklch(0.78 0.12 195);
+      /* Clean Light theme */
+      --bg: #ffffff;
+      --surface: #fafafa;
+      --surface2: #f5f5f5;
+      --border: #eaeaea;
+      --text: #171717;
+      --text-dim: #737373;
+      --accent: #171717;
+      --accent-dim: #404040;
+      --green: #16a34a;
+      --green-dim: #15803d;
+      --orange: #ea580c;
+      --red: #dc2626;
+      --yellow: #ca8a04;
+      --pink: #db2777;
+      --cyan: #0891b2;
 
-      /* Spacing scale */
+      /* Spacing */
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
@@ -40,27 +40,7 @@
       --space-8: 32px;
       --space-10: 40px;
       --space-12: 48px;
-
-      --radius: 10px;
-    }
-
-    [data-theme="dark"] {
-      color-scheme: dark;
-      --bg: oklch(0.13 0.015 260);
-      --surface: oklch(0.17 0.015 260);
-      --surface2: oklch(0.21 0.018 260);
-      --border: oklch(0.28 0.015 260);
-      --text: oklch(0.90 0.01 260);
-      --text-dim: oklch(0.55 0.01 260);
-      --accent: oklch(0.60 0.15 260);
-      --accent-dim: oklch(0.50 0.12 260);
-      --green: oklch(0.75 0.19 145);
-      --green-dim: oklch(0.60 0.15 145);
-      --orange: oklch(0.78 0.15 55);
-      --red: oklch(0.70 0.20 25);
-      --yellow: oklch(0.88 0.16 85);
-      --pink: oklch(0.73 0.14 350);
-      --cyan: oklch(0.80 0.12 195);
+      --radius: 0px;
     }
 
     /* ========== Reset & Base ========== */
@@ -75,8 +55,7 @@
       font-weight: 400;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.8;
-      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
     }
 
     /* ========== Layout ========== */
@@ -93,11 +72,11 @@
       width: 280px;
       background: var(--surface);
       border-right: 1px solid var(--border);
+      box-shadow: none;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       z-index: 50;
-      transition: background 0.3s;
     }
 
     .sidebar-logo {
@@ -108,7 +87,7 @@
     .sidebar-logo h1 {
       font-size: 18px;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--text);
       margin-bottom: 2px;
     }
 
@@ -143,7 +122,7 @@
     }
 
     .lesson-nav li.active {
-      border-left-color: var(--accent);
+      border-left-color: var(--text);
       color: var(--text);
       background: var(--bg);
       font-weight: 600;
@@ -152,7 +131,7 @@
     .lesson-nav li .num {
       width: 22px;
       height: 22px;
-      border-radius: 50%;
+      border-radius: 0;
       background: var(--surface2);
       display: flex;
       align-items: center;
@@ -164,7 +143,7 @@
     }
 
     .lesson-nav li.active .num {
-      background: var(--accent);
+      background: var(--text);
       color: #fff;
     }
 
@@ -173,32 +152,6 @@
       color: #fff;
     }
 
-    .sidebar-footer {
-      padding: 12px 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .theme-toggle {
-      width: 100%;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: transparent;
-      color: var(--text-dim);
-      font-size: 13px;
-      font-family: var(--font);
-      cursor: pointer;
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 44px;
-    }
-
-    .theme-toggle:hover {
-      background: var(--surface2);
-      color: var(--text);
-    }
 
     /* ========== Main Content ========== */
     .main {
@@ -220,8 +173,7 @@
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--pink));
-      border-radius: 0 2px 2px 0;
+      background: var(--text);
       transition: width 0.4s ease;
     }
 
@@ -230,10 +182,7 @@
       font-size: clamp(1.75rem, 2.5vw + 1rem, 2rem);
       font-weight: 700;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--accent), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text);
       margin-bottom: 8px;
     }
 
@@ -271,7 +220,7 @@
       border: none;
       border-left: 3px solid var(--border);
       border-radius: 0;
-      padding: 24px 28px;
+      padding: 20px 24px;
       margin: 28px 0;
       position: relative;
     }
@@ -318,26 +267,28 @@
 
     /* ========== Code Blocks ========== */
     .code-block {
-      background: #0d0f14;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 0;
       padding: 16px 20px;
       font-family: var(--mono);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
-      color: #e2e4ef;
       overflow-x: auto;
+      color: var(--text);
       margin: 24px 0;
       white-space: pre;
+      box-shadow: none;
     }
 
     /* ========== Playground ========== */
     .playground {
-      background: var(--surface);
+      background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 0;
       overflow: hidden;
       margin: 32px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
     }
 
     .playground-header {
@@ -357,23 +308,24 @@
       max-height: 400px;
       overflow-y: auto;
       resize: none;
-      background: #0d0f14;
-      color: #e2e4ef;
+      background: var(--surface);
+      color: var(--text);
       font-family: var(--mono);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
-      padding: 16px 20px;
-      border: none;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 0;
       outline: none;
+      transition: border-color 0.15s;
     }
 
     .playground textarea::placeholder {
-      color: #555;
+      color: var(--text-dim);
     }
 
     .playground textarea:focus-visible {
-      outline: none;
-      box-shadow: inset 0 0 0 2px var(--accent);
+      border-color: var(--text);
     }
 
     .playground-actions {
@@ -386,28 +338,28 @@
     /* ========== Buttons ========== */
     .btn {
       padding: 12px 20px;
-      border-radius: 4px;
+      border-radius: 0;
       font-size: 13px;
       font-weight: 500;
       font-family: var(--font);
       cursor: pointer;
       border: none;
-      transition: transform 0.15s ease, box-shadow 0.2s ease, all 0.15s;
+      transition: all 0.15s;
     }
 
     .btn-run {
-      background: var(--green);
-      color: #000;
+      background: var(--text);
+      color: #ffffff;
+      border: none;
     }
 
     .btn-run:hover {
-      box-shadow: 0 0 16px oklch(0.72 0.19 145 / 0.3);
-      transform: translateY(-1px);
+      background: var(--accent-dim);
+      box-shadow: none;
     }
 
     .btn-run:active {
       transform: scale(0.97);
-      box-shadow: none;
     }
 
     .btn-reset {
@@ -417,55 +369,47 @@
     }
 
     .btn-reset:hover {
-      background: var(--surface2);
+      border-color: var(--text);
       color: var(--text);
-      transform: translateY(-1px);
-    }
-
-    .btn-reset:active {
-      transform: scale(0.97);
     }
 
     .btn-hint {
       background: transparent;
-      border: 1px solid rgba(250, 204, 21, 0.3);
-      color: var(--yellow);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
     }
 
     .btn-hint:hover {
-      background: rgba(250, 204, 21, 0.1);
-      transform: translateY(-1px);
-    }
-
-    .btn-hint:active {
-      transform: scale(0.97);
+      border-color: var(--text);
+      color: var(--text);
     }
 
 
     /* ========== Messages ========== */
     .message {
       padding: 12px 16px;
-      border-radius: 4px;
       font-size: 13px;
+      font-family: var(--mono);
+      border-radius: 0;
       margin: 0;
     }
 
-    .message.info {
-      background: rgba(34, 211, 238, 0.1);
-      border: 1px solid rgba(34, 211, 238, 0.3);
-      color: var(--cyan);
-    }
-
     .message.success {
-      background: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.3);
       color: var(--green);
+      background: transparent;
+      border: 1px solid var(--green);
     }
 
     .message.error {
-      background: rgba(248, 113, 113, 0.1);
-      border: 1px solid rgba(248, 113, 113, 0.3);
       color: var(--red);
+      background: transparent;
+      border: 1px solid var(--red);
+    }
+
+    .message.info {
+      color: var(--text-dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
 
     /* ========== Result Area ========== */
@@ -481,11 +425,12 @@
     }
 
     .result-table th {
-      background: var(--surface2);
-      color: var(--accent);
+      background: var(--surface);
+      color: var(--text);
       padding: 8px 14px;
       text-align: left;
       font-weight: 600;
+      border-bottom: 1px solid var(--border);
     }
 
     .result-table td {
@@ -517,7 +462,7 @@
     .exercise {
       background: transparent;
       border: none;
-      border-left: 3px solid var(--accent);
+      border-left: 3px solid var(--text);
       border-radius: 0;
       padding: 20px 24px;
       margin: 32px 0;
@@ -527,46 +472,33 @@
       margin-bottom: 16px;
     }
 
-    /* ========== Layered Shadows (playground only) ========== */
-    .playground {
-      box-shadow: 0 1px 3px oklch(0 0 0 / 0.04), 0 6px 16px oklch(0 0 0 / 0.06);
-    }
-
-    [data-theme="dark"] .playground {
-      box-shadow: 0 1px 3px oklch(0 0 0 / 0.2), 0 8px 24px oklch(0 0 0 / 0.3);
-    }
-
-    .sidebar {
-      box-shadow: 2px 0 12px oklch(0 0 0 / 0.05);
-    }
-
-    [data-theme="dark"] .sidebar {
-      box-shadow: 2px 0 16px oklch(0 0 0 / 0.3);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
+    /* ========== Challenge Badges ========== */
     .challenge-badge {
       display: inline-block;
       font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
       font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .challenge-badge.easy {
-      background: rgba(34, 197, 94, 0.15);
+      background: transparent;
       color: var(--green);
+      border: 1px solid var(--green);
     }
 
     .challenge-badge.medium {
-      background: rgba(250, 204, 21, 0.15);
-      color: var(--yellow);
+      background: transparent;
+      color: var(--orange);
+      border: 1px solid var(--orange);
     }
 
     .challenge-badge.hard {
-      background: rgba(248, 113, 113, 0.15);
+      background: transparent;
       color: var(--red);
+      border: 1px solid var(--red);
     }
 
     /* ========== Navigation Buttons ========== */
@@ -581,13 +513,13 @@
     .btn-nav {
       padding: 10px 24px;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 0;
       font-size: 14px;
       font-family: var(--font);
       font-weight: 500;
       cursor: pointer;
       background: transparent;
-      color: var(--text-dim);
+      color: var(--text);
       transition: all 0.15s;
       text-decoration: none;
       display: inline-flex;
@@ -596,23 +528,17 @@
     }
 
     .btn-nav:hover {
-      background: var(--surface);
-      color: var(--text);
-      transform: translateY(-1px);
-    }
-
-    .btn-nav:active {
-      transform: scale(0.97);
+      border-color: var(--text);
     }
 
     .btn-nav.primary {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
+      background: var(--text);
+      color: #ffffff;
+      border-color: var(--text);
     }
 
     .btn-nav.primary:hover {
-      filter: brightness(1.1);
+      background: var(--accent-dim);
     }
 
     /* ========== Lesson Bottom Nav ========== */
@@ -626,15 +552,18 @@
 
     /* ========== Schema Display ========== */
     .schema-display {
-      background: #0d0f14;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 16px;
+      margin: 24px 0;
       font-family: var(--mono);
       font-size: 13px;
-      padding: 16px;
-      border-radius: 4px;
-      color: #e2e4ef;
+      line-height: 1.8;
       overflow-x: auto;
-      margin: 24px 0;
+      color: var(--text);
       white-space: pre;
+      box-shadow: none;
     }
 
     /* ========== Scrollbar Styling ========== */
@@ -665,7 +594,7 @@
       z-index: 70;
       width: 40px;
       height: 40px;
-      border-radius: 8px;
+      border-radius: 0;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
@@ -756,7 +685,7 @@
 
     /* ========== Focus Visible ========== */
     :focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--text);
       outline-offset: 2px;
     }
   </style>
@@ -775,12 +704,6 @@
         <!-- Populated by JS -->
       </ul>
 
-      <div class="sidebar-footer">
-        <button class="theme-toggle" id="themeToggle">
-          <span id="themeIcon">&#9789;</span>
-          <span id="themeLabel">Dark mode</span>
-        </button>
-      </div>
     </nav>
 
     <main class="main">
@@ -792,7 +715,7 @@
         <!-- Populated by JS -->
       </div>
       <div id="loadingOverlay" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:200;flex-direction:column;gap:16px;">
-        <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--text);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
         <p style="color:var(--text-dim);font-family:var(--font);font-size:14px;">Loading database...</p>
       </div>
     </main>
@@ -2785,36 +2708,6 @@ ORDER BY category,
       }
     });
 
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
-
-    function setTheme(theme) {
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeIcon.innerHTML = '&#9788;'; // sun
-        themeLabel.textContent = 'Light mode';
-        localStorage.setItem('sql-course-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        themeIcon.innerHTML = '&#9789;'; // moon
-        themeLabel.textContent = 'Dark mode';
-        localStorage.setItem('sql-course-theme', 'light');
-      }
-    }
-
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('sql-course-theme');
-    if (savedTheme === 'dark') {
-      setTheme('dark');
-    }
-
     // ========== Init ==========
     initDatabase().then(() => {
       document.getElementById('loadingOverlay').style.display = 'none';
@@ -2825,8 +2718,8 @@ ORDER BY category,
     });
   </script>
 
-  <div id="commandPalette" style="display:none;position:fixed;inset:0;z-index:300;background:oklch(0 0 0 / 0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:15vh;">
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);width:480px;max-width:90vw;box-shadow:0 16px 64px oklch(0 0 0 / 0.2);overflow:hidden;">
+  <div id="commandPalette" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:15vh;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);width:480px;max-width:90vw;box-shadow:0 16px 64px rgba(0,0,0,0.2);overflow:hidden;">
       <input id="cmdInput" type="text" placeholder="Search lessons..." style="width:100%;padding:16px 20px;border:none;border-bottom:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--font);font-size:15px;outline:none;box-sizing:border-box;">
       <div id="cmdResults" style="max-height:300px;overflow-y:auto;"></div>
     </div>
