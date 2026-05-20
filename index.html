@@ -193,6 +193,14 @@
       transition: width 0.4s ease;
     }
 
+    /* ========== Breadcrumb ========== */
+    .breadcrumb {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
     /* ========== Lesson Content ========== */
     .lesson h2 {
       font-size: 32px;
@@ -249,6 +257,7 @@
     }
 
     .concept-box::before {
+      content: "CONCEPT";
       display: block;
       font-size: 11px;
       font-weight: 600;
@@ -259,35 +268,19 @@
     }
 
     .concept-box.analogy {
-      border-left: 3px solid var(--yellow);
-    }
-
-    .concept-box.analogy::before {
-      content: "Think of it like this";
+      border-left: 3px solid var(--border);
     }
 
     .concept-box.why {
-      border-left: 3px solid var(--cyan);
-    }
-
-    .concept-box.why::before {
-      content: "Why this matters";
+      border-left: 3px solid var(--border);
     }
 
     .concept-box.tip {
-      border-left: 3px solid var(--green);
-    }
-
-    .concept-box.tip::before {
-      content: "Pro tip";
+      border-left: 3px solid var(--border);
     }
 
     .concept-box.warning {
-      border-left: 3px solid var(--orange);
-    }
-
-    .concept-box.warning::before {
-      content: "Watch out";
+      border-left: 3px solid var(--border);
     }
 
     /* ========== Code Blocks ========== */
@@ -329,6 +322,28 @@
       font-family: var(--mono);
     }
 
+    .playground-header span {
+      display: none;
+    }
+
+    .playground-header::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      box-shadow: 12px 0 0 var(--border), 24px 0 0 var(--border);
+    }
+
+    .playground-header::after {
+      content: 'SQL';
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-dim);
+      font-family: var(--mono);
+    }
+
     .playground textarea {
       width: 100%;
       min-height: auto;
@@ -339,7 +354,7 @@
       color: var(--text);
       font-family: var(--mono);
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
       padding: 16px;
       border: 1px solid var(--border);
       border-radius: 0;
@@ -508,6 +523,15 @@
 
     .exercise p {
       margin-bottom: 16px;
+    }
+
+    .exercise-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 8px;
     }
 
     /* ========== Challenge Badges ========== */
@@ -2632,7 +2656,8 @@ ORDER BY category,
     function renderLesson() {
       const doRender = () => {
         const content = document.getElementById('lessonContent');
-        let html = lessons[currentLesson].content();
+        let html = '<div class="breadcrumb">Lesson ' + String(currentLesson + 1).padStart(2, '0') + ' of ' + String(lessons.length).padStart(2, '0') + '</div>';
+        html += lessons[currentLesson].content();
 
         // Navigation buttons
         html += '<div class="lesson-nav-bottom">';
@@ -2652,6 +2677,18 @@ ORDER BY category,
         renderNav();
         updateProgress();
         attachPlaygroundHandlers(content);
+        // Update run button text to match mockup
+        content.querySelectorAll('.btn-run').forEach(btn => {
+          btn.innerHTML = '▶ Run Query';
+        });
+        // Strip emojis from exercise titles, keep "EXERCISE" + badge
+        content.querySelectorAll('.exercise-title').forEach(el => {
+          const badge = el.querySelector('.challenge-badge');
+          const badgeHtml = badge ? badge.outerHTML : '';
+          const numMatch = el.textContent.match(/Exercise\s*(\d+)/);
+          const num = numMatch ? numMatch[1] : '';
+          el.innerHTML = 'EXERCISE' + (num ? ' ' + num : '') + ' ' + badgeHtml;
+        });
         // Auto-resize all textareas to fit their content
         content.querySelectorAll('.playground textarea').forEach(ta => {
           autoResizeTextarea(ta);
