@@ -1056,7 +1056,37 @@
       if (!playground) return;
       const resultArea = playground.querySelector('.result-area');
       if (!resultArea) return;
-      resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
+
+      const level = parseInt(btn.dataset.hintLevel || '0');
+
+      if (level === 0) {
+        // First click: show a simple nudge
+        const keywords = extractKeywords(hint);
+        resultArea.innerHTML = '<div class="message info">💡 Think about using: ' + keywords + '</div>';
+        btn.dataset.hintLevel = '1';
+      } else {
+        // Second click: show full answer
+        resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
+        btn.dataset.hintLevel = '0';
+      }
+    }
+
+    function extractKeywords(sql) {
+      const keywords = [];
+      if (sql.includes('WHERE')) keywords.push('WHERE');
+      if (sql.includes('JOIN')) keywords.push('JOIN');
+      if (sql.includes('GROUP BY')) keywords.push('GROUP BY');
+      if (sql.includes('ORDER BY')) keywords.push('ORDER BY');
+      if (sql.includes('HAVING')) keywords.push('HAVING');
+      if (sql.includes('LIMIT')) keywords.push('LIMIT');
+      if (sql.includes('SUM')) keywords.push('SUM()');
+      if (sql.includes('COUNT')) keywords.push('COUNT()');
+      if (sql.includes('AVG')) keywords.push('AVG()');
+      if (sql.includes('DATE_TRUNC')) keywords.push('DATE_TRUNC()');
+      if (sql.includes('CASE')) keywords.push('CASE WHEN');
+      if (sql.includes('WITH')) keywords.push('CTE (WITH)');
+      if (sql.includes('OVER')) keywords.push('Window function (OVER)');
+      return keywords.length ? keywords.join(', ') : 'Try breaking down the problem step by step';
     }
 
     function escapeHtml(str) {
@@ -1114,6 +1144,11 @@
           <li>Summarise with numbers — counts, totals, averages</li>
           <li>Combine data sources — connect the dots between tables</li>
         </ul>
+
+        <div class="concept-box analogy">
+          <strong>What is a database?</strong><br>
+          A database is like a collection of spreadsheets that talk to each other. Each "sheet" is called a <strong>table</strong>. Rows are individual records (like a customer or an order), and columns are the fields (like name, email, or price). SQL is how you ask questions of these tables.
+        </div>
 
         <h3>How this works</h3>
         <p>Every lesson has a live SQL editor. You'll type queries and see results instantly — right here in your browser. No setup, no accounts, no waiting.</p>
@@ -1267,6 +1302,27 @@ WHERE price > 100
 FROM products
 WHERE price > 100
   AND price < 200;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Date filtering</h3>
+        <div class="playground" data-query="SELECT
+  id,
+  amount,
+  order_date
+FROM orders
+WHERE order_date BETWEEN '2024-03-01' AND '2024-06-30';">
+          <div class="playground-header"><span class="label">Try it</span><span>Orders in Q1-Q2 2024</span></div>
+          <textarea spellcheck="false">SELECT
+  id,
+  amount,
+  order_date
+FROM orders
+WHERE order_date BETWEEN '2024-03-01' AND '2024-06-30';</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1648,13 +1704,13 @@ HAVING COUNT(*) > 2;</textarea>
 
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>How many <strong>orders</strong> and <strong>total revenue</strong> per product category? Only show categories with <strong>more than 3 orders</strong>. This tests GROUP BY, COUNT, SUM, and HAVING together.</p>
-          <div class="playground" data-query="SELECT p.category, COUNT(o.id) AS order_count, SUM(o.amount) AS total_revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category HAVING order_count > 3;">
+          <p>How many <strong>orders</strong> and <strong>total revenue</strong> per product? Only show products with <strong>more than 2 orders</strong>. This tests GROUP BY, COUNT, SUM, and HAVING together.</p>
+          <div class="playground" data-query="SELECT product_id, COUNT(*) AS order_count, SUM(amount) AS total_revenue FROM orders GROUP BY product_id HAVING order_count > 2;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.category, COUNT(o.id) AS order_count, SUM(o.amount) AS total_revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category HAVING order_count > 3;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT product_id, COUNT(*) AS order_count, SUM(amount) AS total_revenue FROM orders GROUP BY product_id HAVING order_count > 2;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1757,7 +1813,25 @@ ORDER BY total_revenue DESC;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>LEFT JOIN — keeping all records</h3>
+        <div class="concept-box tip">
+          The <strong>ON</strong> clause tells the database which columns match up. Common pattern: <code>table_a.id = table_b.table_a_id</code>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each <strong>product name</strong>, how many times it was <strong>ordered</strong>, and <strong>total revenue</strong> per product. Sort by revenue highest first. This tests JOIN, GROUP BY, COUNT, SUM, and ORDER BY together.</p>
+          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <h3>LEFT JOIN — going beyond inner joins</h3>
         <p>What if you want all products, even those that have never been ordered? An INNER JOIN only shows matches. A <strong>LEFT JOIN</strong> keeps everything from the left table, even if there's no match on the right.</p>
 
         <div class="playground" data-query="SELECT
@@ -1791,24 +1865,6 @@ ORDER BY p.name;</textarea>
 
         <div class="concept-box tip">
           <strong>INNER JOIN</strong> shows only matching rows. <strong>LEFT JOIN</strong> shows all rows from the left table, with NULLs where there's no match. Use LEFT JOIN when you want to see everything from one table regardless of whether it has matches.
-        </div>
-
-        <div class="concept-box tip">
-          The <strong>ON</strong> clause tells the database which columns match up. Common pattern: <code>table_a.id = table_b.table_a_id</code>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>Show each <strong>product name</strong>, how many times it was <strong>ordered</strong>, and <strong>total revenue</strong> per product. Sort by revenue highest first. This tests JOIN, GROUP BY, COUNT, SUM, and ORDER BY together.</p>
-          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
         </div>
       `;
     }
