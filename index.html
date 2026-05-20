@@ -1571,6 +1571,20 @@ FROM customers;</textarea>
           <div class="result-area"></div>
         </div>
 
+        <div class="playground" data-query="SELECT
+  COUNT(DISTINCT customer_id) AS unique_customers
+FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>How many unique customers placed orders?</span></div>
+          <textarea spellcheck="false">SELECT
+  COUNT(DISTINCT customer_id) AS unique_customers
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
         <h3>Total and average</h3>
         <div class="playground" data-query="SELECT
   COUNT(*) AS total_orders,
