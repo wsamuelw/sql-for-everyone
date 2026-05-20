@@ -635,6 +635,16 @@
       box-shadow: none;
     }
 
+    .operator-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 12px;
+    }
+
+    .operator-group:last-child {
+      margin-bottom: 0;
+    }
+
     /* ========== Scrollbar Styling ========== */
     ::-webkit-scrollbar {
       width: 6px;
@@ -1279,18 +1289,30 @@ WHERE category = 'Electronics'
 
         <h3>Handy operators</h3>
         <div class="schema-display">
-          <div><span class="col-desc">basic comparisons</span></div>
-          <div><span class="col-name">=  !=  >  <  >=  <=</span></div>
-          <div style="margin-top: 12px;"><span class="col-desc">combine conditions</span></div>
-          <div><span class="col-name">AND  OR  NOT</span></div>
-          <div style="margin-top: 12px;"><span class="col-desc">range (inclusive)</span></div>
-          <div><span class="col-name">BETWEEN 10 AND 50</span></div>
-          <div style="margin-top: 12px;"><span class="col-desc">match any in the list</span></div>
-          <div><span class="col-name">IN ('A', 'B', 'C')</span></div>
-          <div style="margin-top: 12px;"><span class="col-desc">pattern matching (% = wildcard)</span></div>
-          <div><span class="col-name">LIKE '%text%'</span></div>
-          <div style="margin-top: 12px;"><span class="col-desc">check for empty values</span></div>
-          <div><span class="col-name">IS NULL / IS NOT NULL</span></div>
+          <div class="operator-group">
+            <span class="col-desc">basic comparisons</span>
+            <span class="col-name">=  !=  >  <  >=  <=</span>
+          </div>
+          <div class="operator-group">
+            <span class="col-desc">combine conditions</span>
+            <span class="col-name">AND  OR  NOT</span>
+          </div>
+          <div class="operator-group">
+            <span class="col-desc">range (inclusive)</span>
+            <span class="col-name">BETWEEN 10 AND 50</span>
+          </div>
+          <div class="operator-group">
+            <span class="col-desc">match any in the list</span>
+            <span class="col-name">IN ('A', 'B', 'C')</span>
+          </div>
+          <div class="operator-group">
+            <span class="col-desc">pattern matching (% = wildcard)</span>
+            <span class="col-name">LIKE '%text%'</span>
+          </div>
+          <div class="operator-group">
+            <span class="col-desc">check for empty values</span>
+            <span class="col-name">IS NULL / IS NOT NULL</span>
+          </div>
         </div>
 
         <div class="playground" data-query="SELECT
