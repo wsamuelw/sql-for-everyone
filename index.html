@@ -1558,12 +1558,12 @@ LIMIT 3;">
 
         <h3>Count rows</h3>
         <div class="playground" data-query="SELECT
-  COUNT(*) AS total_rows,
+  COUNT(id) AS total_customers,
   COUNT(DISTINCT customer_id) AS unique_customers
 FROM orders;">
           <div class="playground-header"><span class="label">Try it</span><span>Total rows vs unique customers</span></div>
           <textarea spellcheck="false">SELECT
-  COUNT(*) AS total_rows,
+  COUNT(id) AS total_customers,
   COUNT(DISTINCT customer_id) AS unique_customers
 FROM orders;</textarea>
           <div class="playground-actions">
