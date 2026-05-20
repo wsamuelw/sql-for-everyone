@@ -61,7 +61,7 @@
     /* ========== Layout ========== */
     .app {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 260px 1fr;
       min-height: 100vh;
     }
 
@@ -69,101 +69,115 @@
       position: sticky;
       top: 0;
       height: 100vh;
-      width: 280px;
+      width: 260px;
+      min-width: 260px;
       background: var(--surface);
       border-right: 1px solid var(--border);
       box-shadow: none;
+      padding: 32px 0;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       z-index: 50;
     }
 
-    .sidebar-logo {
-      padding: 24px 20px 16px;
+    .sidebar-brand {
+      padding: 0 24px 24px;
       border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
     }
 
-    .sidebar-logo h1 {
-      font-size: 18px;
-      font-weight: 700;
+    .sidebar-brand h1 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
       color: var(--text);
       margin-bottom: 2px;
     }
 
-    .sidebar-logo .subtitle {
+    .sidebar-brand span {
       font-size: 12px;
+      font-weight: 400;
+      color: var(--text-dim);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .nav-label {
+      padding: 8px 24px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--text-dim);
     }
 
     .lesson-nav {
       list-style: none;
       flex: 1;
-      padding: 8px 0;
+      padding: 0;
       overflow-y: auto;
     }
 
     .lesson-nav li {
-      padding: 10px 20px;
-      cursor: pointer;
-      border-left: 3px solid transparent;
+      padding: 8px 24px;
       font-size: 14px;
       font-weight: 500;
       color: var(--text-dim);
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+      border-left: 3px solid transparent;
+      display: block;
     }
 
     .lesson-nav li:hover {
-      background: var(--surface2);
       color: var(--text);
+      background: var(--bg);
     }
 
     .lesson-nav li.active {
-      border-left-color: var(--text);
       color: var(--text);
       background: var(--bg);
-      font-weight: 600;
+      border-left: 3px solid var(--text);
     }
 
-    .lesson-nav li .num {
-      width: 22px;
-      height: 22px;
-      border-radius: 0;
-      background: var(--surface2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 600;
+    .lesson-nav li .nav-num {
+      display: inline-block;
+      width: 20px;
+      font-size: 12px;
       color: var(--text-dim);
-      flex-shrink: 0;
+      margin-right: 8px;
+      font-variant-numeric: tabular-nums;
     }
 
-    .lesson-nav li.active .num {
-      background: var(--text);
-      color: #fff;
+    .lesson-nav li.active .nav-num {
+      color: var(--text);
     }
 
-    .lesson-nav li.completed .num {
-      background: var(--green);
-      color: #fff;
+    .lesson-nav li.completed .nav-num {
+      color: var(--green);
     }
 
 
     /* ========== Main Content ========== */
     .main {
-      padding: 56px 48px 80px;
-      max-width: 1100px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 48px 40px;
+      overflow-y: auto;
       position: relative;
+    }
+
+    .content {
+      max-width: 720px;
+      width: 100%;
     }
 
     .progress-bar {
       position: fixed;
       top: 0;
-      left: 280px;
+      left: 260px;
       right: 0;
       height: 3px;
       background: var(--surface2);
@@ -701,10 +715,12 @@
 
   <div class="app">
     <nav class="sidebar" id="sidebar">
-      <div class="sidebar-logo">
+      <div class="sidebar-brand">
         <h1>SQL for Everyone</h1>
-        <div class="subtitle">No analyst required</div>
+        <span>Complete Course</span>
       </div>
+
+      <div class="nav-label">LESSONS</div>
 
       <ul class="lesson-nav" id="lessonNav">
         <!-- Populated by JS -->
@@ -2578,9 +2594,9 @@ ORDER BY category,
     function renderNav() {
       const nav = document.getElementById('lessonNav');
       nav.innerHTML = lessons.map((l, i) =>
-        '<li class="' + (i === currentLesson ? 'active' : '') + ' ' + (completedLessons.has(i) ? 'completed' : '') + '"' +
+        '<li class="' + (i === currentLesson ? 'active' : '') + (completedLessons.has(i) ? ' completed' : '') + '"' +
         ' onclick="goToLesson(' + i + ')" tabindex="0" role="button" aria-label="' + l.title + ' lesson">' +
-        '<span class="num">' + l.icon + '</span>' +
+        '<span class="nav-num">' + String(i + 1).padStart(2, '0') + '</span>' +
         l.title +
         '</li>'
       ).join('');
