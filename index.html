@@ -437,16 +437,6 @@
       transform: scale(0.97);
     }
 
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-    }
-
-    .btn-outline:hover {
-      background: var(--surface2);
-      color: var(--text);
-    }
 
     /* ========== Messages ========== */
     .message {
@@ -717,35 +707,7 @@
       background: var(--surface2) !important;
     }
 
-    /* ========== Print Styles ========== */
-    @media print {
-      .sidebar,
-      .mobile-toggle,
-      .playground-actions,
-      .result-area,
-      .lesson-nav-bottom,
-      .progress-bar,
-      .theme-toggle,
-      #exportPdfBtn {
-        display: none !important;
-      }
-      .main {
-        max-width: 100%;
-        padding: 0;
-      }
-      .playground textarea {
-        border: 1px solid #ccc;
-        min-height: auto;
-        height: auto;
-      }
-      body {
-        background: white !important;
-        color: black !important;
-      }
-      .lesson {
-        page-break-inside: avoid;
-      }
-    }
+
 
     /* ========== Responsive ========== */
     @media (max-width: 900px) {
@@ -810,7 +772,6 @@
       </ul>
 
       <div class="sidebar-footer">
-        <button class="btn btn-outline" id="exportPdfBtn" style="width:100%;margin-bottom:8px;">📄 Download PDF</button>
         <button class="theme-toggle" id="themeToggle">
           <span id="themeIcon">&#9789;</span>
           <span id="themeLabel">Dark mode</span>
@@ -2762,26 +2723,6 @@ ORDER BY category,
         }, 500);
       }
     }
-
-    // ========== PDF Export ==========
-    document.getElementById('exportPdfBtn').addEventListener('click', () => {
-      // Save current state
-      const savedLesson = currentLesson;
-
-      // Show all lessons
-      const content = document.getElementById('lessonContent');
-      let allContent = '';
-      lessons.forEach((l, i) => {
-        allContent += '<div style="page-break-after:always;padding:20px 0;">' + l.content() + '</div>';
-      });
-      content.innerHTML = allContent;
-
-      window.print();
-
-      // Restore current lesson
-      currentLesson = savedLesson;
-      renderLesson();
-    });
 
     // ========== Completion Certificate ==========
     function generateCertificate() {
