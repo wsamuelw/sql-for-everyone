@@ -1422,7 +1422,7 @@ WHERE city IN ('Melbourne', 'Brisbane');">
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WHERE city IN (\'Melbourne\', \'Brisbane\')')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WHERE city IN (&apos;Melbourne&apos;, &apos;Brisbane&apos;)')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2026,7 +2026,7 @@ HAVING last_order < '2024-06-01'
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT c.name, c.email, MAX(o.order_date) AS last_order FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.name HAVING last_order < \'2024-06-01\' OR last_order IS NULL;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT c.name, c.email, MAX(o.order_date) AS last_order FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.name HAVING last_order < &apos;2024-06-01&apos; OR last_order IS NULL;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2227,7 +2227,7 @@ FROM orders;">
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, CASE WHEN amount < 100 THEN \'Small\' WHEN amount <= 300 THEN \'Medium\' ELSE \'Large\' END AS size FROM orders;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, CASE WHEN amount < 100 THEN &apos;Small&apos; WHEN amount <= 300 THEN &apos;Medium&apos; ELSE &apos;Large&apos; END AS size FROM orders;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2246,7 +2246,7 @@ GROUP BY city;">
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(CASE WHEN email LIKE \'%@gmail.com\' THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE \'%@gmail.com\' THEN 1 END) AS other FROM customers GROUP BY city;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(CASE WHEN email LIKE &apos;%@gmail.com&apos; THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE &apos;%@gmail.com&apos; THEN 1 END) AS other FROM customers GROUP BY city;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
