@@ -2657,7 +2657,9 @@ ORDER BY category,
       const doRender = () => {
         const content = document.getElementById('lessonContent');
         let html = '<div class="breadcrumb">Lesson ' + String(currentLesson + 1).padStart(2, '0') + ' of ' + String(lessons.length).padStart(2, '0') + '</div>';
+        html += '<div class="lesson">';
         html += lessons[currentLesson].content();
+        html += '</div>';
 
         // Navigation buttons
         html += '<div class="lesson-nav-bottom">';
