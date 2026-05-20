@@ -988,7 +988,7 @@
       const resultArea = playground.querySelector('.result-area');
       const sql = textarea.value.trim();
 
-      if (!sql) {
+      if (!sql || sql.startsWith('--')) {
         resultArea.innerHTML = '<div class="message info">Type a query and click Run.</div>';
         return;
       }
