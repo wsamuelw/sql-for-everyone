@@ -1285,6 +1285,28 @@ WHERE category = 'Electronics'
           <div class="result-area"></div>
         </div>
 
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  OR category = 'Furniture';">
+          <div class="playground-header"><span class="label">Try it</span><span>Electronics OR Furniture</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  OR category = 'Furniture';</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
         <h3>Handy operators</h3>
         <div class="schema-display">
           <div class="operator-group">
