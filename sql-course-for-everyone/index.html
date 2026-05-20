@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,27 +10,27 @@
   <style>
     /* ========== CSS Variables ========== */
     :root {
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', 'SFMono-Regular', 'Cascadia Code', 'Fira Code', monospace;
 
-      /* Light theme */
-      --bg: oklch(1.0 0 0);
-      --surface: oklch(0.97 0.002 260);
-      --surface2: oklch(0.93 0.005 260);
-      --border: oklch(0.90 0.005 260);
-      --text: oklch(0.15 0.01 260);
-      --text-dim: oklch(0.50 0.01 260);
-      --accent: oklch(0.52 0.15 260);
-      --accent-dim: oklch(0.45 0.12 260);
-      --green: oklch(0.72 0.19 145);
-      --green-dim: oklch(0.55 0.15 145);
-      --orange: oklch(0.75 0.15 55);
-      --red: oklch(0.65 0.20 25);
-      --yellow: oklch(0.85 0.16 85);
-      --pink: oklch(0.70 0.14 350);
-      --cyan: oklch(0.78 0.12 195);
+      /* Clean Light theme */
+      --bg: #ffffff;
+      --surface: #fafafa;
+      --surface2: #f5f5f5;
+      --border: #eaeaea;
+      --text: #171717;
+      --text-dim: #737373;
+      --accent: #171717;
+      --accent-dim: #404040;
+      --green: #16a34a;
+      --green-dim: #15803d;
+      --orange: #ea580c;
+      --red: #dc2626;
+      --yellow: #ca8a04;
+      --pink: #db2777;
+      --cyan: #0891b2;
 
-      /* Spacing scale */
+      /* Spacing */
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
@@ -40,27 +40,7 @@
       --space-8: 32px;
       --space-10: 40px;
       --space-12: 48px;
-
-      --radius: 10px;
-    }
-
-    [data-theme="dark"] {
-      color-scheme: dark;
-      --bg: oklch(0.13 0.015 260);
-      --surface: oklch(0.17 0.015 260);
-      --surface2: oklch(0.21 0.018 260);
-      --border: oklch(0.28 0.015 260);
-      --text: oklch(0.90 0.01 260);
-      --text-dim: oklch(0.55 0.01 260);
-      --accent: oklch(0.60 0.15 260);
-      --accent-dim: oklch(0.50 0.12 260);
-      --green: oklch(0.75 0.19 145);
-      --green-dim: oklch(0.60 0.15 145);
-      --orange: oklch(0.78 0.15 55);
-      --red: oklch(0.70 0.20 25);
-      --yellow: oklch(0.88 0.16 85);
-      --pink: oklch(0.73 0.14 350);
-      --cyan: oklch(0.80 0.12 195);
+      --radius: 0px;
     }
 
     /* ========== Reset & Base ========== */
@@ -72,16 +52,17 @@
 
     body {
       font-family: var(--font);
+      font-weight: 400;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.8;
-      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ========== Layout ========== */
     .app {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 260px 1fr;
       min-height: 100vh;
     }
 
@@ -89,126 +70,116 @@
       position: sticky;
       top: 0;
       height: 100vh;
-      width: 280px;
+      width: 260px;
+      min-width: 260px;
       background: var(--surface);
       border-right: 1px solid var(--border);
+      box-shadow: none;
+      padding: 32px 0;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       z-index: 50;
-      transition: background 0.3s;
     }
 
-    .sidebar-logo {
-      padding: 24px 20px 16px;
+    .sidebar-brand {
+      padding: 0 24px 24px;
       border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
     }
 
-    .sidebar-logo h1 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent);
+    .sidebar-brand h1 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
       margin-bottom: 2px;
     }
 
-    .sidebar-logo .subtitle {
+    .sidebar-brand span {
       font-size: 12px;
+      font-weight: 400;
+      color: var(--text-dim);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .nav-label {
+      padding: 8px 24px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--text-dim);
     }
 
     .lesson-nav {
       list-style: none;
       flex: 1;
-      padding: 8px 0;
+      padding: 0;
       overflow-y: auto;
     }
 
     .lesson-nav li {
-      padding: 10px 20px;
-      cursor: pointer;
-      border-left: 3px solid transparent;
+      padding: 8px 24px;
       font-size: 14px;
+      font-weight: 500;
       color: var(--text-dim);
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+      border-left: 3px solid transparent;
+      display: block;
     }
 
     .lesson-nav li:hover {
-      background: var(--surface2);
       color: var(--text);
+      background: var(--bg);
     }
 
     .lesson-nav li.active {
-      border-left-color: var(--accent);
       color: var(--text);
       background: var(--bg);
-      font-weight: 500;
+      border-left: 3px solid var(--text);
     }
 
-    .lesson-nav li .num {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--surface2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 600;
+    .lesson-nav li .nav-num {
+      display: inline-block;
+      width: 20px;
+      font-size: 12px;
       color: var(--text-dim);
-      flex-shrink: 0;
+      margin-right: 8px;
+      font-variant-numeric: tabular-nums;
     }
 
-    .lesson-nav li.active .num {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .lesson-nav li.completed .num {
-      background: var(--green);
-      color: #fff;
-    }
-
-    .sidebar-footer {
-      padding: 12px 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .theme-toggle {
-      width: 100%;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: transparent;
-      color: var(--text-dim);
-      font-size: 13px;
-      font-family: var(--font);
-      cursor: pointer;
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 44px;
-    }
-
-    .theme-toggle:hover {
-      background: var(--surface2);
+    .lesson-nav li.active .nav-num {
       color: var(--text);
     }
+
+    .lesson-nav li.completed .nav-num {
+      color: var(--text);
+    }
+
 
     /* ========== Main Content ========== */
     .main {
-      padding: 56px 48px 80px;
-      max-width: 1100px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 48px 40px;
+      overflow-y: auto;
       position: relative;
+    }
+
+    .content,
+    #lessonContent {
+      max-width: 720px;
+      width: 100%;
     }
 
     .progress-bar {
       position: fixed;
       top: 0;
-      left: 280px;
+      left: 260px;
       right: 0;
       height: 3px;
       background: var(--surface2);
@@ -218,26 +189,31 @@
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--pink));
-      border-radius: 0 2px 2px 0;
+      background: var(--text);
       transition: width 0.4s ease;
+    }
+
+    /* ========== Breadcrumb ========== */
+    .breadcrumb {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-bottom: 12px;
     }
 
     /* ========== Lesson Content ========== */
     .lesson h2 {
-      font-size: clamp(1.75rem, 2.5vw + 1rem, 2rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
       margin-bottom: 8px;
     }
 
     .lesson .subtitle {
       color: var(--text-dim);
-      font-size: 15px;
-      margin-bottom: 32px;
+      font-size: 16px;
+      margin-bottom: 48px;
     }
 
     .lesson h3 {
@@ -250,90 +226,86 @@
 
     .lesson p {
       margin-bottom: 16px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     .lesson li {
       margin-bottom: 10px;
+      padding-left: 4px;
     }
 
     .lesson ul, .lesson ol {
-      padding-left: 24px;
+      padding-left: 20px;
       margin-bottom: 20px;
+      list-style-position: outside;
+    }
+
+    .lesson ul li {
+      list-style-type: disc;
     }
 
     /* ========== Concept Boxes ========== */
     .concept-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px 28px;
-      margin: 28px 0;
+      background: transparent;
+      border: none;
+      border-left: 3px solid var(--border);
+      border-radius: 0;
+      padding: 0 0 0 20px;
+      margin-bottom: 48px;
       position: relative;
+      box-shadow: none;
     }
 
     .concept-box::before {
+      content: "CONCEPT";
       display: block;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
       margin-bottom: 8px;
-      color: var(--text);
     }
 
     .concept-box.analogy {
-      border-left: 3px solid var(--yellow);
-    }
-
-    .concept-box.analogy::before {
-      content: "\1F4A1  Think of it like this";
+      border-left: 3px solid var(--border);
     }
 
     .concept-box.why {
-      border-left: 3px solid var(--cyan);
-    }
-
-    .concept-box.why::before {
-      content: "\1F3AF  Why this matters";
+      border-left: 3px solid var(--border);
     }
 
     .concept-box.tip {
-      border-left: 3px solid var(--green);
-    }
-
-    .concept-box.tip::before {
-      content: "\2705  Pro tip";
+      border-left: 3px solid var(--border);
     }
 
     .concept-box.warning {
-      border-left: 3px solid var(--orange);
-    }
-
-    .concept-box.warning::before {
-      content: "\26A0\FE0F  Watch out";
+      border-left: 3px solid var(--border);
     }
 
     /* ========== Code Blocks ========== */
     .code-block {
-      background: #0d0f14;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 0;
       padding: 16px 20px;
       font-family: var(--mono);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
-      color: #e2e4ef;
       overflow-x: auto;
-      margin: 24px 0;
+      color: var(--text);
+      margin-bottom: 48px;
       white-space: pre;
+      box-shadow: none;
     }
 
     /* ========== Playground ========== */
     .playground {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 32px 0;
+      border-radius: 0;
+      margin-bottom: 48px;
+      box-shadow: none;
     }
 
     .playground-header {
@@ -341,135 +313,153 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 16px;
-      background: var(--surface2);
-      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 12px;
       font-weight: 500;
       color: var(--text-dim);
+      font-family: var(--mono);
+    }
+
+    .playground-header span {
+      display: none;
+    }
+
+    .playground-header::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      box-shadow: 12px 0 0 var(--border), 24px 0 0 var(--border);
+    }
+
+    .playground-header::after {
+      content: 'SQL';
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-dim);
+      font-family: var(--mono);
     }
 
     .playground textarea {
       width: 100%;
-      min-height: 100px;
-      background: #0d0f14;
-      color: #e2e4ef;
+      min-height: auto;
+      max-height: 400px;
+      overflow-y: auto;
+      resize: none;
+      background: var(--surface);
+      color: var(--text);
       font-family: var(--mono);
-      font-size: 13px;
-      line-height: 1.6;
-      padding: 16px 20px;
-      border: none;
-      resize: vertical;
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 0;
       outline: none;
+      transition: border-color 0.15s;
     }
 
     .playground textarea::placeholder {
-      color: #555;
+      color: var(--text-dim);
     }
 
     .playground textarea:focus-visible {
-      outline: none;
-      box-shadow: inset 0 0 0 2px var(--accent);
+      border-color: var(--text);
     }
 
     .playground-actions {
       display: flex;
+      align-items: center;
       gap: 8px;
       padding: 10px 16px;
       border-top: 1px solid var(--border);
+      margin-bottom: 24px;
     }
 
     /* ========== Buttons ========== */
     .btn {
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 0;
+      font-size: 14px;
+      font-weight: 500;
       font-family: var(--font);
       cursor: pointer;
-      border: none;
-      transition: transform 0.15s ease, box-shadow 0.2s ease, all 0.15s;
+      border: 1px solid var(--border);
+      transition: all 0.15s;
+      flex-shrink: 0;
     }
 
     .btn-run {
-      background: var(--green);
-      color: #000;
+      background: var(--text);
+      color: #ffffff;
+      border: 1px solid var(--text);
+      padding: 10px 24px;
+      font-size: 14px;
     }
 
     .btn-run:hover {
-      box-shadow: 0 0 16px oklch(0.72 0.19 145 / 0.3);
-      transform: translateY(-1px);
+      background: var(--accent-dim);
+      box-shadow: none;
     }
 
     .btn-run:active {
       transform: scale(0.97);
-      box-shadow: none;
     }
 
     .btn-reset {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text-dim);
+      padding: 10px 24px;
+      font-size: 14px;
     }
 
     .btn-reset:hover {
-      background: var(--surface2);
+      border-color: var(--text);
       color: var(--text);
-      transform: translateY(-1px);
-    }
-
-    .btn-reset:active {
-      transform: scale(0.97);
     }
 
     .btn-hint {
       background: transparent;
-      border: 1px solid rgba(250, 204, 21, 0.3);
-      color: var(--yellow);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 10px 24px;
+      font-size: 14px;
     }
 
     .btn-hint:hover {
-      background: rgba(250, 204, 21, 0.1);
-      transform: translateY(-1px);
-    }
-
-    .btn-hint:active {
-      transform: scale(0.97);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-    }
-
-    .btn-outline:hover {
-      background: var(--surface2);
+      border-color: var(--text);
       color: var(--text);
     }
+
 
     /* ========== Messages ========== */
     .message {
       padding: 12px 16px;
-      border-radius: 8px;
       font-size: 13px;
+      font-family: var(--mono);
+      border-radius: 0;
       margin: 0;
     }
 
-    .message.info {
-      background: rgba(34, 211, 238, 0.1);
-      border: 1px solid rgba(34, 211, 238, 0.3);
-      color: var(--cyan);
-    }
-
     .message.success {
-      background: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.3);
       color: var(--green);
+      background: transparent;
+      border: 1px solid var(--green);
     }
 
     .message.error {
-      background: rgba(248, 113, 113, 0.1);
-      border: 1px solid rgba(248, 113, 113, 0.3);
       color: var(--red);
+      background: transparent;
+      border: 1px solid var(--red);
+    }
+
+    .message.info {
+      color: var(--text-dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
 
     /* ========== Result Area ========== */
@@ -481,19 +471,24 @@
       width: 100%;
       border-collapse: collapse;
       font-family: var(--mono);
-      font-size: 13px;
+      font-size: 14px;
+      margin-bottom: 8px;
     }
 
     .result-table th {
-      background: var(--surface2);
-      color: var(--accent);
-      padding: 8px 14px;
+      background: transparent;
+      color: var(--text-dim);
+      padding: 10px 16px;
       text-align: left;
       font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border);
     }
 
     .result-table td {
-      padding: 7px 14px;
+      padding: 10px 16px;
       border-bottom: 1px solid var(--border);
       color: var(--text);
     }
@@ -502,8 +497,8 @@
       background: var(--surface);
     }
 
-    .result-table tr:hover td {
-      background: var(--surface2);
+    .result-table tr:nth-child(odd) td {
+      background: var(--bg);
     }
 
     .result-table .null-val {
@@ -512,86 +507,87 @@
     }
 
     .result-meta {
-      padding: 8px 16px;
-      font-size: 12px;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--text-dim);
     }
 
     /* ========== Exercise ========== */
     .exercise {
-      background: var(--surface);
-      border: 1px solid var(--accent);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin: 32px 0;
+      background: transparent;
+      border: none;
+      border-left: 3px solid var(--text);
+      border-radius: 0;
+      padding: 0 0 0 20px;
+      margin-bottom: 48px;
+      box-shadow: none;
     }
 
     .exercise p {
       margin-bottom: 16px;
     }
 
-    /* ========== Layered Shadows ========== */
-    .playground, .concept-box, .exercise {
-      box-shadow: 0 1px 3px oklch(0 0 0 / 0.04), 0 6px 16px oklch(0 0 0 / 0.06);
+    .exercise-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 8px;
     }
 
-    [data-theme="dark"] .playground,
-    [data-theme="dark"] .concept-box,
-    [data-theme="dark"] .exercise {
-      box-shadow: 0 1px 3px oklch(0 0 0 / 0.2), 0 8px 24px oklch(0 0 0 / 0.3);
-    }
-
-    .sidebar {
-      box-shadow: 2px 0 12px oklch(0 0 0 / 0.05);
-    }
-
-    [data-theme="dark"] .sidebar {
-      box-shadow: 2px 0 16px oklch(0 0 0 / 0.3);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
+    /* ========== Challenge Badges ========== */
     .challenge-badge {
       display: inline-block;
       font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
       font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .challenge-badge.easy {
-      background: rgba(34, 197, 94, 0.15);
+      background: transparent;
       color: var(--green);
+      border: 1px solid var(--green);
     }
 
     .challenge-badge.medium {
-      background: rgba(250, 204, 21, 0.15);
-      color: var(--yellow);
+      background: transparent;
+      color: var(--orange);
+      border: 1px solid var(--orange);
     }
 
     .challenge-badge.hard {
-      background: rgba(248, 113, 113, 0.15);
+      background: transparent;
       color: var(--red);
+      border: 1px solid var(--red);
     }
 
     /* ========== Navigation Buttons ========== */
     .nav-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 48px;
-      padding-top: 24px;
+      gap: 16px;
+      padding-top: 16px;
       border-top: 1px solid var(--border);
+      margin-top: 16px;
     }
 
     .btn-nav {
       padding: 10px 24px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 0;
       font-size: 14px;
       font-family: var(--font);
+      font-weight: 500;
       cursor: pointer;
       background: transparent;
-      color: var(--text-dim);
+      color: var(--text);
       transition: all 0.15s;
       text-decoration: none;
       display: inline-flex;
@@ -601,44 +597,49 @@
 
     .btn-nav:hover {
       background: var(--surface);
-      color: var(--text);
-      transform: translateY(-1px);
-    }
-
-    .btn-nav:active {
-      transform: scale(0.97);
     }
 
     .btn-nav.primary {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
+      background: var(--text);
+      color: #ffffff;
+      border-color: var(--text);
     }
 
     .btn-nav.primary:hover {
-      filter: brightness(1.1);
+      background: var(--accent-dim);
     }
 
     /* ========== Lesson Bottom Nav ========== */
     .lesson-nav-bottom {
       display: flex;
       justify-content: space-between;
-      margin-top: 64px;
-      padding-top: 32px;
+      margin-top: 16px;
+      padding-top: 16px;
       border-top: 1px solid var(--border);
     }
 
     /* ========== Schema Display ========== */
     .schema-display {
-      background: #0d0f14;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 16px;
+      padding-top: 0;
+      margin-top: -13px;
+      margin-bottom: 48px;
       font-family: var(--mono);
       font-size: 13px;
-      padding: 16px;
-      border-radius: 8px;
-      color: #e2e4ef;
+      line-height: 1.4;
       overflow-x: auto;
-      margin: 24px 0;
+      color: var(--text);
       white-space: pre;
+      box-shadow: none;
+    }
+
+    .operator-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0;
     }
 
     /* ========== Scrollbar Styling ========== */
@@ -669,7 +670,7 @@
       z-index: 70;
       width: 40px;
       height: 40px;
-      border-radius: 8px;
+      border-radius: 0;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
@@ -698,21 +699,6 @@
     /* ========== Loading Overlay ========== */
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ========== View Transitions ========== */
-    ::view-transition-old(lesson) {
-      animation: fadeOut 0.15s ease;
-    }
-    ::view-transition-new(lesson) {
-      animation: fadeIn 0.25s ease;
-    }
-    #lessonContent {
-      view-transition-name: lesson;
-    }
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-8px); }
-    }
-
     /* ========== Scroll-Driven Animations ========== */
     .concept-box, .playground, .exercise, .schema-display, .code-block {
       animation: fadeInUp linear both;
@@ -730,35 +716,7 @@
       background: var(--surface2) !important;
     }
 
-    /* ========== Print Styles ========== */
-    @media print {
-      .sidebar,
-      .mobile-toggle,
-      .playground-actions,
-      .result-area,
-      .lesson-nav-bottom,
-      .progress-bar,
-      .theme-toggle,
-      #exportPdfBtn {
-        display: none !important;
-      }
-      .main {
-        max-width: 100%;
-        padding: 0;
-      }
-      .playground textarea {
-        border: 1px solid #ccc;
-        min-height: auto;
-        height: auto;
-      }
-      body {
-        background: white !important;
-        color: black !important;
-      }
-      .lesson {
-        page-break-inside: avoid;
-      }
-    }
+
 
     /* ========== Responsive ========== */
     @media (max-width: 900px) {
@@ -803,7 +761,7 @@
 
     /* ========== Focus Visible ========== */
     :focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--text);
       outline-offset: 2px;
     }
   </style>
@@ -813,22 +771,17 @@
 
   <div class="app">
     <nav class="sidebar" id="sidebar">
-      <div class="sidebar-logo">
+      <div class="sidebar-brand">
         <h1>SQL for Everyone</h1>
-        <div class="subtitle">No analyst required</div>
+        <span>Complete Course</span>
       </div>
+
+      <div class="nav-label">LESSONS</div>
 
       <ul class="lesson-nav" id="lessonNav">
         <!-- Populated by JS -->
       </ul>
 
-      <div class="sidebar-footer">
-        <button class="btn btn-outline" id="exportPdfBtn" style="width:100%;margin-bottom:8px;">📄 Download PDF</button>
-        <button class="theme-toggle" id="themeToggle">
-          <span id="themeIcon">&#9789;</span>
-          <span id="themeLabel">Dark mode</span>
-        </button>
-      </div>
     </nav>
 
     <main class="main">
@@ -840,7 +793,7 @@
         <!-- Populated by JS -->
       </div>
       <div id="loadingOverlay" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:200;flex-direction:column;gap:16px;">
-        <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--text);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
         <p style="color:var(--text-dim);font-family:var(--font);font-size:14px;">Loading database...</p>
       </div>
     </main>
@@ -927,35 +880,35 @@
 
         INSERT INTO orders (id, customer_id, product_id, quantity, amount, order_date) VALUES
           (1, 1, 1, 1, 89.99, '2024-01-15'),
-          (2, 1, 3, 2, 69.98, '2024-02-20'),
-          (3, 2, 2, 1, 449.00, '2024-01-22'),
-          (4, 3, 7, 1, 129.99, '2024-03-05'),
-          (5, 3, 5, 1, 79.99, '2024-03-05'),
-          (6, 4, 1, 1, 89.99, '2024-02-14'),
-          (7, 5, 4, 1, 299.00, '2024-01-30'),
-          (8, 6, 9, 1, 109.99, '2024-04-10'),
-          (9, 6, 11, 1, 49.99, '2024-04-10'),
-          (10, 7, 2, 1, 449.00, '2024-03-18'),
-          (11, 7, 6, 1, 59.99, '2024-03-18'),
-          (12, 8, 10, 3, 59.97, '2024-05-02'),
-          (13, 9, 14, 2, 49.98, '2024-02-28'),
-          (14, 10, 8, 1, 44.99, '2024-06-15'),
+          (2, 2, 3, 2, 69.98, '2024-02-20'),
+          (3, 3, 2, 1, 449.00, '2024-01-22'),
+          (4, 1, 7, 1, 129.99, '2024-03-05'),
+          (5, 4, 5, 1, 79.99, '2024-03-05'),
+          (6, 5, 1, 1, 89.99, '2024-02-14'),
+          (7, 6, 4, 1, 299.00, '2024-01-30'),
+          (8, 2, 9, 1, 109.99, '2024-04-10'),
+          (9, 7, 11, 1, 49.99, '2024-04-10'),
+          (10, 8, 2, 1, 449.00, '2024-03-18'),
+          (11, 3, 6, 1, 59.99, '2024-03-18'),
+          (12, 9, 10, 3, 59.97, '2024-05-02'),
+          (13, 10, 14, 2, 49.98, '2024-02-28'),
+          (14, 1, 8, 1, 44.99, '2024-06-15'),
           (15, 11, 1, 1, 89.99, '2024-04-22'),
-          (16, 11, 12, 1, 189.00, '2024-04-22'),
-          (17, 12, 13, 1, 79.99, '2024-05-10'),
+          (16, 12, 12, 1, 189.00, '2024-04-22'),
+          (17, 4, 13, 1, 79.99, '2024-05-10'),
           (18, 13, 7, 2, 259.98, '2024-06-01'),
-          (19, 14, 15, 1, 39.99, '2024-07-05'),
-          (20, 15, 3, 1, 34.99, '2024-07-20'),
-          (21, 2, 9, 1, 109.99, '2024-08-12'),
-          (22, 4, 4, 1, 299.00, '2024-09-01'),
-          (23, 5, 1, 2, 179.98, '2024-09-15'),
-          (24, 8, 7, 1, 129.99, '2024-10-03'),
-          (25, 1, 2, 1, 449.00, '2024-11-20'),
-          (26, 3, 11, 1, 49.99, '2024-11-25'),
-          (27, 6, 5, 1, 79.99, '2024-12-01'),
-          (28, 10, 9, 1, 109.99, '2024-12-10'),
+          (19, 5, 15, 1, 39.99, '2024-07-05'),
+          (20, 14, 3, 1, 34.99, '2024-07-20'),
+          (21, 15, 9, 1, 109.99, '2024-08-12'),
+          (22, 6, 4, 1, 299.00, '2024-09-01'),
+          (23, 7, 1, 2, 179.98, '2024-09-15'),
+          (24, 10, 7, 1, 129.99, '2024-10-03'),
+          (25, 2, 2, 1, 449.00, '2024-11-20'),
+          (26, 11, 11, 1, 49.99, '2024-11-25'),
+          (27, 8, 5, 1, 79.99, '2024-12-01'),
+          (28, 3, 9, 1, 109.99, '2024-12-10'),
           (29, 12, 1, 1, 89.99, '2024-12-15'),
-          (30, 14, 6, 1, 59.99, '2024-12-20');
+          (30, 9, 6, 1, 59.99, '2024-12-20');
 
         INSERT INTO employees (id, name, department, salary, hire_date) VALUES
           (1, 'Sarah Johnson', 'Engineering', 125000, '2020-03-15'),
@@ -1021,6 +974,15 @@
       // ILIKE → LIKE (SQLite is case-insensitive by default)
       translated = translated.replace(/\bILIKE\b/gi, 'LIKE');
 
+      // CONCAT(a, b, ...) → a || b || ...
+      translated = translated.replace(
+        /CONCAT\(([^)]+)\)/gi,
+        (match, args) => args.split(',').map(a => a.trim()).join(' || ')
+      );
+
+      // SUBSTRING(col, start, len) → SUBSTR(col, start, len)
+      translated = translated.replace(/\bSUBSTRING\b/gi, 'SUBSTR');
+
       return translated;
     }
 
@@ -1035,7 +997,7 @@
       const resultArea = playground.querySelector('.result-area');
       const sql = textarea.value.trim();
 
-      if (!sql) {
+      if (!sql || sql.startsWith('--')) {
         resultArea.innerHTML = '<div class="message info">Type a query and click Run.</div>';
         return;
       }
@@ -1074,19 +1036,57 @@
       }
     }
 
+    function autoResizeTextarea(ta) {
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    }
+
     function resetPlayground(btn) {
       const playground = btn.closest('.playground');
       const textarea = playground.querySelector('textarea');
       const resultArea = playground.querySelector('.result-area');
       const original = playground.getAttribute('data-query');
       if (original) textarea.value = original;
+      autoResizeTextarea(textarea);
       resultArea.innerHTML = '';
     }
 
     function showHint(btn, hint) {
-      const playground = btn.closest('.playground') || btn.closest('.exercise').querySelector('.playground');
+      const playground = btn.closest('.playground');
+      if (!playground) return;
       const resultArea = playground.querySelector('.result-area');
-      resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
+      if (!resultArea) return;
+
+      const level = parseInt(btn.dataset.hintLevel || '0');
+
+      if (level === 0) {
+        // First click: show a simple nudge
+        const keywords = extractKeywords(hint);
+        resultArea.innerHTML = '<div class="message info">💡 Think about using: ' + keywords + '</div>';
+        btn.dataset.hintLevel = '1';
+      } else {
+        // Second click: show full answer
+        resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
+        btn.dataset.hintLevel = '0';
+      }
+    }
+
+    function extractKeywords(sql) {
+      const keywords = [];
+      if (sql.includes('WHERE')) keywords.push('WHERE');
+      if (sql.includes('JOIN')) keywords.push('JOIN');
+      if (sql.includes('GROUP BY')) keywords.push('GROUP BY');
+      if (sql.includes('ORDER BY')) keywords.push('ORDER BY');
+      if (sql.includes('HAVING')) keywords.push('HAVING');
+      if (sql.includes('LIMIT')) keywords.push('LIMIT');
+      if (sql.includes('SUM')) keywords.push('SUM()');
+      if (sql.includes('COUNT')) keywords.push('COUNT()');
+      if (sql.includes('AVG')) keywords.push('AVG()');
+      if (sql.includes('DATE_TRUNC')) keywords.push('DATE_TRUNC()');
+      if (sql.includes('CASE')) keywords.push('CASE WHEN');
+      if (sql.includes('WITH')) keywords.push('CTE (WITH)');
+      if (sql.includes('OVER')) keywords.push('Window function (OVER)');
+      return keywords.length ? keywords.join(', ') : 'Try breaking down the problem step by step';
     }
 
     function escapeHtml(str) {
@@ -1114,6 +1114,13 @@
             if (btn) runPlayground(btn);
           }
         });
+
+        // Auto-resize to fit content
+        ta.style.height = 'auto';
+        ta.style.height = ta.scrollHeight + 'px';
+
+        // Also resize when content changes (e.g. reset)
+        ta.addEventListener('input', () => autoResizeTextarea(ta));
       });
     }
 
@@ -1122,12 +1129,6 @@
       return `
         <h2>Welcome to SQL for Everyone</h2>
         <p class="subtitle">Learn to answer your own data questions — no analyst needed.</p>
-
-        <div class="concept-box why">
-          SQL (Structured Query Language) is just a way to talk to databases. Think of it as
-          asking questions to a very organised filing cabinet. Instead of waiting days for a data
-          analyst to pull a report, you'll be able to do it yourself in minutes.
-        </div>
 
         <h3>What you'll learn</h3>
         <ul>
@@ -1138,28 +1139,25 @@
           <li>Combine data sources — connect the dots between tables</li>
         </ul>
 
-        <h3>How this works</h3>
-        <p>Every lesson has a live SQL editor. You'll type queries and see results instantly — right here in your browser. No setup, no accounts, no waiting.</p>
-
-        <div class="concept-box analogy">
-          SQL is not programming — it's asking questions to a database. Think of it like using search filters on a spreadsheet, not building an app. If you can use Excel filters, you can learn SQL. No coding experience needed.
+        <div class="concept-box why">
+          SQL lets you ask questions to a database and get answers in seconds — instead of waiting days for a data analyst to pull a report. Think of it like using search filters on a spreadsheet, but way more powerful.
         </div>
 
-        <div class="concept-box tip">
-          All examples use a fictional company's data: customers, products, orders, and employees. The patterns you learn here work with any database — your CRM, accounting software, or analytics tool.
-        </div>
-
-        <div class="playground" data-query="SELECT 'You''re ready to start! 🎉' AS message;">
+        <div class="playground" data-query="SELECT
+  'You''re ready to start! 🎉' AS message;">
           <div class="playground-header">
             <span class="label">Try it</span>
             <span>Click ▶ Run to execute</span>
           </div>
-          <textarea spellcheck="false">SELECT 'You''re ready to start! 🎉' AS message;</textarea>
+          <textarea spellcheck="false">SELECT
+  'You''re ready to start! 🎉' AS message;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
           </div>
           <div class="result-area"></div>
         </div>
+
+        <p><em>All examples use a fictional company's data: customers, products, orders, and employees. The patterns you learn here work with any database — your CRM, accounting software, or analytics tool.</em></p>
       `;
     }
     function selectContent() {
@@ -1172,9 +1170,11 @@
         </div>
 
         <h3>See everything</h3>
-        <div class="playground" data-query="SELECT * FROM customers;">
+        <div class="playground" data-query="SELECT *
+FROM customers;">
           <div class="playground-header"><span class="label">Try it</span><span>customers table</span></div>
-          <textarea spellcheck="false">SELECT * FROM customers;</textarea>
+          <textarea spellcheck="false">SELECT *
+FROM customers;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1183,9 +1183,17 @@
         </div>
 
         <h3>Pick specific columns</h3>
-        <div class="playground" data-query="SELECT name, email, city FROM customers;">
+        <div class="playground" data-query="SELECT
+  name,
+  email,
+  city
+FROM customers;">
           <div class="playground-header"><span class="label">Try it</span><span>Just name, email, and city</span></div>
-          <textarea spellcheck="false">SELECT name, email, city FROM customers;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  email,
+  city
+FROM customers;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1194,7 +1202,11 @@
         </div>
 
         <h3>Rename columns for clarity</h3>
-        <div class="playground" data-query="SELECT name AS Customer, email AS &quot;Email Address&quot;, city AS Location FROM customers;">
+        <div class="playground" data-query="SELECT
+  name AS Customer,
+  email AS &quot;Email Address&quot;,
+  city AS Location
+FROM customers;">
           <div class="playground-header"><span class="label">Try it</span><span>Rename columns with AS</span></div>
           <textarea spellcheck="false">SELECT
   name AS Customer,
@@ -1215,7 +1227,10 @@ FROM customers;</textarea>
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge easy">Easy</span></div>
           <p>Show only the <strong>product name</strong> and <strong>price</strong> from the <code>products</code> table.</p>
-          <div class="playground" data-query="SELECT name, price FROM products;">
+          <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1237,9 +1252,19 @@ FROM customers;</textarea>
         </div>
 
         <h3>Exact match</h3>
-        <div class="playground" data-query="SELECT name, email, city FROM customers WHERE city = 'Sydney';">
+        <div class="playground" data-query="SELECT
+  name,
+  email,
+  city
+FROM customers
+WHERE city = 'Sydney';">
           <div class="playground-header"><span class="label">Try it</span><span>Customers in Sydney</span></div>
-          <textarea spellcheck="false">SELECT name, email, city FROM customers WHERE city = 'Sydney';</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  email,
+  city
+FROM customers
+WHERE city = 'Sydney';</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1248,9 +1273,19 @@ FROM customers;</textarea>
         </div>
 
         <h3>Comparisons: greater than, less than</h3>
-        <div class="playground" data-query="SELECT name, price FROM products WHERE price > 100;">
-          <div class="playground-header"><span class="label">Try it</span><span>Products over $100</span></div>
-          <textarea spellcheck="false">SELECT name, price FROM products WHERE price > 100;</textarea>
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+WHERE price > 100
+  AND price < 200;">
+          <div class="playground-header"><span class="label">Try it</span><span>Products between $100 and $200</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+WHERE price > 100
+  AND price < 200;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1258,10 +1293,119 @@ FROM customers;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Multiple conditions: AND / OR</h3>
-        <div class="playground" data-query="SELECT name, price, category FROM products WHERE category = 'Electronics' AND price < 200;">
+        <h3>Date filtering</h3>
+        <div class="playground" data-query="SELECT
+  id,
+  amount,
+  order_date
+FROM orders
+WHERE order_date BETWEEN '2024-03-01' AND '2024-06-30';">
+          <div class="playground-header"><span class="label">Try it</span><span>Orders in Q1-Q2 2024</span></div>
+          <textarea spellcheck="false">SELECT
+  id,
+  amount,
+  order_date
+FROM orders
+WHERE order_date BETWEEN '2024-03-01' AND '2024-06-30';</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>BETWEEN: range filter</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+WHERE price BETWEEN 50 AND 150;">
+          <div class="playground-header"><span class="label">Try it</span><span>Products between $50 and $150</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+WHERE price BETWEEN 50 AND 150;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>IN: match any in the list</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  city
+FROM customers
+WHERE city IN ('Sydney', 'Melbourne', 'Brisbane');">
+          <div class="playground-header"><span class="label">Try it</span><span>Customers in 3 cities</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  city
+FROM customers
+WHERE city IN ('Sydney', 'Melbourne', 'Brisbane');</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>LIKE: pattern matching</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  email
+FROM customers
+WHERE email LIKE '%@gmail.com';">
+          <div class="playground-header"><span class="label">Try it</span><span>Gmail users</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  email
+FROM customers
+WHERE email LIKE '%@gmail.com';</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>IS NULL: check for empty values</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  email
+FROM customers
+WHERE email IS NULL;">
+          <div class="playground-header"><span class="label">Try it</span><span>Customers with no email</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  email
+FROM customers
+WHERE email IS NULL;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Multiple conditions: AND</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  AND price < 200;">
           <div class="playground-header"><span class="label">Try it</span><span>Electronics under $200</span></div>
-          <textarea spellcheck="false">SELECT name, price, category FROM products WHERE category = 'Electronics' AND price < 200;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  AND price < 200;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1269,19 +1413,45 @@ FROM customers;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Handy operators</h3>
-        <div class="schema-display">
-          <div><span class="col-name">=  !=  >  <  >=  <=</span> <span class="col-desc">— basic comparisons</span></div>
-          <div><span class="col-name">AND  OR  NOT</span> <span class="col-desc">— combine conditions</span></div>
-          <div><span class="col-name">BETWEEN 10 AND 50</span> <span class="col-desc">— range (inclusive)</span></div>
-          <div><span class="col-name">IN ('A', 'B', 'C')</span> <span class="col-desc">— match any in the list</span></div>
-          <div><span class="col-name">LIKE '%text%'</span> <span class="col-desc">— pattern matching (% = wildcard)</span></div>
-          <div><span class="col-name">IS NULL / IS NOT NULL</span> <span class="col-desc">— check for empty values</span></div>
+        <h3>Multiple conditions: OR</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  OR category = 'Furniture';">
+          <div class="playground-header"><span class="label">Try it</span><span>Electronics OR Furniture</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  OR category = 'Furniture';</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
         </div>
 
-        <div class="playground" data-query="SELECT name, category, price FROM products WHERE category IN ('Electronics', 'Furniture') AND price BETWEEN 50 AND 300;">
+        <h3>Combining operators</h3>
+        <div class="playground" data-query="SELECT
+  name,
+  category,
+  price
+FROM products
+WHERE category IN ('Electronics', 'Furniture')
+  AND price BETWEEN 50 AND 300;">
           <div class="playground-header"><span class="label">Try it</span><span>IN + BETWEEN combined</span></div>
-          <textarea spellcheck="false">SELECT name, category, price FROM products WHERE category IN ('Electronics', 'Furniture') AND price BETWEEN 50 AND 300;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  category,
+  price
+FROM products
+WHERE category IN ('Electronics', 'Furniture')
+  AND price BETWEEN 50 AND 300;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1290,28 +1460,14 @@ FROM customers;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge easy">Easy</span></div>
-          <p>Find all customers whose city is Melbourne or Brisbane.</p>
-          <div class="playground" data-query="SELECT name, email, city FROM customers WHERE city IN ('Melbourne', 'Brisbane');">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Find all <strong>Electronics</strong> products with a price <strong>between $50 and $200</strong>. This tests your use of comparisons, AND, and BETWEEN together.</p>
+          <div class="playground" data-query="SELECT name, price, category FROM products WHERE category = 'Electronics' AND price BETWEEN 50 AND 200;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WHERE city IN (\'Melbourne\', \'Brisbane\')')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge easy">Easy</span></div>
-          <p>Find all products with price between $50 and $150.</p>
-          <div class="playground" data-query="SELECT name, category, price FROM products WHERE price BETWEEN 50 AND 150;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WHERE price BETWEEN 50 AND 150')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price, category FROM products WHERE category = \'Electronics\' AND price BETWEEN 50 AND 200;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1328,9 +1484,17 @@ FROM customers;</textarea>
         </div>
 
         <h3>Sort by price (highest first)</h3>
-        <div class="playground" data-query="SELECT name, price FROM products ORDER BY price DESC;">
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Most expensive products first</span></div>
-          <textarea spellcheck="false">SELECT name, price FROM products ORDER BY price DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1340,9 +1504,21 @@ FROM customers;</textarea>
 
         <h3>Sort by multiple columns</h3>
         <p>Category first, then price within each category:</p>
-        <div class="playground" data-query="SELECT name, category, price FROM products ORDER BY category ASC, price DESC;">
+        <div class="playground" data-query="SELECT
+  name,
+  category,
+  price
+FROM products
+ORDER BY category ASC,
+  price DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Category first, then price within each</span></div>
-          <textarea spellcheck="false">SELECT name, category, price FROM products ORDER BY category ASC, price DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  category,
+  price
+FROM products
+ORDER BY category ASC,
+  price DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1352,9 +1528,19 @@ FROM customers;</textarea>
 
         <h3>Limit results</h3>
         <p>Only want the top 5? Use <strong>LIMIT</strong>:</p>
-        <div class="playground" data-query="SELECT name, price FROM products ORDER BY price DESC LIMIT 5;">
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC
+LIMIT 5;">
           <div class="playground-header"><span class="label">Try it</span><span>Top 5 most expensive products</span></div>
-          <textarea spellcheck="false">SELECT name, price FROM products ORDER BY price DESC LIMIT 5;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+ORDER BY price DESC
+LIMIT 5;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1368,13 +1554,13 @@ FROM customers;</textarea>
 
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>Show the 3 cheapest products. Display name and price only.</p>
-          <div class="playground" data-query="SELECT name, price FROM products ORDER BY price ASC LIMIT 3;">
+          <p>Show the <strong>3 most expensive products</strong>, displaying name, price, and category. This tests your use of ORDER BY DESC and LIMIT together.</p>
+          <div class="playground" data-query="SELECT name, price, category FROM products ORDER BY price DESC LIMIT 3;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price FROM products ORDER BY price ASC LIMIT 3;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price, category FROM products ORDER BY price DESC LIMIT 3;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1390,24 +1576,15 @@ FROM customers;</textarea>
           Instead of reading every row one by one, aggregation lets you ask: "How many?", "What's the total?", "What's the average?" It's like the SUM and COUNT functions in a spreadsheet — but way more flexible.
         </div>
 
-        <h3>Count rows</h3>
-        <div class="playground" data-query="SELECT COUNT(*) AS total_customers FROM customers;">
-          <div class="playground-header"><span class="label">Try it</span><span>How many customers do we have?</span></div>
-          <textarea spellcheck="false">SELECT COUNT(*) AS total_customers FROM customers;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Total and average</h3>
-        <div class="playground" data-query="SELECT COUNT(*) AS total_orders, SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>Order count, total revenue, and average order value</span></div>
+        <h3>Count rows and count unique rows</h3>
+        <div class="playground" data-query="SELECT
+  COUNT(*) AS total_orders,
+  COUNT(DISTINCT product_id) AS unique_products
+FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Total rows vs unique rows</span></div>
           <textarea spellcheck="false">SELECT
   COUNT(*) AS total_orders,
-  SUM(amount) AS total_revenue,
-  AVG(amount) AS avg_order_value
+  COUNT(DISTINCT product_id) AS unique_products
 FROM orders;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1416,23 +1593,38 @@ FROM orders;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <div class="schema-display">
-          <div><span class="col-name">COUNT(*)</span> <span class="col-desc">— number of rows</span></div>
-          <div><span class="col-name">SUM(column)</span> <span class="col-desc">— total</span></div>
-          <div><span class="col-name">AVG(column)</span> <span class="col-desc">— average</span></div>
-          <div><span class="col-name">MIN(column)</span> <span class="col-desc">— minimum</span></div>
-          <div><span class="col-name">MAX(column)</span> <span class="col-desc">— maximum</span></div>
+        <h3>Total, average, min and max</h3>
+        <div class="playground" data-query="SELECT
+  COUNT(*) AS total_orders,
+  SUM(amount) AS total_revenue,
+  AVG(amount) AS avg_order_value,
+  MIN(amount) AS smallest_order,
+  MAX(amount) AS largest_order
+FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Order count, total, average, min and max</span></div>
+          <textarea spellcheck="false">SELECT
+  COUNT(*) AS total_orders,
+  SUM(amount) AS total_revenue,
+  AVG(amount) AS avg_order_value,
+  MIN(amount) AS smallest_order,
+  MAX(amount) AS largest_order
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
         </div>
 
         <div class="exercise">
           <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>What's the total revenue across all orders?</p>
-          <div class="playground" data-query="SELECT SUM(amount) AS total_revenue FROM orders;">
+          <p>What is the <strong>total revenue</strong>, <strong>average order value</strong>, and <strong>count of unique products sold</strong>? This tests your use of SUM, AVG, and COUNT(DISTINCT) in a single query.</p>
+          <div class="playground" data-query="SELECT SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value, COUNT(DISTINCT product_id) AS unique_products FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT SUM(amount) AS total_revenue FROM orders;')">Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value, COUNT(DISTINCT product_id) AS unique_products FROM orders;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1449,9 +1641,19 @@ FROM orders;</textarea>
         </div>
 
         <h3>Group by category</h3>
-        <div class="playground" data-query="SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;">
+        <div class="playground" data-query="SELECT
+  category,
+  COUNT(*) AS product_count,
+  AVG(price) AS avg_price
+FROM products
+GROUP BY category;">
           <div class="playground-header"><span class="label">Try it</span><span>Products grouped by category</span></div>
-          <textarea spellcheck="false">SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price FROM products GROUP BY category;</textarea>
+          <textarea spellcheck="false">SELECT
+  category,
+  COUNT(*) AS product_count,
+  AVG(price) AS avg_price
+FROM products
+GROUP BY category;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1460,9 +1662,19 @@ FROM orders;</textarea>
         </div>
 
         <h3>Filter groups with HAVING</h3>
-        <div class="playground" data-query="SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;">
+        <div class="playground" data-query="SELECT
+  city,
+  COUNT(*) AS customer_count
+FROM customers
+GROUP BY city
+HAVING COUNT(*) > 2;">
           <div class="playground-header"><span class="label">Try it</span><span>Cities with more than 2 customers</span></div>
-          <textarea spellcheck="false">SELECT city, COUNT(*) AS customer_count FROM customers GROUP BY city HAVING customer_count > 2;</textarea>
+          <textarea spellcheck="false">SELECT
+  city,
+  COUNT(*) AS customer_count
+FROM customers
+GROUP BY city
+HAVING COUNT(*) > 2;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1475,28 +1687,14 @@ FROM orders;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
-          <p>How many orders has each customer placed? Show customer_id and order count.</p>
-          <div class="playground" data-query="SELECT customer_id, COUNT(*) AS order_count FROM orders GROUP BY customer_id;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>How many <strong>orders</strong> and <strong>total revenue</strong> per product? Only show products with <strong>more than 2 orders</strong>. This tests GROUP BY, COUNT, SUM, and HAVING together.</p>
+          <div class="playground" data-query="SELECT product_id, COUNT(*) AS order_count, SUM(amount) AS total_revenue FROM orders GROUP BY product_id HAVING order_count > 2;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT customer_id, COUNT(*) AS order_count FROM orders GROUP BY customer_id;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
-          <p>Which cities have more than 2 customers?</p>
-          <div class="playground" data-query="SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING cnt > 2;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(*) AS cnt FROM customers GROUP BY city HAVING cnt > 2;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT product_id, COUNT(*) AS order_count, SUM(amount) AS total_revenue FROM orders GROUP BY product_id HAVING order_count > 2;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1520,10 +1718,24 @@ FROM orders;</textarea>
           <div><span class="table-name">employees</span> <span class="col-desc">→ id, name, department, salary, hire_date</span></div>
         </div>
 
-        <h3>Orders with customer names</h3>
-        <div class="playground" data-query="SELECT c.name AS customer, o.amount, o.order_date FROM orders o JOIN customers c ON o.customer_id = c.id ORDER BY o.order_date DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Join orders with customers</span></div>
-          <textarea spellcheck="false">SELECT c.name AS customer, o.amount, o.order_date FROM orders o JOIN customers c ON o.customer_id = c.id ORDER BY o.order_date DESC;</textarea>
+        <h3>Orders with product names</h3>
+        <div class="playground" data-query="SELECT
+  p.name AS product,
+  o.amount,
+  o.order_date
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+ORDER BY o.order_date DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Join orders with products</span></div>
+          <textarea spellcheck="false">SELECT
+  p.name AS product,
+  o.amount,
+  o.order_date
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+ORDER BY o.order_date DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1532,9 +1744,25 @@ FROM orders;</textarea>
         </div>
 
         <h3>Orders with product details</h3>
-        <div class="playground" data-query="SELECT c.name AS customer, p.name AS product, p.category, o.quantity, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id JOIN products p ON o.product_id = p.id ORDER BY o.amount DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Join across three tables</span></div>
-          <textarea spellcheck="false">SELECT c.name AS customer, p.name AS product, p.category, o.quantity, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id JOIN products p ON o.product_id = p.id ORDER BY o.amount DESC;</textarea>
+        <div class="playground" data-query="SELECT
+  p.name AS product,
+  p.category,
+  o.quantity,
+  o.amount
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+ORDER BY o.amount DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Join orders with product details</span></div>
+          <textarea spellcheck="false">SELECT
+  p.name AS product,
+  p.category,
+  o.quantity,
+  o.amount
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+ORDER BY o.amount DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1543,9 +1771,25 @@ FROM orders;</textarea>
         </div>
 
         <h3>Join + aggregation</h3>
-        <div class="playground" data-query="SELECT c.name AS customer, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC;">
+        <div class="playground" data-query="SELECT
+  p.name AS product,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_revenue
+FROM products p
+JOIN orders o
+  ON p.id = o.product_id
+GROUP BY p.name
+ORDER BY total_revenue DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Join with GROUP BY</span></div>
-          <textarea spellcheck="false">SELECT c.name AS customer, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  p.name AS product,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_revenue
+FROM products p
+JOIN orders o
+  ON p.id = o.product_id
+GROUP BY p.name
+ORDER BY total_revenue DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1553,22 +1797,49 @@ FROM orders;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>LEFT JOIN — keeping all records</h3>
-        <p>What if you want all customers, even those who haven't placed an order? An INNER JOIN only shows matches. A <strong>LEFT JOIN</strong> keeps everything from the left table, even if there's no match on the right.</p>
+        <div class="concept-box tip">
+          The <strong>ON</strong> clause tells the database which columns match up. Common pattern: <code>table_a.id = table_b.table_a_id</code>
+        </div>
 
-        <div class="playground" data-query="SELECT c.name, c.city, o.amount, o.order_date FROM customers c LEFT JOIN orders o ON c.id = o.customer_id ORDER BY c.name;">
-          <div class="playground-header">
-            <span class="label">Try it</span>
-            <span>All customers, with orders if they exist</span>
+        <div class="exercise">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each <strong>product name</strong>, how many times it was <strong>ordered</strong>, and <strong>total revenue</strong> per product. Sort by revenue highest first. This tests JOIN, GROUP BY, COUNT, SUM, and ORDER BY together.</p>
+          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
           </div>
-          <textarea spellcheck="false">SELECT
-  c.name,
-  c.city,
+        </div>
+
+        <h3>LEFT JOIN — going beyond inner joins</h3>
+        <p>What if you want all products, even those that have never been ordered? An INNER JOIN only shows matches. A <strong>LEFT JOIN</strong> keeps everything from the left table, even if there's no match on the right.</p>
+
+        <div class="playground" data-query="SELECT
+  p.name,
+  p.category,
   o.amount,
   o.order_date
-FROM customers c
-LEFT JOIN orders o ON c.id = o.customer_id
-ORDER BY c.name;</textarea>
+FROM products p
+LEFT JOIN orders o
+  ON p.id = o.product_id
+ORDER BY p.name;">
+          <div class="playground-header">
+            <span class="label">Try it</span>
+            <span>All products, with orders if they exist</span>
+          </div>
+          <textarea spellcheck="false">SELECT
+  p.name,
+  p.category,
+  o.amount,
+  o.order_date
+FROM products p
+LEFT JOIN orders o
+  ON p.id = o.product_id
+ORDER BY p.name;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1578,38 +1849,6 @@ ORDER BY c.name;</textarea>
 
         <div class="concept-box tip">
           <strong>INNER JOIN</strong> shows only matching rows. <strong>LEFT JOIN</strong> shows all rows from the left table, with NULLs where there's no match. Use LEFT JOIN when you want to see everything from one table regardless of whether it has matches.
-        </div>
-
-        <div class="concept-box tip">
-          The <strong>ON</strong> clause tells the database which columns match up. Common pattern: <code>table_a.id = table_b.table_a_id</code>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
-          <p>Show each product name and how many times it's been ordered. Sort by order count, highest first.</p>
-          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY times_ordered DESC;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY times_ordered DESC;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge medium">Medium</span></div>
-          <p>Show total spend per customer, sorted highest first.</p>
-          <div class="playground" data-query="SELECT c.name, SUM(o.amount) AS total FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total DESC;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT c.name, SUM(o.amount) AS total FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total DESC;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
         </div>
       `;
     }
@@ -1623,9 +1862,21 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>💰 Monthly revenue report</h3>
-        <div class="playground" data-query="SELECT strftime('%Y-%m', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS revenue FROM orders GROUP BY month ORDER BY month;">
+        <div class="playground" data-query="SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  COUNT(*) AS orders,
+  SUM(amount) AS revenue
+FROM orders
+GROUP BY month
+ORDER BY month;">
           <div class="playground-header"><span class="label">Try it</span><span>Revenue by month</span></div>
-          <textarea spellcheck="false">SELECT strftime('%Y-%m', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS revenue FROM orders GROUP BY month ORDER BY month;</textarea>
+          <textarea spellcheck="false">SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  COUNT(*) AS orders,
+  SUM(amount) AS revenue
+FROM orders
+GROUP BY month
+ORDER BY month;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1633,10 +1884,30 @@ ORDER BY c.name;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>🏆 Top 5 customers by spend</h3>
-        <div class="playground" data-query="SELECT c.name, c.city, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC LIMIT 5;">
-          <div class="playground-header"><span class="label">Try it</span><span>Top spenders</span></div>
-          <textarea spellcheck="false">SELECT c.name, c.city, COUNT(o.id) AS orders, SUM(o.amount) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.name ORDER BY total_spent DESC LIMIT 5;</textarea>
+        <h3>🏆 Top 5 products by revenue</h3>
+        <div class="playground" data-query="SELECT
+  p.name,
+  p.category,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_revenue
+FROM products p
+JOIN orders o
+  ON p.id = o.product_id
+GROUP BY p.name
+ORDER BY total_revenue DESC
+LIMIT 5;">
+          <div class="playground-header"><span class="label">Try it</span><span>Top revenue products</span></div>
+          <textarea spellcheck="false">SELECT
+  p.name,
+  p.category,
+  COUNT(o.id) AS orders,
+  SUM(o.amount) AS total_revenue
+FROM products p
+JOIN orders o
+  ON p.id = o.product_id
+GROUP BY p.name
+ORDER BY total_revenue DESC
+LIMIT 5;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1645,9 +1916,27 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>📦 Best-selling products</h3>
-        <div class="playground" data-query="SELECT p.name, p.category, SUM(o.quantity) AS units_sold, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name ORDER BY revenue DESC;">
+        <div class="playground" data-query="SELECT
+  p.name,
+  p.category,
+  SUM(o.quantity) AS units_sold,
+  SUM(o.amount) AS revenue
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+GROUP BY p.name
+ORDER BY revenue DESC;">
           <div class="playground-header"><span class="label">Try it</span><span>Product performance</span></div>
-          <textarea spellcheck="false">SELECT p.name, p.category, SUM(o.quantity) AS units_sold, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name ORDER BY revenue DESC;</textarea>
+          <textarea spellcheck="false">SELECT
+  p.name,
+  p.category,
+  SUM(o.quantity) AS units_sold,
+  SUM(o.amount) AS revenue
+FROM orders o
+JOIN products p
+  ON o.product_id = p.id
+GROUP BY p.name
+ORDER BY revenue DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1660,28 +1949,170 @@ ORDER BY c.name;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge medium">Medium</span></div>
-          <p>Build a report showing total revenue by product category.</p>
-          <div class="playground" data-query="SELECT p.category, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category ORDER BY revenue DESC;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Build a <strong>monthly revenue report</strong> showing month, order count, and total revenue. Only show months with <strong>revenue over $200</strong>. This tests DATE_TRUNC, GROUP BY, COUNT, SUM, HAVING, and ORDER BY together.</p>
+          <div class="playground" data-query="SELECT DATE_TRUNC('month', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS total_revenue FROM orders GROUP BY month HAVING total_revenue > 200 ORDER BY month;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.category, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category ORDER BY revenue DESC;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT DATE_TRUNC(\'month\', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS total_revenue FROM orders GROUP BY month HAVING total_revenue > 200 ORDER BY month;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
         </div>
+      `;
+    }
+    function debuggingContent() {
+      return `
+        <h2>Debugging: When Your Query Looks Wrong</h2>
+        <p class="subtitle">Why don't my numbers add up?</p>
+
+        <div class="concept-box warning">
+          Your query runs but the numbers look wrong. This is the most common problem in SQL. Here are the three most frequent causes.
+        </div>
+
+        <h3>Fan-out from bad JOIN</h3>
+        <p>When you JOIN without filtering, each row in one table multiplies with every matching row in the other. The result: 10x more rows than you expected.</p>
+        <div class="playground" data-query="SELECT COUNT(*) AS row_count FROM orders JOIN products ON orders.product_id = products.id;">
+          <div class="playground-header"><span class="label">Try it</span><span>JOIN without filter — row explosion</span></div>
+          <textarea spellcheck="false">-- Bad: JOINs create duplicate rows
+SELECT COUNT(*) AS row_count
+FROM orders
+JOIN products ON orders.product_id = products.id;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+        <div class="playground" data-query="SELECT COUNT(DISTINCT orders.id) AS real_order_count FROM orders JOIN products ON orders.product_id = products.id;">
+          <div class="playground-header"><span class="label">Try it</span><span>Fix: COUNT(DISTINCT)</span></div>
+          <textarea spellcheck="false">-- Fix: Count distinct to avoid duplicates
+SELECT COUNT(DISTINCT orders.id) AS real_order_count
+FROM orders
+JOIN products ON orders.product_id = products.id;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box warning">
+          In real databases, NULL values are everywhere — missing data, incomplete records, optional fields. The example below shows how NULLs can silently break your calculations. Even though our sample data is clean, this is one of the most common bugs you'll encounter in practice.
+        </div>
+
+        <h3>NULL handling — SUMs don't add up</h3>
+        <p>SUM ignores NULLs. If your amount column has NULLs, the total will be lower than expected.</p>
+        <div class="playground" data-query="SELECT SUM(amount) AS total FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>SUM ignores NULLs</span></div>
+          <textarea spellcheck="false">-- NULLs silently disappear from SUM
+SELECT SUM(amount) AS total FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+        <div class="playground" data-query="SELECT SUM(CASE WHEN amount IS NOT NULL THEN amount ELSE 0 END) AS total FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>Fix: treat NULLs as 0</span></div>
+          <textarea spellcheck="false">-- Fix: treat NULLs as 0
+SELECT SUM(CASE WHEN amount IS NOT NULL THEN amount ELSE 0 END) AS total
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="concept-box warning">
+          In real databases, duplicate rows are common — especially after JOINs. If two tables share a one-to-many relationship, joining them can multiply your rows. Always check your row count after a JOIN.
+        </div>
+
+        <h3>Duplicate keys — counts are inflated</h3>
+        <p>When a column has duplicates, COUNT(*) counts every row. Use COUNT(DISTINCT) to count unique values.</p>
+        <div class="playground" data-query="SELECT COUNT(*) AS total, COUNT(DISTINCT product_id) AS unique_products FROM orders;">
+          <div class="playground-header"><span class="label">Try it</span><span>COUNT vs COUNT(DISTINCT)</span></div>
+          <textarea spellcheck="false">-- COUNT(*) counts all rows
+-- COUNT(DISTINCT product_id) counts unique products
+SELECT
+  COUNT(*) AS total,
+  COUNT(DISTINCT product_id) AS unique_products
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Find customers who haven't ordered since June 2024.</p>
-          <div class="playground" data-query="SELECT c.name, c.email, MAX(o.order_date) AS last_order FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.name HAVING last_order < '2024-06-01' OR last_order IS NULL;">
-            <textarea spellcheck="false">-- Your query here
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Your manager says the total revenue is $5,000 but you calculated $4,500. What could be wrong?</p>
+          <div class="playground" data-query="">
+            <textarea spellcheck="false">-- What would you check first?
 </textarea>
             <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT c.name, c.email, MAX(o.order_date) AS last_order FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.name HAVING last_order < \'2024-06-01\' OR last_order IS NULL;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'Check for NULL values in the amount column and duplicate rows from JOINs')">Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function readingQueriesContent() {
+      return `
+        <h2>Reading Queries: What Your Data Team Wrote</h2>
+        <p class="subtitle">Can you read and modify a query someone else wrote?</p>
+
+        <div class="concept-box why">
+          In real work, you'll spend more time reading queries than writing them. Here's how to decode what you're looking at.
+        </div>
+
+        <h3>A real production query</h3>
+        <div class="code-block"><span class="kw">SELECT</span>
+  c.name                          <span class="cmt">-- customer name</span>
+  ,c.city                          <span class="cmt">-- customer city</span>
+  ,COUNT(o.id) <span class="kw">AS</span> order_count     <span class="cmt">-- number of orders</span>
+  ,<span class="fn">SUM</span>(o.amount) <span class="kw">AS</span> total_revenue  <span class="cmt">-- total spend</span>
+  ,<span class="fn">AVG</span>(o.amount) <span class="kw">AS</span> avg_order_val  <span class="cmt">-- average order</span>
+  ,<span class="fn">MAX</span>(o.order_date) <span class="kw">AS</span> last_order  <span class="cmt">-- most recent order</span>
+<span class="kw">FROM</span> customers c
+<span class="kw">LEFT JOIN</span> orders o
+  <span class="kw">ON</span> c.id = o.customer_id
+<span class="kw">WHERE</span> o.order_date >= <span class="str">'2024-01-01'</span>
+<span class="kw">GROUP BY</span> c.name, c.city
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.id) >= <span class="num">3</span>
+<span class="kw">ORDER BY</span> total_revenue <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">20</span>;</div>
+
+        <h3>Line-by-line breakdown</h3>
+        <ul>
+          <li><strong>Lines 1-7 (SELECT)</strong> — What columns to show. Aliases like <code>order_count</code> name the output columns.</li>
+          <li><strong>Lines 8-9 (FROM + LEFT JOIN)</strong> — Start with customers, bring in matching orders. LEFT JOIN keeps customers even if they have no orders.</li>
+          <li><strong>Line 10 (ON)</strong> — The link between tables: customer id matches order's customer_id.</li>
+          <li><strong>Line 11 (WHERE)</strong> — Filter to orders from 2024 onwards. This runs BEFORE grouping.</li>
+          <li><strong>Line 12 (GROUP BY)</strong> — Collapse to one row per customer. All non-aggregated columns must appear here.</li>
+          <li><strong>Line 13 (HAVING)</strong> — Filter AFTER grouping. Only keep customers with 3+ orders.</li>
+          <li><strong>Line 14 (ORDER BY)</strong> — Sort by total revenue, highest first.</li>
+          <li><strong>Line 15 (LIMIT)</strong> — Return only top 20 rows.</li>
+        </ul>
+
+        <div class="concept-box tip">
+          <strong>Execution order tip:</strong> SQL evaluates in this order: FROM/JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMIT. Knowing this helps you understand where filters and aggregations happen.
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Modify the query above to also show the <strong>average order value per category</strong>.</p>
+          <div class="playground" data-query="">
+            <textarea spellcheck="false">-- Start with the query above and add AVG(amount)
+-- What else needs to change?
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-hint" onclick="showHint(this, 'Add AVG(o.amount) AS avg_category_value to the SELECT and add p.category to GROUP BY')">Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1698,9 +2129,27 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Subquery in WHERE</h3>
-        <div class="playground" data-query="SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);">
-          <div class="playground-header"><span class="label">Try it</span><span>Customers who spent more than $300 total</span></div>
-          <textarea spellcheck="false">SELECT name, email FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(amount) > 300);</textarea>
+        <div class="playground" data-query="SELECT
+  name,
+  price
+FROM products
+WHERE id IN (
+  SELECT product_id
+  FROM orders
+  GROUP BY product_id
+  HAVING SUM(amount) > 300
+);">
+          <div class="playground-header"><span class="label">Try it</span><span>Products with total revenue above $300</span></div>
+          <textarea spellcheck="false">SELECT
+  name,
+  price
+FROM products
+WHERE id IN (
+  SELECT product_id
+  FROM orders
+  GROUP BY product_id
+  HAVING SUM(amount) > 300
+);</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1709,9 +2158,29 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Subquery in FROM</h3>
-        <div class="playground" data-query="SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) AS sub WHERE avg_price > 100;">
+        <div class="playground" data-query="SELECT
+  category,
+  avg_price
+FROM (
+  SELECT
+    category,
+    AVG(price) AS avg_price
+  FROM products
+  GROUP BY category
+) AS sub
+WHERE avg_price > 100;">
           <div class="playground-header"><span class="label">Try it</span><span>Categories with average price above $100</span></div>
-          <textarea spellcheck="false">SELECT category, avg_price FROM (SELECT category, AVG(price) AS avg_price FROM products GROUP BY category) AS sub WHERE avg_price > 100;</textarea>
+          <textarea spellcheck="false">SELECT
+  category,
+  avg_price
+FROM (
+  SELECT
+    category,
+    AVG(price) AS avg_price
+  FROM products
+  GROUP BY category
+) AS sub
+WHERE avg_price > 100;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1724,28 +2193,14 @@ ORDER BY c.name;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Find products that have never been ordered.</p>
-          <div class="playground" data-query="SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Find products that have been <strong>ordered more than 2 times</strong>. Show the product name and order count. This tests subqueries with IN, GROUP BY, and HAVING together.</p>
+          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS order_count FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name HAVING order_count > 2;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Find customers who have placed more than 2 orders.</p>
-          <div class="playground" data-query="SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) > 2);">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders GROUP BY customer_id HAVING COUNT(*) > 2);')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS order_count FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name HAVING order_count > 2;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1761,9 +2216,25 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Simple CASE</h3>
-        <div class="playground" data-query="SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;">
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  CASE
+    WHEN price > 200 THEN 'Premium'
+    WHEN price > 50 THEN 'Standard'
+    ELSE 'Budget'
+  END AS price_tier
+FROM products;">
           <div class="playground-header"><span class="label">Try it</span><span>Label products by price tier</span></div>
-          <textarea spellcheck="false">SELECT name, price, CASE WHEN price > 200 THEN 'Premium' WHEN price > 50 THEN 'Standard' ELSE 'Budget' END AS price_tier FROM products;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  price,
+  CASE
+    WHEN price > 200 THEN 'Premium'
+    WHEN price > 50 THEN 'Standard'
+    ELSE 'Budget'
+  END AS price_tier
+FROM products;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1772,9 +2243,21 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Conditional aggregation</h3>
-        <div class="playground" data-query="SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;">
+        <div class="playground" data-query="SELECT
+  city,
+  COUNT(*) AS total_customers,
+  COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024,
+  COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024
+FROM customers
+GROUP BY city;">
           <div class="playground-header"><span class="label">Try it</span><span>Split customer count by signup year per city</span></div>
-          <textarea spellcheck="false">SELECT city, COUNT(*) AS total_customers, COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024, COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024 FROM customers GROUP BY city;</textarea>
+          <textarea spellcheck="false">SELECT
+  city,
+  COUNT(*) AS total_customers,
+  COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024,
+  COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024
+FROM customers
+GROUP BY city;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1787,28 +2270,14 @@ ORDER BY c.name;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Label orders as Small (&lt;$100), Medium ($100-$300), or Large (&gt;$300). Show order id, amount, and label.</p>
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Label each order as <strong>'Small'</strong> (under $100), <strong>'Medium'</strong> ($100-$300), or <strong>'Large'</strong> (over $300). Show order id, amount, and label. This tests CASE WHEN with multiple conditions.</p>
           <div class="playground" data-query="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
               <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, CASE WHEN amount < 100 THEN \'Small\' WHEN amount <= 300 THEN \'Medium\' ELSE \'Large\' END AS size FROM orders;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Count customers per city, split by email domain (gmail vs others).</p>
-          <div class="playground" data-query="SELECT city, COUNT(CASE WHEN email LIKE '%@gmail.com' THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE '%@gmail.com' THEN 1 END) AS other FROM customers GROUP BY city;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT city, COUNT(CASE WHEN email LIKE \'%@gmail.com\' THEN 1 END) AS gmail, COUNT(CASE WHEN email NOT LIKE \'%@gmail.com\' THEN 1 END) AS other FROM customers GROUP BY city;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1824,9 +2293,25 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>ROW_NUMBER — rank within a group</h3>
-        <div class="playground" data-query="SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;">
+        <div class="playground" data-query="SELECT
+  name,
+  category,
+  price,
+  ROW_NUMBER() OVER (
+    PARTITION BY category
+    ORDER BY price DESC
+  ) AS rank_in_category
+FROM products;">
           <div class="playground-header"><span class="label">Try it</span><span>Rank products by price within each category</span></div>
-          <textarea spellcheck="false">SELECT name, category, price, ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank_in_category FROM products;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  category,
+  price,
+  ROW_NUMBER() OVER (
+    PARTITION BY category
+    ORDER BY price DESC
+  ) AS rank_in_category
+FROM products;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1835,9 +2320,25 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>RANK and DENSE_RANK</h3>
-        <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+        <div class="playground" data-query="SELECT
+  name,
+  department,
+  salary,
+  RANK() OVER (
+    PARTITION BY department
+    ORDER BY salary DESC
+  ) AS salary_rank
+FROM employees;">
           <div class="playground-header"><span class="label">Try it</span><span>Rank employees by salary within each department</span></div>
-          <textarea spellcheck="false">SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;</textarea>
+          <textarea spellcheck="false">SELECT
+  name,
+  department,
+  salary,
+  RANK() OVER (
+    PARTITION BY department
+    ORDER BY salary DESC
+  ) AS salary_rank
+FROM employees;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1850,9 +2351,21 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Running total</h3>
-        <div class="playground" data-query="SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;">
+        <div class="playground" data-query="SELECT
+  order_date,
+  amount,
+  SUM(amount) OVER (
+    ORDER BY order_date
+  ) AS running_total
+FROM orders;">
           <div class="playground-header"><span class="label">Try it</span><span>Cumulative revenue over time</span></div>
-          <textarea spellcheck="false">SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;</textarea>
+          <textarea spellcheck="false">SELECT
+  order_date,
+  amount,
+  SUM(amount) OVER (
+    ORDER BY order_date
+  ) AS running_total
+FROM orders;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1861,9 +2374,56 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>LAG — compare to previous row</h3>
-        <div class="playground" data-query="SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;">
+        <div class="playground" data-query="SELECT
+  order_date,
+  amount,
+  LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS previous_order,
+  amount - LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS change
+FROM orders;">
           <div class="playground-header"><span class="label">Try it</span><span>Compare each order to the previous one</span></div>
-          <textarea spellcheck="false">SELECT order_date, amount, LAG(amount) OVER (ORDER BY order_date) AS previous_order, amount - LAG(amount) OVER (ORDER BY order_date) AS change FROM orders;</textarea>
+          <textarea spellcheck="false">SELECT
+  order_date,
+  amount,
+  LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS previous_order,
+  amount - LAG(amount) OVER (
+    ORDER BY order_date
+  ) AS change
+FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Period comparison: month-over-month change</h3>
+        <div class="playground" data-query="SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  SUM(amount) AS revenue,
+  LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) AS prev_month,
+  ROUND((SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date))) / LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) * 100, 1) AS pct_change
+FROM orders
+GROUP BY month
+ORDER BY month;">
+          <div class="playground-header"><span class="label">Try it</span><span>Month-over-month revenue change</span></div>
+          <textarea spellcheck="false">SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  SUM(amount) AS revenue,
+  LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) AS prev_month,
+  ROUND(
+    (SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)))
+    / LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) * 100,
+    1
+  ) AS pct_change
+FROM orders
+GROUP BY month
+ORDER BY month;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1876,28 +2436,14 @@ ORDER BY c.name;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Rank employees by salary within their department. Show name, department, salary, and rank.</p>
-          <div class="playground" data-query="SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each order with a <strong>running total of revenue</strong>, ordered by date. This tests window functions with SUM() OVER and ORDER BY.</p>
+          <div class="playground" data-query="SELECT id, order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Show each order with a running total of revenue per customer.</p>
-          <div class="playground" data-query="SELECT customer_id, order_date, amount, SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total FROM orders;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT customer_id, order_date, amount, SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total FROM orders;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1913,17 +2459,35 @@ ORDER BY c.name;</textarea>
         </div>
 
         <h3>Basic CTE</h3>
-        <div class="playground" data-query="WITH customer_totals AS (SELECT customer_id, SUM(amount) AS total_spent FROM orders GROUP BY customer_id) SELECT c.name, ct.total_spent FROM customer_totals ct JOIN customers c ON ct.customer_id = c.id ORDER BY ct.total_spent DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Customer spending totals using a CTE</span></div>
-          <textarea spellcheck="false">WITH customer_totals AS (
-  SELECT customer_id, SUM(amount) AS total_spent
+        <div class="playground" data-query="WITH product_totals AS (
+  SELECT
+    product_id,
+    SUM(amount) AS total_revenue
   FROM orders
-  GROUP BY customer_id
+  GROUP BY product_id
 )
-SELECT c.name, ct.total_spent
-FROM customer_totals ct
-JOIN customers c ON ct.customer_id = c.id
-ORDER BY ct.total_spent DESC;</textarea>
+SELECT
+  p.name,
+  pt.total_revenue
+FROM product_totals pt
+JOIN products p
+  ON pt.product_id = p.id
+ORDER BY pt.total_revenue DESC;">
+          <div class="playground-header"><span class="label">Try it</span><span>Product revenue totals using a CTE</span></div>
+          <textarea spellcheck="false">WITH product_totals AS (
+  SELECT
+    product_id,
+    SUM(amount) AS total_revenue
+  FROM orders
+  GROUP BY product_id
+)
+SELECT
+  p.name,
+  pt.total_revenue
+FROM product_totals pt
+JOIN products p
+  ON pt.product_id = p.id
+ORDER BY pt.total_revenue DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1932,19 +2496,52 @@ ORDER BY ct.total_spent DESC;</textarea>
         </div>
 
         <h3>Multiple CTEs</h3>
-        <div class="playground" data-query="WITH monthly_revenue AS (SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue FROM orders GROUP BY month), avg_monthly AS (SELECT AVG(revenue) AS avg_rev FROM monthly_revenue) SELECT mr.month, mr.revenue, am.avg_rev, CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance FROM monthly_revenue mr, avg_monthly am ORDER BY mr.month;">
-          <div class="playground-header"><span class="label">Try it</span><span>Monthly revenue vs average</span></div>
-          <textarea spellcheck="false">WITH monthly_revenue AS (
-  SELECT strftime('%Y-%m', order_date) AS month, SUM(amount) AS revenue
+        <div class="playground" data-query="WITH monthly_revenue AS (
+  SELECT
+    DATE_TRUNC('month', order_date) AS month,
+    SUM(amount) AS revenue
   FROM orders
   GROUP BY month
 ),
 avg_monthly AS (
-  SELECT AVG(revenue) AS avg_rev FROM monthly_revenue
+  SELECT
+    AVG(revenue) AS avg_rev
+  FROM monthly_revenue
 )
-SELECT mr.month, mr.revenue, am.avg_rev,
-  CASE WHEN mr.revenue > am.avg_rev THEN 'Above average' ELSE 'Below average' END AS performance
-FROM monthly_revenue mr, avg_monthly am
+SELECT
+  mr.month,
+  mr.revenue,
+  am.avg_rev,
+  CASE
+    WHEN mr.revenue > am.avg_rev THEN 'Above average'
+    ELSE 'Below average'
+  END AS performance
+FROM monthly_revenue mr,
+  avg_monthly am
+ORDER BY mr.month;">
+          <div class="playground-header"><span class="label">Try it</span><span>Monthly revenue vs average</span></div>
+          <textarea spellcheck="false">WITH monthly_revenue AS (
+  SELECT
+    DATE_TRUNC('month', order_date) AS month,
+    SUM(amount) AS revenue
+  FROM orders
+  GROUP BY month
+),
+avg_monthly AS (
+  SELECT
+    AVG(revenue) AS avg_rev
+  FROM monthly_revenue
+)
+SELECT
+  mr.month,
+  mr.revenue,
+  am.avg_rev,
+  CASE
+    WHEN mr.revenue > am.avg_rev THEN 'Above average'
+    ELSE 'Below average'
+  END AS performance
+FROM monthly_revenue mr,
+  avg_monthly am
 ORDER BY mr.month;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1958,28 +2555,14 @@ ORDER BY mr.month;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 1 <span class="challenge-badge hard">Hard</span></div>
-          <p>Refactor: Find customers who spent more than $300 using a CTE instead of a subquery.</p>
-          <div class="playground" data-query="WITH spending AS (SELECT customer_id, SUM(amount) AS total FROM orders GROUP BY customer_id HAVING total > 300) SELECT c.name, s.total FROM spending s JOIN customers c ON s.customer_id = c.id;">
+          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Using a <strong>CTE</strong>, find the <strong>top 3 products by total revenue</strong>. Show product name and total revenue. This tests CTE, JOIN, SUM, GROUP BY, ORDER BY, and LIMIT together.</p>
+          <div class="playground" data-query="WITH product_revenue AS (SELECT p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name) SELECT name, revenue FROM product_revenue ORDER BY revenue DESC LIMIT 3;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WITH spending AS (SELECT customer_id, SUM(amount) AS total FROM orders GROUP BY customer_id HAVING total > 300) SELECT c.name, s.total FROM spending s JOIN customers c ON s.customer_id = c.id;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise 2 <span class="challenge-badge hard">Hard</span></div>
-          <p>Build a report: top 3 products by revenue per category using a CTE.</p>
-          <div class="playground" data-query="WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WITH product_revenue AS (SELECT p.category, p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.category, p.name) SELECT * FROM product_revenue pr1 WHERE 3 > (SELECT COUNT(*) FROM product_revenue pr2 WHERE pr2.category = pr1.category AND pr2.revenue > pr1.revenue) ORDER BY category, revenue DESC;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'WITH product_revenue AS (SELECT p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name) SELECT name, revenue FROM product_revenue ORDER BY revenue DESC LIMIT 3;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -2057,12 +2640,23 @@ ORDER BY mr.month;</textarea>
 )
 <span class="kw">SELECT</span> ... <span class="kw">FROM</span> cte_name;</div>
 
+<h3>Useful functions</h3>
+<div class="schema-display">
+  <div><span class="col-name">COALESCE(a, b)</span> <span class="col-desc">— use a if not null, else b</span></div>
+  <div><span class="col-name">ROUND(value, 2)</span> <span class="col-desc">— round to 2 decimal places</span></div>
+  <div><span class="col-name">CAST(value AS type)</span> <span class="col-desc">— convert data types</span></div>
+  <div><span class="col-name">LENGTH(string)</span> <span class="col-desc">— count characters</span></div>
+</div>
+
 <h3>Common patterns</h3>
 <div class="schema-display">
   <div><span class="col-name">Top N per group</span> <span class="col-desc">— use ROW_NUMBER() or RANK()</span></div>
   <div><span class="col-name">Running total</span> <span class="col-desc">— SUM() OVER (ORDER BY ...)</span></div>
   <div><span class="col-name">Month-over-month</span> <span class="col-desc">— LAG() or self-join</span></div>
   <div><span class="col-name">Deduplicate</span> <span class="col-desc">— ROW_NUMBER() = 1</span></div>
+  <div><span class="col-name">Replace NULL</span> <span class="col-desc">— COALESCE(column, 'default')</span></div>
+  <div><span class="col-name">Format currency</span> <span class="col-desc">— ROUND(amount, 2)</span></div>
+  <div><span class="col-name">Convert types</span> <span class="col-desc">— CAST(column AS INTEGER)</span></div>
 </div>
 
 <h3>Common mistakes</h3>
@@ -2076,6 +2670,10 @@ ORDER BY mr.month;</textarea>
     function whatsNextContent() { return `
 <h2>What's Next: Keep Going</h2>
 <p class="subtitle">Where do I go from here?</p>
+
+<div class="concept-box why">
+  Remember when you started? You couldn't answer a single data question without waiting on an analyst. Now you can pull your own reports, filter by any criteria, join tables together, and even debug queries that don't look right. That's a real skill — and it's yours now.
+</div>
 
 <div class="concept-box why">
   You've completed SQL for Everyone. You can now write queries that would have taken a data analyst days to pull. But this is just the beginning — here's where to go next.
@@ -2120,6 +2718,8 @@ ORDER BY mr.month;</textarea>
       { id: 'groupby', title: 'GROUP BY', icon: '📈', content: groupbyContent },
       { id: 'joins', title: 'JOINs', icon: '🔗', content: joinsContent },
       { id: 'mini-reports', title: 'Mini Reports', icon: '📄', content: miniReportsContent },
+      { id: 'debugging', title: 'Debugging', icon: '🔍', content: debuggingContent },
+      { id: 'reading-queries', title: 'Reading Queries', icon: '📖', content: readingQueriesContent },
       { id: 'subqueries', title: 'Subqueries', icon: '🔄', content: subqueriesContent },
       { id: 'case-when', title: 'CASE WHEN', icon: '🏷️', content: caseWhenContent },
       { id: 'window', title: 'Window Functions', icon: '🪟', content: windowContent },
@@ -2143,9 +2743,9 @@ ORDER BY mr.month;</textarea>
     function renderNav() {
       const nav = document.getElementById('lessonNav');
       nav.innerHTML = lessons.map((l, i) =>
-        '<li class="' + (i === currentLesson ? 'active' : '') + ' ' + (completedLessons.has(i) ? 'completed' : '') + '"' +
+        '<li class="' + (i === currentLesson ? 'active' : '') + (completedLessons.has(i) ? ' completed' : '') + '"' +
         ' onclick="goToLesson(' + i + ')" tabindex="0" role="button" aria-label="' + l.title + ' lesson">' +
-        '<span class="num">' + l.icon + '</span>' +
+        '<span class="nav-num">' + String(i + 1).padStart(2, '0') + '</span>' +
         l.title +
         '</li>'
       ).join('');
@@ -2162,7 +2762,10 @@ ORDER BY mr.month;</textarea>
     function renderLesson() {
       const doRender = () => {
         const content = document.getElementById('lessonContent');
-        let html = lessons[currentLesson].content();
+        let html = '<div class="breadcrumb">Lesson ' + String(currentLesson + 1).padStart(2, '0') + ' of ' + String(lessons.length).padStart(2, '0') + '</div>';
+        html += '<div class="lesson">';
+        html += lessons[currentLesson].content();
+        html += '</div>';
 
         // Navigation buttons
         html += '<div class="lesson-nav-bottom">';
@@ -2182,17 +2785,29 @@ ORDER BY mr.month;</textarea>
         renderNav();
         updateProgress();
         attachPlaygroundHandlers(content);
+        // Update run button text to match mockup
+        content.querySelectorAll('.btn-run').forEach(btn => {
+          btn.innerHTML = '▶ Run Query';
+        });
+        // Strip emojis from exercise titles, keep "EXERCISE" + badge
+        content.querySelectorAll('.exercise-title').forEach(el => {
+          const badge = el.querySelector('.challenge-badge');
+          const badgeHtml = badge ? badge.outerHTML : '';
+          const numMatch = el.textContent.match(/Exercise\s*(\d+)/);
+          const num = numMatch ? numMatch[1] : '';
+          el.innerHTML = 'EXERCISE' + (num ? ' ' + num : '') + ' ' + badgeHtml;
+        });
+        // Auto-resize all textareas to fit their content
+        content.querySelectorAll('.playground textarea').forEach(ta => {
+          autoResizeTextarea(ta);
+        });
         content.querySelectorAll('.result-area').forEach(el => {
           el.setAttribute('aria-live', 'polite');
         });
         window.scrollTo(0, 0);
       };
 
-      if (document.startViewTransition) {
-        document.startViewTransition(doRender);
-      } else {
-        doRender();
-      }
+      doRender();
     }
 
     function goToLesson(i) {
@@ -2221,26 +2836,6 @@ ORDER BY mr.month;</textarea>
         }, 500);
       }
     }
-
-    // ========== PDF Export ==========
-    document.getElementById('exportPdfBtn').addEventListener('click', () => {
-      // Save current state
-      const savedLesson = currentLesson;
-
-      // Show all lessons
-      const content = document.getElementById('lessonContent');
-      let allContent = '';
-      lessons.forEach((l, i) => {
-        allContent += '<div style="page-break-after:always;padding:20px 0;">' + l.content() + '</div>';
-      });
-      content.innerHTML = allContent;
-
-      window.print();
-
-      // Restore current lesson
-      currentLesson = savedLesson;
-      renderLesson();
-    });
 
     // ========== Completion Certificate ==========
     function generateCertificate() {
@@ -2299,36 +2894,6 @@ ORDER BY mr.month;</textarea>
       }
     });
 
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
-
-    function setTheme(theme) {
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeIcon.innerHTML = '&#9788;'; // sun
-        themeLabel.textContent = 'Light mode';
-        localStorage.setItem('sql-course-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        themeIcon.innerHTML = '&#9789;'; // moon
-        themeLabel.textContent = 'Dark mode';
-        localStorage.setItem('sql-course-theme', 'light');
-      }
-    }
-
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('sql-course-theme');
-    if (savedTheme === 'dark') {
-      setTheme('dark');
-    }
-
     // ========== Init ==========
     initDatabase().then(() => {
       document.getElementById('loadingOverlay').style.display = 'none';
@@ -2339,8 +2904,8 @@ ORDER BY mr.month;</textarea>
     });
   </script>
 
-  <div id="commandPalette" style="display:none;position:fixed;inset:0;z-index:300;background:oklch(0 0 0 / 0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:15vh;">
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);width:480px;max-width:90vw;box-shadow:0 16px 64px oklch(0 0 0 / 0.2);overflow:hidden;">
+  <div id="commandPalette" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:15vh;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);width:480px;max-width:90vw;box-shadow:none;overflow:hidden;">
       <input id="cmdInput" type="text" placeholder="Search lessons..." style="width:100%;padding:16px 20px;border:none;border-bottom:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--font);font-size:15px;outline:none;box-sizing:border-box;">
       <div id="cmdResults" style="max-height:300px;overflow-y:auto;"></div>
     </div>
