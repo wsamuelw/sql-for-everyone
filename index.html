@@ -1571,17 +1571,21 @@ FROM orders;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Total and average</h3>
+        <h3>Total, average, min and max</h3>
         <div class="playground" data-query="SELECT
   COUNT(*) AS total_orders,
   SUM(amount) AS total_revenue,
-  AVG(amount) AS avg_order_value
+  AVG(amount) AS avg_order_value,
+  MIN(amount) AS smallest_order,
+  MAX(amount) AS largest_order
 FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>Order count, total revenue, and average order value</span></div>
+          <div class="playground-header"><span class="label">Try it</span><span>Order count, total, average, min and max</span></div>
           <textarea spellcheck="false">SELECT
   COUNT(*) AS total_orders,
   SUM(amount) AS total_revenue,
-  AVG(amount) AS avg_order_value
+  AVG(amount) AS avg_order_value,
+  MIN(amount) AS smallest_order,
+  MAX(amount) AS largest_order
 FROM orders;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
