@@ -25,3 +25,11 @@
 {"ts":"2026-05-20T13:42:37.320Z","cmd":"screenshot","args":"/tmp/hint-working.png","origin":"file:///Users/samuel/projects/sql-course-for-everyone/index.html","durationMs":122,"status":"ok","hasCookies":false,"mode":"launched"}
 {"ts":"2026-05-20T13:42:58.436Z","cmd":"click","args":"@e47","origin":"file:///Users/samuel/projects/sql-course-for-everyone/index.html","durationMs":15,"status":"ok","hasCookies":false,"mode":"launched"}
 {"ts":"2026-05-20T13:42:58.466Z","cmd":"js","args":"document.querySelectorAll('.result-area')[document.querySelectorAll('.result-area').length - 1].innerHTML","origin":"file:///Users/samuel/projects/sql-course-for-everyone/index.html","durationMs":0,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:48:21.034Z","cmd":"goto","args":"http://localhost:8080/index.html","origin":"http://localhost:8080/index.html","durationMs":438,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:48:21.072Z","cmd":"console","args":"","origin":"http://localhost:8080/index.html","durationMs":1,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:48:33.743Z","cmd":"js","args":"typeof initSqlJs","origin":"http://localhost:8080/index.html","durationMs":1,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:49:58.259Z","cmd":"reload","args":"","origin":"http://localhost:8080/index.html","durationMs":263,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:49:58.311Z","cmd":"js","args":"typeof initSqlJs","origin":"http://localhost:8080/index.html","durationMs":0,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:51:48.446Z","cmd":"js","args":"db !== null ? 'DB ready' : 'DB not ready'","origin":"http://localhost:8080/index.html","durationMs":1,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:52:01.524Z","cmd":"screenshot","args":"/tmp/course-working.png","origin":"http://localhost:8080/index.html","durationMs":71,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-05-20T14:54:29.044Z","cmd":"js","args":"document.fonts.check('16px Inter')","origin":"http://localhost:8080/index.html","durationMs":1,"status":"ok","hasCookies":false,"mode":"launched"}
