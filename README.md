@@ -1,14 +1,12 @@
 # SQL for Everyone
 
-**[Live Course](https://wsamuelw.github.io/sql-for-everyone/)**
-
 Data judgment for the AI age. An interactive SQL course for non-technical business professionals. Learn to read, write, and evaluate SQL queries — including AI-generated ones.
 
 AI can write SQL for you. That makes knowing SQL *more* important, not less. When you can read a query, you can check whether it's right. When you can't, you're trusting a black box with your business decisions. Calculators didn't kill arithmetic. They made numeracy essential. Same thing is happening with SQL and AI.
 
 ## Quick Start
 
-1. Open `index.html` in any modern browser
+1. Go to [wsamuelw.github.io/sql-for-everyone](https://wsamuelw.github.io/sql-for-everyone/)
 2. No server, no installation, no accounts
 3. Start with the Welcome lesson
 
