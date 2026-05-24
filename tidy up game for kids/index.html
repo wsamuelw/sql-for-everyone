@@ -27,6 +27,55 @@
             ]
         };
         console.log("Game Config Loaded:", GAME_CONFIG);
+
+        const state = {
+            currentScene: 'GOAL',
+            itemsTidied: 0
+        };
+
+        const scenes = {
+            GOAL: {
+                text: () => `${GAME_CONFIG.characterName} wants to play with their ${GAME_CONFIG.targetToyName}!`,
+                action: "Let's look for it!",
+                next: 'STRUGGLE'
+            },
+            STRUGGLE: {
+                text: () => `Where is the ${GAME_CONFIG.targetToyName}? Click the piles!`,
+                action: "Search",
+                next: 'OOPS'
+            },
+            OOPS: {
+                text: () => `Oh no! ${GAME_CONFIG.characterName} almost tripped! It's hard to walk safely when things are on the floor.`,
+                action: "Let's tidy up!",
+                next: 'QUEST'
+            },
+            QUEST: {
+                text: () => `Help ${GAME_CONFIG.characterName} tidy up the room!`,
+                action: "Play",
+                next: 'SUCCESS'
+            },
+            SUCCESS: {
+                text: () => `Yay! The room is safe and tidy. Now we can find the ${GAME_CONFIG.targetToyName} easily!`,
+                action: "Play Again",
+                next: 'GOAL'
+            }
+        };
+
+        function renderScene() {
+            const scene = scenes[state.currentScene];
+            const content = document.getElementById('scene-content');
+            const controls = document.getElementById('controls');
+
+            content.innerHTML = `<h2>${scene.text()}</h2>`;
+            controls.innerHTML = `<button id="next-btn" style="padding: 10px 20px; font-size: 18px; cursor: pointer; border-radius: 10px; background: #ffeb3b; border: 2px solid #fbc02d;">${scene.action}</button>`;
+
+            document.getElementById('next-btn').onclick = () => {
+                state.currentScene = scene.next;
+                renderScene();
+            };
+        }
+        renderScene();
+
     </script>
 </body>
 </html>
