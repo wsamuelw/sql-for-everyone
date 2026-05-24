@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tidy Up Game!</title>
+    <style>
+        body { font-family: 'Comic Sans MS', cursive, sans-serif; background-color: #e0f7fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        #game-container { width: 600px; height: 400px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); padding: 20px; text-align: center; position: relative; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="scene-content"></div>
+        <div id="controls" style="margin-top: 20px;"></div>
+    </div>
+    <script>
+        const GAME_CONFIG = {
+            characterName: "Tidy Sam",
+            targetToy: "🦖",
+            targetToyName: "Dinosaur",
+            itemsToTidy: [
+                { id: 'block', emoji: '🧱', bin: 'Toy Bin' },
+                { id: 'book', emoji: '📚', bin: 'Bookshelf' },
+                { id: 'sock', emoji: '🧦', bin: 'Laundry Basket' }
+            ]
+        };
+        console.log("Game Config Loaded:", GAME_CONFIG);
+    </script>
+</body>
+</html>
