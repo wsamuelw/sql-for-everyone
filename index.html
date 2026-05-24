@@ -75,7 +75,7 @@
       background: var(--surface);
       border-right: 1px solid var(--border);
       box-shadow: none;
-      padding: 32px 0;
+      padding: 24px 0;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -83,9 +83,9 @@
     }
 
     .sidebar-brand {
-      padding: 0 24px 24px;
+      padding: 0 20px 20px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .sidebar-brand h1 {
@@ -105,7 +105,7 @@
     }
 
     .nav-label {
-      padding: 8px 24px;
+      padding: 8px 20px;
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
@@ -121,7 +121,7 @@
     }
 
     .lesson-nav li {
-      padding: 8px 24px;
+      padding: 6px 20px;
       font-size: 14px;
       font-weight: 500;
       color: var(--text-dim);
@@ -165,7 +165,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      padding: 48px 40px;
+      padding: 40px 32px;
       overflow-y: auto;
       position: relative;
     }
@@ -213,30 +213,30 @@
     .lesson .subtitle {
       color: var(--text-dim);
       font-size: 16px;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
 
     .lesson h3 {
       font-size: clamp(1.125rem, 1.5vw + 0.75rem, 1.25rem);
       line-height: 1.3;
       font-weight: 600;
-      margin: 40px 0 16px;
+      margin: 32px 0 12px;
       color: var(--text);
     }
 
     .lesson p {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       line-height: 1.6;
     }
 
     .lesson li {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       padding-left: 4px;
     }
 
     .lesson ul, .lesson ol {
       padding-left: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       list-style-position: outside;
     }
 
@@ -244,103 +244,57 @@
       list-style-type: disc;
     }
 
-    /* ========== Concept Boxes ========== */
-    .concept-box {
-      background: transparent;
-      border: none;
-      border-left: 3px solid var(--border);
-      border-radius: 0;
-      padding: 0 0 0 20px;
-      margin-bottom: 48px;
-      position: relative;
-      box-shadow: none;
-    }
-
-    .concept-box::before {
-      content: "CONCEPT";
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-dim);
-      margin-bottom: 8px;
-    }
-
-    .concept-box.analogy {
-      border-left: 3px solid var(--border);
-    }
-
-    .concept-box.why {
-      border-left: 3px solid var(--border);
-    }
-
-    .concept-box.tip {
-      border-left: 3px solid var(--border);
-    }
-
-    .concept-box.warning {
-      border-left: 3px solid var(--border);
-    }
-
     /* ========== Code Blocks ========== */
     .code-block {
-      background: var(--surface);
+      background: #f1f5f9;
       border: 1px solid var(--border);
-      border-radius: 0;
+      border-radius: 6px;
       padding: 16px 20px;
       font-family: var(--mono);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.7;
       overflow-x: auto;
       color: var(--text);
-      margin-bottom: 48px;
+      margin-bottom: 24px;
       white-space: pre;
-      box-shadow: none;
     }
 
     /* ========== Playground ========== */
     .playground {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 0;
-      margin-bottom: 48px;
-      box-shadow: none;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
 
     .playground-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-dim);
-      font-family: var(--mono);
-    }
-
-    .playground-header span {
       display: none;
     }
 
-    .playground-header::before {
-      content: '';
-      display: block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--border);
-      box-shadow: 12px 0 0 var(--border), 24px 0 0 var(--border);
+    .playground-editor {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+      min-height: 60px;
     }
 
-    .playground-header::after {
-      content: 'SQL';
+    .line-numbers {
+      padding: 14px 0;
+      text-align: right;
+      user-select: none;
+      color: #cbd5e1;
+      background: #fafbfc;
+      border-right: 1px solid var(--border);
       font-size: 12px;
-      font-weight: 500;
-      color: var(--text-dim);
-      font-family: var(--mono);
+    }
+
+    .line-numbers span {
+      display: block;
+      padding: 0 10px 0 8px;
     }
 
     .playground textarea {
@@ -352,13 +306,13 @@
       background: var(--surface);
       color: var(--text);
       font-family: var(--mono);
-      font-size: 14px;
-      line-height: 1.7;
-      padding: 16px;
-      border: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.8;
+      padding: 14px 16px;
+      border: none;
       border-radius: 0;
       outline: none;
-      transition: border-color 0.15s;
+      transition: box-shadow 0.15s;
     }
 
     .playground textarea::placeholder {
@@ -366,7 +320,7 @@
     }
 
     .playground textarea:focus-visible {
-      border-color: var(--text);
+      box-shadow: inset 0 0 0 2px rgba(41, 181, 232, 0.2);
     }
 
     .playground-actions {
@@ -375,14 +329,21 @@
       gap: 8px;
       padding: 10px 16px;
       border-top: 1px solid var(--border);
-      margin-bottom: 24px;
+      background: #f8fafc;
+    }
+
+    .playground-actions .run-label {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-left: auto;
+      font-family: var(--font);
     }
 
     /* ========== Buttons ========== */
     .btn {
-      padding: 10px 24px;
-      border-radius: 0;
-      font-size: 14px;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 13px;
       font-weight: 500;
       font-family: var(--font);
       cursor: pointer;
@@ -392,16 +353,16 @@
     }
 
     .btn-run {
-      background: var(--text);
+      background: #29b5e8;
       color: #ffffff;
-      border: 1px solid var(--text);
-      padding: 10px 24px;
-      font-size: 14px;
+      border: 1px solid #29b5e8;
+      padding: 6px 16px;
+      font-size: 13px;
     }
 
     .btn-run:hover {
-      background: var(--accent-dim);
-      box-shadow: none;
+      background: #0ea5e9;
+      border-color: #0ea5e9;
     }
 
     .btn-run:active {
@@ -412,8 +373,8 @@
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text-dim);
-      padding: 10px 24px;
-      font-size: 14px;
+      padding: 6px 14px;
+      font-size: 13px;
     }
 
     .btn-reset:hover {
@@ -425,8 +386,8 @@
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text-dim);
-      padding: 10px 24px;
-      font-size: 14px;
+      padding: 6px 14px;
+      font-size: 13px;
     }
 
     .btn-hint:hover {
@@ -445,21 +406,21 @@
     }
 
     .message.success {
-      color: var(--green);
-      background: transparent;
-      border: 1px solid var(--green);
+      color: #059669;
+      background: #f0fdf4;
+      border-top: 1px solid #bbf7d0;
     }
 
     .message.error {
-      color: var(--red);
-      background: transparent;
-      border: 1px solid var(--red);
+      color: #dc2626;
+      background: #fef2f2;
+      border-top: 1px solid #fecaca;
     }
 
     .message.info {
       color: var(--text-dim);
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
     }
 
     /* ========== Result Area ========== */
@@ -467,38 +428,53 @@
       border-top: 1px solid var(--border);
     }
 
+    .result-area:empty {
+      display: none;
+    }
+
+    .result-area .message {
+      padding: 12px 16px;
+      margin: 0;
+      font-size: 13px;
+      font-family: var(--mono);
+    }
+
+    .result-area .message.info {
+      color: #334155;
+      background: #f1f5f9;
+    }
+
     .result-table {
       width: 100%;
       border-collapse: collapse;
       font-family: var(--mono);
-      font-size: 14px;
-      margin-bottom: 8px;
+      font-size: 13px;
     }
 
     .result-table th {
-      background: transparent;
+      background: #f8fafc;
       color: var(--text-dim);
-      padding: 10px 16px;
+      padding: 8px 16px;
       text-align: left;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--border);
     }
 
     .result-table td {
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      border-bottom: 1px solid #f1f5f9;
       color: var(--text);
     }
 
     .result-table tr:nth-child(even) td {
-      background: var(--surface);
+      background: #fafbfc;
     }
 
-    .result-table tr:nth-child(odd) td {
-      background: var(--bg);
+    .result-table tr:hover td {
+      background: #f0f9ff;
     }
 
     .result-table .null-val {
@@ -507,27 +483,23 @@
     }
 
     .result-meta {
-      padding: 12px 16px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      padding: 10px 16px;
+      font-size: 12px;
       color: var(--text-dim);
+      border-top: 1px solid var(--border);
     }
 
     /* ========== Exercise ========== */
     .exercise {
-      background: transparent;
-      border: none;
-      border-left: 3px solid var(--text);
-      border-radius: 0;
-      padding: 0 0 0 20px;
-      margin-bottom: 48px;
-      box-shadow: none;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
     }
 
     .exercise p {
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .exercise-title {
@@ -536,7 +508,7 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--text);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     /* ========== Challenge Badges ========== */
@@ -700,7 +672,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* ========== Scroll-Driven Animations ========== */
-    .concept-box, .playground, .exercise, .schema-display, .code-block {
+    .playground, .exercise, .schema-display, .code-block {
       animation: fadeInUp linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 100%;
@@ -813,7 +785,7 @@
         CREATE TABLE customers (
           id INTEGER PRIMARY KEY,
           name TEXT NOT NULL,
-          email TEXT NOT NULL,
+          email TEXT,
           city TEXT NOT NULL,
           signup_date TEXT NOT NULL
         );
@@ -848,12 +820,12 @@
           (1, 'James Wilson', 'james.wilson@gmail.com', 'Sydney', '2023-03-15'),
           (2, 'Emma Thompson', 'emma.t@outlook.com', 'Melbourne', '2023-05-22'),
           (3, 'Liam Chen', 'liam.chen@gmail.com', 'Sydney', '2023-07-10'),
-          (4, 'Olivia Brown', 'olivia.b@yahoo.com', 'Brisbane', '2023-09-01'),
-          (5, 'Noah Taylor', 'noah.t@gmail.com', 'Perth', '2023-11-15'),
+          (4, 'Olivia Brown', NULL, 'Brisbane', '2023-09-01'),
+          (5, 'Noah Taylor', NULL, 'Perth', '2023-11-15'),
           (6, 'Sophia Martin', 'sophia.m@outlook.com', 'Melbourne', '2024-01-08'),
           (7, 'Mason Lee', 'mason.lee@gmail.com', 'Sydney', '2024-02-20'),
           (8, 'Isabella White', 'isabella.w@yahoo.com', 'Brisbane', '2024-03-12'),
-          (9, 'Ethan Harris', 'ethan.h@gmail.com', 'Adelaide', '2024-04-05'),
+          (9, 'Ethan Harris', NULL, 'Adelaide', '2024-04-05'),
           (10, 'Mia Clark', 'mia.clark@outlook.com', 'Melbourne', '2024-05-18'),
           (11, 'Lucas Walker', 'lucas.w@gmail.com', 'Sydney', '2024-06-30'),
           (12, 'Charlotte Hall', 'charlotte.h@yahoo.com', 'Perth', '2024-08-14'),
@@ -1030,6 +1002,23 @@
         html += '<div class="result-meta">' + res.values.length + ' row' + (res.values.length !== 1 ? 's' : '') + ' returned</div>';
         resultArea.innerHTML = html;
         resultArea.setAttribute('aria-label', 'Query results');
+
+        // Check if this is an exercise with validation
+        const exercise = playground.closest('.exercise');
+        if (exercise) {
+          const expected = exercise.getAttribute('data-expect');
+          if (expected) {
+            const sqlUpper = sql.toUpperCase().replace(/\s+/g, ' ');
+            const expectedUpper = expected.toUpperCase().replace(/\s+/g, ' ');
+            const keywords = expectedUpper.split(',').map(k => k.trim());
+            const missing = keywords.filter(k => !sqlUpper.includes(k));
+            if (missing.length > 0) {
+              resultArea.innerHTML += '<div class="message info" style="margin-top:8px;border-top:none;padding-top:0;">Almost! Try including: ' + missing.join(', ') + '</div>';
+              return;
+            }
+          }
+        }
+
         markLessonComplete();
       } catch (err) {
         resultArea.innerHTML = '<div class="message error">Error: ' + escapeHtml(err.message) + '</div>';
@@ -1045,30 +1034,39 @@
       const playground = btn.closest('.playground');
       const textarea = playground.querySelector('textarea');
       const resultArea = playground.querySelector('.result-area');
+      const lineNums = playground.querySelector('.line-numbers');
       const original = playground.getAttribute('data-query');
       if (original) textarea.value = original;
       autoResizeTextarea(textarea);
       resultArea.innerHTML = '';
+      if (lineNums) {
+        const lines = textarea.value.split('\n').length;
+        lineNums.innerHTML = Array.from({length: lines}, (_, i) => `<span>${i + 1}</span>`).join('');
+      }
     }
 
     function showHint(btn, hint) {
+      if (!hint) hint = btn.dataset.hint || '';
       const playground = btn.closest('.playground');
       if (!playground) return;
-      const resultArea = playground.querySelector('.result-area');
-      if (!resultArea) return;
+      let resultArea = playground.querySelector('.result-area');
+      if (!resultArea) {
+        resultArea = document.createElement('div');
+        resultArea.className = 'result-area';
+        playground.appendChild(resultArea);
+      }
 
       const level = parseInt(btn.dataset.hintLevel || '0');
 
       if (level === 0) {
-        // First click: show a simple nudge
         const keywords = extractKeywords(hint);
-        resultArea.innerHTML = '<div class="message info">💡 Think about using: ' + keywords + '</div>';
+        resultArea.innerHTML = '<div class="message info">Think about using: ' + keywords + '</div>';
         btn.dataset.hintLevel = '1';
       } else {
-        // Second click: show full answer
-        resultArea.innerHTML = '<div class="message info">💡 Hint: ' + escapeHtml(hint) + '</div>';
+        resultArea.innerHTML = '<div class="message info">Hint: ' + escapeHtml(hint) + '</div>';
         btn.dataset.hintLevel = '0';
       }
+      resultArea.style.display = 'block';
     }
 
     function extractKeywords(sql) {
@@ -1096,7 +1094,27 @@
     }
 
     function attachPlaygroundHandlers(container) {
-      container.querySelectorAll('.playground textarea').forEach(ta => {
+      container.querySelectorAll('.playground').forEach(playground => {
+        const ta = playground.querySelector('textarea');
+        if (!ta) return;
+
+        // Wrap textarea in editor grid with line numbers
+        const editor = document.createElement('div');
+        editor.className = 'playground-editor';
+        const lineNums = document.createElement('div');
+        lineNums.className = 'line-numbers';
+        ta.parentNode.insertBefore(editor, ta);
+        editor.appendChild(lineNums);
+        editor.appendChild(ta);
+
+        // Generate line numbers
+        function updateLineNumbers() {
+          const lines = ta.value.split('\n').length;
+          lineNums.innerHTML = Array.from({length: lines}, (_, i) => `<span>${i + 1}</span>`).join('');
+        }
+        updateLineNumbers();
+        ta.addEventListener('input', updateLineNumbers);
+
         if (!ta.getAttribute('aria-label')) {
           ta.setAttribute('aria-label', 'SQL query editor');
         }
@@ -1107,6 +1125,7 @@
             const end = ta.selectionEnd;
             ta.value = ta.value.substring(0, start) + '  ' + ta.value.substring(end);
             ta.selectionStart = ta.selectionEnd = start + 2;
+            updateLineNumbers();
           }
           if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
             e.preventDefault();
@@ -1128,45 +1147,35 @@
     function welcomeContent() {
       return `
         <h2>Welcome to SQL for Everyone</h2>
-        <p class="subtitle">Learn to answer your own data questions — no analyst needed.</p>
+        <p class="subtitle">Data judgment for the AI age.</p>
 
-        <div class="concept-box why">
-          SQL (Structured Query Language) is just a way to talk to databases. Think of it as
-          asking questions to a very organised filing cabinet. Instead of waiting days for a data
-          analyst to pull a report, you'll be able to do it yourself in minutes.
-        </div>
+        <p>AI can write SQL for you. That makes knowing SQL <em>more</em> important, not less.
+        When you can read a query, you can check whether it's right. When you can't, you're
+        trusting a black box with your business decisions. Calculators didn't kill arithmetic.
+        They made numeracy essential. Same thing is happening with SQL and AI.</p>
 
         <h3>What you'll learn</h3>
         <ul>
-          <li>Pull specific data — stop drowning in spreadsheets</li>
-          <li>Filter and search — find exactly what you need</li>
-          <li>Sort and rank — see what matters most first</li>
-          <li>Summarise with numbers — counts, totals, averages</li>
-          <li>Combine data sources — connect the dots between tables</li>
+          <li>Pull specific data. Stop drowning in spreadsheets.</li>
+          <li>Filter and search. Find exactly what you need.</li>
+          <li>Sort and rank. See what matters most first.</li>
+          <li>Summarise with numbers. Counts, totals, averages.</li>
+          <li>Combine data sources. Connect the dots between tables.</li>
+          <li>Read and evaluate queries, including AI-generated ones.</li>
         </ul>
 
-        <div class="concept-box analogy">
-          <strong>What is a database?</strong><br>
-          A database is like a collection of spreadsheets that talk to each other. Each "sheet" is called a <strong>table</strong>. Rows are individual records (like a customer or an order), and columns are the fields (like name, email, or price). SQL is how you ask questions of these tables.
-        </div>
+        <p><strong>What is a database?</strong> Think of a database as a collection of spreadsheets that talk to each other. Each "sheet" is called a <strong>table</strong>. Rows are individual records (like a customer or an order), and columns are the fields (like name, email, or price). SQL is how you ask questions of these tables.</p>
 
         <h3>How this works</h3>
-        <p>Every lesson has a live SQL editor. You'll type queries and see results instantly — right here in your browser. No setup, no accounts, no waiting.</p>
+        <p>Every lesson has a live SQL editor. You'll type queries and see results instantly, right here in your browser. No setup, no accounts, no waiting.</p>
 
-        <div class="concept-box analogy">
-          SQL is not programming — it's asking questions to a database. Think of it like using search filters on a spreadsheet, not building an app. If you can use Excel filters, you can learn SQL. No coding experience needed.
-        </div>
+        <p>SQL isn't programming. It's asking questions to a database. And in the AI era, the skill
+        that matters most is reading the answer, not writing the question. You'll learn both.</p>
 
-        <div class="concept-box tip">
-          All examples use a fictional company's data: customers, products, orders, and employees. The patterns you learn here work with any database — your CRM, accounting software, or analytics tool.
-        </div>
+        <p>All examples use a fictional company's data: customers, products, orders, and employees. The patterns you learn here work with any database, your CRM, accounting software, or analytics tool.</p>
 
         <div class="playground" data-query="SELECT
   'You''re ready to start! 🎉' AS message;">
-          <div class="playground-header">
-            <span class="label">Try it</span>
-            <span>Click ▶ Run to execute</span>
-          </div>
           <textarea spellcheck="false">SELECT
   'You''re ready to start! 🎉' AS message;</textarea>
           <div class="playground-actions">
@@ -1181,14 +1190,13 @@
         <h2>SELECT: Picking the Data You Need</h2>
         <p class="subtitle">How do I see just the data I need?</p>
 
-        <div class="concept-box analogy">
-          A database table is just like a spreadsheet. <strong>SELECT</strong> is you telling someone: "Hey, go grab me that spreadsheet and show me these specific columns."
-        </div>
+        <p>A database table is just like a spreadsheet. <strong>SELECT</strong> is you telling someone: "Hey, go grab me that spreadsheet and show me these specific columns."</p>
+
+        <p>Reading order: <code>FROM</code> tells the database which table. <code>SELECT</code> picks the columns. You write SELECT first, but the database processes FROM first.</p>
 
         <h3>See everything</h3>
         <div class="playground" data-query="SELECT *
 FROM customers;">
-          <div class="playground-header"><span class="label">Try it</span><span>customers table</span></div>
           <textarea spellcheck="false">SELECT *
 FROM customers;</textarea>
           <div class="playground-actions">
@@ -1198,13 +1206,15 @@ FROM customers;</textarea>
           <div class="result-area"></div>
         </div>
 
+        <p><code>SELECT *</code> is great for exploring. But in real work, always pick specific columns. It's faster and easier to read.</p>
+
         <h3>Pick specific columns</h3>
+        <p>Your manager wants a customer list. Just names, emails, and cities. Listing columns after SELECT gives you just what you asked for.</p>
         <div class="playground" data-query="SELECT
   name,
   email,
   city
 FROM customers;">
-          <div class="playground-header"><span class="label">Try it</span><span>Just name, email, and city</span></div>
           <textarea spellcheck="false">SELECT
   name,
   email,
@@ -1218,12 +1228,12 @@ FROM customers;</textarea>
         </div>
 
         <h3>Rename columns for clarity</h3>
+        <p><code>AS</code> renames a column in the output. Handy when the database column name is technical but your audience is a manager.</p>
         <div class="playground" data-query="SELECT
   name AS Customer,
   email AS &quot;Email Address&quot;,
   city AS Location
 FROM customers;">
-          <div class="playground-header"><span class="label">Try it</span><span>Rename columns with AS</span></div>
           <textarea spellcheck="false">SELECT
   name AS Customer,
   email AS "Email Address",
@@ -1236,14 +1246,10 @@ FROM customers;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <div class="concept-box tip">
-          <code>SELECT *</code> is great for exploring, but in real work, always pick specific columns. It's faster and easier to read.
-        </div>
-
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge easy">Easy</span></div>
+          <div class="exercise-title">Exercise <span class="challenge-badge easy">Easy</span></div>
           <p>Show only the <strong>product name</strong> and <strong>price</strong> from the <code>products</code> table.</p>
-          <div class="playground" data-query="SELECT
+          <div class="playground" data-expect="SELECT, FROM, PRODUCTS" data-query="SELECT
   name,
   price
 FROM products;">
@@ -1263,18 +1269,20 @@ FROM products;">
         <h2>WHERE: Finding Specific Records</h2>
         <p class="subtitle">How do I find specific records?</p>
 
-        <div class="concept-box analogy">
-          If SELECT is picking columns (which fields to see), <strong>WHERE</strong> is picking rows (which records to see). It's like using the filter button on a spreadsheet.
-        </div>
+        <p>
+          If SELECT is picking columns (which fields to see), <strong>WHERE</strong> is picking rows (which records to see). Think of it like the filter button on a spreadsheet.
+</p>
+
+        <p>Reading order: first <code>FROM</code> tells the database which table. Then <code>WHERE</code> filters the rows. Then <code>SELECT</code> picks the columns. You write SELECT first, but the database processes FROM first.</p>
 
         <h3>Exact match</h3>
+        <p>Your manager wants Sydney customers only. <code>WHERE city = 'Sydney'</code> keeps only rows where the city column equals exactly "Sydney".</p>
         <div class="playground" data-query="SELECT
   name,
   email,
   city
 FROM customers
 WHERE city = 'Sydney';">
-          <div class="playground-header"><span class="label">Try it</span><span>Customers in Sydney</span></div>
           <textarea spellcheck="false">SELECT
   name,
   email,
@@ -1288,19 +1296,40 @@ WHERE city = 'Sydney';</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Comparisons: greater than, less than</h3>
+        <h3>Comparisons and ranges</h3>
+        <p>Your finance lead wants mid-range products. Comparison operators (<code>&gt;</code>, <code>&lt;</code>, <code>BETWEEN</code>) let you filter by number ranges.</p>
         <div class="playground" data-query="SELECT
   name,
   price
 FROM products
-WHERE price > 100
-  AND price < 200;">
-          <div class="playground-header"><span class="label">Try it</span><span>Products between $100 and $200</span></div>
+WHERE price BETWEEN 50 AND 200;">
           <textarea spellcheck="false">SELECT
   name,
   price
 FROM products
-WHERE price > 100
+WHERE price BETWEEN 50 AND 200;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Multiple conditions: AND and OR</h3>
+        <p>Combine conditions with <code>AND</code> (both must be true) or <code>OR</code> (either can be true).</p>
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  AND price < 200;">
+          <textarea spellcheck="false">SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
   AND price < 200;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1308,21 +1337,21 @@ WHERE price > 100
           </div>
           <div class="result-area"></div>
         </div>
-
-        <h3>Date filtering</h3>
+        <p>Try changing <code>AND</code> to <code>OR</code> — you'll get products that are Electronics <em>or</em> under $200, not both.</p>
         <div class="playground" data-query="SELECT
-  id,
-  amount,
-  order_date
-FROM orders
-WHERE order_date BETWEEN '2024-03-01' AND '2024-06-30';">
-          <div class="playground-header"><span class="label">Try it</span><span>Orders in Q1-Q2 2024</span></div>
+  name,
+  city,
+  email
+FROM customers
+WHERE city = 'Sydney'
+  OR city = 'Melbourne';">
           <textarea spellcheck="false">SELECT
-  id,
-  amount,
-  order_date
-FROM orders
-WHERE order_date BETWEEN '2024-03-01' AND '2024-06-30';</textarea>
+  name,
+  city,
+  email
+FROM customers
+WHERE city = 'Sydney'
+  OR city = 'Melbourne';</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1330,32 +1359,13 @@ WHERE order_date BETWEEN '2024-03-01' AND '2024-06-30';</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>BETWEEN: range filter</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  price
-FROM products
-WHERE price BETWEEN 50 AND 150;">
-          <div class="playground-header"><span class="label">Try it</span><span>Products between $50 and $150</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  price
-FROM products
-WHERE price BETWEEN 50 AND 150;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>IN: match any in the list</h3>
+        <h3>IN and LIKE</h3>
+        <p><code>IN</code> matches any value in a list. <code>LIKE</code> matches patterns, where <code>%</code> means "anything before/after".</p>
         <div class="playground" data-query="SELECT
   name,
   city
 FROM customers
 WHERE city IN ('Sydney', 'Melbourne', 'Brisbane');">
-          <div class="playground-header"><span class="label">Try it</span><span>Customers in 3 cities</span></div>
           <textarea spellcheck="false">SELECT
   name,
   city
@@ -1369,12 +1379,12 @@ WHERE city IN ('Sydney', 'Melbourne', 'Brisbane');</textarea>
         </div>
 
         <h3>LIKE: pattern matching</h3>
+        <p>Use <code>LIKE</code> when you don't know the exact value. <code>%</code> matches any number of characters. <code>_</code> matches one character.</p>
         <div class="playground" data-query="SELECT
   name,
   email
 FROM customers
 WHERE email LIKE '%@gmail.com';">
-          <div class="playground-header"><span class="label">Try it</span><span>Gmail users</span></div>
           <textarea spellcheck="false">SELECT
   name,
   email
@@ -1387,13 +1397,17 @@ WHERE email LIKE '%@gmail.com';</textarea>
           <div class="result-area"></div>
         </div>
 
+        <p>
+          Common patterns: <code>LIKE '%text%'</code> = contains "text". <code>LIKE 'text%'</code> = starts with "text". <code>LIKE '%text'</code> = ends with "text". You'll use LIKE to search names, emails, product descriptions, or any free-text field.
+</p>
+
         <h3>IS NULL: check for empty values</h3>
+        <p>Some fields are empty. <code>IS NULL</code> finds them. Never use <code>= NULL</code>. It never matches.</p>
         <div class="playground" data-query="SELECT
   name,
   email
 FROM customers
 WHERE email IS NULL;">
-          <div class="playground-header"><span class="label">Try it</span><span>Customers with no email</span></div>
           <textarea spellcheck="false">SELECT
   name,
   email
@@ -1406,106 +1420,81 @@ WHERE email IS NULL;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Multiple conditions: AND</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  price,
-  category
-FROM products
-WHERE category = 'Electronics'
-  AND price < 200;">
-          <div class="playground-header"><span class="label">Try it</span><span>Electronics under $200</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  price,
-  category
-FROM products
-WHERE category = 'Electronics'
-  AND price < 200;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Multiple conditions: OR</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  price,
-  category
-FROM products
-WHERE category = 'Electronics'
-  OR category = 'Furniture';">
-          <div class="playground-header"><span class="label">Try it</span><span>Electronics OR Furniture</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  price,
-  category
-FROM products
-WHERE category = 'Electronics'
-  OR category = 'Furniture';</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Combining operators</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  category,
-  price
-FROM products
-WHERE category IN ('Electronics', 'Furniture')
-  AND price BETWEEN 50 AND 300;">
-          <div class="playground-header"><span class="label">Try it</span><span>IN + BETWEEN combined</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  category,
-  price
-FROM products
-WHERE category IN ('Electronics', 'Furniture')
-  AND price BETWEEN 50 AND 300;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>Find all <strong>Electronics</strong> products with a price <strong>between $50 and $200</strong>. This tests your use of comparisons, AND, and BETWEEN together.</p>
-          <div class="playground" data-query="SELECT name, price, category FROM products WHERE category = 'Electronics' AND price BETWEEN 50 AND 200;">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Find all <strong>Electronics</strong> products with a price <strong>between $50 and $200</strong>.</p>
+          <div class="playground" data-expect="SELECT, FROM, PRODUCTS, WHERE, ELECTRONICS, BETWEEN" data-query="SELECT
+  name,
+  price,
+  category
+FROM products
+WHERE category = 'Electronics'
+  AND price BETWEEN 50 AND 200;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, price, category FROM products WHERE category = \'Electronics\' AND price BETWEEN 50 AND 200;')">💡 Hint</button>
+              <button class="btn btn-hint" data-hint="SELECT name, price, category FROM products WHERE category = 'Electronics' AND price BETWEEN 50 AND 200;" onclick="showHint(this)">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge easy">Easy</span></div>
+          <p>Find all customers with <strong>outlook emails</strong>.</p>
+          <div class="playground" data-expect="SELECT, FROM, CUSTOMERS, WHERE, LIKE" data-query="SELECT
+  name,
+  email
+FROM customers
+WHERE email LIKE '%outlook%';">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" data-hint="SELECT name, email FROM customers WHERE email LIKE '%outlook%';" onclick="showHint(this)">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Find all customers who <strong>don't have an email on file</strong>.</p>
+          <div class="playground" data-expect="SELECT, FROM, CUSTOMERS, WHERE, IS NULL" data-query="SELECT
+  name,
+  city
+FROM customers
+WHERE email IS NULL;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT name, city FROM customers WHERE email IS NULL;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
         </div>
       `;
     }
-    function sortingContent() {
-      return `
-        <h2>Sorting: Seeing What Matters First</h2>
-        <p class="subtitle">What are my top/bottom results?</p>
+    function sortingContent() { return `
+        <h2>ORDER BY + LIMIT: Sorting and Capping Results</h2>
+        <p class="subtitle">How do I see the top results first?</p>
 
-        <div class="concept-box analogy">
-          ORDER BY is like clicking a column header in a spreadsheet to sort. <strong>ASC</strong> = ascending (A→Z, low→high) — that's the default. <strong>DESC</strong> = descending (Z→A, high→low).
-        </div>
+        <p>
+          <strong>ORDER BY</strong> is like clicking a column header in a spreadsheet to sort.
+          <strong>ASC</strong> = ascending (A→Z, low→high). That's the default.
+          <strong>DESC</strong> = descending (Z→A, high→low).
+          <strong>LIMIT</strong> caps the number of rows returned.
+</p>
 
         <h3>Sort by price (highest first)</h3>
+        <p>Your manager wants to see the most expensive products. <code>ORDER BY price DESC</code> sorts from highest to lowest.</p>
         <div class="playground" data-query="SELECT
   name,
   price
 FROM products
 ORDER BY price DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Most expensive products first</span></div>
           <textarea spellcheck="false">SELECT
   name,
   price
@@ -1518,39 +1507,14 @@ ORDER BY price DESC;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Sort by multiple columns</h3>
-        <p>Category first, then price within each category:</p>
-        <div class="playground" data-query="SELECT
-  name,
-  category,
-  price
-FROM products
-ORDER BY category ASC,
-  price DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Category first, then price within each</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  category,
-  price
-FROM products
-ORDER BY category ASC,
-  price DESC;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Limit results</h3>
-        <p>Only want the top 5? Use <strong>LIMIT</strong>:</p>
+        <h3>Top N with LIMIT</h3>
+        <p>You only need the top 5. <code>LIMIT 5</code> cuts the result set to the first 5 rows after sorting.</p>
         <div class="playground" data-query="SELECT
   name,
   price
 FROM products
 ORDER BY price DESC
 LIMIT 5;">
-          <div class="playground-header"><span class="label">Try it</span><span>Top 5 most expensive products</span></div>
           <textarea spellcheck="false">SELECT
   name,
   price
@@ -1564,14 +1528,20 @@ LIMIT 5;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <div class="concept-box tip">
-          <strong>LIMIT</strong> is great for "top N" questions: top 10 customers, 5 most expensive items, latest 20 orders. In SQL Server, use <code>SELECT TOP 5 ...</code> instead.
-        </div>
+        <p>
+          <code>LIMIT</code> is great for "top N" questions: top 10 customers, 5 most expensive items, latest 20 orders. In SQL Server, use <code>SELECT TOP 5 ...</code> instead.
+</p>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>Show the <strong>3 most expensive products</strong>, displaying name, price, and category. This tests your use of ORDER BY DESC and LIMIT together.</p>
-          <div class="playground" data-query="SELECT name, price, category FROM products ORDER BY price DESC LIMIT 3;">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Show the <strong>3 most expensive products</strong>, displaying name, price, and category.</p>
+          <div class="playground" data-expect="SELECT, FROM, PRODUCTS, ORDER BY, LIMIT" data-query="SELECT
+  name,
+  price,
+  category
+FROM products
+ORDER BY price DESC
+LIMIT 3;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1585,19 +1555,20 @@ LIMIT 5;</textarea>
     }
     function aggregationContent() {
       return `
-        <h2>Summarising Data: COUNT, SUM, AVG</h2>
+        <h2>Aggregation: COUNT, SUM, AVG</h2>
         <p class="subtitle">How many? What's the total? What's the average?</p>
 
-        <div class="concept-box analogy">
-          Instead of reading every row one by one, aggregation lets you ask: "How many?", "What's the total?", "What's the average?" It's like the SUM and COUNT functions in a spreadsheet — but way more flexible.
-        </div>
+        <p>
+          Instead of reading every row one by one, aggregation lets you crunch numbers across many rows.
+          It's like the SUM and COUNT functions in a spreadsheet, but way more flexible.
+</p>
 
-        <h3>Count rows and count unique rows</h3>
+        <h3>Count all rows</h3>
+        <p><code>COUNT(*)</code> counts every row in the table. <code>COUNT(DISTINCT column)</code> counts only unique values.</p>
         <div class="playground" data-query="SELECT
   COUNT(*) AS total_orders,
   COUNT(DISTINCT product_id) AS unique_products
 FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>Total rows vs unique rows</span></div>
           <textarea spellcheck="false">SELECT
   COUNT(*) AS total_orders,
   COUNT(DISTINCT product_id) AS unique_products
@@ -1609,22 +1580,43 @@ FROM orders;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Total, average, min and max</h3>
+        <h3>SUM, AVG, MIN, MAX</h3>
+        <p>These functions crunch numbers across rows: total, average, smallest, largest.</p>
         <div class="playground" data-query="SELECT
-  COUNT(*) AS total_orders,
   SUM(amount) AS total_revenue,
   AVG(amount) AS avg_order_value,
   MIN(amount) AS smallest_order,
   MAX(amount) AS largest_order
 FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>Order count, total, average, min and max</span></div>
           <textarea spellcheck="false">SELECT
-  COUNT(*) AS total_orders,
   SUM(amount) AS total_revenue,
   AVG(amount) AS avg_order_value,
   MIN(amount) AS smallest_order,
   MAX(amount) AS largest_order
 FROM orders;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>ROUND and percentages</h3>
+        <p><code>ROUND(value, 2)</code> rounds to 2 decimal places. To calculate a percentage, divide the part by the whole and multiply by 100.</p>
+        <div class="playground" data-query="SELECT
+  ROUND(
+    SUM(CASE WHEN category = 'Electronics' THEN amount ELSE 0 END) * 100.0 / SUM(amount),
+    1
+  ) AS electronics_pct
+FROM orders o
+JOIN products p ON o.product_id = p.id;">
+          <textarea spellcheck="false">SELECT
+  ROUND(
+    SUM(CASE WHEN category = 'Electronics' THEN amount ELSE 0 END) * 100.0 / SUM(amount),
+    1
+  ) AS electronics_pct
+FROM orders o
+JOIN products p ON o.product_id = p.id;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1633,9 +1625,13 @@ FROM orders;</textarea>
         </div>
 
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>What is the <strong>total revenue</strong>, <strong>average order value</strong>, and <strong>count of unique products sold</strong>? This tests your use of SUM, AVG, and COUNT(DISTINCT) in a single query.</p>
-          <div class="playground" data-query="SELECT SUM(amount) AS total_revenue, AVG(amount) AS avg_order_value, COUNT(DISTINCT product_id) AS unique_products FROM orders;">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>What is the <strong>total revenue</strong>, <strong>average order value</strong>, and <strong>count of unique products sold</strong>?</p>
+          <div class="playground" data-expect="SELECT, FROM, ORDERS, SUM, AVG, COUNT" data-query="SELECT
+  SUM(amount) AS total_revenue,
+  AVG(amount) AS avg_order_value,
+  COUNT(DISTINCT product_id) AS unique_products
+FROM orders;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
@@ -1652,24 +1648,22 @@ FROM orders;</textarea>
         <h2>GROUP BY: Summarising by Category</h2>
         <p class="subtitle">How do I summarise by category?</p>
 
-        <div class="concept-box analogy">
-          GROUP BY splits your data into buckets, then summarises each one. Like a pivot table in Excel — you pick a column to group by, then apply a summary function to each group.
-        </div>
+        <p>
+          <strong>GROUP BY</strong> is a pivot table. It splits your data into buckets (by city, by category, by month) and lets you count, sum, or average within each bucket.
+</p>
 
-        <h3>Group by category</h3>
+        <h3>Count customers per city</h3>
+        <p>How many customers does each city have? <code>GROUP BY city</code> splits the rows into buckets, then <code>COUNT(*)</code> counts within each one.</p>
         <div class="playground" data-query="SELECT
-  category,
-  COUNT(*) AS product_count,
-  AVG(price) AS avg_price
-FROM products
-GROUP BY category;">
-          <div class="playground-header"><span class="label">Try it</span><span>Products grouped by category</span></div>
+  city,
+  COUNT(*) AS customer_count
+FROM customers
+GROUP BY city;">
           <textarea spellcheck="false">SELECT
-  category,
-  COUNT(*) AS product_count,
-  AVG(price) AS avg_price
-FROM products
-GROUP BY category;</textarea>
+  city,
+  COUNT(*) AS customer_count
+FROM customers
+GROUP BY city;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1678,13 +1672,13 @@ GROUP BY category;</textarea>
         </div>
 
         <h3>Filter groups with HAVING</h3>
+        <p><code>WHERE</code> filters rows <em>before</em> grouping. <code>HAVING</code> filters groups <em>after</em> grouping. Use <code>HAVING</code> when you need to filter on an aggregate like COUNT or SUM.</p>
         <div class="playground" data-query="SELECT
   city,
   COUNT(*) AS customer_count
 FROM customers
 GROUP BY city
 HAVING COUNT(*) > 2;">
-          <div class="playground-header"><span class="label">Try it</span><span>Cities with more than 2 customers</span></div>
           <textarea spellcheck="false">SELECT
   city,
   COUNT(*) AS customer_count
@@ -1698,19 +1692,21 @@ HAVING COUNT(*) > 2;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <div class="concept-box tip">
-          <strong>WHERE</strong> filters rows <em>before</em> grouping. <strong>HAVING</strong> filters groups <em>after</em> grouping. Use both when you need them.
-        </div>
-
         <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>How many <strong>orders</strong> and <strong>total revenue</strong> per product? Only show products with <strong>more than 2 orders</strong>. This tests GROUP BY, COUNT, SUM, and HAVING together.</p>
-          <div class="playground" data-query="SELECT product_id, COUNT(*) AS order_count, SUM(amount) AS total_revenue FROM orders GROUP BY product_id HAVING order_count > 2;">
+          <div class="exercise-title">Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>How many <strong>orders</strong> and <strong>total revenue</strong> per product? Only show products with <strong>more than 2 orders</strong>.</p>
+          <div class="playground" data-expect="SELECT, FROM, ORDERS, GROUP BY, HAVING, COUNT" data-query="SELECT
+  product_id,
+  COUNT(*) AS order_count,
+  SUM(amount) AS total_revenue
+FROM orders
+GROUP BY product_id
+HAVING COUNT(*) > 2;">
             <textarea spellcheck="false">-- Your query here
 </textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT product_id, COUNT(*) AS order_count, SUM(amount) AS total_revenue FROM orders GROUP BY product_id HAVING order_count > 2;')">💡 Hint</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT product_id, COUNT(*) AS order_count, SUM(amount) AS total_revenue FROM orders GROUP BY product_id HAVING COUNT(*) > 2;')">💡 Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
@@ -1722,9 +1718,9 @@ HAVING COUNT(*) > 2;</textarea>
         <h2>JOINs: Combining Tables</h2>
         <p class="subtitle">How do I combine data from different tables?</p>
 
-        <div class="concept-box analogy">
-          Imagine two spreadsheets: one has customer names, another has their orders. <strong>JOIN</strong> is like putting them side-by-side, matching rows by a shared ID. Like a mail merge — you connect "who" with "what they bought".
-        </div>
+        <p>
+          Imagine two spreadsheets: one has customer names, another has their orders. <strong>JOIN</strong> is like putting them side-by-side, matching rows by a shared ID. Think of it as a mail merge. You connect "who" with "what they bought".
+</p>
 
         <h3>Our data model</h3>
         <div class="schema-display">
@@ -1734,24 +1730,28 @@ HAVING COUNT(*) > 2;</textarea>
           <div><span class="table-name">employees</span> <span class="col-desc">→ id, name, department, salary, hire_date</span></div>
         </div>
 
-        <h3>Orders with product names</h3>
+        <p>When you see a JOIN query, start by reading the ON clause. It tells you how the tables connect. <code>ON o.customer_id = c.id</code> means "match each order to its customer by customer ID."</p>
+
+        <h3>Revenue per customer</h3>
+        <p>This is the big moment. Connecting customers to their orders. We JOIN customers with orders, then GROUP BY customer to get each person's total spend.</p>
         <div class="playground" data-query="SELECT
-  p.name AS product,
-  o.amount,
-  o.order_date
-FROM orders o
-JOIN products p
-  ON o.product_id = p.id
-ORDER BY o.order_date DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Join orders with products</span></div>
+  c.name AS customer,
+  c.city,
+  COUNT(o.id) AS order_count,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+GROUP BY c.id, c.name, c.city
+ORDER BY total_spent DESC;">
           <textarea spellcheck="false">SELECT
-  p.name AS product,
-  o.amount,
-  o.order_date
-FROM orders o
-JOIN products p
-  ON o.product_id = p.id
-ORDER BY o.order_date DESC;</textarea>
+  c.name AS customer,
+  c.city,
+  COUNT(o.id) AS order_count,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+GROUP BY c.id, c.name, c.city
+ORDER BY total_spent DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1759,26 +1759,26 @@ ORDER BY o.order_date DESC;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Orders with product details</h3>
+        <p>
+          Reading this query: <strong>FROM</strong> customers joined with orders. <strong>GROUP BY</strong> customer ID, name, and city. <strong>SELECT</strong> shows name, city, order count, and total spent. Sorted by total spent descending. Everything you've learned so far, in one query. <strong>Tip:</strong> always GROUP BY the ID column, not just the name. Names can duplicate in real data.
+</p>
+
+        <h3>LEFT JOIN. Include everyone.</h3>
+        <p>What if you want all customers, even those who've never ordered? An <code>INNER JOIN</code> only shows matches. A <code>LEFT JOIN</code> keeps everything from the left table, even if there's no match.</p>
         <div class="playground" data-query="SELECT
-  p.name AS product,
-  p.category,
-  o.quantity,
-  o.amount
-FROM orders o
-JOIN products p
-  ON o.product_id = p.id
-ORDER BY o.amount DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Join orders with product details</span></div>
+  c.name AS customer,
+  COUNT(o.id) AS order_count
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY order_count DESC;">
           <textarea spellcheck="false">SELECT
-  p.name AS product,
-  p.category,
-  o.quantity,
-  o.amount
-FROM orders o
-JOIN products p
-  ON o.product_id = p.id
-ORDER BY o.amount DESC;</textarea>
+  c.name AS customer,
+  COUNT(o.id) AS order_count
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY order_count DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
@@ -1786,25 +1786,326 @@ ORDER BY o.amount DESC;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <h3>Join + aggregation</h3>
-        <div class="playground" data-query="SELECT
-  p.name AS product,
-  COUNT(o.id) AS orders,
+        <p>
+          <strong>INNER JOIN</strong> shows only matching rows. <strong>LEFT JOIN</strong> shows all rows from the left table, with NULLs where there's no match. Use LEFT JOIN when you want to see everything from one table, regardless of whether it has matches.
+</p>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Show each <strong>customer name</strong> and the <strong>product names</strong> they ordered. Just list them, no grouping needed.</p>
+          <div class="playground" data-expect="SELECT, FROM, JOIN, ON, ORDER BY" data-query="SELECT
+  c.name AS customer,
+  p.name AS product
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+JOIN products p ON o.product_id = p.id
+ORDER BY c.name;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT c.name AS customer, p.name AS product FROM customers c JOIN orders o ON c.id = o.customer_id JOIN products p ON o.product_id = p.id ORDER BY c.name;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge hard">Hard</span></div>
+          <p>Show each <strong>product name</strong>, how many times it was <strong>ordered</strong>, and <strong>total revenue</strong> per product. Sort by revenue highest first.</p>
+          <div class="playground" data-expect="SELECT, FROM, JOIN, GROUP BY, ORDER BY, COUNT, SUM" data-query="SELECT
+  p.name,
+  COUNT(o.id) AS times_ordered,
   SUM(o.amount) AS total_revenue
 FROM products p
-JOIN orders o
-  ON p.id = o.product_id
-GROUP BY p.name
+JOIN orders o ON p.id = o.product_id
+GROUP BY p.id, p.name
 ORDER BY total_revenue DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Join with GROUP BY</span></div>
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.id, p.name ORDER BY total_revenue DESC;')">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `;
+    }
+    function caseWhenContent() { return `
+        <h2>CASE WHEN: Conditional Logic</h2>
+        <p class="subtitle">How do I add if/else logic to my queries?</p>
+
+        <p>
+          <strong>CASE WHEN</strong> is like IF/THEN in Excel. "If price > 200, label it Premium, otherwise label it Standard." You create new columns based on conditions.
+</p>
+
+        <h3>Label products by price tier</h3>
+        <p>CASE WHEN evaluates conditions top-to-bottom and returns the first match. Put your most specific conditions first.</p>
+        <div class="playground" data-query="SELECT
+  name,
+  price,
+  CASE
+    WHEN price > 200 THEN 'Premium'
+    WHEN price > 50 THEN 'Standard'
+    ELSE 'Budget'
+  END AS price_tier
+FROM products;">
           <textarea spellcheck="false">SELECT
-  p.name AS product,
-  COUNT(o.id) AS orders,
+  name,
+  price,
+  CASE
+    WHEN price > 200 THEN 'Premium'
+    WHEN price > 50 THEN 'Standard'
+    ELSE 'Budget'
+  END AS price_tier
+FROM products;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <p>
+          You can also use CASE WHEN with aggregation. For example, <code>SUM(CASE WHEN category = 'Electronics' THEN amount ELSE 0 END)</code> adds up only Electronics revenue. This is how you calculate percentages across categories. We used this pattern in the Aggregation lesson.
+</p>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Label each order as <strong>'Small'</strong> (under $100), <strong>'Medium'</strong> ($100-$300), or <strong>'Large'</strong> (over $300). Show order id, amount, and label.</p>
+          <div class="playground" data-expect="SELECT, FROM, ORDERS, CASE, WHEN, THEN, ELSE, END" data-query="SELECT
+  id,
+  amount,
+  CASE
+    WHEN amount < 100 THEN 'Small'
+    WHEN amount <= 300 THEN 'Medium'
+    ELSE 'Large'
+  END AS size
+FROM orders;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" data-hint="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;" onclick="showHint(this)">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `; }
+    function dateFilteringContent() {
+      return `
+        <h2>Date Filtering: Trends Over Time</h2>
+        <p class="subtitle">How do I answer "how are we tracking over time?"</p>
+
+        <p>
+          Date questions are the #1 thing business stakeholders ask: "What were last quarter's sales?" "How does this month compare to last month?" "Show me the trend." SQL makes these answers easy, if you know the date functions.
+</p>
+
+        <h3>Filter by date range</h3>
+        <p>Use <code>>=</code> and <code>&lt;</code> for date ranges, not BETWEEN, which misses timestamps on the last day. <code>>= '2024-06-01'</code> and <code>&lt; '2024-07-01'</code> captures all of June.</p>
+        <div class="playground" data-query="SELECT
+  id,
+  order_date,
+  amount
+FROM orders
+WHERE order_date >= '2024-06-01'
+  AND order_date < '2024-07-01'
+ORDER BY order_date;">
+          <textarea spellcheck="false">SELECT
+  id,
+  order_date,
+  amount
+FROM orders
+WHERE order_date >= '2024-06-01'
+  AND order_date < '2024-07-01'
+ORDER BY order_date;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <p>
+          <strong>Why not BETWEEN?</strong> If your dates include timestamps like '2024-06-30 23:59:59', <code>BETWEEN '2024-06-01' AND '2024-06-30'</code> misses late-night records. <code>>= start AND &lt; next_month</code> is always safe.
+</p>
+
+        <h3>Monthly revenue trend</h3>
+        <p><code>strftime('%Y-%m', order_date)</code> extracts year-month from a date. GROUP BY that to get monthly totals. This is the bread and butter of business reporting.</p>
+        <div class="playground" data-query="SELECT
+  strftime('%Y-%m', order_date) AS month,
+  COUNT(*) AS orders,
+  ROUND(SUM(amount), 2) AS revenue
+FROM orders
+GROUP BY strftime('%Y-%m', order_date)
+ORDER BY month;">
+          <textarea spellcheck="false">SELECT
+  strftime('%Y-%m', order_date) AS month,
+  COUNT(*) AS orders,
+  ROUND(SUM(amount), 2) AS revenue
+FROM orders
+GROUP BY strftime('%Y-%m', order_date)
+ORDER BY month;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Quarter comparison</h3>
+        <p>Use <code>CASE WHEN</code> to group dates into quarters. This is how you answer "how did Q1 compare to Q2?"</p>
+        <div class="playground" data-query="SELECT
+  CASE
+    WHEN strftime('%m', order_date) IN ('01','02','03') THEN 'Q1'
+    WHEN strftime('%m', order_date) IN ('04','05','06') THEN 'Q2'
+    WHEN strftime('%m', order_date) IN ('07','08','09') THEN 'Q3'
+    ELSE 'Q4'
+  END AS quarter,
+  COUNT(*) AS orders,
+  ROUND(SUM(amount), 2) AS revenue
+FROM orders
+GROUP BY quarter
+ORDER BY quarter;">
+          <textarea spellcheck="false">SELECT
+  CASE
+    WHEN strftime('%m', order_date) IN ('01','02','03') THEN 'Q1'
+    WHEN strftime('%m', order_date) IN ('04','05','06') THEN 'Q2'
+    WHEN strftime('%m', order_date) IN ('07','08','09') THEN 'Q3'
+    ELSE 'Q4'
+  END AS quarter,
+  COUNT(*) AS orders,
+  ROUND(SUM(amount), 2) AS revenue
+FROM orders
+GROUP BY quarter
+ORDER BY quarter;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Month-over-month growth</h3>
+        <p>Use a CTE to get monthly revenue, then compare each month to the previous one. This answers "are we growing or shrinking?"</p>
+        <div class="playground" data-query="WITH monthly AS (
+  SELECT
+    strftime('%Y-%m', order_date) AS month,
+    ROUND(SUM(amount), 2) AS revenue
+  FROM orders
+  GROUP BY strftime('%Y-%m', order_date)
+)
+SELECT
+  month,
+  revenue,
+  ROUND(revenue - LAG(revenue) OVER (ORDER BY month), 2) AS change
+FROM monthly
+ORDER BY month;">
+          <textarea spellcheck="false">WITH monthly AS (
+  SELECT
+    strftime('%Y-%m', order_date) AS month,
+    ROUND(SUM(amount), 2) AS revenue
+  FROM orders
+  GROUP BY strftime('%Y-%m', order_date)
+)
+SELECT
+  month,
+  revenue,
+  ROUND(revenue - LAG(revenue) OVER (ORDER BY month), 2) AS change
+FROM monthly
+ORDER BY month;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
+          <p>Show <strong>total revenue per city</strong> for customers who <strong>signed up in 2024</strong>.</p>
+          <div class="playground" data-expect="SELECT, FROM, JOIN, WHERE, GROUP BY, ORDER BY, SIGNUP_DATE" data-query="SELECT
+  c.city,
+  ROUND(SUM(o.amount), 2) AS total_spent
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+WHERE c.signup_date >= '2024-01-01'
+  AND c.signup_date < '2025-01-01'
+GROUP BY c.city
+ORDER BY total_spent DESC;">
+            <textarea spellcheck="false">-- Your query here
+</textarea>
+            <div class="playground-actions">
+              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+              <button class="btn btn-hint" data-hint="SELECT c.city, ROUND(SUM(o.amount), 2) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id WHERE c.signup_date >= '2024-01-01' AND c.signup_date < '2025-01-01' GROUP BY c.city ORDER BY total_spent DESC;" onclick="showHint(this)">💡 Hint</button>
+            </div>
+            <div class="result-area"></div>
+          </div>
+        </div>
+      `; }
+    function aiSqlContent() { return `
+        <h2>AI + SQL: Working Smarter Together</h2>
+        <p class="subtitle">How to use AI as a thinking partner, not a replacement.</p>
+
+        <p>
+          AI tools like ChatGPT, Copilot, and Claude can generate SQL from plain English.
+          They're fast and often correct. But "often" isn't "always", and the errors are subtle.
+          This lesson teaches you to work <em>with</em> AI: prompt it well, read what it gives you,
+          and catch the mistakes before they become business decisions.
+</p>
+
+        <h3>Write better prompts, get better queries</h3>
+        <p>The quality of AI-generated SQL depends on the quality of your prompt. A vague question gets a vague answer. A specific question gets a usable query.</p>
+        <div class="code-block"><span class="kw">Good prompt structure:</span>
+
+1. Say what you want to find:  "Show me total revenue per customer"
+2. Name the tables:            "from the customers and orders tables"
+3. Specify the time range:     "for 2024 only"
+4. State the sort order:       "sorted by revenue, highest first"
+
+<span class="kw">Bad prompt:</span>  "write me a sql query"
+<span class="kw">Good prompt:</span> "Write a query to show total revenue per customer for 2024,
+             sorted highest first. Use the customers and orders tables."</div>
+
+        <p>
+          Be specific about table names and column relationships. "Total revenue per customer"
+          is ambiguous. Does the AI know which table has customers and which has orders?
+          Tell it. You know your data better than it does.
+</p>
+
+        <h3>How to read any SQL query</h3>
+        <p>When AI hands you a query, don't just paste and run. Read it first.
+        Use this order, it matches the order the database actually processes the clauses:</p>
+
+        <p>
+          <strong>The reading order:</strong><br>
+          1. <strong>FROM</strong>, which tables are we looking at?<br>
+          2. <strong>JOIN</strong>, how are they connected?<br>
+          3. <strong>WHERE</strong>, what rows are we keeping?<br>
+          4. <strong>GROUP BY</strong>, how are we grouping the results?<br>
+          5. <strong>SELECT</strong>, what columns appear in the output?<br><br>
+          This order (not the written order) is how the database thinks about the query.
+          Read FROM first, SELECT last.
+</p>
+
+        <div class="playground" data-query="SELECT
+  p.category,
+  COUNT(o.id) AS order_count,
   SUM(o.amount) AS total_revenue
-FROM products p
-JOIN orders o
-  ON p.id = o.product_id
-GROUP BY p.name
+FROM orders o
+JOIN products p ON o.product_id = p.id
+WHERE o.order_date >= '2024-01-01'
+GROUP BY p.category
+ORDER BY total_revenue DESC;">
+          <textarea spellcheck="false">SELECT
+  p.category,
+  COUNT(o.id) AS order_count,
+  SUM(o.amount) AS total_revenue
+FROM orders o
+JOIN products p ON o.product_id = p.id
+WHERE o.order_date >= '2024-01-01'
+GROUP BY p.category
 ORDER BY total_revenue DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1813,145 +2114,160 @@ ORDER BY total_revenue DESC;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <div class="concept-box tip">
-          The <strong>ON</strong> clause tells the database which columns match up. Common pattern: <code>table_a.id = table_b.table_a_id</code>
-        </div>
+        <p>
+          Reading this query: <strong>FROM</strong> orders joined with products.
+          <strong>WHERE</strong> keeps only 2024 orders. <strong>GROUP BY</strong> category.
+          <strong>SELECT</strong> shows category name, order count, and total revenue.
+          Sorted by revenue descending. That is what this query does. No magic.
+</p>
 
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>Show each <strong>product name</strong>, how many times it was <strong>ordered</strong>, and <strong>total revenue</strong> per product. Sort by revenue highest first. This tests JOIN, GROUP BY, COUNT, SUM, and ORDER BY together.</p>
-          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS times_ordered, SUM(o.amount) AS total_revenue FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name ORDER BY total_revenue DESC;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
+        <h3>Where AI gets it wrong</h3>
+        <p>
+          AI-generated SQL fails in predictable ways. Learn these patterns and you'll catch
+          90% of errors before they matter.
+</p>
 
-        <h3>LEFT JOIN — going beyond inner joins</h3>
-        <p>What if you want all products, even those that have never been ordered? An INNER JOIN only shows matches. A <strong>LEFT JOIN</strong> keeps everything from the left table, even if there's no match on the right.</p>
+        <div class="code-block"><span class="kw">1. Wrong JOIN type</span>
+AI uses INNER JOIN when you need LEFT JOIN.
+Result: rows silently disappear.
+Fix: Ask "does this need to keep all rows from table X?"
+
+<span class="kw">2. Missing GROUP BY</span>
+AI mixes aggregate and non-aggregate columns.
+Result: Error in strict databases, wrong results in permissive ones.
+Fix: Every column in SELECT is either aggregated or in GROUP BY.
+
+<span class="kw">3. Silent NULLs</span>
+AI writes = NULL instead of IS NULL.
+Result: No rows match, query returns empty.
+Fix: Always check for NULL handling.
+
+<span class="kw">4. Wrong date boundaries</span>
+AI uses BETWEEN '2024-01-01' AND '2024-12-31' which misses Dec 31 timestamps.
+Result: Missing the last day of the range.
+Fix: Use >= start AND < next_year.
+
+<span class="kw">5. Plausible but wrong column names</span>
+AI guesses column names that sound right but don't exist.
+Result: Error on execution.
+Fix: Check the schema before running.</div>
+
+        <h3>Spot the bug: missing customers</h3>
+        <p>An AI generated this query to "show all customers and their order count."
+        Run it. Are all 15 customers in the results? If not, what's wrong?</p>
 
         <div class="playground" data-query="SELECT
-  p.name,
-  p.category,
-  o.amount,
-  o.order_date
-FROM products p
-LEFT JOIN orders o
-  ON p.id = o.product_id
-ORDER BY p.name;">
-          <div class="playground-header">
-            <span class="label">Try it</span>
-            <span>All products, with orders if they exist</span>
-          </div>
+  c.name,
+  COUNT(o.id) AS order_count
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY order_count DESC;">
           <textarea spellcheck="false">SELECT
-  p.name,
-  p.category,
-  o.amount,
-  o.order_date
-FROM products p
-LEFT JOIN orders o
-  ON p.id = o.product_id
-ORDER BY p.name;</textarea>
+  c.name,
+  COUNT(o.id) AS order_count
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+GROUP BY c.name
+ORDER BY order_count DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
             <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+            <button class="btn btn-hint" onclick="showHint(this, 'Change JOIN to LEFT JOIN. You want ALL customers, even those without orders')">Hint</button>
           </div>
           <div class="result-area"></div>
         </div>
 
-        <div class="concept-box tip">
-          <strong>INNER JOIN</strong> shows only matching rows. <strong>LEFT JOIN</strong> shows all rows from the left table, with NULLs where there's no match. Use LEFT JOIN when you want to see everything from one table regardless of whether it has matches.
-        </div>
-      `;
-    }
-    function miniReportsContent() {
-      return `
-        <h2>Mini Reports: Putting It All Together</h2>
-        <p class="subtitle">Can I build a real report with what I know?</p>
+        <h3>Spot the bug: wrong row count</h3>
+        <p>This AI query is supposed to show "total revenue per category."
+        What's wrong with the SELECT list?</p>
 
-        <div class="concept-box why">
-          You now know enough to build real reports. Let's combine everything you've learned — SELECT, WHERE, JOIN, GROUP BY, and ORDER BY — into end-to-end business reports.
-        </div>
-
-        <h3>💰 Monthly revenue report</h3>
         <div class="playground" data-query="SELECT
-  DATE_TRUNC('month', order_date) AS month,
-  COUNT(*) AS orders,
-  SUM(amount) AS revenue
-FROM orders
-GROUP BY month
-ORDER BY month;">
-          <div class="playground-header"><span class="label">Try it</span><span>Revenue by month</span></div>
-          <textarea spellcheck="false">SELECT
-  DATE_TRUNC('month', order_date) AS month,
-  COUNT(*) AS orders,
-  SUM(amount) AS revenue
-FROM orders
-GROUP BY month
-ORDER BY month;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>🏆 Top 5 products by revenue</h3>
-        <div class="playground" data-query="SELECT
-  p.name,
   p.category,
-  COUNT(o.id) AS orders,
+  p.name,
   SUM(o.amount) AS total_revenue
-FROM products p
-JOIN orders o
-  ON p.id = o.product_id
-GROUP BY p.name
-ORDER BY total_revenue DESC
-LIMIT 5;">
-          <div class="playground-header"><span class="label">Try it</span><span>Top revenue products</span></div>
-          <textarea spellcheck="false">SELECT
-  p.name,
-  p.category,
-  COUNT(o.id) AS orders,
-  SUM(o.amount) AS total_revenue
-FROM products p
-JOIN orders o
-  ON p.id = o.product_id
-GROUP BY p.name
-ORDER BY total_revenue DESC
-LIMIT 5;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>📦 Best-selling products</h3>
-        <div class="playground" data-query="SELECT
-  p.name,
-  p.category,
-  SUM(o.quantity) AS units_sold,
-  SUM(o.amount) AS revenue
 FROM orders o
-JOIN products p
-  ON o.product_id = p.id
-GROUP BY p.name
+JOIN products p ON o.product_id = p.id
+GROUP BY p.category;">
+          <textarea spellcheck="false">SELECT
+  p.category,
+  p.name,
+  SUM(o.amount) AS total_revenue
+FROM orders o
+JOIN products p ON o.product_id = p.id
+GROUP BY p.category;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+            <button class="btn btn-hint" onclick="showHint(this, 'p.name is not in GROUP BY and not aggregated. Either add it to GROUP BY or remove it from SELECT')">Hint</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <h3>Spot the bug: no results</h3>
+        <p>This AI query should show orders with no customer match.
+        It returns zero rows. Why?</p>
+
+        <div class="playground" data-query="SELECT
+  o.id,
+  o.amount,
+  o.customer_id
+FROM orders o
+WHERE o.customer_id = NULL;">
+          <textarea spellcheck="false">SELECT
+  o.id,
+  o.amount,
+  o.customer_id
+FROM orders o
+WHERE o.customer_id = NULL;</textarea>
+          <div class="playground-actions">
+            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
+            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
+            <button class="btn btn-hint" onclick="showHint(this, 'Use IS NULL instead of = NULL. NULL is not a value, it means unknown, so = NULL never matches')">Hint</button>
+          </div>
+          <div class="result-area"></div>
+        </div>
+
+        <p>
+          When AI generates SQL for you: (1) read the FROM and JOINs first. Are the right tables
+          connected? (2) check the WHERE. Is anything being silently excluded? (3) verify GROUP BY
+          matches the SELECT columns. (4) Run it and eyeball the results. Do the numbers make sense?
+          Five seconds of reading saves five minutes of debugging.
+</p>
+
+        <h3>Use AI to explain queries to non-technical stakeholders</h3>
+        <p>You'll often inherit a query from a colleague or see one behind a dashboard. Instead of staring at it, ask AI to explain it in plain English. Then verify against what you learned.</p>
+
+        <p>
+          <strong>The "Explain Like I'm 5" prompt:</strong><br><br>
+          Copy this prompt template and paste it into ChatGPT, Claude, or Copilot along with the query:<br><br>
+          <code style="background:var(--surface2);padding:4px 8px;border-radius:2px;font-size:13px;">
+          "Explain this SQL query to a non-technical business stakeholder. Don't use jargon.
+          Describe it like you're explaining to someone who's smart but has never written code.
+          For each step, say: (1) what data it pulls, (2) why it matters for the business,
+          (3) what the results would tell us. Here's the query: [paste query]"
+          </code>
+</p>
+
+        <div class="playground" data-query="SELECT
+  c.city,
+  COUNT(DISTINCT c.id) AS customers,
+  COUNT(o.id) AS orders,
+  ROUND(SUM(o.amount), 2) AS revenue,
+  ROUND(AVG(o.amount), 2) AS avg_order_value
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+GROUP BY c.city
 ORDER BY revenue DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Product performance</span></div>
           <textarea spellcheck="false">SELECT
-  p.name,
-  p.category,
-  SUM(o.quantity) AS units_sold,
-  SUM(o.amount) AS revenue
-FROM orders o
-JOIN products p
-  ON o.product_id = p.id
-GROUP BY p.name
+  c.city,
+  COUNT(DISTINCT c.id) AS customers,
+  COUNT(o.id) AS orders,
+  ROUND(SUM(o.amount), 2) AS revenue,
+  ROUND(AVG(o.amount), 2) AS avg_order_value
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+GROUP BY c.city
 ORDER BY revenue DESC;</textarea>
           <div class="playground-actions">
             <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
@@ -1960,627 +2276,67 @@ ORDER BY revenue DESC;</textarea>
           <div class="result-area"></div>
         </div>
 
-        <div class="concept-box tip">
-          🎉 Congratulations! You've just built real business reports. Take a screenshot and share it with your team — you did this yourself, no analyst needed!
-        </div>
+        <p>
+          <strong>What AI should tell you about this query:</strong> It pulls every city's customer count, order count, total revenue, and average order value. It uses a LEFT JOIN so cities with no orders still appear. Results are sorted by revenue, highest first. This is a revenue-by-region report. If your boss asks "how are our cities performing?", this is the query behind the answer.
+</p>
 
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>Build a <strong>monthly revenue report</strong> showing month, order count, and total revenue. Only show months with <strong>revenue over $200</strong>. This tests DATE_TRUNC, GROUP BY, COUNT, SUM, HAVING, and ORDER BY together.</p>
-          <div class="playground" data-query="SELECT DATE_TRUNC('month', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS total_revenue FROM orders GROUP BY month HAVING total_revenue > 200 ORDER BY month;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT DATE_TRUNC(\'month\', order_date) AS month, COUNT(*) AS orders, SUM(amount) AS total_revenue FROM orders GROUP BY month HAVING total_revenue > 200 ORDER BY month;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-      `;
-    }
-    function debuggingContent() {
-      return `
-        <h2>Debugging: When Your Query Looks Wrong</h2>
-        <p class="subtitle">Why don't my numbers add up?</p>
-
-        <div class="concept-box warning">
-          Your query runs but the numbers look wrong. This is the most common problem in SQL. Here are the three most frequent causes.
-        </div>
-
-        <h3>Fan-out from bad JOIN</h3>
-        <p>When you JOIN without filtering, each row in one table multiplies with every matching row in the other. The result: 10x more rows than you expected.</p>
-        <div class="playground" data-query="SELECT COUNT(*) AS row_count FROM orders JOIN products ON orders.product_id = products.id;">
-          <div class="playground-header"><span class="label">Try it</span><span>JOIN without filter — row explosion</span></div>
-          <textarea spellcheck="false">-- Bad: JOINs create duplicate rows
-SELECT COUNT(*) AS row_count
-FROM orders
-JOIN products ON orders.product_id = products.id;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-        <div class="playground" data-query="SELECT COUNT(DISTINCT orders.id) AS real_order_count FROM orders JOIN products ON orders.product_id = products.id;">
-          <div class="playground-header"><span class="label">Try it</span><span>Fix: COUNT(DISTINCT)</span></div>
-          <textarea spellcheck="false">-- Fix: Count distinct to avoid duplicates
-SELECT COUNT(DISTINCT orders.id) AS real_order_count
-FROM orders
-JOIN products ON orders.product_id = products.id;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>NULL handling — SUMs don't add up</h3>
-        <p>SUM ignores NULLs. If your amount column has NULLs, the total will be lower than expected.</p>
-        <div class="playground" data-query="SELECT SUM(amount) AS total FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>SUM ignores NULLs</span></div>
-          <textarea spellcheck="false">-- NULLs silently disappear from SUM
-SELECT SUM(amount) AS total FROM orders;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-        <div class="playground" data-query="SELECT SUM(CASE WHEN amount IS NOT NULL THEN amount ELSE 0 END) AS total FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>Fix: treat NULLs as 0</span></div>
-          <textarea spellcheck="false">-- Fix: treat NULLs as 0
-SELECT SUM(CASE WHEN amount IS NOT NULL THEN amount ELSE 0 END) AS total
-FROM orders;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Duplicate keys — counts are inflated</h3>
-        <p>When a column has duplicates, COUNT(*) counts every row. Use COUNT(DISTINCT) to count unique values.</p>
-        <div class="playground" data-query="SELECT COUNT(*) AS total, COUNT(DISTINCT product_id) AS unique_products FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>COUNT vs COUNT(DISTINCT)</span></div>
-          <textarea spellcheck="false">-- COUNT(*) counts all rows
--- COUNT(DISTINCT product_id) counts unique products
-SELECT
-  COUNT(*) AS total,
-  COUNT(DISTINCT product_id) AS unique_products
-FROM orders;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
+        <h3>The 4-step workflow for AI + SQL</h3>
+        <p>
+          <strong>1. Ask</strong>, give AI your business question and schema context ("customers, orders, products tables")<br>
+          <strong>2. Read</strong>, use the 5-step method (FROM → JOIN → WHERE → GROUP BY → SELECT) to check the query<br>
+          <strong>3. Run</strong>, execute it and eyeball the results. Do the numbers make sense?<br>
+          <strong>4. Refine</strong>, if it's close but not right, tell AI what to change: "now add a filter for 2024" or "group by month instead"
+</p>
 
         <div class="exercise">
           <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>Your manager says the total revenue is $5,000 but you calculated $4,500. What could be wrong?</p>
-          <div class="playground" data-query="">
-            <textarea spellcheck="false">-- What would you check first?
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-hint" onclick="showHint(this, 'Check for NULL values in the amount column and duplicate rows from JOINs')">Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-      `;
-    }
-    function readingQueriesContent() {
-      return `
-        <h2>Reading Queries: What Your Data Team Wrote</h2>
-        <p class="subtitle">Can you read and modify a query someone else wrote?</p>
-
-        <div class="concept-box why">
-          In real work, you'll spend more time reading queries than writing them. Here's how to decode what you're looking at.
-        </div>
-
-        <h3>A real production query</h3>
-        <div class="code-block"><span class="kw">SELECT</span>
-  c.name                          <span class="cmt">-- customer name</span>
-  ,c.region                        <span class="cmt">-- customer region</span>
-  ,COUNT(o.id) <span class="kw">AS</span> order_count     <span class="cmt">-- number of orders</span>
-  ,<span class="fn">SUM</span>(o.amount) <span class="kw">AS</span> total_revenue  <span class="cmt">-- total spend</span>
-  ,<span class="fn">AVG</span>(o.amount) <span class="kw">AS</span> avg_order_val  <span class="cmt">-- average order</span>
-  ,<span class="fn">MAX</span>(o.order_date) <span class="kw">AS</span> last_order  <span class="cmt">-- most recent order</span>
-<span class="kw">FROM</span> customers c
-<span class="kw">LEFT JOIN</span> orders o
-  <span class="kw">ON</span> c.id = o.customer_id
-<span class="kw">WHERE</span> o.order_date >= <span class="str">'2024-01-01'</span>
-<span class="kw">GROUP BY</span> c.name, c.region
-<span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.id) >= <span class="num">3</span>
-<span class="kw">ORDER BY</span> total_revenue <span class="kw">DESC</span>
-<span class="kw">LIMIT</span> <span class="num">20</span>;</div>
-
-        <h3>Line-by-line breakdown</h3>
-        <ul>
-          <li><strong>Lines 1-7 (SELECT)</strong> — What columns to show. Aliases like <code>order_count</code> name the output columns.</li>
-          <li><strong>Lines 8-9 (FROM + LEFT JOIN)</strong> — Start with customers, bring in matching orders. LEFT JOIN keeps customers even if they have no orders.</li>
-          <li><strong>Line 10 (ON)</strong> — The link between tables: customer id matches order's customer_id.</li>
-          <li><strong>Line 11 (WHERE)</strong> — Filter to orders from 2024 onwards. This runs BEFORE grouping.</li>
-          <li><strong>Line 12 (GROUP BY)</strong> — Collapse to one row per customer. All non-aggregated columns must appear here.</li>
-          <li><strong>Line 13 (HAVING)</strong> — Filter AFTER grouping. Only keep customers with 3+ orders.</li>
-          <li><strong>Line 14 (ORDER BY)</strong> — Sort by total revenue, highest first.</li>
-          <li><strong>Line 15 (LIMIT)</strong> — Return only top 20 rows.</li>
-        </ul>
-
-        <div class="concept-box tip">
-          <strong>Execution order tip:</strong> SQL evaluates in this order: FROM/JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMIT. Knowing this helps you understand where filters and aggregations happen.
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">Exercise <span class="challenge-badge medium">Medium</span></div>
-          <p>Modify the query above to also show the <strong>average order value per category</strong>.</p>
-          <div class="playground" data-query="">
-            <textarea spellcheck="false">-- Start with the query above and add AVG(amount)
--- What else needs to change?
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-hint" onclick="showHint(this, 'Add AVG(o.amount) AS avg_category_value to the SELECT and add p.category to GROUP BY')">Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-      `;
-    }
-    function subqueriesContent() {
-      return `
-        <h2>Subqueries: Queries Inside Queries</h2>
-        <p class="subtitle">How do I use one query's result in another?</p>
-
-        <div class="concept-box analogy">
-          A subquery is a question inside a question. Like saying: "Show me everyone who spent more than the average customer." First you find the average, then you use it to filter.
-        </div>
-
-        <h3>Subquery in WHERE</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  price
-FROM products
-WHERE id IN (
-  SELECT product_id
-  FROM orders
-  GROUP BY product_id
-  HAVING SUM(amount) > 300
-);">
-          <div class="playground-header"><span class="label">Try it</span><span>Products with total revenue above $300</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  price
-FROM products
-WHERE id IN (
-  SELECT product_id
-  FROM orders
-  GROUP BY product_id
-  HAVING SUM(amount) > 300
-);</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Subquery in FROM</h3>
-        <div class="playground" data-query="SELECT
-  category,
-  avg_price
-FROM (
-  SELECT
-    category,
-    AVG(price) AS avg_price
-  FROM products
-  GROUP BY category
-) AS sub
-WHERE avg_price > 100;">
-          <div class="playground-header"><span class="label">Try it</span><span>Categories with average price above $100</span></div>
-          <textarea spellcheck="false">SELECT
-  category,
-  avg_price
-FROM (
-  SELECT
-    category,
-    AVG(price) AS avg_price
-  FROM products
-  GROUP BY category
-) AS sub
-WHERE avg_price > 100;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <div class="concept-box tip">
-          Read subqueries from the inside out. The inner query runs first, then the outer query uses its results.
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>Find products that have been <strong>ordered more than 2 times</strong>. Show the product name and order count. This tests subqueries with IN, GROUP BY, and HAVING together.</p>
-          <div class="playground" data-query="SELECT p.name, COUNT(o.id) AS order_count FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name HAVING order_count > 2;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
+          <p>An AI generated this query to "show total spending per city for customers who signed up in 2024."
+          It has <strong>two bugs</strong>. Find and fix both. Run the corrected query.</p>
+          <div class="playground" data-expect="SELECT, FROM, JOIN, WHERE, GROUP BY, BETWEEN" data-query="SELECT
+  c.city,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+WHERE c.signup_date = '2024'
+GROUP BY c.city;">
+            <textarea spellcheck="false">SELECT
+  c.city,
+  SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+WHERE c.signup_date = '2024'
+GROUP BY c.city;</textarea>
             <div class="playground-actions">
               <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT p.name, COUNT(o.id) AS order_count FROM products p JOIN orders o ON p.id = o.product_id GROUP BY p.name HAVING order_count > 2;')">💡 Hint</button>
+              <button class="btn btn-hint" data-hint="Bug 1: signup_date = '2024' is an exact match, not a year filter. Use signup_date BETWEEN '2024-01-01' AND '2024-12-31'. Bug 2: INNER JOIN drops customers who signed up in 2024 but haven't placed orders yet. Use LEFT JOIN to include all 2024 customers." onclick="showHint(this)">Hint</button>
             </div>
             <div class="result-area"></div>
           </div>
         </div>
-      `;
-    }
-    function caseWhenContent() { return `
-        <h2>CASE WHEN: Labels and Buckets</h2>
-        <p class="subtitle">How do I add labels and buckets to my data?</p>
 
-        <div class="concept-box analogy">
-          CASE WHEN is like IF/THEN in Excel. "If price > 200, label it Premium, otherwise label it Standard." You create new columns based on conditions.
-        </div>
-
-        <h3>Simple CASE</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  price,
-  CASE
-    WHEN price > 200 THEN 'Premium'
-    WHEN price > 50 THEN 'Standard'
-    ELSE 'Budget'
-  END AS price_tier
-FROM products;">
-          <div class="playground-header"><span class="label">Try it</span><span>Label products by price tier</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  price,
-  CASE
-    WHEN price > 200 THEN 'Premium'
-    WHEN price > 50 THEN 'Standard'
-    ELSE 'Budget'
-  END AS price_tier
-FROM products;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Conditional aggregation</h3>
-        <div class="playground" data-query="SELECT
-  city,
-  COUNT(*) AS total_customers,
-  COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024,
-  COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024
-FROM customers
-GROUP BY city;">
-          <div class="playground-header"><span class="label">Try it</span><span>Split customer count by signup year per city</span></div>
-          <textarea spellcheck="false">SELECT
-  city,
-  COUNT(*) AS total_customers,
-  COUNT(CASE WHEN signup_date < '2024-01-01' THEN 1 END) AS pre_2024,
-  COUNT(CASE WHEN signup_date >= '2024-01-01' THEN 1 END) AS from_2024
-FROM customers
-GROUP BY city;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <div class="concept-box tip">
-          CASE WHEN evaluates conditions top-to-bottom and returns the first match. Put your most specific conditions first.
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>Label each order as <strong>'Small'</strong> (under $100), <strong>'Medium'</strong> ($100-$300), or <strong>'Large'</strong> (over $300). Show order id, amount, and label. This tests CASE WHEN with multiple conditions.</p>
-          <div class="playground" data-query="SELECT id, amount, CASE WHEN amount < 100 THEN 'Small' WHEN amount <= 300 THEN 'Medium' ELSE 'Large' END AS size FROM orders;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, amount, CASE WHEN amount < 100 THEN \'Small\' WHEN amount <= 300 THEN \'Medium\' ELSE \'Large\' END AS size FROM orders;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
+        <p>
+          AI is a powerful thinking partner. But thinking is still your job. The people who get the most
+          value from AI are the ones who can read its output, spot the gaps, and ask better questions.
+          That is what this course has been building toward.
+</p>
       `; }
-    function windowContent() {
-      return `
-        <h2>Window Functions: Ranking and Comparing</h2>
-        <p class="subtitle">How do I rank or compare rows within a group?</p>
+    function whatsNextContent() { return `
+<h2>SQL Quick Reference & What's Next</h2>
+<p class="subtitle">Your desk reference and where to go from here.</p>
 
-        <div class="concept-box analogy">
-          Window functions are like adding a column that knows about the other rows. "Rank this product within its category" or "show me the running total." Unlike GROUP BY, they don't collapse rows — they add information alongside each row.
-        </div>
+<h3>What you can now do</h3>
+<ul>
+  <li>Pull and filter your own data</li>
+  <li>Summarise with aggregations and grouping</li>
+  <li>Combine tables with joins</li>
+  <li>Use CASE WHEN for conditional logic</li>
+  <li>Filter by date ranges and analyse trends over time</li>
+  <li>Read and evaluate AI-generated queries</li>
+  <li>Spot common AI failure patterns before they become wrong answers</li>
+  <li>Build basic reports independently</li>
+</ul>
 
-        <h3>ROW_NUMBER — rank within a group</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  category,
-  price,
-  ROW_NUMBER() OVER (
-    PARTITION BY category
-    ORDER BY price DESC
-  ) AS rank_in_category
-FROM products;">
-          <div class="playground-header"><span class="label">Try it</span><span>Rank products by price within each category</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  category,
-  price,
-  ROW_NUMBER() OVER (
-    PARTITION BY category
-    ORDER BY price DESC
-  ) AS rank_in_category
-FROM products;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>RANK and DENSE_RANK</h3>
-        <div class="playground" data-query="SELECT
-  name,
-  department,
-  salary,
-  RANK() OVER (
-    PARTITION BY department
-    ORDER BY salary DESC
-  ) AS salary_rank
-FROM employees;">
-          <div class="playground-header"><span class="label">Try it</span><span>Rank employees by salary within each department</span></div>
-          <textarea spellcheck="false">SELECT
-  name,
-  department,
-  salary,
-  RANK() OVER (
-    PARTITION BY department
-    ORDER BY salary DESC
-  ) AS salary_rank
-FROM employees;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <div class="concept-box tip">
-          <strong>ROW_NUMBER</strong> gives every row a unique number (1, 2, 3). <strong>RANK</strong> skips numbers after ties (1, 2, 2, 4). <strong>DENSE_RANK</strong> doesn't skip (1, 2, 2, 3). Pick the one that fits your use case.
-        </div>
-
-        <h3>Running total</h3>
-        <div class="playground" data-query="SELECT
-  order_date,
-  amount,
-  SUM(amount) OVER (
-    ORDER BY order_date
-  ) AS running_total
-FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>Cumulative revenue over time</span></div>
-          <textarea spellcheck="false">SELECT
-  order_date,
-  amount,
-  SUM(amount) OVER (
-    ORDER BY order_date
-  ) AS running_total
-FROM orders;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>LAG — compare to previous row</h3>
-        <div class="playground" data-query="SELECT
-  order_date,
-  amount,
-  LAG(amount) OVER (
-    ORDER BY order_date
-  ) AS previous_order,
-  amount - LAG(amount) OVER (
-    ORDER BY order_date
-  ) AS change
-FROM orders;">
-          <div class="playground-header"><span class="label">Try it</span><span>Compare each order to the previous one</span></div>
-          <textarea spellcheck="false">SELECT
-  order_date,
-  amount,
-  LAG(amount) OVER (
-    ORDER BY order_date
-  ) AS previous_order,
-  amount - LAG(amount) OVER (
-    ORDER BY order_date
-  ) AS change
-FROM orders;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Period comparison: month-over-month change</h3>
-        <div class="playground" data-query="SELECT
-  DATE_TRUNC('month', order_date) AS month,
-  SUM(amount) AS revenue,
-  LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) AS prev_month,
-  ROUND((SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date))) / LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) * 100, 1) AS pct_change
-FROM orders
-GROUP BY month
-ORDER BY month;">
-          <div class="playground-header"><span class="label">Try it</span><span>Month-over-month revenue change</span></div>
-          <textarea spellcheck="false">SELECT
-  DATE_TRUNC('month', order_date) AS month,
-  SUM(amount) AS revenue,
-  LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) AS prev_month,
-  ROUND(
-    (SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)))
-    / LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) * 100,
-    1
-  ) AS pct_change
-FROM orders
-GROUP BY month
-ORDER BY month;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <div class="concept-box warning">
-          In Snowflake, use <code>QUALIFY</code> to filter window function results. In BigQuery, wrap in a subquery and filter the outer query. This course uses subquery approach since it works everywhere.
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>Show each order with a <strong>running total of revenue</strong>, ordered by date. This tests window functions with SUM() OVER and ORDER BY.</p>
-          <div class="playground" data-query="SELECT id, order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'SELECT id, order_date, amount, SUM(amount) OVER (ORDER BY order_date) AS running_total FROM orders;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-      `;
-    }
-    function ctesContent() { return `
-        <h2>CTEs: Readable Complex Queries</h2>
-        <p class="subtitle">How do I write complex queries that I can actually read?</p>
-
-        <div class="concept-box analogy">
-          A CTE (WITH clause) is like giving a subquery a name. Instead of nesting queries inside each other, you define them at the top and reference them by name. Like variables in a formula — name it once, use it below.
-        </div>
-
-        <h3>Basic CTE</h3>
-        <div class="playground" data-query="WITH product_totals AS (
-  SELECT
-    product_id,
-    SUM(amount) AS total_revenue
-  FROM orders
-  GROUP BY product_id
-)
-SELECT
-  p.name,
-  pt.total_revenue
-FROM product_totals pt
-JOIN products p
-  ON pt.product_id = p.id
-ORDER BY pt.total_revenue DESC;">
-          <div class="playground-header"><span class="label">Try it</span><span>Product revenue totals using a CTE</span></div>
-          <textarea spellcheck="false">WITH product_totals AS (
-  SELECT
-    product_id,
-    SUM(amount) AS total_revenue
-  FROM orders
-  GROUP BY product_id
-)
-SELECT
-  p.name,
-  pt.total_revenue
-FROM product_totals pt
-JOIN products p
-  ON pt.product_id = p.id
-ORDER BY pt.total_revenue DESC;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <h3>Multiple CTEs</h3>
-        <div class="playground" data-query="WITH monthly_revenue AS (
-  SELECT
-    DATE_TRUNC('month', order_date) AS month,
-    SUM(amount) AS revenue
-  FROM orders
-  GROUP BY month
-),
-avg_monthly AS (
-  SELECT
-    AVG(revenue) AS avg_rev
-  FROM monthly_revenue
-)
-SELECT
-  mr.month,
-  mr.revenue,
-  am.avg_rev,
-  CASE
-    WHEN mr.revenue > am.avg_rev THEN 'Above average'
-    ELSE 'Below average'
-  END AS performance
-FROM monthly_revenue mr,
-  avg_monthly am
-ORDER BY mr.month;">
-          <div class="playground-header"><span class="label">Try it</span><span>Monthly revenue vs average</span></div>
-          <textarea spellcheck="false">WITH monthly_revenue AS (
-  SELECT
-    DATE_TRUNC('month', order_date) AS month,
-    SUM(amount) AS revenue
-  FROM orders
-  GROUP BY month
-),
-avg_monthly AS (
-  SELECT
-    AVG(revenue) AS avg_rev
-  FROM monthly_revenue
-)
-SELECT
-  mr.month,
-  mr.revenue,
-  am.avg_rev,
-  CASE
-    WHEN mr.revenue > am.avg_rev THEN 'Above average'
-    ELSE 'Below average'
-  END AS performance
-FROM monthly_revenue mr,
-  avg_monthly am
-ORDER BY mr.month;</textarea>
-          <div class="playground-actions">
-            <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-            <button class="btn btn-reset" onclick="resetPlayground(this)">↺ Reset</button>
-          </div>
-          <div class="result-area"></div>
-        </div>
-
-        <div class="concept-box tip">
-          CTEs don't make queries faster — they make them readable. Use them when a subquery is getting hard to follow. Think of them as naming your steps.
-        </div>
-
-        <div class="exercise">
-          <div class="exercise-title">🏋️ Exercise <span class="challenge-badge hard">Hard</span></div>
-          <p>Using a <strong>CTE</strong>, find the <strong>top 3 products by total revenue</strong>. Show product name and total revenue. This tests CTE, JOIN, SUM, GROUP BY, ORDER BY, and LIMIT together.</p>
-          <div class="playground" data-query="WITH product_revenue AS (SELECT p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name) SELECT name, revenue FROM product_revenue ORDER BY revenue DESC LIMIT 3;">
-            <textarea spellcheck="false">-- Your query here
-</textarea>
-            <div class="playground-actions">
-              <button class="btn btn-run" onclick="runPlayground(this)">▶ Run</button>
-              <button class="btn btn-hint" onclick="showHint(this, 'WITH product_revenue AS (SELECT p.name, SUM(o.amount) AS revenue FROM orders o JOIN products p ON o.product_id = p.id GROUP BY p.name) SELECT name, revenue FROM product_revenue ORDER BY revenue DESC LIMIT 3;')">💡 Hint</button>
-            </div>
-            <div class="result-area"></div>
-          </div>
-        </div>
-      `; }
-    function cheatsheetContent() { return `
-<h2>SQL Quick Reference</h2>
-<p class="subtitle">Your desk reference — bookmark this page.</p>
-
-<h3>Basic query structure</h3>
+<h3>Quick reference</h3>
 <div class="code-block"><span class="kw">SELECT</span> column1, column2, <span class="fn">COUNT</span>(*)
 <span class="kw">FROM</span> table_name
 <span class="kw">JOIN</span> other_table <span class="kw">ON</span> table.id = other_table.table_id
@@ -2590,146 +2346,49 @@ ORDER BY mr.month;</textarea>
 <span class="kw">ORDER BY</span> column1 <span class="kw">DESC</span>
 <span class="kw">LIMIT</span> <span class="num">10</span>;</div>
 
-<h3>Comparison operators</h3>
 <div class="schema-display">
-  <div><span class="col-name">=  !=  >  <  >=  <=</span> <span class="col-desc">— basic comparisons</span></div>
-  <div><span class="col-name">AND  OR  NOT</span> <span class="col-desc">— combine conditions</span></div>
-  <div><span class="col-name">BETWEEN x AND y</span> <span class="col-desc">— range (inclusive)</span></div>
-  <div><span class="col-name">IN ('a', 'b')</span> <span class="col-desc">— match any in list</span></div>
-  <div><span class="col-name">LIKE '%text%'</span> <span class="col-desc">— pattern match</span></div>
-  <div><span class="col-name">IS NULL / IS NOT NULL</span> <span class="col-desc">— empty values</span></div>
+  <div><span class="col-name">=  !=  >  <  >=  <=</span> <span class="col-desc">basic comparisons</span></div>
+  <div><span class="col-name">AND  OR  NOT</span> <span class="col-desc">combine conditions</span></div>
+  <div><span class="col-name">BETWEEN x AND y</span> <span class="col-desc">range (inclusive)</span></div>
+  <div><span class="col-name">IN ('a', 'b')</span> <span class="col-desc">match any in list</span></div>
+  <div><span class="col-name">LIKE '%text%'</span> <span class="col-desc">pattern match</span></div>
+  <div><span class="col-name">IS NULL / IS NOT NULL</span> <span class="col-desc">empty values</span></div>
+  <div><span class="col-name">COUNT(*)  SUM()  AVG()</span> <span class="col-desc">aggregate functions</span></div>
+  <div><span class="col-name">ROUND(value, 2)</span> <span class="col-desc">round to 2 decimals</span></div>
+  <div><span class="col-name">COALESCE(a, b)</span> <span class="col-desc">use a if not null, else b</span></div>
 </div>
 
-<h3>Aggregate functions</h3>
-<div class="schema-display">
-  <div><span class="col-name">COUNT(*)</span> <span class="col-desc">— number of rows</span></div>
-  <div><span class="col-name">SUM(column)</span> <span class="col-desc">— total</span></div>
-  <div><span class="col-name">AVG(column)</span> <span class="col-desc">— average</span></div>
-  <div><span class="col-name">MIN(column)</span> <span class="col-desc">— minimum</span></div>
-  <div><span class="col-name">MAX(column)</span> <span class="col-desc">— maximum</span></div>
-</div>
-
-<h3>Date functions (Snowflake / BigQuery)</h3>
-<div class="schema-display">
-  <div><span class="col-name">DATE_TRUNC('month', date_col)</span> <span class="col-desc">— truncate to month</span></div>
-  <div><span class="col-name">DATEADD('day', 30, date_col)</span> <span class="col-desc">— add 30 days</span></div>
-  <div><span class="col-name">DATEDIFF('day', start, end)</span> <span class="col-desc">— days between dates</span></div>
-  <div><span class="col-name">CURRENT_DATE()</span> <span class="col-desc">— today's date</span></div>
-</div>
-
-<h3>String functions</h3>
-<div class="schema-display">
-  <div><span class="col-name">SUBSTRING(col, 1, 5)</span> <span class="col-desc">— first 5 characters</span></div>
-  <div><span class="col-name">UPPER(col) / LOWER(col)</span> <span class="col-desc">— change case</span></div>
-  <div><span class="col-name">TRIM(col)</span> <span class="col-desc">— remove whitespace</span></div>
-  <div><span class="col-name">CONCAT(a, b)</span> <span class="col-desc">— join strings</span></div>
-  <div><span class="col-name">REPLACE(col, 'old', 'new')</span> <span class="col-desc">— find and replace</span></div>
-</div>
-
-<h3>CASE WHEN</h3>
-<div class="code-block"><span class="kw">CASE WHEN</span> condition <span class="kw">THEN</span> value
-     <span class="kw">WHEN</span> condition2 <span class="kw">THEN</span> value2
-     <span class="kw">ELSE</span> default_value
-<span class="kw">END</span></div>
-
-<h3>Window functions</h3>
-<div class="schema-display">
-  <div><span class="col-name">ROW_NUMBER() OVER (...)</span> <span class="col-desc">— unique sequential number</span></div>
-  <div><span class="col-name">RANK() OVER (...)</span> <span class="col-desc">— rank with gaps</span></div>
-  <div><span class="col-name">DENSE_RANK() OVER (...)</span> <span class="col-desc">— rank without gaps</span></div>
-  <div><span class="col-name">SUM(col) OVER (ORDER BY ...)</span> <span class="col-desc">— running total</span></div>
-  <div><span class="col-name">LAG(col) OVER (...)</span> <span class="col-desc">— previous row value</span></div>
-  <div><span class="col-name">LEAD(col) OVER (...)</span> <span class="col-desc">— next row value</span></div>
-</div>
-
-<h3>CTEs</h3>
-<div class="code-block"><span class="kw">WITH</span> cte_name <span class="kw">AS</span> (
-  <span class="kw">SELECT</span> ... <span class="kw">FROM</span> ...
-)
-<span class="kw">SELECT</span> ... <span class="kw">FROM</span> cte_name;</div>
-
-<h3>Useful functions</h3>
-<div class="schema-display">
-  <div><span class="col-name">COALESCE(a, b)</span> <span class="col-desc">— use a if not null, else b</span></div>
-  <div><span class="col-name">ROUND(value, 2)</span> <span class="col-desc">— round to 2 decimal places</span></div>
-  <div><span class="col-name">CAST(value AS type)</span> <span class="col-desc">— convert data types</span></div>
-  <div><span class="col-name">LENGTH(string)</span> <span class="col-desc">— count characters</span></div>
-</div>
-
-<h3>Common patterns</h3>
-<div class="schema-display">
-  <div><span class="col-name">Top N per group</span> <span class="col-desc">— use ROW_NUMBER() or RANK()</span></div>
-  <div><span class="col-name">Running total</span> <span class="col-desc">— SUM() OVER (ORDER BY ...)</span></div>
-  <div><span class="col-name">Month-over-month</span> <span class="col-desc">— LAG() or self-join</span></div>
-  <div><span class="col-name">Deduplicate</span> <span class="col-desc">— ROW_NUMBER() = 1</span></div>
-  <div><span class="col-name">Replace NULL</span> <span class="col-desc">— COALESCE(column, 'default')</span></div>
-  <div><span class="col-name">Format currency</span> <span class="col-desc">— ROUND(amount, 2)</span></div>
-  <div><span class="col-name">Convert types</span> <span class="col-desc">— CAST(column AS INTEGER)</span></div>
-</div>
-
-<h3>Common mistakes</h3>
-<div class="schema-display">
-  <div><span class="col-name">= NULL</span> <span class="col-desc">— use IS NULL instead</span></div>
-  <div><span class="col-name">WHERE on aggregates</span> <span class="col-desc">— use HAVING after GROUP BY</span></div>
-  <div><span class="col-name">Missing GROUP BY</span> <span class="col-desc">— required when mixing aggregates with other columns</span></div>
-  <div><span class="col-name">Wrong JOIN type</span> <span class="col-desc">— INNER drops rows, LEFT keeps all from left table</span></div>
-</div>
-`; }
-    function whatsNextContent() { return `
-<h2>What's Next: Keep Going</h2>
-<p class="subtitle">Where do I go from here?</p>
-
-<div class="concept-box why">
-  You've completed SQL for Everyone. You can now write queries that would have taken a data analyst days to pull. But this is just the beginning — here's where to go next.
-</div>
-
-<h3>What you can now do</h3>
-<ul>
-  <li>Pull and filter your own data</li>
-  <li>Summarise with aggregations and grouping</li>
-  <li>Combine tables with joins</li>
-  <li>Write subqueries, CASE WHEN, window functions, and CTEs</li>
-  <li>Build basic reports independently</li>
-</ul>
+<p>
+  <strong>Common mistakes:</strong> Use <code>IS NULL</code> not <code>= NULL</code>. Use <code>HAVING</code> for filtering after GROUP BY, not WHERE. Every column in SELECT must either be aggregated or in GROUP BY. Use LEFT JOIN to keep all rows from the left table.
+</p>
 
 <h3>External resources</h3>
 <ul>
-  <li><strong>dbt</strong> — data transformation: <a href="https://www.getdbt.com/" target="_blank">getdbt.com</a></li>
-  <li><strong>Looker</strong> — reporting and dashboards: <a href="https://cloud.google.com/looker" target="_blank">cloud.google.com/looker</a></li>
-  <li><strong>Power BI</strong> — Microsoft reporting: <a href="https://powerbi.microsoft.com/" target="_blank">powerbi.microsoft.com</a></li>
-  <li><strong>Mode Analytics SQL Tutorial</strong> — intermediate practice: <a href="https://mode.com/sql-tutorial/" target="_blank">mode.com/sql-tutorial</a></li>
-  <li><strong>Snowflake Documentation</strong> — <a href="https://docs.snowflake.com/" target="_blank">docs.snowflake.com</a></li>
-  <li><strong>BigQuery Documentation</strong> — <a href="https://cloud.google.com/bigquery/docs" target="_blank">cloud.google.com/bigquery/docs</a></li>
+  <li><strong>Google Data Analytics Professional Certificate</strong>, <a href="https://imp.i384100.net/6bOn5Q" target="_blank">Coursera</a></li>
+  <li><strong>Snowflake Documentation</strong>, <a href="https://docs.snowflake.com/" target="_blank">docs.snowflake.com</a></li>
+  <li><strong>BigQuery Documentation</strong>, <a href="https://cloud.google.com/bigquery/docs" target="_blank">cloud.google.com/bigquery/docs</a></li>
 </ul>
 
-<h3>Communities</h3>
-<ul>
-  <li><strong>dbt Community Slack</strong> — <a href="https://www.getdbt.com/community" target="_blank">getdbt.com/community</a></li>
-  <li><strong>Locally Optimistic</strong> — data community: <a href="https://locallyoptimistic.com/" target="_blank">locallyoptimistic.com</a></li>
-</ul>
-
-<div class="concept-box tip">
-  Your next step: Pick a real question from your work. Write the query. Run it. Share the result. That's how you learn — by solving problems that matter to you.
-</div>
+<p>
+  Your next step: Use AI to draft a query for a real question at work.
+  Then read it, using the five-step method from the AI + SQL lesson.
+  Fix what's wrong. Run it. Share the result. That's the workflow that
+  makes you irreplaceable: AI for speed, you for judgment.
+</p>
 `; }
 
     const lessons = [
       { id: 'welcome', title: 'Welcome', icon: '👋', content: welcomeContent },
       { id: 'select', title: 'SELECT', icon: '📋', content: selectContent },
       { id: 'where', title: 'WHERE', icon: '🔍', content: whereContent },
-      { id: 'sorting', title: 'Sorting', icon: '↕️', content: sortingContent },
+      { id: 'sorting', title: 'ORDER BY + LIMIT', icon: '↕️', content: sortingContent },
       { id: 'aggregation', title: 'Aggregation', icon: '📊', content: aggregationContent },
       { id: 'groupby', title: 'GROUP BY', icon: '📈', content: groupbyContent },
       { id: 'joins', title: 'JOINs', icon: '🔗', content: joinsContent },
-      { id: 'mini-reports', title: 'Mini Reports', icon: '📄', content: miniReportsContent },
-      { id: 'debugging', title: 'Debugging', icon: '🔍', content: debuggingContent },
-      { id: 'reading-queries', title: 'Reading Queries', icon: '📖', content: readingQueriesContent },
-      { id: 'subqueries', title: 'Subqueries', icon: '🔄', content: subqueriesContent },
       { id: 'case-when', title: 'CASE WHEN', icon: '🏷️', content: caseWhenContent },
-      { id: 'window', title: 'Window Functions', icon: '🪟', content: windowContent },
-      { id: 'ctes', title: 'CTEs', icon: '🧩', content: ctesContent },
-      { id: 'cheatsheet', title: 'Cheatsheet', icon: '📖', content: cheatsheetContent },
-      { id: 'whats-next', title: "What's Next", icon: '🚀', content: whatsNextContent }
+      { id: 'date-filtering', title: 'Date Filtering', icon: '📅', content: dateFilteringContent },
+      { id: 'ai-sql', title: 'AI + SQL', icon: '🤖', content: aiSqlContent },
+      { id: 'reference', title: "Reference & Next Steps", icon: '🚀', content: whatsNextContent }
     ];
 
     let currentLesson = 0;
@@ -2737,7 +2396,7 @@ ORDER BY mr.month;</textarea>
 
     // Load from localStorage
     try {
-      const saved = JSON.parse(localStorage.getItem('sql-course-progress') || '[]');
+      const saved = JSON.parse(localStorage.getItem('sql-course-progress-v2') || '[]');
       completedLessons = new Set(saved);
     } catch(e) {
       completedLessons = new Set();
@@ -2789,10 +2448,6 @@ ORDER BY mr.month;</textarea>
         renderNav();
         updateProgress();
         attachPlaygroundHandlers(content);
-        // Update run button text to match mockup
-        content.querySelectorAll('.btn-run').forEach(btn => {
-          btn.innerHTML = '▶ Run Query';
-        });
         // Strip emojis from exercise titles, keep "EXERCISE" + badge
         content.querySelectorAll('.exercise-title').forEach(el => {
           const badge = el.querySelector('.challenge-badge');
@@ -2828,59 +2483,9 @@ ORDER BY mr.month;</textarea>
     function markLessonComplete() {
       completedLessons.add(currentLesson);
       // Persist to localStorage
-      localStorage.setItem('sql-course-progress', JSON.stringify([...completedLessons]));
+      localStorage.setItem('sql-course-progress-v2', JSON.stringify([...completedLessons]));
       renderNav();
       updateProgress();
-
-      if (completedLessons.size === lessons.length) {
-        setTimeout(() => {
-          if (confirm('🎉 You completed all lessons! Generate your certificate?')) {
-            generateCertificate();
-          }
-        }, 500);
-      }
-    }
-
-    // ========== Completion Certificate ==========
-    function generateCertificate() {
-      const name = prompt('Enter your name for the certificate:');
-      if (!name) return;
-
-      const today = new Date().toLocaleDateString('en-AU', {
-        day: 'numeric', month: 'long', year: 'numeric'
-      });
-
-      const certHtml = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Certificate of Completion</title>
-          <style>
-            body { font-family: Georgia, serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #f5f5f5; }
-            .cert { background: white; padding: 60px 80px; text-align: center; border: 3px solid #4a6ae0; max-width: 700px; }
-            .cert h1 { font-size: 28px; color: #1a365d; margin-bottom: 20px; }
-            .cert .name { font-size: 32px; color: #2d3748; margin: 20px 0; }
-            .cert .course { font-size: 24px; color: #4a6ae0; margin: 20px 0; }
-            .cert .date { font-size: 14px; color: #718096; margin-top: 40px; }
-          </style>
-        </head>
-        <body>
-          <div class="cert">
-            <h1>Certificate of Completion</h1>
-            <p style="font-size:16px;color:#4a5568;">This certifies that</p>
-            <div class="name">${escapeHtml(name)}</div>
-            <p style="font-size:16px;color:#4a5568;">has completed</p>
-            <div class="course">SQL for Everyone</div>
-            <div class="date">${today}</div>
-          </div>
-        </body>
-        </html>
-      `;
-
-      const win = window.open('', '_blank');
-      win.document.write(certHtml);
-      win.document.close();
-      setTimeout(() => win.print(), 500);
     }
 
     // ========== Mobile Menu Toggle ==========
@@ -2908,9 +2513,9 @@ ORDER BY mr.month;</textarea>
     });
   </script>
 
-  <div id="commandPalette" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:15vh;">
+  <div id="commandPalette" role="dialog" aria-modal="true" aria-label="Command palette" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:15vh;">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);width:480px;max-width:90vw;box-shadow:none;overflow:hidden;">
-      <input id="cmdInput" type="text" placeholder="Search lessons..." style="width:100%;padding:16px 20px;border:none;border-bottom:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--font);font-size:15px;outline:none;box-sizing:border-box;">
+      <input id="cmdInput" type="text" placeholder="Search lessons..." aria-label="Search lessons" style="width:100%;padding:16px 20px;border:none;border-bottom:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--font);font-size:15px;outline:none;box-sizing:border-box;">
       <div id="cmdResults" style="max-height:300px;overflow-y:auto;"></div>
     </div>
   </div>

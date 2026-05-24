@@ -1,6 +1,6 @@
 # SQL for Everyone
 
-An interactive SQL course for non-technical business professionals. Learn to query databases without relying on data analysts.
+An interactive SQL course for non-technical business professionals. Data judgment for the AI age. Learn to read, write, and evaluate SQL queries.
 
 ## Quick Start
 
@@ -10,79 +10,46 @@ An interactive SQL course for non-technical business professionals. Learn to que
 
 ## What You'll Learn
 
-- **SELECT** — Pick the data you need
-- **WHERE** — Filter and search records
-- **Sorting** — ORDER BY and LIMIT
-- **Aggregation** — COUNT, SUM, AVG, MIN, MAX
-- **GROUP BY** — Summarise by category
-- **JOINs** — Combine data from multiple tables
-- **Subqueries** — Nested queries
-- **CASE WHEN** — Conditional logic
-- **Window Functions** — ROW_NUMBER, RANK, running totals
-- **CTEs** — Readable complex queries
+11 high-impact lessons for business stakeholders:
+
+- **SELECT**, pick the data you need
+- **WHERE**, filter, search, pattern match, handle NULLs
+- **ORDER BY + LIMIT**, sort and cap results
+- **Aggregation**, COUNT, SUM, AVG, ROUND, percentages
+- **GROUP BY**, summarise by category
+- **JOINs**, combine data from multiple tables
+- **CASE WHEN**, conditional logic
+- **Date Filtering**, monthly trends, quarter comparisons, date ranges
+- **AI + SQL**, prompt AI, explain queries to stakeholders, catch bugs
 
 ## Project Structure
 
 ```
 sql-course-for-everyone/
 ├── index.html              # The entire course (single file)
-├── landing.html            # Marketing landing page
-├── js/
-│   ├── sql-wasm.js         # SQLite compiled to WebAssembly
-│   └── sql-wasm.wasm       # SQLite WASM binary
-├── docs/
-│   └── superpowers/
-│       ├── specs/          # Design specs and research
-│       └── plans/          # Implementation plans
 └── README.md               # This file
 ```
 
 ## Features
 
-- **Interactive SQL editor** — Type queries, see results instantly
-- **Snowflake/BigQuery syntax** — Teaches modern SQL with compatibility layer
-- **14 lessons** — From zero to analyst-level
-- **Exercises with hints** — Practice what you learn
-- **Progress tracking** — Saves progress in localStorage
-- **Light/dark theme** — Clean Light theme
-- **Responsive** — Works on desktop and tablet
-- **Cmd+K** — Command palette to jump between lessons
-- **PDF export** — Print the course for offline reference
-- **Completion certificate** — Auto-generates on finishing all lessons
+- **Interactive SQL editor**, type queries, see results instantly
+- **Snowflake/BigQuery syntax**, teaches modern SQL with compatibility layer
+- **11 lessons**, each lesson builds on the previous one
+- **Business-focused**, real-world patterns: trends, percentages, date filtering
+- **Exercises with hints**, practice what you learn
+- **Progress tracking**, saves progress in localStorage
+- **Responsive**, works on desktop and tablet
+- **Cmd+K**, command palette to jump between lessons
+- **PDF export**, print the course for offline reference
 
 ## Database
 
 Uses an in-memory SQLite database with sample data:
 
-- **customers** — 15 rows (names, emails, cities)
-- **products** — 15 rows (names, prices, categories)
-- **orders** — 30 rows (product orders with dates and amounts)
-- **employees** — 15 rows (names, departments, salaries)
-
-## Customisation
-
-### Changing Colours
-
-Edit the CSS variables at the top of the `<style>` block:
-
-```css
-:root {
-  --bg: #ffffff;
-  --text: #171717;
-  --accent: #171717;
-  /* ... */
-}
-```
-
-### Adding Lessons
-
-1. Add content function to the `lessons` array
-2. Add entry to the `renderNav` function
-3. Follow the existing pattern for playgrounds and exercises
-
-### Modifying Data
-
-Edit the `INSERT INTO` statements in the database initialization section.
+- **customers**, 15 rows (names, emails, cities)
+- **products**, 15 rows (names, prices, categories)
+- **orders**, 30 rows (product orders with dates and amounts)
+- **employees**, 15 rows (names, departments, salaries)
 
 ## Browser Support
 
@@ -93,9 +60,9 @@ Edit the `INSERT INTO` statements in the database initialization section.
 
 ## Credits
 
-- **SQL.js** — SQLite compiled to WebAssembly
-- **Inter** — UI font
-- **JetBrains Mono** — Code font
+- **SQL.js**, SQLite compiled to WebAssembly
+- **Inter**, UI font
+- **JetBrains Mono**, code font
 
 ## Licence
 
