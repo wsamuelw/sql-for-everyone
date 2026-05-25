@@ -37,3 +37,23 @@ The user will provide A/B test results in one of four formats. Auto-detect from 
 - Segment columns (optional — device, traffic source, etc.)
 
 If the user hasn't provided data yet, ask: "What are the test results? You can paste CSV data, raw numbers, a file path (.csv or .xlsx), or a dashboard URL."
+
+# Interactive Phase
+
+After receiving and parsing the data, ask up to 3 clarifying questions — one at a time using AskUserQuestion:
+
+1. **Hypothesis:** "What was the hypothesis behind this test?"
+   - Purpose: Frames the "so what" and populates the "What We Tested" section
+   - If user already stated the hypothesis in their initial message, skip this question
+
+2. **Primary metric:** "What's the one metric that matters most for this test?"
+   - Options to present: Conversion rate, Revenue per user, Engagement rate, Retention, Other (specify)
+   - Purpose: Determines which number leads the brief
+   - If user already identified the primary metric, skip this question
+
+3. **Audience:** "Who will read this brief?"
+   - Options: Executives, Growth/Product teams, Both
+   - Purpose: Shapes tone, detail level, and section emphasis
+   - Always ask this unless explicitly stated
+
+**Skip logic:** If the user provides context upfront (e.g., "Here are results for our checkout button test — we wanted to see if green increased conversions, it's for the growth team"), skip questions where context is already clear. Never re-ask questions the user has already answered.
