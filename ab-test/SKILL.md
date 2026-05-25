@@ -164,3 +164,26 @@ Shape the brief based on the audience selected in the Interactive Phase:
 - Direct and concise — no filler phrases ("It's worth noting that...", "It's interesting to see...")
 - Lead with the recommendation, not the methodology
 - An exec should be able to read only Verdict + Recommendation and have everything they need
+
+# Edge Cases
+
+Handle these scenarios gracefully:
+
+- **No conversions in one variant:** "Zero conversions recorded — this variant may be broken or the test needs more time. Do not ship based on this data."
+- **Very small sample (n < 1000):** "Results are based on a small sample and may not be reliable. Recommend running the test longer before making a decision."
+- **Negative lift:** Still generate the full brief. "This change hurt performance" is actionable — the brief should say "Don't ship" with the magnitude of the negative impact.
+- **Multiple variants (A/B/C):** Compare each variant to control separately. Highlight the winner. If two variants are close, note that either could work.
+- **No revenue data:** Remove the Revenue Impact section. Note: "Revenue data not available — projected impact not calculated."
+- **Inconclusive result (p > 0.10):** Verdict: "No detectable difference." Recommendation: either iterate on the variant or accept the status quo. Don't force a directional recommendation.
+- **One variant has vastly different sample size:** Flag as potential traffic allocation issue. "Uneven traffic split detected — results may be skewed."
+
+# Trigger Phrases
+
+- `/ab-test`
+- "analyze my AB test"
+- "share experiment results"
+- "what did the test show"
+- "AB test brief"
+- "experiment analysis"
+- "A/B test results"
+- "test analysis"
