@@ -104,3 +104,63 @@ For each segment column (device, traffic source, etc.):
 - Flag any segment where lift differs from overall by more than 50% (e.g., overall +10% but mobile +25%)
 - Note surprising differences in the "Watch Out For" section
 
+# Output Template
+
+Generate a single markdown file using this exact structure. Fill in all sections — remove any section that doesn't apply (e.g., remove Revenue Impact if no revenue data).
+
+```markdown
+# A/B Test Brief: [Test Name — derive from hypothesis or data]
+
+## Verdict
+[One sentence: Ship it / Don't ship / Run longer / Test again. Be direct.]
+
+## What We Tested
+[2-3 sentences: hypothesis, what changed between control and variant, primary metric]
+
+## Results at a Glance
+| Metric | Control | Variant | Lift |
+|--------|---------|---------|------|
+| Conversion rate | X% | Y% | +Z% |
+| Sample size | — | — | N total |
+| Confidence | — | — | [Statistically significant / Suggestive / No difference] |
+
+## What This Means
+[2-3 sentences in plain English. No jargon. Explain what the result means for the business, not what the numbers say.]
+
+## Revenue Impact
+[Projected annual impact if revenue data available. Include caveat. If no revenue data: "Revenue data not available — projected impact not calculated."]
+
+## Recommendation
+[Specific next steps: what to ship, what to test next, what to investigate. Be actionable — not "consider further analysis" but "ship the green button to 100% and test headline copy next."]
+
+## Watch Out For
+[Risks, caveats, segments that behaved differently, anything surprising. If nothing notable: "No significant anomalies detected."]
+```
+
+# Audience Adaptation
+
+Shape the brief based on the audience selected in the Interactive Phase:
+
+## Executives
+- Lead with revenue impact and strategic recommendation
+- Replace confidence percentages with: "Highly confident" (p<0.05), "Promising but early" (p 0.05-0.10), "Not yet conclusive" (p>0.10)
+- Minimise technical detail — no sample sizes in the main narrative
+- End with a clear go/no-go ask: "Recommendation: Ship this change. Expected impact: $X/year."
+
+## Growth/Product Teams
+- Lead with conversion lift and segment insights
+- Include implementation details: what to ship, what to A/B test next
+- Show sample sizes and confidence levels
+- End with metrics to watch: "Post-ship, monitor: checkout completion rate, mobile conversion, revenue per session."
+
+## Both
+- Generate two sections in the same file, separated by `---`:
+  1. "## Executive Summary" (exec-adapted)
+  2. "## Growth Detail" (growth-adapted)
+
+# Tone Rules
+
+- Australian English spelling (analyse, prioritise, metre, etc.)
+- Direct and concise — no filler phrases ("It's worth noting that...", "It's interesting to see...")
+- Lead with the recommendation, not the methodology
+- An exec should be able to read only Verdict + Recommendation and have everything they need
