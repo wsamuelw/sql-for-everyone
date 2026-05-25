@@ -95,6 +95,11 @@ After receiving and parsing the data, ask up to 3 clarifying questions — one a
    - Purpose: Shapes tone, detail level, and section emphasis
    - Always ask this unless explicitly stated
 
+4. **Peeking check:** "Was this test checked for results before the planned end date, or stopped early when significance was reached?"
+   - Options: "No, ran to completion", "Yes, we checked mid-test", "Yes, we stopped early", "Not sure"
+   - Purpose: Peeking inflates false positive rates. If yes, add a prominent warning to the brief.
+   - If "Yes" or "Not sure": Include warning: "Results were checked before the test completed. Statistical significance should be interpreted with extra caution — the actual false positive rate may be higher than the stated confidence level."
+
 **Skip logic:** If the user provides context upfront (e.g., "Here are results for our checkout button test — we wanted to see if green increased conversions, it's for the growth team"), skip questions where context is already clear. Never re-ask questions the user has already answered.
 
 # Analysis Engine
@@ -108,7 +113,29 @@ Compute the following from the parsed data:
 3. **Relative lift**: `(variant_rate - control_rate) / control_rate * 100`
 4. **Sample size adequacy**: Flag if total n < 1000 or if test ran < 14 days
 
+## Sample Ratio Mismatch (SRM) Check
+
+Before running any significance test, verify that the observed traffic split matches the expected allocation. SRM is the most common experiment infrastructure bug — it signals broken randomisation, bot traffic, or data pipeline errors.
+
+For a 50/50 expected split:
+```
+expected_A = total_users / 2
+expected_B = total_users / 2
+chi2 = (observed_A - expected_A)^2 / expected_A + (observed_B - expected_B)^2 / expected_B
+```
+
+If chi2 > 3.84 (p < 0.05 with 1 df), flag as SRM:
+- **SRM detected:** "Warning: The traffic split doesn't match what we'd expect from random assignment. This could indicate a broken randomisation algorithm, bot traffic, or a data pipeline issue. Investigate before trusting any results."
+- **No SRM:** Proceed normally.
+
+Also flag if the split is dramatically uneven without explanation (e.g., 90/10 when 50/50 was expected).
+
 ## Statistical Significance (Two-Proportion Z-Test)
+
+**Before testing — check assumptions:**
+- Expected cell counts: all four cells (conversions and non-conversions in each group) must be > 5
+- If any cell ≤ 5: flag "Sample too small for standard significance test — using exact test instead" and recommend Fisher's exact test
+- If cells > 5 but ≤ 10: warn "Borderline sample size — interpret results with caution"
 
 For each variant vs. control, compute:
 
@@ -120,21 +147,39 @@ SE = sqrt(pooled * (1 - pooled) * (1/control_sample_size + 1/variant_sample_size
 z = (p2 - p1) / SE
 ```
 
+**Confidence interval for relative lift (95%):**
+```
+SE_lift = sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2) / p1
+relative_lift = (p2 - p1) / p1
+CI_lower = relative_lift - 1.96 * SE_lift
+CI_upper = relative_lift + 1.96 * SE_lift
+```
+
+Report as: "The true lift is likely between [CI_lower]% and [CI_upper]%."
+
 Map z-score to confidence level using standard normal distribution:
 - |z| >= 1.96 → p < 0.05 → "Statistically significant — this result is real"
 - |z| 1.645–1.96 → p 0.05–0.10 → "Suggestive but not conclusive — we need more data"
-- |z| < 1.645 → p > 0.10 → "No detectable difference — the change didn't move the needle"
+- |z| < 1.645 → p > 0.10 → No strong conclusion
+
+**Interpreting inconclusive results:** A high p-value does NOT mean "no effect" — it could mean the test was underpowered. Distinguish:
+- CI tightly centred near zero → likely no meaningful effect
+- CI wide, spanning practically meaningful values → underpowered, run longer
 
 **Never show the z-score, p-value, or formulas in the output.** Translate to plain English only.
 
 ## Revenue Impact (if revenue data available)
 
 ```
-daily_lift = (variant_rate - control_rate) * avg_revenue_per_conversion
-annual_impact = daily_lift * total_sample_size * 365 / test_days
+rate_difference = variant_rate - control_rate
+annual_impact = rate_difference * avg_revenue_per_conversion * annualised_users
 ```
 
-Caveat: "Projected impact assumes current rates hold. Actual results may vary with seasonality and traffic changes."
+Where `annualised_users = total_sample_size * 365 / test_days`.
+
+Caveats (always include):
+- "Projected impact assumes current rates hold. Actual results may vary with seasonality and traffic changes."
+- "Revenue projections from short tests may overestimate true impact due to novelty effects and regression to the mean. Consider applying a 30-50% discount for tests under 4 weeks."
 
 ## Segment Breakdown (if segment data present)
 
@@ -160,6 +205,7 @@ Generate a single markdown file using this exact structure. Fill in all sections
 | Metric | Control | Variant | Lift |
 |--------|---------|---------|------|
 | Conversion rate | X% | Y% | +Z% |
+| 95% CI for lift | — | — | [lower]% to [upper]% |
 | Sample size | — | — | N total |
 | Confidence | — | — | [Statistically significant / Suggestive / No difference] |
 
@@ -211,10 +257,10 @@ Handle these scenarios gracefully:
 - **No conversions in one variant:** "Zero conversions recorded — this variant may be broken or the test needs more time. Do not ship based on this data."
 - **Very small sample (n < 1000):** "Results are based on a small sample and may not be reliable. Recommend running the test longer before making a decision."
 - **Negative lift:** Still generate the full brief. "This change hurt performance" is actionable — the brief should say "Don't ship" with the magnitude of the negative impact.
-- **Multiple variants (A/B/C):** Compare each variant to control separately. Highlight the winner. If two variants are close, note that either could work.
+- **Multiple variants (A/B/C):** Apply Bonferroni correction: divide alpha by the number of comparisons (e.g., 3 variants = alpha 0.017 per comparison). Compare each variant to control using the corrected threshold. Highlight the winner. If two variants are close, note that either could work. Always state the corrected significance threshold in the brief.
 - **No revenue data:** Remove the Revenue Impact section. Note: "Revenue data not available — projected impact not calculated."
-- **Inconclusive result (p > 0.10):** Verdict: "No detectable difference." Recommendation: either iterate on the variant or accept the status quo. Don't force a directional recommendation.
-- **One variant has vastly different sample size:** Flag as potential traffic allocation issue. "Uneven traffic split detected — results may be skewed."
+- **Inconclusive result (p > 0.10):** Check the CI width. If CI is narrow and centred near zero: "No meaningful difference detected." If CI is wide: "Test was underpowered — the CI is too wide to draw conclusions. Run longer with more traffic." Never say "no effect" when the test simply lacked power.
+- **One variant has vastly different sample size:** Run SRM check (chi-squared test). If significant, flag as broken randomisation: "Traffic split doesn't match expected allocation — investigate before trusting results." If not significant but visibly uneven, note: "Uneven traffic split detected — results may have less statistical power than expected."
 
 # Trigger Phrases
 
