@@ -111,7 +111,32 @@ Compute the following from the parsed data:
 1. **Conversion rate** per variant: `conversions / sample_size * 100`
 2. **Absolute lift**: `variant_rate - control_rate`
 3. **Relative lift**: `(variant_rate - control_rate) / control_rate * 100`
-4. **Sample size adequacy**: Flag if total n < 1000 or if test ran < 14 days
+4. **Sample size adequacy**: Flag if total n < 1000 or if test ran < 14 days (2 full business cycles minimum)
+
+## Effect Size (Cohen's h)
+
+Compute Cohen's h for practical significance alongside statistical significance:
+```
+h = 2 * arcsin(sqrt(p2)) - 2 * arcsin(sqrt(p1))
+```
+
+Interpret in the brief:
+- |h| < 0.2 → "Very small effect — unlikely to be noticeable in practice"
+- |h| 0.2–0.5 → "Small to medium effect"
+- |h| 0.5–0.8 → "Medium to large effect"
+- |h| > 0.8 → "Large effect"
+
+Always report effect size alongside the CI. A statistically significant result with a tiny effect size means: "Real but too small to matter."
+
+## Minimum Detectable Effect (MDE)
+
+After the test completes, compute the MDE the test was powered to detect:
+```
+MDE = (z_alpha + z_beta) * SE_pooled
+```
+Where z_alpha = 1.96 (for 95% confidence), z_beta = 0.84 (for 80% power), SE_pooled from the z-test.
+
+Report as: "This test could reliably detect effects of [MDE*100]% or larger. Smaller effects would require a larger sample to confirm."
 
 ## Sample Ratio Mismatch (SRM) Check
 
@@ -180,12 +205,22 @@ Where `annualised_users = total_sample_size * 365 / test_days`.
 Caveats (always include):
 - "Projected impact assumes current rates hold. Actual results may vary with seasonality and traffic changes."
 - "Revenue projections from short tests may overestimate true impact due to novelty effects and regression to the mean. Consider applying a 30-50% discount for tests under 4 weeks."
+- "Winner's curse: if this test was underpowered or the effect was small, the observed lift may be inflated. The true impact is likely closer to the lower end of the confidence interval."
 
 ## Segment Breakdown (if segment data present)
 
+**Multiplicity warning:** Segment-level analysis increases the chance of false discoveries. Each segment comparison is effectively a separate test. If checking 5 segments at alpha 0.05, the chance of at least one false positive is ~23%.
+
+Rules for segment reporting:
+- Only report segments that were pre-specified in the test plan (if known). If the user didn't pre-specify, note: "These segment breakdowns were not pre-specified — treat as exploratory, not confirmatory."
+- Apply Benjamini-Hochberg FDR correction when comparing many segments (e.g., > 3). Set q = 0.10.
+- Flag only segments where lift differs from overall by more than 50% AND the segment has sufficient sample size (n > 200 per variant).
+- Always caveat: "Segment results are exploratory. A segment showing a different pattern may be a real heterogeneity or a false discovery from checking many slices."
+
 For each segment column (device, traffic source, etc.):
 - Compute conversion rate per variant within each segment
-- Flag any segment where lift differs from overall by more than 50% (e.g., overall +10% but mobile +25%)
+- Apply FDR correction if > 3 segments
+- Flag segments meeting the threshold above
 - Note surprising differences in the "Watch Out For" section
 
 # Output Template
@@ -206,7 +241,9 @@ Generate a single markdown file using this exact structure. Fill in all sections
 |--------|---------|---------|------|
 | Conversion rate | X% | Y% | +Z% |
 | 95% CI for lift | — | — | [lower]% to [upper]% |
+| Effect size | — | — | [Very small / Small / Medium / Large] |
 | Sample size | — | — | N total |
+| Could detect effects of | — | — | [MDE]% or larger |
 | Confidence | — | — | [Statistically significant / Suggestive / No difference] |
 
 ## What This Means
