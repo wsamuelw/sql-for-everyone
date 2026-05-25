@@ -87,9 +87,10 @@ Mobile showed a slightly higher lift (+32%) than desktop (+24%). Worth monitorin
 ## How It Works
 
 1. **Receive** — Accepts data in CSV, XLSX, raw stats, or URL format
-2. **Clarify** — Asks 2-3 questions about hypothesis, primary metric, and audience
-3. **Analyse** — Computes conversion rates, statistical significance, and revenue impact
-4. **Generate** — Produces a one-page brief adapted to the audience
+2. **Validate** — Shows parsed data summary for human review (catches parsing errors before analysis)
+3. **Clarify** — Asks 2-3 questions about hypothesis, primary metric, and audience
+4. **Analyse** — Computes conversion rates, statistical significance, and revenue impact
+5. **Generate** — Produces a one-page brief adapted to the audience
 
 ## License
 

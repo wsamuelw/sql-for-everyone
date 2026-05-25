@@ -38,6 +38,45 @@ The user will provide A/B test results in one of four formats. Auto-detect from 
 
 If the user hasn't provided data yet, ask: "What are the test results? You can paste CSV data, raw numbers, a file path (.csv or .xlsx), or a dashboard URL."
 
+# Data Validation (Human-in-the-Loop)
+
+After parsing the data, present a summary table to the user for validation before proceeding. This catches parsing errors, misaligned columns, and missing data early.
+
+## Validation Summary
+
+Display the following using AskUserQuestion:
+
+```
+=== Parsed Data Summary ===
+
+Experiment: [experiment name/ID if detectable, else "Unknown"]
+Groups detected: [list groups, e.g., "A (control), B (challenger)"]
+
+| Group | Users/Sessions | Conversions | Conversion Rate |
+|-------|---------------|-------------|-----------------|
+| A     | N             | N           | X%              |
+| B     | N             | N           | X%              |
+
+Total sample size: N
+Date range: [if available, else "Not specified"]
+Segments found: [list segment columns if present, else "None"]
+```
+
+Then ask (using AskUserQuestion):
+
+1. **"Does this data look correct?"**
+   - Options: "Yes, looks good", "Something's wrong — let me correct", "I need to add more context"
+   - If "Something's wrong": ask what's wrong (wrong columns, missing groups, parsing error) and re-parse or let user provide corrected data
+   - If "I need to add more context": collect additional context before proceeding
+
+2. **If segments are present:** "Should I break down results by segment, or keep it aggregate?"
+   - Options: "Aggregate only", "Break down by [segment]", "Both"
+   - Purpose: Determines whether the brief includes segment-level analysis
+
+**Why this matters:** Data analysts and data scientists can verify the parsed data matches their expectations before statistical analysis runs. This prevents garbage-in-garbage-out — a misaligned column or wrong group mapping would produce a misleading brief.
+
+**Skip logic:** If the user pasted raw stats with only 2 variants and clear numbers (e.g., "Control: 1000 users, 50 conversions. Variant: 1000 users, 65 conversions."), the validation can be simplified to a single confirmation: "Parsed: Control (1000 users, 50 conversions, 5.0%) vs Variant (1000 users, 65 conversions, 6.5%). Correct?"
+
 # Interactive Phase
 
 After receiving and parsing the data, ask up to 3 clarifying questions — one at a time using AskUserQuestion:
