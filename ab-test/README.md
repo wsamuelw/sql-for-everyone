@@ -41,6 +41,16 @@ A one-page brief with:
 - **Revenue Impact** — Projected annual impact (if revenue data available)
 - **Recommendation** — Specific next steps
 - **Watch Out For** — Risks, surprises, segment differences
+- **Kill or Iterate** — Fork for negative results: what to abandon vs what to retry
+- **Technical Appendix** — Raw stats for analysts (z-scores, CIs, sample sizes)
+
+## Key Capabilities
+
+- **Multi-sheet XLSX** — Joins fact and dimension tables automatically (e.g., offer-level events + campaign-level assignment)
+- **Multi-experiment detection** — Spots multiple experiment IDs in one file, surfaces them, and analyses one at a time
+- **User-specified analysis level** — Respects "run at campaign level" / "run at user level" without second-guessing
+- **Segment analysis** — Automatically computes device, traffic source, and other binary segment breakdowns
+- **Uneven splits** — Handles intentional 90/10 or 80/20 traffic allocations without false SRM alarms
 
 ## Audience Adaptation
 
@@ -86,11 +96,12 @@ Mobile showed a slightly higher lift (+32%) than desktop (+24%). Worth monitorin
 
 ## How It Works
 
-1. **Receive** — Accepts data in CSV, XLSX, raw stats, or URL format
-2. **Validate** — Shows parsed data summary for human review (catches parsing errors before analysis)
-3. **Clarify** — Asks 2-3 questions about hypothesis, primary metric, and audience
-4. **Analyse** — Computes conversion rates, statistical significance, and revenue impact
-5. **Generate** — Produces a one-page brief adapted to the audience
+1. **Receive** — Accepts data in CSV, XLSX, raw stats, or URL format. Multi-sheet workbooks are joined automatically.
+2. **Filter** — Detects multiple experiments in one file and asks which to analyse. Surfaces experiment IDs, group splits, and sample sizes.
+3. **Validate** — Shows parsed data summary for human review. Validates arithmetic, flags short tests, and detects business rule violations.
+4. **Clarify** — Asks contextual questions as needed: analysis date range, SUTVA assumptions, strategic context, audience. Skips what's already known.
+5. **Analyse** — Computes conversion rates, statistical significance, effect sizes, MDE, and segment-level breakdowns.
+6. **Generate** — Produces a one-page brief adapted to the audience, with a Technical Appendix for analysts.
 
 ## License
 

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datafying</title>
+<meta name="description" content="Founder-led data advisory. Strategic thinking, hands-on capability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Neue+Haas+Grotesk+Display+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000;
+    --white: #fff;
+    --gray: #888;
+    --light: #e0e0e0;
+    --mono: 'Space Mono', 'Courier New', monospace;
+    --sans: 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--black); color: var(--white); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--black); color: var(--white);
+    border-bottom: 3px solid var(--black);
+  }
+  nav .inner {
+    max-width: 1400px; margin: 0 auto; padding: 0 32px;
+    display: flex; align-items: center; justify-content: space-between; height: 48px;
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: 14px; font-weight: 700;
+    color: var(--white); text-decoration: none; text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11px; font-weight: 400;
+    color: var(--gray); text-decoration: none; text-transform: uppercase;
+    letter-spacing: 1px; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO — SPLIT WITH THICK BORDER */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    border-bottom: 3px solid var(--black);
+  }
+  .hero-left {
+    padding: 120px 48px 60px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    border-right: 3px solid var(--black);
+  }
+  .hero-tag {
+    font-family: var(--mono); font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .hero-sub {
+    font-size: 16px; color: var(--gray); max-width: 440px; margin-bottom: 36px;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--black); color: var(--white);
+    padding: 16px 32px;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    text-decoration: none; border: 3px solid var(--black);
+    transition: all 0.15s;
+  }
+  .hero-cta:hover { background: var(--white); color: var(--black); }
+
+  .hero-right {
+    padding: 120px 48px 60px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    background: var(--black); color: var(--white);
+  }
+  .hero-proof-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+  }
+  .hero-proof-item:last-child { border-bottom: none; }
+  .hero-proof-item .num {
+    font-family: var(--mono); font-size: 48px; font-weight: 700;
+    letter-spacing: -2px; display: block; margin-bottom: 4px;
+  }
+  .hero-proof-item .label {
+    font-size: 13px; color: var(--gray); max-width: 280px;
+  }
+  .hero-trust {
+    margin-top: 32px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    font-family: var(--mono); font-size: 11px; color: var(--gray);
+    letter-spacing: 0.5px; line-height: 1.6;
+  }
+
+  /* LETTER — MONOSPACE, RAW */
+  .letter {
+    padding: 80px 48px;
+    border-bottom: 3px solid var(--black);
+    max-width: 900px;
+  }
+  .letter-label {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
+    margin-bottom: 32px;
+  }
+  .letter p {
+    font-size: 18px; line-height: 1.7; color: var(--black);
+    margin-bottom: 20px;
+  }
+  .letter-cred {
+    font-family: var(--mono); font-size: 12px; color: var(--gray);
+    margin-top: 32px; padding-top: 20px;
+    border-top: 3px solid var(--black);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .letter-cred strong { color: var(--black); }
+
+  /* RESULTS — BIG NUMBERS, THICK BORDERS */
+  .results {
+    padding: 0;
+    border-bottom: 3px solid var(--black);
+  }
+  .results-header {
+    padding: 24px 48px;
+    border-bottom: 3px solid var(--black);
+    background: var(--black); color: var(--white);
+  }
+  .results-header h2 {
+    font-family: var(--mono); font-size: 14px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .results-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+  .result-card {
+    padding: 40px 32px;
+    border-right: 3px solid var(--black);
+  }
+  .result-card:last-child { border-right: none; }
+  .result-num {
+    font-family: var(--mono); font-size: 56px; font-weight: 700;
+    letter-spacing: -3px; margin-bottom: 16px;
+  }
+  .result-title {
+    font-size: 15px; font-weight: 700; margin-bottom: 10px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .result-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+  /* OFFERINGS — BLACK BACKGROUND, THICK BORDERS */
+  .offerings {
+    background: var(--black); color: var(--white);
+    border-bottom: 3px solid var(--black);
+  }
+  .offerings-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .offering {
+    padding: 60px 48px;
+    border-right: 1px solid rgba(255,255,255,.15);
+  }
+  .offering:last-child { border-right: none; }
+  .offering-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
+    margin-bottom: 20px;
+  }
+  .offering h2 {
+    font-size: 32px; font-weight: 700; letter-spacing: -1px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .offering p { font-size: 15px; color: var(--gray); line-height: 1.6; margin-bottom: 12px; }
+  .offering-detail {
+    font-family: var(--mono); font-size: 11px; color: var(--gray);
+    letter-spacing: 1px; text-transform: uppercase;
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 16px; margin-top: 24px;
+  }
+
+  /* WHO */
+  .who {
+    padding: 80px 48px;
+    border-bottom: 3px solid var(--black);
+    max-width: 900px;
+  }
+  .who p {
+    font-size: 20px; line-height: 1.5; margin-bottom: 16px;
+  }
+  .who strong { font-weight: 700; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--black); color: var(--white);
+    padding: 80px 48px; text-align: center;
+    border-bottom: 3px solid var(--black);
+  }
+  .cta-section h2 {
+    font-size: 48px; font-weight: 700; letter-spacing: -2px;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .cta-section p {
+    font-family: var(--mono); font-size: 14px; color: var(--gray);
+    margin-bottom: 32px;
+  }
+
+  /* CONTACT */
+  .contact {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 3px solid var(--black);
+  }
+  .contact-text {
+    padding: 60px 48px;
+    border-right: 3px solid var(--black);
+  }
+  .contact-text h2 {
+    font-size: 32px; font-weight: 700; letter-spacing: -1px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .contact-text p { font-size: 15px; color: var(--gray); line-height: 1.6; }
+  .urgency {
+    font-family: var(--mono); font-size: 14px; color: var(--black);
+    margin-top: 24px; padding: 16px;
+    border: 3px solid var(--black);
+  }
+  .contact-form { padding: 60px 48px; background: #f5f5f5; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; font-family: var(--mono); font-size: 10px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 8px;
+  }
+  .form-group input, .form-group textarea {
+    width: 100%; background: var(--white);
+    border: 3px solid var(--black); border-radius: 0;
+    padding: 12px 16px; color: var(--black);
+    font-family: var(--sans); font-size: 15px;
+    transition: box-shadow 0.15s;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none; box-shadow: 4px 4px 0 var(--black);
+  }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .form-submit {
+    width: 100%; background: var(--black); color: var(--white);
+    border: 3px solid var(--black); padding: 16px;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .form-submit:hover { background: var(--white); color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    padding: 24px 48px;
+    border-top: 3px solid var(--black);
+    background: var(--black); color: var(--white);
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; color: var(--gray);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .footer-inner a { color: var(--gray); text-decoration: none; }
+  .footer-inner a:hover { color: var(--white); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav .inner { padding: 0 16px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 100px 20px 40px; border-right: none; border-bottom: 3px solid var(--black); }
+    .hero-right { padding: 40px 20px; }
+    .hero h1 { font-size: 36px; letter-spacing: -2px; }
+    .hero-proof-item .num { font-size: 36px; }
+    .letter { padding: 40px 20px; }
+    .results-grid { grid-template-columns: 1fr; }
+    .result-card { border-right: none; border-bottom: 3px solid var(--black); }
+    .result-card:last-child { border-bottom: none; }
+    .offerings-inner { grid-template-columns: 1fr; }
+    .offering { border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .who { padding: 40px 20px; }
+    .cta-section { padding: 40px 20px; }
+    .cta-section h2 { font-size: 32px; }
+    .contact { grid-template-columns: 1fr; }
+    .contact-text { border-right: none; border-bottom: 3px solid var(--black); padding: 40px 20px; }
+    .contact-form { padding: 40px 20px; }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="#" class="nav-logo">datafying</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#results">Results</a></li>
+      <li><a href="#offerings">How I Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Strategic thinking. Hands-on. Founder-led.</p>
+      <h1>Your data has the answer. You need the person.</h1>
+      <p class="hero-sub">Advisory calls when you need to think. Analysis sprints when you need the work done.</p>
+      <a href="#contact" class="hero-cta">Book a free call →</a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-proof-item">
+        <span class="num">$500M</span>
+        <span class="label">Market expansion greenlit using churn analysis</span>
+      </div>
+      <div class="hero-proof-item">
+        <span class="num">+20%</span>
+        <span class="label">Email open rates using ML-personalised send times</span>
+      </div>
+      <div class="hero-proof-item">
+        <span class="num">5→1</span>
+        <span class="label">Days cut from monthly reconciliation</span>
+      </div>
+      <p class="hero-trust">Previously at one of Australia's leading loyalty programs, a major entertainment resort, and one of the largest supermarket retailers.</p>
+    </div>
+  </section>
+
+  <section class="letter">
+    <p class="letter-label">A note from the founder</p>
+    <p>I spent years inside data teams at some of Australia's biggest brands. Here's what I wish someone had told me.</p>
+    <p>Most data teams solve yesterday's question. They build dashboards that tell you what happened, not what to do next. The real unlock isn't more data — it's a sharper question.</p>
+    <p>That's why I started Datafying. To sit with founders and leaders who know there's more in their data — and help them find it.</p>
+    <p>Sometimes that's a 30-minute call. Sometimes it's a three-week sprint. Either way, you get me — not a junior, not an account manager.</p>
+    <p class="letter-cred"><strong>Samuel Wong</strong> · Founder, Datafying</p>
+  </section>
+
+  <section class="results" id="results">
+    <div class="results-header"><h2>What I've seen work</h2></div>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-num">+20%</div>
+        <p class="result-title">Stop guessing</p>
+        <p class="result-desc">A retailer with 3M+ members sent emails at the same time to everyone. I built an ML model that personalised send times. Open rates up 20%.</p>
+      </div>
+      <div class="result-card">
+        <div class="result-num">$500M</div>
+        <p class="result-title">Board-level impact</p>
+        <p class="result-desc">A Series B fintech was deciding whether to expand. I analysed churn patterns. Two-week sprint. The board greenlit it.</p>
+      </div>
+      <div class="result-card">
+        <div class="result-num">5→1</div>
+        <p class="result-title">Kill manual work</p>
+        <p class="result-desc">A national telco spent 5 days monthly reconciling data. I automated it with AI. 5 days became 1.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="offerings" id="offerings">
+    <div class="offerings-inner">
+      <div class="offering">
+        <p class="offering-label">Advisory call</p>
+        <h2>Think it through</h2>
+        <p>30-60 min video call. You bring the question. I bring the perspective.</p>
+        <p class="offering-detail">Paid · Book directly</p>
+      </div>
+      <div class="offering">
+        <p class="offering-label">Analysis sprint</p>
+        <h2>Dig in</h2>
+        <p>2-4 weeks. I find the insight, build the model, hand you the decision.</p>
+        <p class="offering-detail">Scoped · Transparent pricing</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="who">
+    <p>Founders, CMOs, and CEOs who <strong>already have data</strong> but know there's more. Attribution, CLV, predictive analytics, AI.</p>
+    <p>Someone who <strong>thinks and builds</strong> — not just advice.</p>
+  </section>
+
+  <section class="cta-section">
+    <h2>Start talking</h2>
+    <p>30 minutes. No pitch. A clear view of what's possible.</p>
+    <a href="#contact" class="hero-cta">Book a free call →</a>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-text">
+      <h2>Get in touch</h2>
+      <p>Book a free 30-minute call. Datafying will map your biggest data opportunity.</p>
+      <p class="urgency">One client found a $2M segment they were ignoring — took 3 weeks.</p>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault();">
+      <div class="form-group"><label for="name">Name</label><input type="text" id="name" placeholder="Your name" required></div>
+      <div class="form-group"><label for="email">Work email</label><input type="email" id="email" placeholder="you@company.com" required></div>
+      <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="What's the data challenge?"></textarea></div>
+      <button type="submit" class="form-submit">Book a free call →</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>&copy; 2026 datafying</span>
+    <span><a href="https://x.com/datafying">X</a> · <a href="https://www.linkedin.com/company/datafying">LinkedIn</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

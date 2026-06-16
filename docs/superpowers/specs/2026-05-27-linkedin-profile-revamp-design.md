@@ -1,69 +1,88 @@
-# LinkedIn Profile Revamp — Design Spec
+# LinkedIn Profile Revamp — Design Spec v2
 
-**Date:** 2026-05-27
+**Date:** 2026-05-28
 **Owner:** Samuel Wong
-**Status:** Approved
+**Status:** Draft — pending approval
 
 ---
 
 ## Context
 
-Samuel's previous LinkedIn profile was positioned primarily as a "Fractional Head of Data" for SME founders. Goals have evolved — the profile now needs to serve three audiences in priority order:
+Samuel's LinkedIn profile needs to serve two audiences in priority order:
 
-1. **Datafying collabs** — partner with senior leaders and startup founders for data and AI work
-2. **Full-time roles** — senior IC and leadership positions (super IC trend, not middle management)
-3. **Mentee credibility** — emerging data professionals across Melbourne universities
+1. **Tech company recruiters (80%)** — Senior data/AI roles at Australian and global tech companies (Meta, Google, Canva, Atlassian, etc.). Titles: Senior Data Analyst, Data Analytics Lead, Analytics Manager, Head of Analytics, Head of Data & AI.
+2. **Datafying clients (20%)** — Founders and senior leaders who need data/AI strategic advisory. Position datafying as a real business that signals ownership, not a side hustle.
 
-The AI angle is new — practical adoption (Claude Code, local models, AI-augmented workflows, helping leaders understand AI) rather than hype.
+**Key constraints:**
+- 15+ years of experience, but lead with recency and relevance, not total years
+- 1.5 year employment gap — reframed as deliberate AI investment + building datafying
+- Over-qualified for corporate Senior DA roles — tech companies at the right level will see this as an asset
+- AI-native: built workflows, led adoption, advisory for leaders. Not just using tools — building with them.
+- Super IC positioning: can lead AND do the work (this is the trend)
+- Location: Melbourne, open to hybrid/remote
+- Salary: AUD $150k + super
 
 ---
 
-## Positioning: "The Bridge" — Data → AI Evolution
+## Positioning: AI-Native Analytics Leader
 
-Position as the person who bridges traditional analytics (ML, DS, segmentation, customer analytics) with practical AI (LLM adoption, AI-augmented workflows, helping leaders plan for what's next). The story: "I've done the data work at enterprise scale, now I help teams take the next step into AI."
+Position as the analytics leader who's done the enterprise work (Crown, Flybuys, 9M+ members) AND is ahead of the AI curve — building AI-native workflows, driving adoption, advising leaders on what's next. Not a consultant trying to sell. Not a job seeker. A leader who's investing in the future and looking for the right next challenge.
 
-**Why this approach:**
-- Serves all three audiences naturally
-- Differentiates from the crowded "data consultant" space
-- Positions datafying as forward-looking
-- Builds in the super IC signal — you do the work, not just advise
+**Why this works for tech companies:**
+- Signals senior IC + leadership (super IC trend)
+- AI-native is the differentiator — most analytics leaders are still catching up
+- Enterprise scale (9M+ members, $500M strategy) proves you can operate at tech company scale
+- datafying shows ownership, initiative, and breadth — not a gap
+
+**Why this works for datafying clients:**
+- Tech company credibility = trust signal
+- AI expertise = forward-looking advisory
+- "Building on the side" = accessible, not a full-time consultant with overhead
 
 ---
 
 ## Headline
 
 ```
-Data & AI Strategist | Founder @ datafying | Turning data chaos into decisions, and AI into advantage
+Data & AI Leader | Customer Analytics at Scale | Founder @ datafying
 ```
 
-- **"Data & AI Strategist"** — broad enough for recruiter search, signals senior IC
-- **"Founder @ datafying"** — credibility + consulting arm
-- **"Turning data chaos into decisions, and AI into advantage"** — problem-oriented, hooks founders and leaders
-- ~95 characters, well under 220 limit
+**Why this works:**
+- **"Data & AI Leader"** — broad enough for recruiter search (Head of Analytics, Analytics Manager, Data Analytics Lead), signals senior IC/leadership
+- **"Customer Analytics at Scale"** — your differentiator. 9M+ members, $500M strategy, enterprise CX. Most analytics people can't claim this.
+- **"Founder @ datafying"** — ownership signal, not "freelancing." Shows initiative and business acumen.
+- ~75 characters, well under 220 limit. Clean, scannable, no buzzwords.
+
+**What we're NOT doing:**
+- No "Turning data chaos into decisions" — too consultant-y for tech recruiters
+- No "AI Strategist" — sounds like a title you gave yourself
+- No "Passionate about..." — LinkedIn cliché
 
 ---
 
 ## About Section
 
-Most founders and leaders I talk to have some version of the same problem: they've got data sitting in spreadsheets or siloed tools, a team that's underwater, and dashboards nobody looks at. They know they should be making better decisions — they just don't have the right person to make it happen.
+I've spent 15 years in the data trenches — and the last 18 months going deep on AI.
 
-That's where I come in. I partner with senior leaders and startup founders as their data and AI strategist — setting direction, building capabilities that actually get used, and helping them figure out what's next. Some engagements are fractional (I'm your Head of Data for 6 months), some are project-based, some are advisory. The model flexes. The outcome doesn't.
+My career arc: Crown Resorts (multi-property CX analytics, C-suite, $500M investment strategy), Flybuys (9M+ members, retail media, campaign analytics at scale), and 10+ Melbourne SMEs through my consultancy, datafying. I've built analytics platforms from scratch, led teams of 10-20, and delivered measurable impact across marketing, product, and customer experience.
 
-I've spent 12 years in the data trenches — Crown Resorts (multi-property, C-suite, $500M CX strategy), Flybuys (9M+ members, retail media), and 10+ Melbourne SMEs. I've seen what "enterprise-grade data" actually looks like, and I bring that playbook to companies that can't afford — or don't need — a full-time analytics team.
+What's changed: AI has fundamentally shifted what's possible in analytics. I've spent the past 18 months building AI-native workflows (Claude Code, LLM integration into data pipelines), driving AI adoption at the team level, and advising leaders on practical AI strategy — not hype, but real implementation. I hold credentials from Anthropic, NVIDIA, Google Cloud, and DeepLearning.AI, and I've applied them directly in client work through datafying.
 
-More recently, I've been helping teams bridge the gap between traditional analytics and AI. That means integrating LLMs into data workflows, driving AI adoption at the team level, and helping leaders cut through the hype to figure out what's real and what's noise. It's not about chasing shiny tools — it's about freeing up time so your team can focus on the work that actually moves the needle.
+I also mentor 20+ emerging data professionals across Melbourne University, UNSW, RMIT, and Monash, and I'm recognised as a Top 33 Global Big Data Influencer by Onalytics.
 
-I also mentor emerging data professionals across Melbourne University, UNSW, RMIT, and Monash, and I'm recognised as a Top 33 Global Big Data Influencer by Onalytics. Mentoring isn't a side project — it's how I stay connected to what good data culture looks like at ground level.
-
-If you're a founder or leader who wants to get more from your data and AI investments — or you're looking for a senior data person who can both set the strategy and do the work — let's talk.
+I'm now looking for my next challenge — a senior analytics or data leadership role at a tech-forward company where I can combine deep customer analytics expertise with AI-native thinking. If you're building an analytics team that needs someone who can both set the strategy and do the work, let's talk.
 
 **Structure:**
-1. Problem/pain point (hooks founders and leaders)
-2. What you do + flexible model (serves datafying collabs)
-3. Enterprise credibility (Crown, Flybuys, SMEs)
-4. AI bridge story (differentiator + super IC signal)
-5. Mentoring + Onalytics (credibility + mentee audience)
-6. Soft CTA (covers all three goals)
+1. Career arc — enterprise scale, real impact (hooks tech recruiters)
+2. AI investment — what I've been doing, credentials, real application (addresses gap)
+3. Mentoring + Onalytics — credibility, community signal
+4. What I'm looking for — clear, confident, not desperate
+
+**What we're NOT doing:**
+- No pain-point hook ("Most founders have data in spreadsheets...") — that's for consulting clients, not tech recruiters
+- No "I'm passionate about..." — show, don't tell
+- No tool list dump — weave tools into outcomes
+- No "Let's connect!" energy — confident CTA, not eager
 
 ---
 
@@ -72,16 +91,17 @@ If you're a founder or leader who wants to get more from your data and AI invest
 ### datafying — Founder & Data/AI Strategist
 **Mar 2014 – Present · Melbourne**
 
-- Partner with senior leaders and startup founders to turn scattered data into actionable strategy — across 10+ SMEs in Melbourne, spanning marketing analytics, customer segmentation, and AI adoption.
-- Built analytics engineering pipelines (dbt, Snowflake) integrating 10+ data sources — cutting reporting turnaround by 60% and giving marketing teams self-serve insights without a full-time data team.
+- Founded a customer analytics consultancy partnering with 10+ SMEs — delivering marketing analytics, customer segmentation, and AI adoption strategy for data-rich businesses.
+- Built AI-native analytics workflows integrating LLMs into data pipelines — reducing manual reporting effort by 60% and enabling self-serve insights for marketing teams.
 - Developed customer segmentation and lifecycle models using behavioural and transactional data, improving targeting precision and lifting ROAS by 30% across multiple clients.
-- Helped teams bridge traditional analytics with AI — integrating LLMs into data workflows, driving AI adoption, and helping leaders plan for what's next after the "automate the boring stuff" phase.
-- Mentored 10+ emerging data professionals across Melbourne University, UNSW, RMIT, and Monash.
+- Advised senior leaders on practical AI strategy — identifying use cases, building roadmaps, and driving team-level adoption beyond the "automate the boring stuff" phase.
+- Mentored 20+ emerging data professionals across Melbourne University, UNSW, RMIT, and Monash.
 
 **Design notes:**
-- Leads with partnerships (serves datafying collab goal)
-- AI bridge story is explicit
-- "Fractional" language removed from title (serves full-time goal — doesn't signal contract-only)
+- "Founded" signals ownership, not "freelancing"
+- AI-native workflows are front and centre — differentiator for tech recruiters
+- Mentoring expanded to 20+ (user confirmed this number)
+- Removed "Fractional Head of Data" framing — too consultant-y
 
 ### Crown Resorts — Group Manager, Market & CX Analytics
 **Feb 2022 – Sep 2024 · Melbourne**
@@ -91,8 +111,9 @@ If you're a founder or leader who wants to get more from your data and AI invest
 - Delivered lifecycle analytics that improved campaign targeting and increased engagement rates by 30% across key customer segments in a regulated, multi-property environment.
 
 **Design notes:**
-- 3 bullets, each with an outcome
-- C-suite and $500M numbers are the headline — signals "operated at scale"
+- 3 bullets, each with a clear outcome
+- $500M and C-suite are the headline — signals "operated at tech company scale"
+- No changes from v1 — this section was already strong
 
 ### Flybuys — Data Product & Strategy Lead / Lead Data Analyst
 **Nov 2018 – Feb 2022 · Melbourne**
@@ -105,7 +126,50 @@ If you're a founder or leader who wants to get more from your data and AI invest
 **Design notes:**
 - Two roles consolidated into one block
 - 9M+ member scale and retail media revenue numbers are standouts
-- No repeated metrics across roles
+- No changes from v1 — this section was already strong
+
+---
+
+## Employment Gap Strategy
+
+The 1.5 year gap (Sep 2024 – present) is addressed in the About section and can be reinforced in interviews. The framing:
+
+**In the profile:**
+- "I've spent the past 18 months going deep on AI" — leads with investment, not gap
+- Specific credentials listed (Anthropic, NVIDIA, Google Cloud, DeepLearning.AI)
+- Mentoring 20+ professionals — shows continued professional activity
+- datafying client work — shows real-world application
+
+**In interviews (if asked):**
+- "The job market shifted. I used the time strategically — investing in AI skills that are now critical for analytics leaders, building datafying as a real business, and mentoring the next generation. I'm a stronger candidate now than I was 18 months ago."
+
+**What NOT to say:**
+- "I was made redundant" (even if true — focus on what you did, not what happened)
+- "The market was tough" (sounds like an excuse)
+- "I was looking for work" (sounds passive)
+
+---
+
+## Over-Qualification Strategy
+
+The over-qualification feedback came from corporate roles, not tech. This is actually a positioning advantage:
+
+**For tech companies:**
+- Tech companies (especially at Staff/Principal level) *want* over-qualified people — they call it "raising the bar"
+- Target Analytics Manager, Lead, and Head roles — not Senior DA at corporate companies
+- The super IC trend means "over-qualified IC" is a feature, not a bug
+
+**In the profile:**
+- Lead with impact and scale ($500M, 9M+ members, enterprise CX)
+- Show leadership scope (teams of 10-20, C-suite, cross-functional)
+- Show IC depth (built platforms, wrote code, did the analysis)
+- This combination is what tech companies call a "force multiplier"
+
+**Target level guidance:**
+- **Top tech (Meta, Google, Canva):** Analytics Manager, Data Analytics Lead, or Staff IC
+- **Australian tech (Atlassian, etc.):** Senior Analytics Manager, Head of Analytics
+- **Other tech with great culture:** Head of Analytics, Head of Data & AI
+- **Don't apply to:** Corporate Senior DA roles (you'll get the "over-qualified" feedback again)
 
 ---
 
@@ -115,26 +179,29 @@ If you're a founder or leader who wants to get more from your data and AI invest
 2. AI Strategy & Adoption
 3. Customer Analytics
 4. Marketing Analytics
-5. SQL
-6. Python
+5. Python
+6. SQL
 7. dbt
 8. Snowflake
 9. Customer Segmentation
 10. Executive Storytelling
 
-**Change from previous:** "AI Strategy & Adoption" replaces "Analytics Engineering" — serves the AI bridge story.
+**Changes from v1:**
+- "Python" moved above "SQL" — tech companies value Python more
+- "AI Strategy & Adoption" stays at #2 — differentiator
+- "Analytics Engineering" removed — replaced by "AI Strategy & Adoption" in v1
 
 ---
 
 ## Featured Section
 
-1. **Case study or project write-up** — short LinkedIn article about a real problem solved (e.g., "How I cut reporting time by 60% for a retail SME" or "What I learned building CX analytics at Crown"). Serves all three audiences.
+1. **AI-native analytics case study** — LinkedIn article about building AI workflows for data pipelines. Serves both audiences: tech recruiters see depth, datafying clients see capability.
 
-2. **Speaking/mentoring highlight** — talk recording, workshop slide deck, or post about mentoring. Reinforces Onalytics credibility.
+2. **Enterprise impact story** — Crown or Flybuys case study. "How I built CX analytics at scale" or "What I learned managing analytics for 9M+ members." Signals "I can operate at your scale."
 
-3. **Datafying positioning piece** — short post or article explaining what you do and who you work with. Acts as a landing page for search traffic.
+3. **Mentoring / thought leadership** — Post about mentoring across 4 universities, or a take on the super IC trend. Shows community investment and forward thinking.
 
-If these don't exist yet, flag as gaps to fill after profile goes live.
+**If these don't exist yet:** Flag as gaps to create after profile goes live. Prioritise the AI-native case study first — it's the differentiator.
 
 ---
 
@@ -144,50 +211,39 @@ If these don't exist yet, flag as gaps to fill after profile goes live.
 
 **Content pillars (rotate):**
 
-1. **Practical data/AI insights** — "Here's what I actually did" (anonymised) or "Here's what I learned integrating LLMs into a data workflow." Super IC signal — in the trenches, not theorising.
+1. **AI-native analytics** — "Here's how I'm using Claude Code in my analytics workflow" or "What I learned building LLM-powered data pipelines." Super IC signal — in the trenches, not theorising.
 
-2. **Founder/leader perspective** — "The biggest mistake I see founders make with their data" or "What I wish every CMO knew about customer analytics." Hooks collab audience.
+2. **Enterprise analytics at scale** — "What managing analytics for 9M+ members taught me" or "The biggest mistake I see in CX analytics." Serves tech recruiters — shows you've operated at scale.
 
-3. **Mentoring and career threads** — "What I tell every junior analyst" or "The skill that separates good analysts from great ones." Serves mentees, builds authority.
+3. **Super IC / leadership** — "Why I believe the super IC is the future of analytics" or "What I tell every junior analyst about the AI shift." Forward-thinking, serves all audiences.
 
-4. **Contrarian takes** — informed opinions, not engagement bait: "Why most AI pilots fail" or "The fractional model isn't for everyone." Differentiates from LinkedIn noise.
+4. **Mentoring and data culture** — "What I learn from mentoring 20+ data professionals" or "The skill that separates good analysts from great ones." Community signal, builds authority.
 
 **Engagement approach:**
-- Comment on posts from founders, startup leaders, and data people — actual additions, not "Great post!"
-- Repost with commentary when something resonates
+- Comment on posts from tech leaders, data/AI people, and founders — actual additions, not "Great post!"
+- Engage with posts from people at target companies — builds visibility in their networks
+- Repost with commentary when something resonates with your positioning
 - Engage with mentees' posts — builds network effect, signals investment
 
 **What NOT to do:**
 - No "I'm humbled to announce..." posts
 - No engagement bait ("Do you agree? Drop a YES below!")
 - No posting just to post — skip the day if you have nothing to say
+- No "looking for opportunities" posts — the profile does that work, not the content
 
 ---
 
 ## Voice & Tone
 
-**Sound like:** A founder talking to other founders. Someone who's done the work and doesn't need to oversell it. Direct, practical, slightly irreverent. Confident but generous — shares what he knows rather than gatekeeping.
+**Sound like:** A senior analytics leader who's done the work and is investing in the future. Someone who's operated at enterprise scale and is now going deep on AI. Confident, practical, forward-looking. Generous with knowledge.
 
-**Do NOT sound like:** A corporate LinkedIn thought leader ("Excited to announce...", "Thrilled to share..."). A generic data consultant ("I help organisations unlock the power of their data..."). A job applicant listing competencies. A resume converted to profile format.
+**Do NOT sound like:** A job seeker who's desperate. A consultant trying to sell. A LinkedIn thought leader posting platitudes. A resume in paragraph form.
 
 **Specific guidance:**
 - First person. Short sentences. No jargon soup.
 - Numbers as proof points, not decoration.
-- Avoid: "passionate", "results-driven", "synergy", "ecosystem", "leveraging", "unlocking"
-
----
-
-## Competitive Differentiation
-
-Samuel is positioned against three types of LinkedIn profiles:
-
-1. **Corporate Data Director** — ex-consulting firm, talks "digital transformation." Samuel is different: been IN the organisations doing the work, not presenting the slides. Chose SMEs deliberately.
-
-2. **Freelance Analyst** — sells hours and dashboards. Samuel is different: sells outcomes and strategic direction. The partnership model means embedded, not outsourced.
-
-3. **AI Thought Leader** — posts 3x/day, never done the work. Samuel is different: has the thought leadership (Onalytics, mentoring) PLUS the track record. Profile feels earned, not performed.
-
-**Positioning line:** Samuel is the data leader who's been in the room where the decisions get made — and now he brings that to companies that don't have the room yet.
+- Avoid: "passionate", "results-driven", "synergy", "ecosystem", "leveraging", "unlocking", "excited to announce", "thrilled to share"
+- Lead with what you've built and what you know, not what you want
 
 ---
 
@@ -197,17 +253,34 @@ Samuel is positioned against three types of LinkedIn profiles:
 2. AI strategy
 3. Customer analytics
 4. Marketing analytics
-5. Fractional head of data
-6. Analytics engineering
-7. dbt
-8. Snowflake
-9. Customer segmentation
-10. Executive storytelling
-11. Data mentoring
-12. Melbourne data consultant
-13. AI adoption
-14. Data-driven decision making
-15. CX analytics
+5. Head of analytics
+6. Data analytics lead
+7. Analytics manager
+8. AI-native analytics
+9. dbt
+10. Snowflake
+11. Customer segmentation
+12. Executive storytelling
+13. Data mentoring
+14. Melbourne data leader
+15. AI adoption
+16. CX analytics
+17. Super IC
+18. Analytics at scale
+
+---
+
+## Competitive Differentiation
+
+Samuel is positioned against three types of candidates:
+
+1. **Corporate Data Director** — ex-consulting firm, talks "digital transformation," hasn't done hands-on work in years. Samuel is different: has the leadership scope AND the IC depth. Can set strategy and write the SQL.
+
+2. **Freelance Data Analyst** — sells hours and dashboards. Samuel is different: has enterprise scale (9M+ members, $500M strategy) and is investing in AI. Not a contractor — a leader building a business.
+
+3. **AI Thought Leader** — posts 3x/day about AI but hasn't built anything. Samuel is different: has the credentials (Anthropic, NVIDIA, Google Cloud) PLUS the track record. Profile feels earned, not performed.
+
+**Positioning line:** Samuel is the analytics leader who's done the enterprise work AND is ahead of the AI curve — and he's looking for the right next challenge.
 
 ---
 
@@ -216,9 +289,9 @@ Samuel is positioned against three types of LinkedIn profiles:
 - [ ] Update LinkedIn headline
 - [ ] Rewrite About section
 - [ ] Update datafying experience (title + bullets)
-- [ ] Update Crown Resorts experience (3 bullets)
-- [ ] Consolidate Flybuys experience (4 bullets)
-- [ ] Update Skills (swap Analytics Engineering for AI Strategy & Adoption)
+- [ ] Update Crown Resorts experience (3 bullets — no changes from v1)
+- [ ] Consolidate Flybuys experience (4 bullets — no changes from v1)
+- [ ] Update Skills (Python above SQL, AI Strategy & Adoption stays)
 - [ ] Add Featured section items (or flag as gaps)
 - [ ] Draft first 3 content posts (one from each pillar)
 - [ ] Review and adjust after 2 weeks of posting

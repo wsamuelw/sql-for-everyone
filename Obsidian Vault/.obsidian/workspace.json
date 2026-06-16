@@ -4,28 +4,26 @@
     "type": "split",
     "children": [
       {
-        "id": "84c51c56cc518148",
+        "id": "38639da505ed3a8d",
         "type": "tabs",
+        "dimension": 63.770364623739326,
         "children": [
           {
-            "id": "0405c8f411a8c12e",
+            "id": "e750479fecffb441",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Work/resume_1.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "resume_1"
+              "title": "New tab"
             }
           }
         ]
       },
       {
-        "id": "38639da505ed3a8d",
+        "id": "0a8e11be89ba9c03",
         "type": "tabs",
+        "dimension": 36.22963537626067,
         "children": [
           {
             "id": "fc6363232f4a730b",
@@ -66,7 +64,7 @@
               },
               "pinned": true,
               "icon": "terminal",
-              "title": "Terminal: ✳ Review three resumes in work folder"
+              "title": "Terminal: zsh"
             }
           }
         ]
@@ -231,36 +229,38 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "fc6363232f4a730b",
+  "active": "18bfd7fed9b81f87",
   "lastOpenFiles": [
-    "Work/ebook-design-spec.md",
-    "Work/resume_1.md",
-    "2026-05-19-sql-course-design.md",
-    "Work/resume_2.md",
-    "Work/resume_3.md",
-    "resume_3.md",
-    "resume_2.md",
-    "resume_1.md",
+    "resume-commbank-ds-final-v2 1.md",
+    "resume-commbank-ds-final-v2.md",
+    "affiliate-product-guide.md",
+    "resume-commbank-ds-final.md",
+    "resume-commbank-ds.md",
+    "resume-super-ic.md",
+    "Resume by Mimo AI.md",
+    "resume-canva-staff-ds-final-v3.md",
+    "resume-canva-staff-ds-final-v2.md",
+    "resume-canva-staff-ds-final.md",
+    "resume-head-of-analytics-ai.md",
+    "open-point-engagement-data-insights-lead-resume.md",
+    "code.md",
+    "affiliate-product-guide 1.md",
+    "ai-resume-reviewer-playbook.md",
+    "feng-shui-report-zh.md",
+    "feng-shui-report-en.md",
+    "design-review-report.md",
+    "design-audit-report.md",
+    "04-senior-data-analyst-wesfarmers.md",
+    "03-reporting-insights-lead-morgan.md",
+    "02-marketing-analytics-lead-upguard.md",
+    "01-customer-analytics-engineer-motion.md",
+    "code-review-report.md",
+    "Work/ebook.md",
+    "Work/ebook-implementation-plan.md",
+    "index 1.html",
+    "index.html",
     "Untitled",
-    "REVIEW.md",
-    "profile-final-v2.md",
-    "persona-report-customer-analytics-au.md",
-    "profile-final.md",
-    "samuel-unknown-design-20260513-004757.md",
-    "Work/Samuel Wong Resume.md",
-    "Work/Senior Insights Analyst at Kmart Australia Limited.md",
-    "Work/Interview Prep - Senior Insights Analyst Kmart.md",
-    "Work/Interview invite email from HR.md",
-    "Interview Questions.md",
-    "Personal/末世文恶毒女配？嚣张一日是一日_第3章.md",
     "Work",
-    "CLAUDE.md",
-    "CLAUDE 1.md",
-    "Personal/末世文恶毒女配？嚣张一日是一日_第2章.md",
-    "Personal/末世文恶毒女配？嚣张一日是一日_第1章.md",
-    "末世文恶毒女配？嚣张一日是一日.md",
-    "Welcome.md",
-    "Personal",
-    "resume-mistakes-ebook.md"
+    "Personal"
   ]
 }

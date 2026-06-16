@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datafying</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#09090b;--white:#fff;--gray-400:#a1a1aa;--gray-500:#71717a;--mono:'IBM Plex Mono',monospace;--sans:'Outfit',-apple-system,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--sans);color:var(--white);background:var(--black);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .hero{min-height:100vh;position:relative;overflow:hidden}
+  .hero-visual{position:absolute;top:0;right:0;bottom:0;width:55%;z-index:1}
+  canvas{width:100%;height:100%;display:block}
+  .hero-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:100vh}
+  .hero-content{padding:40px 0}
+  .trust{font-size:14px;color:var(--gray-400);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .trust em{font-style:normal;color:var(--white)}
+  h1{font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:14px}
+  .subline{font-size:17px;color:var(--gray-400);margin-bottom:28px;max-width:420px}
+  .proof-strip{display:flex;gap:24px;margin-bottom:28px;padding:16px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+  .proof-item{flex:1}
+  .proof-item .num{font-family:var(--mono);font-size:24px;font-weight:500;display:block;margin-bottom:4px}
+  .proof-item .label{font-size:12px;color:var(--gray-500);line-height:1.4}
+  .cta-row{display:flex;gap:12px;margin-bottom:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--black);padding:11px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:none;cursor:pointer}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.2)}
+  .cta-sub{font-size:13px;color:var(--gray-500)}
+  .founder-letter{max-width:680px;margin:0 auto;padding:80px 40px}
+  .founder-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:1px;margin-bottom:24px}
+  .founder-letter p{font-size:17px;line-height:1.7;color:var(--gray-400);margin-bottom:20px}
+  .founder-letter p strong{color:var(--white);font-weight:600}
+  .founder-attr{font-size:14px;color:var(--gray-500);margin-top:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)}
+  .results{max-width:1120px;margin:0 auto;padding:80px 40px}
+  .results-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+  .results h2{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-1px;margin-bottom:48px}
+  .results-set-label{font-family:var(--mono);font-size:12px;color:var(--gray-500);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px;margin-top:64px;padding-top:32px;border-top:1px solid rgba(255,255,255,.06)}
+  .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .result-card{border-top:1px solid rgba(255,255,255,.08);padding-top:24px}
+  .result-card .capability{font-family:var(--mono);font-size:13px;color:var(--white);font-weight:500;margin-bottom:12px}
+  .result-card .problem{font-size:15px;color:var(--gray-400);margin-bottom:8px;line-height:1.5}
+  .result-card .method{font-size:15px;color:var(--gray-500);margin-bottom:8px;line-height:1.5;font-style:italic}
+  .result-card .outcome{font-size:15px;color:var(--white);line-height:1.5;font-weight:500}
+  .offerings{max-width:1120px;margin:0 auto;padding:80px 40px}
+  .offerings-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+  .offerings h2{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-1px;margin-bottom:48px}
+  .offering-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .offering-card{border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:32px 28px}
+  .offering-card .label{font-family:var(--mono);font-size:10px;color:var(--gray-400);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+  .offering-card h3{font-size:20px;font-weight:700;margin-bottom:12px;color:var(--white)}
+  .offering-card p{font-size:14px;color:var(--gray-500);line-height:1.6;margin-bottom:12px}
+  .offering-card .detail{font-family:var(--mono);font-size:11px;color:var(--gray-400);border-top:1px solid rgba(255,255,255,.08);padding-top:12px;margin-top:16px}
+  .offerings-set-label{font-family:var(--mono);font-size:12px;color:var(--gray-500);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px;margin-top:64px;padding-top:32px;border-top:1px solid rgba(255,255,255,.06)}
+  @media(max-width:768px){.results-grid{grid-template-columns:1fr}}
+  @media(max-width:768px){.hero-inner{grid-template-columns:1fr;padding:100px 20px 40px}.hero-visual{display:none}h1{font-size:28px}.proof-strip{flex-direction:column;gap:12px}}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-visual"><canvas id="c"></canvas></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+
+      <p class="trust">15 years in data. Loyalty, retail, entertainment. <em>Zero buzzwords.</em></p>
+
+      <h1>Your data, finally working for you.</h1>
+
+      <p class="subline">Founder-led. Advisory and execution. Decisions, not dashboards.</p>
+
+      <div class="proof-strip">
+        <div class="proof-item"><span class="num">$500M</span><span class="label">Advanced analytics revealed what actually mattered. $500M followed.</span></div>
+        <div class="proof-item"><span class="num">3M+</span><span class="label">Right offer. Right time. For each of 3 million members. Personalisation at scale.</span></div>
+        <div class="proof-item"><span class="num">10+ → 1</span><span class="label">Same team. Same data. AI reimagined the workflow from days to day.</span></div>
+      </div>
+
+      <div class="cta-row">
+        <a href="#" class="btn">Grab a time</a>
+        <a href="#" class="btn btn-ghost">3 slots a week for new conversations. Grab yours.</a>
+      </div>
+      <p class="cta-sub">Free. No deck. No follow-up unless you want one.</p>
+
+    </div>
+    <div></div>
+  </div>
+</section>
+
+<section class="founder-letter">
+  <p class="founder-label">A note from the founder</p>
+  <p><strong>You've got the data. You've got the team. But somehow, decisions still get made on gut feel.</strong></p>
+  <p>Not because anyone's lazy — because the data isn't wired to the questions that actually matter. You don't need another dashboard. You need someone who's sat in your chair, wrestled with the same mess, and knows how to cut through it.</p>
+  <p>That's what I do. Thirty minutes on a call, and we'll figure out if I can help — or if you just needed someone to say the thing out loud. Either way, you'll leave with something useful.</p>
+  <p class="founder-attr">Samuel Wong · Founder, Datafying</p>
+</section>
+
+<section class="results">
+  <p class="results-label">What I've built</p>
+  <h2>Capabilities that move the needle</h2>
+  <div class="results-grid">
+    <div class="result-card">
+      <p class="capability">Semantic Layer</p>
+      <p class="problem">Every department built its own version of the truth. Now nobody trusts any of them — and decisions stall while people argue over numbers.</p>
+      <p class="method">A unified semantic layer in Snowflake. One definition, one source, shared across every team.</p>
+      <p class="outcome">Trust in the numbers returns. Arguments about them stop.</p>
+    </div>
+    <div class="result-card">
+      <p class="capability">K-Means Clustering</p>
+      <p class="problem">You call a segment "high value" because someone said so three years ago. Nobody's checked if those customers still behave that way.</p>
+      <p class="method">Ran clustering on live transactional and behavioural data. Found the segments that reflect how people actually act today.</p>
+      <p class="outcome">Targeting based on reality. Results that reflect it.</p>
+    </div>
+    <div class="result-card">
+      <p class="capability">AI Adoption</p>
+      <p class="problem">Smart people spend hours every month on copy-paste reporting. They didn't sign up for this — and you're paying senior salaries for it.</p>
+      <p class="method">Built an AI workflow that replaces the manual loop entirely. Not automating steps — eliminating them.</p>
+      <p class="outcome">Ten days of tedium, reduced to one day of decisions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Option A — Founder Voice -->
+<section class="offerings">
+  <p class="offerings-label">How we work together</p>
+  <h2>Two ways to work with me</h2>
+  <p class="offerings-set-label">Option A — Founder Voice</p>
+  <div class="offering-grid">
+    <div class="offering-card">
+      <p class="label">Talk to me</p>
+      <h3>One call. Real answers.</h3>
+      <p>You bring the question. I bring 15 years.</p>
+      <p class="detail">30-60 min, video, paid.</p>
+    </div>
+    <div class="offering-card">
+      <p class="label">I do the work</p>
+      <h3>Find the insight. Hand you the decision.</h3>
+      <p>I build the model. You get the answer.</p>
+      <p class="detail">2-4 weeks, scoped pricing.</p>
+    </div>
+  </div>
+
+  <!-- Option B — Anti-Consultancy -->
+  <p class="offerings-set-label">Option B — Anti-Consultancy</p>
+  <div class="offering-grid">
+    <div class="offering-card">
+      <p class="label">One Call</p>
+      <h3>Talk to the person who does the work.</h3>
+      <p>No junior analysts. No "circling back."</p>
+      <p class="detail">30-60 min, paid, on video.</p>
+    </div>
+    <div class="offering-card">
+      <p class="label">One Sprint</p>
+      <h3>You get a decision, not a deck.</h3>
+      <p>I find the answer, build the model, hand it over.</p>
+      <p class="detail">2-4 weeks, scoped pricing.</p>
+    </div>
+  </div>
+
+  <!-- Option C — Outcome-Focus -->
+  <p class="offerings-set-label">Option C — Outcome-Focus</p>
+  <div class="offering-grid">
+    <div class="offering-card">
+      <p class="label">Talk to Samuel</p>
+      <h3>Straight Answers, No Decks</h3>
+      <p>You walk away knowing what matters and what to ignore.</p>
+      <p class="detail">One call. One founder.</p>
+    </div>
+    <div class="offering-card">
+      <p class="label">Build It</p>
+      <h3>Your Model, Your Decision</h3>
+      <p>The analysis is done. The recommendation is clear. You move.</p>
+      <p class="detail">Founder-led from first query to final handover.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d');let w,h,m={x:-1e3,y:-1e3},p=[];function r(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight}r();window.addEventListener('resize',r);c.addEventListener('mousemove',e=>{const b=c.getBoundingClientRect();m.x=e.clientX-b.left;m.y=e.clientY-b.top});c.addEventListener('mouseleave',()=>{m.x=-1e3;m.y=-1e3});for(let i=0;i<80;i++)p.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*2+1,o:Math.random()*.5+.1});function d(){x.clearRect(0,0,w,h);for(let i=0;i<p.length;i++){const a=p[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>w)a.vx*=-1;if(a.y<0||a.y>h)a.vy*=-1;const dx=m.x-a.x,dy=m.y-a.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){a.x-=dx*.01;a.y-=dy*.01}x.beginPath();x.arc(a.x,a.y,a.r,0,Math.PI*2);x.fillStyle=`rgba(255,255,255,${a.o})`;x.fill();for(let j=i+1;j<p.length;j++){const b=p[j],d=Math.sqrt((a.x-b.x)**2+(a.y-b.y)**2);if(d<120){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle=`rgba(255,255,255,${.08*(1-d/120)})`;x.lineWidth=.5;x.stroke()}}}requestAnimationFrame(d)}d();
+</script>
+</body>
+</html>

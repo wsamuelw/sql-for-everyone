@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datafying</title>
+<meta name="description" content="Founder-led data advisory. Strategic thinking, hands-on capability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#09090b;--white:#fff;--gray-50:#fafafa;--gray-100:#f4f4f5;--gray-200:#e4e4e7;--gray-300:#d4d4d8;--gray-400:#a1a1aa;--gray-500:#71717a;--gray-600:#52525b;--mono:'IBM Plex Mono',monospace;--sans:'Outfit',-apple-system,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--black);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--black);color:var(--white)}
+  a{color:inherit}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,.92);backdrop-filter:blur(16px)}
+  nav .inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-logo{font-weight:800;font-size:15px;color:var(--white);text-decoration:none;letter-spacing:-.5px}
+  .nav-links{display:flex;gap:24px;list-style:none}
+  .nav-links a{color:var(--gray-400);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-cta{background:var(--white)!important;color:var(--black)!important;padding:6px 14px;border-radius:6px;font-weight:600;font-size:12px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--white);padding:11px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+  .btn:hover{opacity:.85;transform:translateY(-1px)}
+  .btn-white{background:var(--white);color:var(--black)}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.2)}
+  .btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05)}
+  section{padding:80px 0}
+  .container{max-width:1120px;margin:0 auto;padding:0 24px}
+  h2{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:16px}
+
+  .hero{background:var(--black);color:var(--white);padding:0;min-height:100vh;position:relative;overflow:hidden}
+  .hero-inner{max-width:1120px;margin:0 auto;padding:120px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:100vh;position:relative;z-index:2}
+  .hero-visual{position:absolute;top:0;right:0;bottom:0;width:50%;z-index:1}
+  #orbs{width:100%;height:100%;display:block}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:6px 14px;font-size:12px;color:var(--gray-400);margin-bottom:28px;font-weight:500}
+  .hero-badge span{width:6px;height:6px;border-radius:50%;background:#22c55e}
+  .hero h1{font-size:clamp(32px,4.5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px}
+  .hero-sub{font-size:17px;color:var(--gray-400);max-width:440px;margin-bottom:12px}
+  .hero-detail{font-size:14px;color:var(--gray-500);max-width:380px;margin-bottom:32px}
+  .hero-actions{display:flex;gap:12px;margin-bottom:32px}
+  .hero-trust{font-size:12px;color:var(--gray-500);border-top:1px solid rgba(255,255,255,.08);padding-top:20px}
+  .hero-trust strong{color:var(--gray-400)}
+  .hero-proof-mini{display:flex;gap:24px;margin-bottom:24px}
+  .hero-proof-mini .item{display:flex;align-items:baseline;gap:8px}
+  .hero-proof-mini .num{font-family:var(--mono);font-size:18px;font-weight:500}
+  .hero-proof-mini .label{font-size:12px;color:var(--gray-500)}
+
+  .letter{background:var(--gray-50);padding:64px 0}
+  .letter-inner{max-width:640px;margin:0 auto}
+  .letter-label{font-family:var(--mono);font-size:11px;color:var(--gray-400);letter-spacing:1px;margin-bottom:24px}
+  .letter p{font-size:15px;color:var(--gray-600);margin-bottom:14px;line-height:1.7}
+  .letter-cred{font-size:13px;color:var(--gray-400);margin-top:20px;padding-top:16px;border-top:1px solid var(--gray-200)}
+  .letter-cred strong{color:var(--black);font-weight:600}
+  .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+  .result-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:28px 24px}
+  .result-num{font-family:var(--mono);font-size:28px;font-weight:500;margin-bottom:12px;display:block}
+  .result-title{font-size:15px;font-weight:700;margin-bottom:8px}
+  .result-desc{font-size:13px;color:var(--gray-500);line-height:1.6}
+  .offerings{background:var(--gray-50)}
+  .offering-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+  .offering-card{background:var(--white);border:1px solid var(--gray-200);border-radius:10px;padding:32px 28px}
+  .offering-label{font-family:var(--mono);font-size:10px;color:var(--gray-400);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+  .offering-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+  .offering-card p{font-size:14px;color:var(--gray-500);line-height:1.6;margin-bottom:12px}
+  .offering-detail{font-family:var(--mono);font-size:11px;color:var(--gray-400);border-top:1px solid var(--gray-200);padding-top:12px;margin-top:16px}
+  .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+  .who-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:28px 24px}
+  .who-card h3{font-size:14px;font-weight:700;margin-bottom:14px}
+  .who-card ul{list-style:none}
+  .who-card li{font-size:13px;color:var(--gray-500);padding:6px 0 6px 16px;position:relative}
+  .who-card li::before{content:'';position:absolute;left:0;top:14px;width:5px;height:5px;border-radius:50%}
+  .who-fit li::before{background:#22c55e}
+  .who-not li::before{background:var(--gray-300)}
+  .cta-section{background:var(--black);color:var(--white);text-align:center;padding:64px 0}
+  .cta-section h2{color:var(--white);font-size:32px;letter-spacing:-1px;margin-bottom:10px}
+  .cta-section p{color:var(--gray-400);font-size:14px;margin-bottom:24px}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .contact-text p{color:var(--gray-500);font-size:14px;line-height:1.6}
+  .urgency{font-size:13px;color:var(--gray-500);border-left:2px solid var(--black);padding-left:14px;margin-top:16px;font-style:italic}
+  .contact-form{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:28px}
+  .form-group{margin-bottom:16px}
+  .form-group label{display:block;font-size:12px;font-weight:500;color:var(--gray-400);margin-bottom:6px}
+  .form-group input,.form-group textarea{width:100%;background:var(--white);border:1px solid var(--gray-200);border-radius:8px;padding:10px 14px;color:var(--black);font-family:var(--sans);font-size:14px;transition:border-color .2s}
+  .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--black)}
+  .form-group textarea{min-height:80px;resize:vertical}
+  .form-submit{width:100%}
+  footer{padding:32px 0;border-top:1px solid var(--gray-200)}
+  .footer-inner{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400)}
+  .footer-inner a{color:var(--gray-400);text-decoration:none;transition:color .2s}
+  .footer-inner a:hover{color:var(--black)}
+  @media(max-width:768px){
+    .nav-links{display:none}
+    section{padding:56px 0}
+    .hero{min-height:auto}
+    .hero-inner{grid-template-columns:1fr;padding:100px 24px 56px;min-height:auto}
+    .hero-visual{display:none}
+    .hero h1{font-size:32px;letter-spacing:-1px}
+    .hero-actions{flex-direction:column}
+    .hero-proof-mini{flex-direction:column;gap:8px}
+    .results-grid,.offering-grid,.who-grid{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr;gap:32px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="#" class="nav-logo">datafying</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#results">Results</a></li>
+      <li><a href="#offerings">How I Work</a></li>
+      <li><a href="#contact" class="nav-cta">Book a call</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-visual"><canvas id="orbs"></canvas></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span></span> Available for new engagements</div>
+        <h1>Your data has the answer. You need the person who can find it.</h1>
+        <p class="hero-sub">Advisory calls when you need to think. Analysis sprints when you need the work done.</p>
+        <p class="hero-detail">For founders, CMOs, and CEOs who already have data — and know there's more.</p>
+        <div class="hero-proof-mini">
+          <div class="item"><span class="num">$500M</span><span class="label">Decision influenced</span></div>
+          <div class="item"><span class="num">+20%</span><span class="label">Open rates</span></div>
+          <div class="item"><span class="num">5→1</span><span class="label">Days cut</span></div>
+        </div>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-white">Book a free 30-min call</a>
+          <a href="#results" class="btn btn-ghost">See results</a>
+        </div>
+        <p class="hero-trust"><strong>Previously at</strong> one of Australia's leading loyalty programs, a major entertainment resort, and one of the largest supermarket retailers.</p>
+      </div>
+      <div></div>
+    </div>
+  </section>
+
+  <section class="letter"><div class="container"><div class="letter-inner">
+    <p class="letter-label">A note from the founder</p>
+    <p>I spent years inside data teams at some of Australia's biggest brands. Here's what I wish someone had told me.</p>
+    <p>Most data teams solve yesterday's question. They build dashboards that tell you what happened, not what to do next. The real unlock isn't more data — it's a sharper question.</p>
+    <p>That's why I started Datafying. To sit with founders and leaders who know there's more in their data — and help them find it.</p>
+    <p>Sometimes that's a 30-minute call. Sometimes it's a three-week sprint. Either way, you get me — not a junior, not an account manager.</p>
+    <p class="letter-cred"><strong>Samuel Wong</strong> · Founder, Datafying</p>
+  </div></div></section>
+
+  <section id="results"><div class="container">
+    <h2>What I've seen work</h2>
+    <div class="results-grid">
+      <div class="result-card"><span class="result-num">+20%</span><p class="result-title">Stop guessing which campaigns work</p><p class="result-desc">A retailer with 3M+ members. ML-personalised send times. Open rates up 20%. Click-through up 12%.</p></div>
+      <div class="result-card"><span class="result-num">$500M</span><p class="result-title">Give the board a reason to say yes</p><p class="result-desc">A Series B fintech. Churn analysis. Two-week sprint. The board greenlit a market expansion.</p></div>
+      <div class="result-card"><span class="result-num">5→1</span><p class="result-title">Kill the manual work your team hates</p><p class="result-desc">A national telco. 5 days monthly reconciling data. AI automation. 5 days became 1.</p></div>
+    </div>
+  </div></section>
+
+  <section class="offerings" id="offerings"><div class="container">
+    <h2>How we work together</h2>
+    <div class="offering-grid">
+      <div class="offering-card"><p class="offering-label">Advisory call</p><h3>Let's think it through</h3><p>30-60 min video call. You bring the question. I bring the perspective from having done it before.</p><p class="offering-detail">Paid · Book directly</p></div>
+      <div class="offering-card"><p class="offering-label">Analysis sprint</p><h3>Let me dig in</h3><p>2-4 weeks. I find the insight, build the model, hand you the decision. Attribution. CLV. Predictive analytics.</p><p class="offering-detail">Scoped · Transparent pricing</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="container">
+    <h2>Who I work with</h2>
+    <div class="who-grid">
+      <div class="who-card who-fit"><h3>Good fit</h3><ul><li>Already have data but know there's more</li><li>Want to go deeper: attribution, CLV, predictive, AI</li><li>Want someone who thinks and builds</li></ul></div>
+      <div class="who-card who-not"><h3>Not the right fit</h3><ul><li>Need a 12-month data warehouse build</li><li>Looking for a team to just run reports</li><li>Not yet using data at all</li></ul></div>
+    </div>
+  </div></section>
+
+  <section class="cta-section"><div class="container">
+    <h2>Start with a conversation</h2>
+    <p>30 minutes. No pitch. A clear view of what's possible.</p>
+    <a href="#contact" class="btn btn-white">Book a free 30-min call</a>
+  </div></section>
+
+  <section class="contact" id="contact"><div class="container">
+    <div class="contact-grid">
+      <div class="contact-text"><h2>Get in touch</h2><p>Book a free 30-minute call. Datafying will map your biggest data opportunity.</p><p class="urgency">One client found a $2M segment they were ignoring — took 3 weeks.</p></div>
+      <form class="contact-form" onsubmit="event.preventDefault();">
+        <div class="form-group"><label for="name">Name</label><input type="text" id="name" placeholder="Your name" required></div>
+        <div class="form-group"><label for="email">Work email</label><input type="email" id="email" placeholder="you@company.com" required></div>
+        <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="What's the data challenge?"></textarea></div>
+        <button type="submit" class="btn form-submit">Book a free call</button>
+      </form>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="container"><div class="footer-inner">
+  <span>&copy; 2026 datafying. Melbourne.</span>
+  <span><a href="https://x.com/datafying">X</a> · <a href="https://www.linkedin.com/company/datafying">LinkedIn</a></span>
+</div></div></footer>
+
+<script>
+const canvas = document.getElementById('orbs');
+const ctx = canvas.getContext('2d');
+let w, h, mouse = { x: -1000, y: -1000 }, time = 0;
+
+function resize() {
+  w = canvas.width = canvas.offsetWidth;
+  h = canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+});
+canvas.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
+
+const orbs = [];
+for (let i = 0; i < 5; i++) {
+  orbs.push({
+    x: w * 0.3 + Math.random() * w * 0.5,
+    y: h * 0.2 + Math.random() * h * 0.6,
+    r: 60 + Math.random() * 100,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    phase: Math.random() * Math.PI * 2
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, w, h);
+  time += 0.008;
+
+  for (const orb of orbs) {
+    orb.x += orb.vx + Math.sin(time + orb.phase) * 0.3;
+    orb.y += orb.vy + Math.cos(time * 0.7 + orb.phase) * 0.3;
+
+    // Bounce
+    if (orb.x - orb.r < 0 || orb.x + orb.r > w) orb.vx *= -1;
+    if (orb.y - orb.r < 0 || orb.y + orb.r > h) orb.vy *= -1;
+
+    // Mouse influence
+    const dx = mouse.x - orb.x;
+    const dy = mouse.y - orb.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 300) {
+      orb.x -= dx * 0.003;
+      orb.y -= dy * 0.003;
+    }
+
+    // Draw orb with gradient
+    const pulse = Math.sin(time * 2 + orb.phase) * 0.1 + 0.9;
+    const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r * pulse);
+    gradient.addColorStop(0, 'rgba(255,255,255,0.06)');
+    gradient.addColorStop(0.5, 'rgba(255,255,255,0.02)');
+    gradient.addColorStop(1, 'rgba(255,255,255,0)');
+
+    ctx.beginPath();
+    ctx.arc(orb.x, orb.y, orb.r * pulse, 0, Math.PI * 2);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    // Border ring
+    ctx.beginPath();
+    ctx.arc(orb.x, orb.y, orb.r * pulse, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Draw connections between nearby orbs
+  for (let i = 0; i < orbs.length; i++) {
+    for (let j = i + 1; j < orbs.length; j++) {
+      const dx = orbs[i].x - orbs[j].x;
+      const dy = orbs[i].y - orbs[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 300) {
+        const t = 1 - dist / 300;
+        ctx.beginPath();
+        ctx.moveTo(orbs[i].x, orbs[i].y);
+        ctx.lineTo(orbs[j].x, orbs[j].y);
+        ctx.strokeStyle = `rgba(255,255,255,${t * 0.08})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
