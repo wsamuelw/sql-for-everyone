@@ -6,16 +6,20 @@
       {
         "id": "38639da505ed3a8d",
         "type": "tabs",
-        "dimension": 63.770364623739326,
+        "dimension": 72.06703910614524,
         "children": [
           {
             "id": "e750479fecffb441",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "resume-super-ic.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "resume-super-ic"
             }
           }
         ]
@@ -23,7 +27,7 @@
       {
         "id": "0a8e11be89ba9c03",
         "type": "tabs",
-        "dimension": 36.22963537626067,
+        "dimension": 27.932960893854748,
         "children": [
           {
             "id": "fc6363232f4a730b",
@@ -229,14 +233,15 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "18bfd7fed9b81f87",
+  "active": "e750479fecffb441",
   "lastOpenFiles": [
-    "resume-commbank-ds-final-v2 1.md",
-    "resume-commbank-ds-final-v2.md",
+    "resume-nab-ai-ds.md",
+    "resume-super-ic.md",
     "affiliate-product-guide.md",
+    "resume-commbank-ds-final-v2.md",
+    "resume-commbank-ds-final-v2 1.md",
     "resume-commbank-ds-final.md",
     "resume-commbank-ds.md",
-    "resume-super-ic.md",
     "Resume by Mimo AI.md",
     "resume-canva-staff-ds-final-v3.md",
     "resume-canva-staff-ds-final-v2.md",
@@ -256,7 +261,6 @@
     "01-customer-analytics-engineer-motion.md",
     "code-review-report.md",
     "Work/ebook.md",
-    "Work/ebook-implementation-plan.md",
     "index 1.html",
     "index.html",
     "Untitled",
