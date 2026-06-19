@@ -5,7 +5,7 @@ Melbourne | 0422 222 884 | https://www.linkedin.com/in/-samuel-wong/
 
 ## PROFESSIONAL SUMMARY
 
-Analytics leader with 10+ years building customer analytics capabilities and leading teams across entertainment, retail, loyalty, and consulting. Equally comfortable defining analytics strategy with senior leadership and writing the SQL to deliver it. Built analytics functions from scratch, established data governance and self-serve frameworks, and partnered with Marketing, Product, and Engineering to drive campaign performance, experimentation, and customer intelligence at scale — including campaigns reaching 9M+ active members. Currently running a fractional analytics practice serving 10+ clients, with deep expertise in marketing analytics, segmentation, and embedding data-driven decision-making across organisations.
+Analytics leader with 10+ years building customer analytics capabilities and leading teams across entertainment, retail, loyalty, and consulting. Equally comfortable defining analytics strategy with senior leadership and writing the SQL to deliver it. Built analytics functions from scratch, established data governance and self-serve ![[CLAUDE]]frameworks, and partnered with Marketing, Product, and Engineering to drive campaign performance, experimentation, and customer intelligence at scale — including campaigns reaching 9M+ active members. Currently running a fractional analytics practice serving 10+ clients, with deep expertise in marketing analytics, segmentation, and embedding data-driven decision-making across organisations.
 
 ---
 

@@ -6,7 +6,6 @@
       {
         "id": "38639da505ed3a8d",
         "type": "tabs",
-        "dimension": 72.06703910614524,
         "children": [
           {
             "id": "e750479fecffb441",
@@ -20,55 +19,6 @@
               },
               "icon": "lucide-file",
               "title": "resume-super-ic"
-            }
-          }
-        ]
-      },
-      {
-        "id": "0a8e11be89ba9c03",
-        "type": "tabs",
-        "dimension": 27.932960893854748,
-        "children": [
-          {
-            "id": "fc6363232f4a730b",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "terminal:terminal",
-              "state": {
-                "terminal:terminal": {
-                  "cwd": "/Users/samuel/Projects/Obsidian Vault",
-                  "focus": false,
-                  "profile": {
-                    "args": [
-                      "--login"
-                    ],
-                    "executable": "/bin/zsh",
-                    "followTheme": true,
-                    "name": "",
-                    "platforms": {
-                      "darwin": true
-                    },
-                    "pythonExecutable": "python3",
-                    "restoreHistory": false,
-                    "rightClickAction": "copyPaste",
-                    "successExitCodes": [
-                      "0",
-                      "SIGINT",
-                      "SIGTERM"
-                    ],
-                    "terminalOptions": {
-                      "documentOverride": null
-                    },
-                    "type": "integrated",
-                    "useWin32Conhost": true
-                  },
-                  "serial": null
-                }
-              },
-              "pinned": true,
-              "icon": "terminal",
-              "title": "Terminal: zsh"
             }
           }
         ]
@@ -235,8 +185,10 @@
   },
   "active": "e750479fecffb441",
   "lastOpenFiles": [
-    "resume-nab-ai-ds.md",
+    "CLAUDE.md",
     "resume-super-ic.md",
+    "resume-analytics-manager.md",
+    "resume-nab-ai-ds.md",
     "affiliate-product-guide.md",
     "resume-commbank-ds-final-v2.md",
     "resume-commbank-ds-final-v2 1.md",
@@ -259,8 +211,6 @@
     "03-reporting-insights-lead-morgan.md",
     "02-marketing-analytics-lead-upguard.md",
     "01-customer-analytics-engineer-motion.md",
-    "code-review-report.md",
-    "Work/ebook.md",
     "index 1.html",
     "index.html",
     "Untitled",
