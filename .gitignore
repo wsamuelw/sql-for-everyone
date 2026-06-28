@@ -3,3 +3,38 @@
 
 # Gstack
 .gstack/
+
+# Other projects (not part of sql-for-everyone)
+ai-for-kids/
+children-books/
+claude-code-dashboard/
+datafying-brand-guide/
+docs/
+gallery-image/
+how-to-multiply/
+how-to-spell/
+job-search/
+job-tracking/
+kmart-clone/
+linkedin-banner-app/
+mimo-storyteller/
+mimo-tts-voice-design-reader/
+melbourne-property-intelligence/
+Netatmo/
+Obsidian\ Vault/
+persona/
+quit-smoking/
+snake-game/
+task-sounds/
+web\ scrape\ domain/
+Coursera\ AI\ Courses/
+
+# Hermes & Claude
+.hermes/
+.claude/
+
+# Misc
+*.xlsx
+.Rhistory
+code-review-report.md
+github-review-report.md
